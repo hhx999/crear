@@ -1,15 +1,13 @@
 <?php 
-use App\Libraries\Helpers;
+use App\Helpers;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>PANEL ADMINISTRACIÓN - FORMULARIOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' href="<?=$GLOBALS['raiz'].'resources/assets/css/fuente.css'?>">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="shortcut icon" href="<?=$GLOBALS['raiz'].'resources/assets/img/logo.svg'?>" type="image/x-icon"/>
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.min.js'?>" type="text/javascript"></script>
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
   <style type="text/css">
     /* The Modal (background) */
     * {
@@ -114,16 +112,11 @@ box-shadow: 0px 0px 5px 5px #4caf50;
 
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
-      <div style="margin-bottom: 30px;">
-        <a href="<?=$GLOBALS['urlRaiz']?>">
-        <img src="<?=$GLOBALS['raiz'].'resources/assets/img/logo_crear.jpg'?>">
-        </a>
-      </div>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          <a href="<?=$GLOBALS['urlRaiz'].'logout'?>" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="<?=$GLOBALS['urlRaiz'].'ingresarForm'?>">Ingresar formulario</a>
-          <a class="w3-btn w3-light-green" href="<?=$GLOBALS['urlRaiz'].'registro'?>" style="color: #fff !important;">Registrar usuario</a>
-          <a class="w3-btn w3-blue-gray" href="<?=$GLOBALS['urlRaiz'].'adminUsuarios'?>" style="color: #fff !important;">Ver usuarios</a>
+          <a href="logout" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="ingresarForm">Ingresar formulario</a>
+          <a class="w3-btn w3-light-green" href="registro" style="color: #fff !important;">Registrar usuario</a>
+          <a class="w3-btn w3-blue-gray" href="adminUsuarios" style="color: #fff !important;">Ver usuarios</a>
         </div>
         <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS -->
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
