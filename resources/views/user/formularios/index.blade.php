@@ -1,16 +1,18 @@
 <?php 
-use App\Libraries\Helpers;
+use App\Helpers;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>MENÚ USUARIO - FORMULARIOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' href="<?=$GLOBALS['raiz'].'resources/assets/css/fuente.css'?>">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-  <link rel="shortcut icon" href="<?=$GLOBALS['raiz'].'resources/assets/img/logo.svg'?>" type="image/x-icon"/>
-  <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
 <style type="text/css">
 @keyframes blink {  
@@ -34,14 +36,10 @@ use App\Libraries\Helpers;
 
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
-      <div style="margin-bottom: 30px;">
-        <a href="<?= $GLOBALS['urlRaiz'] ?>">
-        <img src="<?=$GLOBALS['raiz'].'resources/assets/img/logo_crear.jpg'?>">
-        </a>
-      </div>
+      <br>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          <a href="<?=$GLOBALS['urlRaiz'].'logout'?>" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="<?=$GLOBALS['urlRaiz'].'user'?>">Volver a formularios</a>
+          <a href="logout" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="user">Volver a formularios</a>
         </div>
         <style type="text/css">
         	
@@ -69,7 +67,6 @@ transition: all 0.6s ease;
 						<div class="w3-half w3-center">
 							<div class="tipoForm" style="border: 5px #8dc540 solid;padding:20px;">
 							<input type="text" value="'.$tiposFormularios[$i]->id.'" hidden>
-							<img height="250px;" width="250px;" src="'.$GLOBALS["raiz"].'resources/assets/img/'.$tiposFormularios[$i]->id.'.png">
 						    	<p style="font-size:18px;">'.$tiposFormularios[$i]->nombre.'</p>
 						    </div>
 						</div>
@@ -120,16 +117,13 @@ transition: all 0.6s ease;
 		</style>
     <div class="w3-col m1 w3-center"><p></p></div>
     <script type="text/javascript">
-    	var infoCreditos = '';
-    	var contenido = '';
-    	var id = '';
-		var url = window.location.pathname.split('/');
-		url = '/'+url[1]+'/'+url[2]+'/'+url[3]+'/'+url[4]+'/';
-		var urlImg = window.location.pathname.split('/');
-		urlImg = '/'+urlImg[1]+'/';
-    console.log(url);
-    	$(document).on('click','.tipoForm', function () {
+    var infoCreditos = '';
+    var contenido = '';
+    var id = '';
+		
+  	$(document).on('click','.tipoForm', function () {
     		id = $(this).children('input').val();
+
     		contenido = '';
     		var datos = {};
 		        datos['id'] = id;
@@ -140,13 +134,12 @@ transition: all 0.6s ease;
       });
 		    $.ajax({
 		        type: 'POST',
-		        url: url+'buscarCreditos',
+		        url: "{{ url('/buscarCreditos') }}",
 		        data : datos
 		    }).done(function (data) {
 		    	infoCreditos =  JSON.parse(data);
 		    	if (jQuery.isEmptyObject(infoCreditos)) {
 		    		contenidoFijo = $('<br>\
-		    			<img src="'+urlImg+'resources/assets/img/logo_crear.jpg"><br>\
 		    			<h4>No existen planes para esta línea de crédito por ahora.<br> Disculpe las molestías. <br></h4><h3>Muchas gracias!</h3><br><br>');
 		    	} else {
 	    			countInfo = parseInt(infoCreditos.length)-parseInt(1);
@@ -158,7 +151,7 @@ transition: all 0.6s ease;
 			    	contenido = ('<div id="infoCreditos">\
 			    					<p>Formalidad:</p>\
 									<p>'+infoCreditos[0].descripcion+'</p>\
-									<a style="text-decoration:none;" href='+url+'ingresarForm/'+id+'&'+infoCreditos[0].monto+'><button class="w3-btn w3-green" type="button">Ingresar formulario</button></a><br><br>\
+									<a style="text-decoration:none;" href=ingresarForm/'+id+'&'+infoCreditos[0].monto+'><button class="w3-btn w3-green" type="button">Ingresar formulario</button></a><br><br>\
 								</div>\
 	    			');
 		    	}

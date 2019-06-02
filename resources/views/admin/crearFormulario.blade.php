@@ -2,22 +2,19 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-  <link rel='stylesheet' href="<?=$GLOBALS['raiz'].'resources/assets/css/fuente.css'?>">
-  <link rel="shortcut icon" href="<?=$GLOBALS['raiz'].'/resources/assets/img/logo.svg'?>" type="image/x-icon"/>
-  
+  <meta name="_token" content="{{csrf_token()}}" />
+
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?=$GLOBALS['raiz'].'/resources/assets/css/style.css'?>">
-  
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.min.js'?>" type="text/javascript"></script>
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.mask.min.js'?>" type="text/javascript"></script>
-  <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
   <title>CREAR - FORMULARIO LÍNEA EMPRENDEDOR</title>
 </head>
 <body>
-  <div align="center">
-    <a href="<?=$GLOBALS['urlRaiz'].'admin'?>"><img src="<?=$GLOBALS['raiz'].'resources/assets/img/logo.svg'?>" style="width: 20%;"></a>
-  </div>
+  <br>
 <form id="regForm" action="crearFormulario" method="POST">
 
   <!-- hidden inputs -->
@@ -27,7 +24,7 @@
   <h1>Línea Emprendedor</h1>
   <H3 align="center">Línea de créditos para emprendedores</H3>
 
-  <a href="<?=$GLOBALS['urlRaiz'].'ingresarForm'?>"><button type="button">Volver</button></a><br>
+  <a href="ingresarForm"><button type="button">Volver</button></a><br>
   <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 30px;"></div>
   <div style="border-top: 2px solid #0174b6;display: inline-block;width: 25px;"></div>
   <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 92%;"></div>
@@ -73,12 +70,14 @@
       $(document).ready(function(){
           var localidad = 'Localidad';
           
-          var url = window.location.pathname.split('/');
-                url = '/'+url[1]+'/'+url[2]+'/';
-                console.log(url);
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
           $.ajax({
                     type: 'POST',
-                    url: url+'buscarLocalidades',
+                    url: "{{ url('/buscarLocalidades') }}",
                     dataType: "json",
                     data : {'buscar' : localidad }
                 }).done(function (data) {
@@ -86,9 +85,37 @@
                   {
                     ciudades.push(data[i]['nombre']);
                   }
-                }).fail(function () {
-                    alert('Ocurrio un error. Por favor, pongase en contacto con el administrador.');
-                    //window.location.reload(true);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    
+  if (jqXHR.status === 0) {
+
+    alert('Not connect: Verify Network.');
+
+  } else if (jqXHR.status == 404) {
+
+    alert('Requested page not found [404]');
+
+  } else if (jqXHR.status == 500) {
+
+    alert('Internal Server Error [500].');
+
+  } else if (textStatus === 'parsererror') {
+
+    alert('Requested JSON parse failed.');
+
+  } else if (textStatus === 'timeout') {
+
+    alert('Time out error.');
+
+  } else if (textStatus === 'abort') {
+
+    alert('Ajax request aborted.');
+
+  } else {
+
+    alert('Uncaught Error: ' + jqXHR.responseText);
+
+  }
                 });
       });
 
@@ -107,9 +134,37 @@
                     data : {'localidad' : localidad }
                 }).done(function (data) {
                   $('#agenciaPortada').val(data.nombre);
-                }).fail(function () {
-                    console.log('Ocurrio un error. Por favor, pongase en contacto con el administrador.');
-                    //window.location.reload(true);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    
+  if (jqXHR.status === 0) {
+
+    alert('Not connect: Verify Network.');
+
+  } else if (jqXHR.status == 404) {
+
+    alert('Requested page not found [404]');
+
+  } else if (jqXHR.status == 500) {
+
+    alert('Internal Server Error [500].');
+
+  } else if (textStatus === 'parsererror') {
+
+    alert('Requested JSON parse failed.');
+
+  } else if (textStatus === 'timeout') {
+
+    alert('Time out error.');
+
+  } else if (textStatus === 'abort') {
+
+    alert('Ajax request aborted.');
+
+  } else {
+
+    alert('Uncaught Error: ' + jqXHR.responseText);
+
+  }
                 });
 
       }); 
@@ -620,25 +675,29 @@
   </div>
   <p align="center"><small>Versión <b>TEST</b> del sistema de formularios para la agencia de desarrollo CREAR.</small></p>
 </form>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/autocomplete.js'?>"></script>
+
+<script type="text/javascript" src="{{ asset('js/autocomplete.js') }}"></script>
  <script>
 autocomplete(document.getElementById("localidadPortada"), ciudades);
 </script> 
 
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_ref.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_clientes.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_proveedores.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_competencia.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_ventas.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/calculo_ventas.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/calculo_servicios.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/items.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/bienes_emprendedor.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/bienes_garante.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/rules_validation.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/calculo_items.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_items.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/nombreInputsStyle.js'?>"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_ref.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_clientes.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_proveedores.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_competencia.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_ventas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/calculo_ventas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_items.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/items.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('js/bienes_emprendedor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bienes_garante.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/calculo_items.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/nombreInputsStyle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/rules_validation.js') }}"></script>
+
+
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -655,7 +714,7 @@ autocomplete(document.getElementById("localidadPortada"), ciudades);
         $('#montoAporte').mask("0000000");
       });
 </script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/tabScript.js'?>"></script>
+<script type="text/javascript" src="{{ asset('js/tabScript.js') }}"></script>
 
 </body>
 </html>
