@@ -120,10 +120,14 @@ $('textarea[name^="observaciones"]').each(function(key, value) {
 btnConfirmar.onclick = function() {
   var url = window.location.pathname.split('/');
   url = '/'+url[1]+'/'+url[2]+'/';
-  console.log(datosVerificar);
+  $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
     $.ajax({
         type: 'POST',
-        url: url+'agregarRevision',
+        url: "{{ url('/agregarRevision') }}",
         dataType: 'JSON',
         data : datosVerificar
     }).done(function (data) {
