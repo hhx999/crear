@@ -1,12 +1,12 @@
 <?php 
-use App\Libraries\Helpers;
+use App\Helpers;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>CREAR - Linea emprendedor - Datos del formulario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
 </head>
 <body>
 
@@ -16,7 +16,7 @@ use App\Libraries\Helpers;
 <div class="w3-row">
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white">
-    <a href="<?=$GLOBALS['urlRaiz']?>"><button type="button">Volver a Inicio</button></a>
+    <a href="/"><button type="button">Volver a Inicio</button></a>
 														<!-- PORTADA -->
     <div class="w3-panel w3-green w3-display-container" align="center">
         <span onclick="this.parentElement.style.display='none'"
