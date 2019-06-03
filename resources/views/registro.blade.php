@@ -1,29 +1,24 @@
 <?php 
-use App\Libraries\Helpers;
+use App\Helpers;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>REGISTRO DE USUARIO - PLATAFORMA CREAR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' href="<?=$GLOBALS['raiz'].'resources/assets/css/fuente.css'?>">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="shortcut icon" href="<?=$GLOBALS['raiz'].'resources/assets/img/logo.svg'?>" type="image/x-icon"/>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?=$GLOBALS['raiz'].'/resources/assets/css/style.css'?>">
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.min.js'?>" type="text/javascript"></script>
-  <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.mask.min.js'?>" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
   <script src='https://www.google.com/recaptcha/api.js'></script>
 <body>
 
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
-      <div style="margin-bottom: 30px;">
-        <a href="<?=$GLOBALS['urlRaiz']?>">
-        <img src="<?=$GLOBALS['raiz'].'resources/assets/img/logo_crear.jpg'?>">
-        </a>
-      </div>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
 	       	<div class="w3-card-4">
 		    <div class="w3-container w3-light-green">
@@ -58,7 +53,7 @@ use App\Libraries\Helpers;
     <div class="w3-col m1 w3-center"><p></p></div>
 
 </body>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/nombreInputsStyle.js'?>"></script>
+<script type="text/javascript" src="{{ asset('js/nombreInputsStyle.js') }}"></script>
 <script type="text/javascript">
 	$( "#regForm" ).validate({
            rules: {
@@ -112,11 +107,10 @@ use App\Libraries\Helpers;
 	$('#dniBlur').on('blur','input',function(event) {
     var datos = {};
         datos['dni'] = $('#dni').val();
-    var url = window.location.pathname.split('/');
-  	url = '/'+url[1]+'/'+url[2]+'/';
+
     $.ajax({
         type: 'POST',
-        url: url+'registroAjax',
+        url: "{{ url('/registroAjax') }}",
         data : datos
     }).done(function (data) {
     	if (data == 'El DNI es válido') {
