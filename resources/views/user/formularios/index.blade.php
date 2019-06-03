@@ -38,8 +38,8 @@ use App\Helpers;
   <div class="w3-col m10 w3-white w3-center">
       <br>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          <a href="logout" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="user">Volver a formularios</a>
+          <a href="{{ url('/logout') }}" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="{{ url('/user') }}">Volver a formularios</a>
         </div>
         <style type="text/css">
         	

@@ -16,7 +16,7 @@ use App\Helpers;
 <div class="w3-row">
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white">
-    <a href="/"><button type="button">Volver a Inicio</button></a>
+    <a href="{{ url('/') }}"><button type="button">Volver a Inicio</button></a>
 														<!-- PORTADA -->
     <div class="w3-panel w3-green w3-display-container" align="center">
         <span onclick="this.parentElement.style.display='none'"

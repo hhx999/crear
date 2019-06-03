@@ -24,7 +24,7 @@
   <h1>Línea Emprendedor</h1>
   <H3 align="center">Línea de créditos para emprendedores</H3>
 
-  <a href="ingresarForm"><button type="button">Volver</button></a><br>
+  <a href="{{ url('/ingresarForm') }}"><button type="button">Volver</button></a><br>
   <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 30px;"></div>
   <div style="border-top: 2px solid #0174b6;display: inline-block;width: 25px;"></div>
   <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 92%;"></div>

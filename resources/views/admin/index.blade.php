@@ -113,10 +113,10 @@ box-shadow: 0px 0px 5px 5px #4caf50;
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          <a href="logout" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="ingresarForm">Ingresar formulario</a>
-          <a class="w3-btn w3-light-green" href="registro" style="color: #fff !important;">Registrar usuario</a>
-          <a class="w3-btn w3-blue-gray" href="adminUsuarios" style="color: #fff !important;">Ver usuarios</a>
+          <a href="{{ url('/logout') }}" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="{{ url('/ingresarForm') }}">Ingresar formulario</a>
+          <a class="w3-btn w3-light-green" href="{{ url('/registro') }}" style="color: #fff !important;">Registrar usuario</a>
+          <a class="w3-btn w3-blue-gray" href="{{ url('/adminUsuarios') }}" style="color: #fff !important;">Ver usuarios</a>
         </div>
         <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS -->
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">

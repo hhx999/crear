@@ -6,9 +6,9 @@ use App\Helpers;
 <head>
   <title>MENÚ USUARIO - FORMULARIOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-  <link href="{{ asset('js/jquery.min.js') }}" rel="stylesheet">
 
 <style type="text/css">
 @keyframes blink {  
@@ -38,8 +38,8 @@ use App\Helpers;
         </a>-->
       </div>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          <a href="logout" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="ingresarForm">Ingresar formulario</a>
+          <a href="{{ url('/logout') }}" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="{{ url('/ingresarForm') }}">Ingresar formulario</a>
         </div>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
           ENVIADO <span style="width: 15px;height: 15px;display: inline-block;border: 1px solid black;" class="w3-white"></span>

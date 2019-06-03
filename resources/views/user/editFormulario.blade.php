@@ -39,7 +39,7 @@ use App\Helpers;
   <H3 align="center">Línea de créditos para emprendedores</H3>
 
 
-  <a href="user"><button type="button">Volver a FORMULARIOS</button></a><br>
+  <a href="{{ url('/user') }}"><button type="button">Volver a FORMULARIOS</button></a><br>
   <div class="barraCol1"></div>
   <div class="barraCol2"></div>
   <div class="barraCol3"></div>
