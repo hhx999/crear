@@ -180,7 +180,7 @@ transition: all 0.6s ease;
 			contenido = ('<div id="infoCreditos">\
 		    					<p>Formalidad:</p>\
 								<p>'+infoCreditos[this.value].descripcion+'</p>\
-								<a style="text-decoration:none;" href='+url+'ingresarForm/'+id+'&'+infoCreditos[this.value].monto+'><button class="w3-btn w3-green" type="button">Ingresar formulario</button></a><br><br>\
+								<a style="text-decoration:none;" href=ingresarForm/'+id+'&'+infoCreditos[this.value].monto+'><button class="w3-btn w3-green" type="button">Ingresar formulario</button></a><br><br>\
 							</div>\
     			');
 			$('#infoCreditos').remove();
