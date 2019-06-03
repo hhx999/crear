@@ -6,10 +6,9 @@ use App\Libraries\Helpers;
 <head>
   <title>PANEL ADMINISTRACIÓN - FORMULARIOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' href="<?=$GLOBALS['raiz'].'resources/assets/css/fuente.css'?>">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="shortcut icon" href="<?=$GLOBALS['raiz'].'resources/assets/img/logo.svg'?>" type="image/x-icon"/>
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.min.js'?>" type="text/javascript"></script>
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+
   <style type="text/css">
    /* The Modal (background) */
 .modal {
@@ -142,16 +141,12 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
 
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
-      <div style="margin-bottom: 30px;">
-        <a href="<?=$GLOBALS['urlRaiz']?>">
-        <img src="<?=$GLOBALS['raiz'].'resources/assets/img/logo_crear.jpg'?>">
-        </a>
-      </div>
+
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
           <h3>ADMINISTRACIÓN DE USUARIOS</h3>
-          <a href="<?=$GLOBALS['urlRaiz'].'logout'?>" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="<?=$GLOBALS['urlRaiz'].'admin'?>">Volver a formularios</a>
-          <a class="w3-btn w3-light-green" href="<?=$GLOBALS['urlRaiz'].'registro'?>" style="color: #fff !important;">Registrar usuario</a>
+          <a href="{{ url('/logout') }}" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="{{ url('/admin') }}">Volver a formularios</a>
+          <a class="w3-btn w3-light-green" href="{{ url('/registro') }}" style="color: #fff !important;">Registrar usuario</a>
         <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS -->
         <div class="w3-col m12 l12" style="margin-bottom: 20px;margin-top: 20px;">
           NO VERIFICADO <span style="width: 15px;height: 15px;display: inline-block;background: #b4b4b4;"></span>
@@ -303,12 +298,9 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
 
 
       $(document).on('click','#siModal',function() {
-        var url = window.location.pathname.split('/');
-        url = '/'+url[1]+'/'+url[2]+'/';
-
         $.ajax({
             type: 'POST',
-            url: url+'verificarUsuarios',
+            url: "{{ url('/verificarUsuarios') }}",
             dataType: "json",
             data : {'dniVerificados' : dniArray, 'dniNoverificados' : dniNovalidado }
         }).done(function (data) {

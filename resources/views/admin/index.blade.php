@@ -10,9 +10,6 @@ use App\Helpers;
   <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
   <style type="text/css">
     /* The Modal (background) */
-    * {
-      font-size: 12px;
-    }
 .modal {
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
