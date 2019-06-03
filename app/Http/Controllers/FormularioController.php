@@ -336,18 +336,16 @@ class FormularioController extends Controller
       } else {
           $data = $request->all();
           try {
-            $formV = 0;
+            $formV = 1;
             $idValidacion = $data['idValidacion'];
             unset($data['idValidacion']);
             foreach ($data as $hoja => $valor) {
-              if ($hoja != 'id' || $hoja != 'observaciones') {
-                if (intval($valor) == 1) {
-                  $formV++;
-                }
+              if ($hoja == 'observaciones') {
+                  $formV = 0;
               }
             }
 
-            if ($formV == 9) {
+            if ($formV == 1) {
               $formulario = Formulario::find($data['id']);
               //Formulario estado 5 completo
               $formulario->estado = 5;

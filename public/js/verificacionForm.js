@@ -119,15 +119,11 @@ $('textarea[name^="observaciones"]').each(function(key, value) {
 
 btnConfirmar.onclick = function() {
   var url = window.location.pathname.split('/');
-  url = '/'+url[1]+'/'+url[2]+'/';
-  $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
+  url = $('#urlRevision').val();
+  console.log(url);
     $.ajax({
         type: 'POST',
-        url: "{{ url('/agregarRevision') }}",
+        url: url,
         dataType: 'JSON',
         data : datosVerificar
     }).done(function (data) {

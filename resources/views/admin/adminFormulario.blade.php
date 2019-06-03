@@ -43,7 +43,7 @@ use App\Helpers;
     <span class="step" onclick="irTab(8)"></span>
   </div>
 
-
+<!-- Modal de REVISIÓN -->
 <div id="verificacionModal" class="modal">
 
   <div class="modal-content">
@@ -65,6 +65,7 @@ use App\Helpers;
   </div>
 
 </div>
+<!-- FIN DE Modal de REVISIÓN -->
 
   <div class="tab">
     <input type="input" name="idValidacion" id="idValidacion" value="<?=$pasosValidos->id?>" hidden>
@@ -949,6 +950,10 @@ th {
 <script type="text/javascript" src="{{ asset('js/calculo_items.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/nombreInputsStyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/rules_validation.js') }}"></script>
+
+<input type="hidden" id="urlRevision" value="{{ url('/agregarRevision') }}">
+
+<script type="text/javascript" src="{{ asset('js/verificacionForm.js') }}"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){

@@ -1,19 +1,18 @@
 <?php 
-use App\Libraries\Helpers;
+use App\Helpers;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-  <link rel="shortcut icon" href="../../resources/assets/img/logo.svg" type="image/x-icon"/>
-  <link rel='stylesheet' href="<?=$GLOBALS['raiz'].'resources/assets/css/fuente.css'?>">
+
+  <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../../resources/assets/css/style.css">
-  
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.min.js'?>" type="text/javascript"></script>
-  <script src="<?=$GLOBALS['raiz'].'resources/assets/js/jquery.mask.min.js'?>" type="text/javascript"></script>
-  <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
   <style type="text/css">
     input {
       text-transform: uppercase;
@@ -35,15 +34,12 @@ use App\Libraries\Helpers;
 </head>
 
 <body>
-  <div align="center">
-    <a href="<?= $GLOBALS['urlRaiz'] ?>"><img src="<?=$GLOBALS['raiz'].'resources/assets/img/logo.svg'?>" style="width: 20%;"></a>
-  </div>
 <form id="regForm" action="crearFormulario" method="POST">
   <h1>Línea Emprendedor</h1>
   <H3 align="center">Línea de créditos para emprendedores</H3>
 
 
-  <a href="<?=$GLOBALS['urlRaiz'].'user'?>"><button type="button">Volver a FORMULARIOS</button></a><br>
+  <a href="user"><button type="button">Volver a FORMULARIOS</button></a><br>
   <div class="barraCol1"></div>
   <div class="barraCol2"></div>
   <div class="barraCol3"></div>
@@ -848,7 +844,7 @@ use App\Libraries\Helpers;
 
   <!-- Circles which indicates the steps of the form: -->
 </form>
-<script type="text/javascript" src="../../resources/assets/js/autocomplete.js"></script>
+
   <script type="text/javascript">
     $(function() {
     $('input').keyup(function() {
@@ -863,24 +859,23 @@ use App\Libraries\Helpers;
     });
 
     </script>
- <script>
-autocomplete(document.getElementById("localidadSolicitante"), countries);
-</script> 
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_ref.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_clientes.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_proveedores.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_competencia.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_ventas.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/calculo_ventas.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/calculo_servicios.js'?>"></script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/items.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/bienes_emprendedor.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/bienes_garante.js'?>"></script>
- <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/rules_validation.js'?>"></script>
- 
-    <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/calculo_items.js'?>"></script>
-    <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/add_campos_items.js'?>"></script>
-     <script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/nombreInputsStyle.js'?>"></script>
+<script type="text/javascript" src="{{ asset('js/autocomplete.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('js/add_campos_ref.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_clientes.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_proveedores.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_competencia.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_ventas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/calculo_ventas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/add_campos_items.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/items.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('js/bienes_emprendedor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bienes_garante.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/calculo_items.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/nombreInputsStyle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/rules_validation.js') }}"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -897,7 +892,7 @@ autocomplete(document.getElementById("localidadSolicitante"), countries);
         $('#montoAporte').mask("0000000");
       });
 </script>
-<script type="text/javascript" src="<?=$GLOBALS['raiz'].'resources/assets/js/tabScript.js'?>"></script>
+<script type="text/javascript" src="{{ asset('js/tabScript.js') }}"></script>
 
 </body>
 </html>
