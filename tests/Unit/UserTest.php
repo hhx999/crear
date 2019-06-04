@@ -34,4 +34,15 @@ class UserTest extends TestCase
         $response = $this->post('/', $datos);
         $response->assertRedirect('/admin');
     }
+    public function testUsuarioIncorrecto()
+    {
+        $this->get('/')->assertSee('INGRESO');
+        $datos = [
+            "dni" => "+++",
+            "password" => "1234"
+        ];
+
+        $response = $this->post('/', $datos);
+        $response->assertSee('USUARIO INCORRECTO');
+    }
 }
