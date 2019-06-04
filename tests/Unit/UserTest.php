@@ -23,4 +23,15 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
     }
+    public function testLogin()
+    {
+        $this->get('/')->assertSee('INGRESO');
+        $datos = [
+            "dni" => "777",
+            "password" => "1234"
+        ];
+
+        $response = $this->post('/', $datos);
+        $response->assertRedirect('/admin');
+    }
 }
