@@ -46,19 +46,13 @@ class FormularioController extends Controller
     /* CONTROLADORES PARA LAS VISTAS */
     public function index(Request $request)
     {
-      $uri = $_SERVER["REQUEST_URI"];
-      if ($uri == '/crear/') {
-        $uri = 'index.php';
-      } else {
-        $uri = '';
-      }
       $session = $request->session();
         if ($session->get('usuario') == 'admin') {
-          return redirect($uri.'/admin');
+          return redirect(url('/admin'));
           exit();
         }
         if($session->get('usuario') == 'user') {
-          return redirect($uri.'/user');
+          return redirect(url('/user'));
           exit();
         }
       $msgError = '';
@@ -73,7 +67,7 @@ class FormularioController extends Controller
                 $session->put('id_usuario', $usuario->id);
                 $session->put('nombreUsuario',$usuario->nombre);
                 $session->put('usuario', $usuario->rol);
-                return redirect($uri.'/'.$usuario->rol);
+                return redirect(url('/'.$usuario->rol));
                   exit();
               } else {
                 $msgError = "<p style='color:red;'>PASSWORD INCORRECTO</p>";
