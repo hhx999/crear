@@ -13,8 +13,14 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testHelloWorld()
     {
         $this->assertTrue(true);
+    }
+    public function testBasicHttp()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
     }
 }
