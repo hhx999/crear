@@ -43,6 +43,11 @@ class FormularioController extends Controller
      *
      * @return void
      */
+    /* MODO TEST: NUEVA INTERFAZ USUARIO */
+    public function indexUser(Request $request)
+    {
+      return view('userTest.index');
+    }
     /* CONTROLADORES PARA LAS VISTAS */
     public function index(Request $request)
     {

@@ -7,7 +7,6 @@ use App\Libraries\Helpers;
 <title>INICIO - PLATAFORMA CREAR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
-<link rel="shortcut icon" href="resources/assets/img/logo.svg" type="image/x-icon"/>
 <style type="text/css">
 :root {
   --mainColor: #8bc34a;

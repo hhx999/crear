@@ -75,3 +75,7 @@ $router->post('/buscarLocalidades','FormularioController@buscarLocalidades');
 $router->get('/documentacion/{id}','FormularioController@documentacion');
 $router->post('/agregarDocumentacion/{id}','FormularioController@agregarDocumentacion');
 $router->post('/eliminarDocumentacion','FormularioController@eliminarDocumentacion');
+
+
+//TEST NUEVA INTERFAZ USUARIO
+$router->get('/usuarioIndex','FormularioController@indexUser');
