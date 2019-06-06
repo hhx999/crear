@@ -6,11 +6,19 @@
   <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
   <link rel="stylesheet" href="{{ asset('css/userItemsIndex.css') }}">
 </head>
+<style type="text/css">
+	.menuPrincipal {
+		display: none;
+		margin-top: 30px;
+	}
+</style>
 <body class="bodyUI">
 	<div class="w3-col m1 w3-center"><p></p></div>
   	<div class="w3-col m10 w3-white w3-center contenedor">
         @section('menu')
-        <img src="{{ asset('img/logos/CREARlogo-blanco.png') }}" class="logoCrear"> 
+        <a href="{{ url('/usuarioIndex') }}">
+        	<img src="{{ asset('img/logos/CREARlogo-blanco.png') }}" class="logoCrear">
+        </a>
         @show
 
         @yield('content')    
