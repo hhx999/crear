@@ -2,10 +2,6 @@
 	
 	@section('title') Inicio @endsection
 
-	@section('menu')
-	    @parent
-	@endsection
-
 	@section('content')
 	<!-- Primera fila de cuadros de opciones -->
 	 	<div class="w3-row itemsMenuUsuario">
