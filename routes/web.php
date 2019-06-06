@@ -78,4 +78,5 @@ $router->post('/eliminarDocumentacion','FormularioController@eliminarDocumentaci
 
 
 //TEST NUEVA INTERFAZ USUARIO
-$router->get('/usuarioIndex','FormularioController@indexUser');
+$router->get('/usuarioIndex','UsuarioController@indexUser');
+$router->get('/tramitesIndex','UsuarioController@tramitesUser');
