@@ -20,7 +20,7 @@ Route::get('/laravel', function () {
 ||          RUTAS DE LA APP          ||
 ||                                   ||
 |||||||||||||||||||||||||||||||||||||||
-*/  
+*/
 //Vistas principales de USER y ADMIN
 $router->get('/','FormularioController@index');
 $router->post('/','FormularioController@index');
@@ -80,3 +80,7 @@ $router->post('/eliminarDocumentacion','FormularioController@eliminarDocumentaci
 //TEST NUEVA INTERFAZ USUARIO
 $router->get('/usuarioIndex','UsuarioController@indexUser');
 $router->get('/usuarioTramites','UsuarioController@tramitesUser');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
