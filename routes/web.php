@@ -78,7 +78,7 @@ $router->post('/eliminarDocumentacion','FormularioController@eliminarDocumentaci
 
 
 //TEST NUEVA INTERFAZ USUARIO
-$router->get('/usuarioIndex','UsuarioController@indexUser');
+$router->get('/usuarioIndex','UsuarioController@indexUser')->middleware('auth', 'role:admin');
 $router->get('/usuarioTramites','UsuarioController@tramitesUser');
 
 Auth::routes();
