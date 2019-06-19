@@ -26,7 +26,7 @@ $router->get('/','FormularioController@index');
 $router->post('/','FormularioController@index');
 //User and admin
 $router->get('/user','FormularioController@userindex');
-$router->get('/admin','FormularioController@adminIndex');
+$router->get('/admin','FormularioController@adminIndex')->middleware('comprobarrole');
 //Ingreso de formulario Admin y User
 $router->get('/ingresarForm','FormularioController@userFormularios');
 $router->get('/ingresarForm/{formTipo}&{credTipo}','FormularioController@createViewForm');

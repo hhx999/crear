@@ -31,6 +31,7 @@ use App\Agencia;
 use App\Helpers;
 
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Spipu\Html2Pdf\Html2Pdf;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class FormularioController extends Controller
           if ($usuario) {
             $password = $usuario->password;
             if ($usuario->verificado == 1) {
-              if ($request->input('password') == $password) {
+              if (Hash::check($request->input('password'), $password)) {
                 $session = $request->session();
                 $session->put('id_usuario', $usuario->id);
                 $session->put('nombreUsuario',$usuario->nombre);
@@ -91,10 +92,6 @@ class FormularioController extends Controller
     public function adminIndex(Request $request)
     {
     $session = $request->session();
-        if ($session->get('usuario') != 'admin') {
-          return redirect('/');
-          exit();
-        }
 
       if ($request->has('busqueda')) {
         try {

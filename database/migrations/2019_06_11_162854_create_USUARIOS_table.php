@@ -17,7 +17,7 @@ class CreateUSUARIOSTable extends Migration {
 			$table->integer('id', true);
 			$table->integer('dni')->unique('dni');
 			$table->string('nombre', 20);
-			$table->string('password', 20);
+			$table->string('password', 255);
 			$table->string('email', 45);
 			$table->boolean('verificado')->default(0);
 			$table->string('rol', 20);
