@@ -21,60 +21,40 @@ Route::get('/laravel', function () {
 ||                                   ||
 |||||||||||||||||||||||||||||||||||||||
 */
-//Vistas principales de USER y ADMIN
 $router->get('/','FormularioController@index');
 $router->post('/','FormularioController@index');
-//User and admin
-$router->get('/user','FormularioController@userindex');
-$router->get('/admin','FormularioController@adminIndex')->middleware('comprobarrole');
-//Ingreso de formulario Admin y User
-$router->get('/ingresarForm','FormularioController@userFormularios');
-$router->get('/ingresarForm/{formTipo}&{credTipo}','FormularioController@createViewForm');
-$router->post('/ingresarForm/crearFormulario', 'FormularioController@crearFormulario');
-$router->post('/buscarCreditos','FormularioController@buscarCreditos');
-
-//USUARIO
-//Seguimiento vista para usuario
-$router->get('/seguimiento/{id}','FormularioController@userSeguimiento');
-//Index Formulario
-$router->get('/formularios/index','FormularioController@userFormularios');
-//Editar/Actualizar formulario, vista para usuario
-$router->get('/editarFormulario/{id}', 'FormularioController@editFormulario');
-//Crea un formulario(tanto para usuario como para la vista de administrador)
-$router->post('editarFormulario/crearFormulario', 'FormularioController@crearFormulario');
-
-//ADMINISTRADOR
-//Administrar el formulario enviado por el usuario funcionalidad para Administrador
-$router->get('/adminFormulario/{id}', 'FormularioController@adminFormulario');
-//Validar formulario, funcionalidad en Ajax para administrador
-$router->post('/agregarRevision', 'FormularioController@agregarRevision');
-//Editar formulario
-$router->post('adminFormulario/crearFormulario', 'FormularioController@crearFormulario');
-//Eliminar formulario
-$router->post('/eliminarFormulario/', 'FormularioController@eliminarFormulario');
-
-//MANEJO DE USUARIOS(ADMIN)
-//Administra los usuarios
-$router->get('/adminUsuarios','FormularioController@adminUsuarios');
-//registra usuarios
 $router->get('/registro','FormularioController@registroUsuarios');
 $router->post('/registro','FormularioController@registroUsuarios');
-//verifica o comprueba usuarios
-$router->post('/verificarUsuarios','FormularioController@verificarUsuarios');
-$router->post('/registroAjax','FormularioController@comprobarUsuario');
+
+Route::group(['middleware' => ['comprobarrole:admin']], function () {
+	Route::get('/admin','FormularioController@adminIndex');
+	Route::get('/adminFormulario/{id}', 'FormularioController@adminFormulario');
+	Route::post('/agregarRevision', 'FormularioController@agregarRevision');
+	Route::post('adminFormulario/crearFormulario', 'FormularioController@crearFormulario');
+	Route::post('/eliminarFormulario/', 'FormularioController@eliminarFormulario');
+	Route::get('/adminUsuarios','FormularioController@adminUsuarios');
+	Route::post('/verificarUsuarios','FormularioController@verificarUsuarios');
+	Route::post('/registroAjax','FormularioController@comprobarUsuario');
+	Route::get('/generarPdf/{id}','FormularioController@crearPDF');
+});
+Route::group(['middleware' => ['comprobarrole:user']], function () {
+	Route::get('/user','FormularioController@userindex');
+	Route::get('/ingresarForm','FormularioController@userFormularios');
+	Route::get('/ingresarForm/{formTipo}&{credTipo}','FormularioController@createViewForm');
+	Route::post('/ingresarForm/crearFormulario', 'FormularioController@crearFormulario');
+	Route::post('/buscarCreditos','FormularioController@buscarCreditos');
+	Route::get('/seguimiento/{id}','FormularioController@userSeguimiento');
+	Route::get('/formularios/index','FormularioController@userFormularios');
+	Route::get('/editarFormulario/{id}', 'FormularioController@editFormulario');
+	Route::post('editarFormulario/crearFormulario', 'FormularioController@crearFormulario');
+	Route::get('/generarPdf/{id}','FormularioController@crearPDF');
+	Route::post('/buscarLocalidades','FormularioController@buscarLocalidades');
+	Route::get('/documentacion/{id}','FormularioController@documentacion');
+	Route::post('/agregarDocumentacion/{id}','FormularioController@agregarDocumentacion');
+	Route::post('/eliminarDocumentacion','FormularioController@eliminarDocumentacion');
+});
 //LOGOUT Usuario
 $router->get('/logout','FormularioController@logoutUser');
-
-//ACCIÓN PARA ADMIN Y USUARIO
-//Genera Archivo pdf de algún formulario
-$router->get('/generarPdf/{id}','FormularioController@crearPDF');
-$router->post('/buscarLocalidades','FormularioController@buscarLocalidades');
-
-//DOCUMENTACIÓN
-//Ingreso de documentación
-$router->get('/documentacion/{id}','FormularioController@documentacion');
-$router->post('/agregarDocumentacion/{id}','FormularioController@agregarDocumentacion');
-$router->post('/eliminarDocumentacion','FormularioController@eliminarDocumentacion');
 
 
 //TEST NUEVA INTERFAZ USUARIO

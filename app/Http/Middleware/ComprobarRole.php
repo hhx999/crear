@@ -4,11 +4,11 @@ use Closure;
 
 class ComprobarRole
 {
-	public function handle($request, Closure $next)
+	public function handle($request, Closure $next, $rol)
 	{	
-		$role = $request->session()->get('usuario');
-		if ($role != 'admin') {
-			return redirect('/');// página del formulario
+		$member_role = $request->session()->get('usuario');
+		if ($member_role != $rol) {
+			return redirect('/'.$member_role);// página del formulario
 		}
 		return $next($request);
 	}

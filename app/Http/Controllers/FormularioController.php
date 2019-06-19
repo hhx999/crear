@@ -48,14 +48,7 @@ class FormularioController extends Controller
     public function index(Request $request)
     {
       $session = $request->session();
-        if ($session->get('usuario') == 'admin') {
-          return redirect(url('/admin'));
-          exit();
-        }
-        if($session->get('usuario') == 'user') {
-          return redirect(url('/user'));
-          exit();
-        }
+
       $msgError = '';
       if (!empty($request->input('dni'))) {
         try {
@@ -113,10 +106,7 @@ class FormularioController extends Controller
 
     public function adminUsuarios(Request $request) {
       $session = $request->session();
-        if ($session->get('usuario') != 'admin') {
-          return redirect('/');
-          exit();
-        }
+      
       if ($request->has('busqueda')) {
         try {
         $usuarios = Usuario::where(function($query) use ($request) {
@@ -136,12 +126,7 @@ class FormularioController extends Controller
               return view('error.errorQuery', ['url' => $GLOBALS['urlRaiz'],'msg'=> $e->getMessage(), 'bind' => $e->getBindings(), 'sql' => $e->getSql()]); 
         }
       }
-      /*
-      try {
-        $usuarios = Usuario::latest()->orderBy('id', 'desc')->get();
-      } catch (\Illuminate\Database\QueryException $e) {
-            return view('error.errorQuery', ['url' => $GLOBALS['urlRaiz'],'msg'=> $e->getMessage(), 'bind' => $e->getBindings(), 'sql' => $e->getSql()]); 
-      }*/
+
       return view('admin.adminUsuarios', ['usuarios' => $usuarios,'nombreUsuario' => $session->get('nombreUsuario')]);
     }
     public function verificarUsuarios(Request $request) {
@@ -194,11 +179,7 @@ class FormularioController extends Controller
      {
       $msg = '';
       $session = $request->session();
-      $roles = array('user','admin');
-        if (!in_array($session->get('usuario'), $roles)) {
-          return redirect('/');
-          exit();
-        }
+
         if ($session->has('msg')) {
           $msg = $session->get('msg');
         }
@@ -213,10 +194,7 @@ class FormularioController extends Controller
      public function agregarDocumentacion($id, Request $request)
      {
       $session = $request->session();
-        if (!$session->get('usuario')) {
-          return redirect('/');
-          exit();
-        }
+      
       if ($request->has('dni')) {
         DB::beginTransaction();
         try {
@@ -286,10 +264,7 @@ class FormularioController extends Controller
      public function adminFormulario($id, Request $request)
      {
       $session = $request->session();
-        if ($session->get('usuario') != 'admin') {
-          return redirect('/');
-          exit();
-        }
+
         $formulario = Formulario::find($id);
 
         $referentes = $formulario->referentes;
@@ -317,10 +292,7 @@ class FormularioController extends Controller
      }
     public function agregarRevision(Request $request) {
       $session = $request->session();
-        if ($session->get('usuario') != 'admin') {
-          return redirect('/');
-          exit();
-        }
+
       $result = 1;
       if ($request->isJson()) {
         $data = $request->json()->all();
@@ -418,10 +390,7 @@ class FormularioController extends Controller
      public function eliminarFormulario(Request $request)
      {
       $session = $request->session();
-        if ($session->get('usuario') != 'admin') {
-          return redirect('/');
-          exit();
-        }
+
         $result = 0;
         if ($request->isJson()) {
           $data = $request->json()->all();
@@ -443,10 +412,7 @@ class FormularioController extends Controller
     public function userIndex(Request $request)
     { 
       $session = $request->session();
-      if ($session->get('usuario') != 'user') {
-          return redirect('/');
-          exit();
-        }
+
       $idUsuario = $session->get('id_usuario');
       if ($request->has('busqueda')) {
         try {
@@ -475,11 +441,7 @@ class FormularioController extends Controller
     public function userFormularios(Request $request)
     {
       $session = $request->session();
-      $roles = array('user','admin');
-        if (!in_array($session->get('usuario'), $roles)) {
-          return redirect('/');
-          exit();
-        }
+
       $tiposForm = new FormTipo;
 
       return view('user.formularios.index', ['nombreUsuario' => $session->get('nombreUsuario'), 'tiposFormularios' => $tiposForm->all()]);
@@ -497,10 +459,7 @@ class FormularioController extends Controller
      public function editFormulario($id, Request $request)
      {
       $session = $request->session();
-        if ($session->get('usuario') != 'user') {
-          return redirect('/');
-          exit();
-        }
+
         $formulario = Formulario::find($id);
 
         $referentes = $formulario->referentes;
@@ -525,10 +484,7 @@ class FormularioController extends Controller
     public function userSeguimiento($id, Request $request)
     {
       $session = $request->session();
-        if ($session->get('usuario') != 'user') {
-          return redirect('/');
-          exit();
-        }
+      
       $pasosValidos = Formulario::find($id)->pasosValidos;
       $observaciones = $pasosValidos->observaciones;
       return view('user.seguimiento', ['id' => $id,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones]);
