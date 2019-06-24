@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
   <link rel="stylesheet" href="{{ asset('css/userItemsIndex.css') }}">
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <style type="text/css">
 	.menuPrincipal {

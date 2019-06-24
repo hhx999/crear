@@ -8,7 +8,7 @@ class ComprobarRole
 	{	
 		$member_role = $request->session()->get('usuario');
 		if ($member_role != $rol) {
-			return redirect('/'.$member_role);// página del formulario
+			return redirect('/'.$member_role); // página del formulario
 		}
 		return $next($request);
 	}

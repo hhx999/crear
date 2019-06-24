@@ -16,6 +16,10 @@ class UsuarioController extends BaseController
     {
       return view('userTest.index');
     }
+    public function creditos(Request $request)
+    {
+      return view('userTest.credito');
+    }
     /* Tramites (seguimiento en proyecto Lumen) */
     public function tramitesUser(Request $request)
     {

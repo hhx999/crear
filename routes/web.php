@@ -58,9 +58,6 @@ $router->get('/logout','FormularioController@logoutUser');
 
 
 //TEST NUEVA INTERFAZ USUARIO
-$router->get('/usuarioIndex','UsuarioController@indexUser')->middleware('auth', 'role:admin');
+$router->get('/usuarioIndex','UsuarioController@indexUser');
 $router->get('/usuarioTramites','UsuarioController@tramitesUser');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+$router->get('/usuarioCreditos','UsuarioController@creditos');
