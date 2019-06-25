@@ -20,6 +20,7 @@ class UsuarioTableSeeder extends Seeder
         $usuario->nombre = 'Borjas Test';
         $usuario->email = 'borjas@example.com';
         $usuario->password = bcrypt('borjas');
+        $usuario->verificado = 1;
         $usuario->rol = $role_user;
         $usuario->save();
 
@@ -28,6 +29,7 @@ class UsuarioTableSeeder extends Seeder
         $usuario->nombre = 'Admin';
         $usuario->email = 'admin@example.com';
         $usuario->password = bcrypt('1234');
+        $usuario->verificado = 1;
         $usuario->rol = $role_admin;
         $usuario->save();
     }

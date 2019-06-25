@@ -27,8 +27,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AgenciaTableSeeder::class);
 
         //Tipos de formularios
-
         $this->call(FormTipoTableSeeder::class);
+
+        //Tipos de créditos según los formularios cargados
+        $this->call(CredTipoTableSeeder::class);
+
 
     }
 }
