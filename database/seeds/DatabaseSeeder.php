@@ -23,5 +23,12 @@ class DatabaseSeeder extends Seeder
 	    // Creación de los usuarios
     	$this->call(UsuarioTableSeeder::class);
 
+        //Agencias Crear
+        $this->call(AgenciaTableSeeder::class);
+
+        //Tipos de formularios
+
+        $this->call(FormTipoTableSeeder::class);
+
     }
 }

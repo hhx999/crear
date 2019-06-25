@@ -8,6 +8,7 @@
 		border-radius: 10px;
 		padding: 10px;
 		margin-top: 30px;
+		margin-bottom: 30px;
 	}
 	.preguntas div {
 		animation: animateElement linear .6s;
