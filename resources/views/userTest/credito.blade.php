@@ -15,6 +15,7 @@
 		border:1px white solid;
 		border-left: 4px white solid !important;
 		border:1px white solid;border-left: 4px white solid !important;
+		border-radius: 10px;
 	}
 	@keyframes animateElement{
 	  0% {
@@ -26,6 +27,16 @@
 	    transform:  translate(0px,0px);
 	  }
 	}
+	.respuestas {
+		margin-top: 20px;
+		padding: 10px;
+		-webkit-box-shadow: -4px 3px 20px -7px rgba(0,0,0,0.75);
+		-moz-box-shadow: -4px 3px 20px -7px rgba(0,0,0,0.75);
+		box-shadow: -4px 3px 20px -7px rgba(0,0,0,0.75);
+		background-color: #75e078;
+		color: black !important;
+		border-radius: 10px;
+	}
 </style>
 	@section('content')
 	<div class="w3-row">
@@ -33,8 +44,9 @@
 		  </div>
 		  <div class="w3-container w3-half">
 			<div class="formPreguntasUsuario">
-				<form method="post" name="preguntas">
-					<label><b>Que actividad realiza?</b></label><br>
+				<form method="post" name="preguntas" >
+					<br>
+					<label><b>¿Qué actividad realiza?</b></label><br>
 					<input type="text" name="actividad" style="color: black;">
 					<hr>
 					<p><b>Elija el rubro de la actividad que realiza...</b></p>
@@ -52,9 +64,14 @@
 					<label>Otro</label><input type="radio" name="estadoSolicitante" value="otro">
 					<div class="preguntas Otro"></div>
 					<hr>
-					<label><b>Que antiguedad formal tiene?</b><br></label>
-					<input type="text" name="antiguedad">
-
+					<label><b>¿Qué antigüedad formal tiene?</b></label><br>
+					<input type="text" name="antiguedad" style="color: black !important;"><br>
+					<hr>
+					<label><b>Ingrese el monto solicitado:</b></label><br>
+					<input type="text" name="monto" style="color: black !important;"><br>
+					<br>
+				<input class="w3-button w3-gray" type="reset" value="Limpiar Campos" />
+				<input id="enviar" type="button" class="w3-button w3-green" value="Enviar Respuestas"></input>
 				</form>
 			</div>
 		</div>
@@ -88,7 +105,7 @@
 				$('.Otro div:first').remove();
 				divCategoria = '<div>\
 									<label><b>Que categoría de Monotributo es?</b></label><br>\
-									<input type="text" name="categoriaMonotributo"><br>\
+									<input type="text" name="categoriaMonotributo" style="color:black !important;"><br>\
 								</div>';
 				$('.Monotributo').append(divCategoria);
 			}
@@ -101,6 +118,21 @@
 				$('.Otro').append(divOtro);
 			}
 		}); 
+
+		$(document).ready(function(){
+		  $("input#enviar").click(function(){
+		  	var divFinal = $("<div class='respuestas'></div>");
+		  	divFinal.append('<b>Datos enviados</b><br>');
+		    var preguntasForm = $('form').serializeArray();
+			var preguntasFormObject = {};
+			$.each(preguntasForm,
+			    function(i, v) {
+			        preguntasFormObject[v.name] = v.value;
+			        divFinal.append("<b>"+v.name+"</b>: "+v.value+"<br>");
+			    });
+			$('.w3-half').prepend(divFinal);
+		  });
+		});
 	</script>
 	@endsection
 <!--
