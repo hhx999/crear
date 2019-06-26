@@ -481,10 +481,8 @@ class FormularioController extends Controller
 
         return view('user.editFormulario', ['id' => $id, 'formularioEnviado' => $formulario, 'referentes' => $referentes, 'clientes' => $clientes, 'proveedores' => $proveedores, 'competencias' => $competencias, 'ventas' => $ventas,'items' => $items, 'disponibilidades' => $disponibilidades, 'bienes_cambio' => $bienes_cambio,'bienes_uso' => $bienes_uso, 'deudas_comerciales' => $deudas_comerciales,'deudas_bancarias' => $deudas_bancarias, 'deudas_fiscales' => $deudas_fiscales, 'observaciones' => $observaciones, 'formTipo' => $tipoForm]);
      }
-    public function userSeguimiento($id, Request $request)
+    public function userSeguimiento($id)
     {
-      $session = $request->session();
-      
       $pasosValidos = Formulario::find($id)->pasosValidos;
       $observaciones = $pasosValidos->observaciones;
       return view('user.seguimiento', ['id' => $id,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones]);

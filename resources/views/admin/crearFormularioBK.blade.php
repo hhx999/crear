@@ -62,8 +62,113 @@
 
     <div class="float-container">
       <label>Agencia <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese agencia..." name="agenciaProyecto" maxlength="43" id="agenciaPortada">
+      <input data-placeholder="Ingrese agencia..." name="agenciaProyecto" maxlength="43" id="agenciaPortada" readonly>
     </div>
+
+    <script type="text/javascript">
+      var ciudades = [];
+      $(document).ready(function(){
+          var localidad = 'Localidad';
+          
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+          $.ajax({
+                    type: 'POST',
+                    url: "{{ url('/buscarLocalidades') }}",
+                    dataType: "json",
+                    data : {'buscar' : localidad }
+                }).done(function (data) {
+                  for (i = 0; i < data.length; i++)
+                  {
+                    ciudades.push(data[i]['nombre']);
+                  }
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    
+  if (jqXHR.status === 0) {
+
+    alert('Not connect: Verify Network.');
+
+  } else if (jqXHR.status == 404) {
+
+    alert('Requested page not found [404]');
+
+  } else if (jqXHR.status == 500) {
+
+    alert('Internal Server Error [500].');
+
+  } else if (textStatus === 'parsererror') {
+
+    alert('Requested JSON parse failed.');
+
+  } else if (textStatus === 'timeout') {
+
+    alert('Time out error.');
+
+  } else if (textStatus === 'abort') {
+
+    alert('Ajax request aborted.');
+
+  } else {
+
+    alert('Uncaught Error: ' + jqXHR.responseText);
+
+  }
+                });
+      });
+
+      $(document).on('focus','#agenciaPortada',function() {
+        var localidad = $('#localidadPortada').val();
+
+        console.log('buscarAgencia según Localidad'+localidad);
+
+        var url = window.location.pathname.split('/');
+                url = '/'+url[1]+'/'+url[2]+'/';
+
+          $.ajax({
+                    type: 'POST',
+                    url: url+'buscarLocalidades',
+                    dataType: "json",
+                    data : {'localidad' : localidad }
+                }).done(function (data) {
+                  $('#agenciaPortada').val(data.nombre);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    
+  if (jqXHR.status === 0) {
+
+    alert('Not connect: Verify Network.');
+
+  } else if (jqXHR.status == 404) {
+
+    alert('Requested page not found [404]');
+
+  } else if (jqXHR.status == 500) {
+
+    alert('Internal Server Error [500].');
+
+  } else if (textStatus === 'parsererror') {
+
+    alert('Requested JSON parse failed.');
+
+  } else if (textStatus === 'timeout') {
+
+    alert('Time out error.');
+
+  } else if (textStatus === 'abort') {
+
+    alert('Ajax request aborted.');
+
+  } else {
+
+    alert('Uncaught Error: ' + jqXHR.responseText);
+
+  }
+                });
+
+      }); 
+    </script>
 
     <div class="float-container">
       <label>Monto a solicitar <span style="color:red;">&#10033;</span></label>

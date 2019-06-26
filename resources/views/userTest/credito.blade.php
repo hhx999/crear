@@ -80,6 +80,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		$(document).ready(function(){
+		if ($(this).prop( "checked", false )) {
+				$('.Comercio div:first').remove();
+			}
 		$('input[type="radio"]').click(function() {
 			if ($(this).is(':checked') && $(this).val() == 'Comercio') {
 
@@ -120,7 +124,6 @@
 			}
 		}); 
 
-		$(document).ready(function(){
 		  $("input#enviar").click(function(){
 		  	var divFinal = $("<div class='respuestas'></div>");
 		  	divFinal.append('<b>Datos enviados</b><br>');

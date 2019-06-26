@@ -61,3 +61,5 @@ $router->get('/logout','FormularioController@logoutUser');
 $router->get('/usuarioIndex','UsuarioController@indexUser');
 $router->get('/usuarioTramites','UsuarioController@tramitesUser');
 $router->get('/usuarioCreditos','UsuarioController@creditos');
+
+$router->post('/datosSeguimiento','UsuarioController@devuelveDatosSeguimiento');
