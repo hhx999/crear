@@ -30,7 +30,7 @@ class UsuarioController extends BaseController
     }
     public function devuelveDatosSeguimiento(Request $request)
     {
-      $formulario = Formulario::where('numeroProyecto', $request->numeroProyecto)->firstOrFail();
+      $formulario = Formulario::where('numeroProyecto', $request->numeroProyecto)->latest()->firstOrFail();
       $pasosValidos = $formulario->pasosValidos;
       $observaciones = $pasosValidos->observaciones;
 
