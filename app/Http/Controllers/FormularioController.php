@@ -56,8 +56,7 @@ class FormularioController extends Controller
           if ($usuario) {
             $password = $usuario->password;
             if ($usuario->verificado == 1) {
-              //if (Hash::check($request->input('password'), $password)) {
-              if ($request->input('password') == $password) {
+              if (Hash::check($request->input('password'), $password)) {
                 $session = $request->session();
                 $session->put('id_usuario', $usuario->id);
                 $session->put('nombreUsuario',$usuario->nombre);
