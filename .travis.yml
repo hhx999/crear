@@ -1,1 +1,19 @@
-travis.yml
+language: php
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+
+services:
+  - mysql
+
+before_script:
+  - cp .env.travis .env
+  - mysql -u root -e 'create database crear_creditos;'
+  - composer self-update
+  - composer install
+  - php artisan key:generate
+  - php artisan migrate:refresh --seed
+  - composer dump-autoload
+  - sudo chmod -R 777 storage/logs
