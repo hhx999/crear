@@ -11,7 +11,8 @@ services:
 
   myapp:
     tty: true
-    image: bitnami/laravel:5.8.17-ol-7-r13
+    image: laravelcrear
+    build: ./docker
     environment:
       - DB_HOST=mariadb
       - DB_USERNAME=my_user
