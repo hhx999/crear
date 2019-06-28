@@ -17,3 +17,4 @@ before_script:
   - php artisan migrate:refresh --seed
   - composer dump-autoload
   - sudo chmod -R 777 storage/logs
+  - ./vendor/bin/phpunit
