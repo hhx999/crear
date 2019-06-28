@@ -54,6 +54,6 @@ class UserTest extends TestCase
         ];
 
         $response = $this->post('/', $datos);
-        $response->assertSee('PASSWORD INCORRECTE');
+        $response->assertSee('PASSWORD INCORRECTO');
     }
 }
