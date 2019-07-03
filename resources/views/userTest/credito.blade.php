@@ -38,7 +38,42 @@
 		color: black !important;
 		border-radius: 10px;
 	}
-</style>
+/* Radio button */
+.radiobtn {
+  display: none;
+}
+.buttons {
+  margin-left: -40px;
+}
+.buttons li {
+  display: block;
+}
+.buttons li label{
+  padding-left: 30px;
+  position: relative;
+  left: -25px;
+}
+.buttons li label:hover {
+  cursor: pointer;
+}
+.buttons li span {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  border: 2px solid #ccc;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+}
+.radiobtn:checked + span::before{
+  content: '';
+  border: 2px solid #fff;
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: #c3e3fc;
+}
+	</style>
 	@section('content')
 	<div class="w3-row">
 		  <div class="w3-container w3-quarter">
@@ -51,9 +86,19 @@
 					<input type="text" name="actividad" style="color: black;">
 					<hr>
 					<p><b>Elija el rubro de la actividad que realiza...</b></p>
-					<label>Procesos agregados de valor</label><input type="radio" name="rubro" value="procesosValor"><br>
-					<label>Prestación de servicios profesionales</label><input type="radio" name="rubro" value="serviciosProfesionales"><br>
-					<label>Comercio</label><input type="radio" name="rubro" value="Comercio"><br>
+					<div style="text-align: left;margin-left: 20%;">
+						<ul class="buttons">
+							<li><input type="radio" id="radiobtn_1" class="radiobtn" name="rubro" value="procesosValor"><span></span>
+								<label for="radiobtn_1">Procesos agregados de valor</label></li>
+							<li>
+								<input type="radio" id="radiobtn_2" class="radiobtn" name="rubro" value="serviciosProfesionales"><span></span>
+								<label for="radiobtn_2">Prestación de servicios profesionales</label></li>
+							<li>
+								<input type="radio" id="radiobtn_3" class="radiobtn" name="rubro" value="Comercio"><span></span>
+								<label for="radiobtn_3">Comercio</label>
+							</li>
+						</ul>
+					</div>
 					<div class="preguntas Comercio"></div>
 					<hr>
 					<p><b>Actualmente se encuentra en...</b></p>
@@ -86,7 +131,7 @@
 			}
 		$('input[type="radio"]').click(function() {
 			if ($(this).is(':checked') && $(this).val() == 'Comercio') {
-
+				$('.Comercio div:first').remove();
 				$('.Comercio').append('<div>\
 						<p><b>Cuál es el destino del financiamiento?</b></p>\
 						<label>Comprar productos para revender.</label><input type="radio" name="destino" value="Reventa"><br>\
@@ -96,10 +141,16 @@
 			} else if ($(this).val() == 'procesosValor' || $(this).val() == 'serviciosProfesionales' ){
 				$('.Comercio div:first').remove();
 			}
+			if ($(this).val() == 'Informal') {
+				$('.Monotributo div:first').remove();
+				$('.Otro div:first').remove();
+				$('.Inscripto div:first').remove();
+			}
 
 			if ($(this).val() == 'Inscripto') {
 				$('.Monotributo div:first').remove();
 				$('.Otro div:first').remove();
+				$('.Inscripto div:first').remove();
 				divFactura = '<div>\
 								<label><b>Cuanto es el monto que actualmente está facturando?</b></label><br>\
 										<input type="text" name="facturaInscripto"><br>\
@@ -108,6 +159,7 @@
 			} else if ($(this).val() == 'Monotributista') {
 				$('.Inscripto div:first').remove();
 				$('.Otro div:first').remove();
+				$('.Monotributo div:first').remove();
 				divCategoria = '<div>\
 									<label><b>Que categoría de Monotributo es?</b></label><br>\
 									<input type="text" name="categoriaMonotributo" style="color:black !important;"><br>\
@@ -117,6 +169,7 @@
 			else if ($(this).val() == 'otro') {
 				$('.Inscripto div:first').remove();
 				$('.Monotributo div:first').remove();
+				$('.Otro div:first').remove();
 				divOtro = '<div>\
 									<input type="text" name="otroEstado"><br>\
 								</div>';
