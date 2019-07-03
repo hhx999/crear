@@ -102,12 +102,29 @@
 					<div class="preguntas Comercio"></div>
 					<hr>
 					<p><b>Actualmente se encuentra en...</b></p>
-					<label>Estado informal</label><input type="radio" name="estadoSolicitante" value="Informal"><br>
-					<label>Responsable inscripto</label><input type="radio" name="estadoSolicitante" value="Inscripto"><br>
+					<div style="text-align: left;margin-left: 20%;">
+						<ul class="buttons">
+							<li>
+								<input type="radio" id="radiobtn_4" class="radiobtn" name="estadoSolicitante" value="Informal"><span></span>
+								<label for="radiobtn_4">Estado informal</label>
+							</li>
+							<li>
+								<input type="radio" id="radiobtn_5" class="radiobtn" name="estadoSolicitante" value="Inscripto"><span></span>
+								<label for="radiobtn_5">Responsable inscripto</label>
+							</li>
+							<li>
+								<input type="radio" id="radiobtn_6" class="radiobtn" name="estadoSolicitante" value="Monotributista"><span></span>
+								<label for="radiobtn_6">Monotributista</label>
+							</li>
+							<li>
+								<input type="radio" id="radiobtn_7" class="radiobtn" name="estadoSolicitante" value="otro">
+								<span></span>
+								<label for="radiobtn_7">Otro</label>
+							</li>
+						</ul>
+					</div>
 					<div class="preguntas Inscripto"></div>
-					<label>Monotributista</label><input type="radio" name="estadoSolicitante" value="Monotributista"><br>
 					<div class="preguntas Monotributo"></div>
-					<label>Otro</label><input type="radio" name="estadoSolicitante" value="otro">
 					<div class="preguntas Otro"></div>
 					<hr>
 					<label><b>¿Qué antigüedad formal tiene?</b></label><br>
