@@ -3,7 +3,7 @@ $(document).ready(function() {
     	$('#proyectos').children('table').remove();
         $.ajax({
             type: 'POST',
-            url: "http://localhost/crear/public/datosSeguimiento",
+            url: $('#rutaGenerada').val(),
             data: {
                 numeroProyecto: $("input[name=numeroProyecto]").val()
             },

@@ -41,4 +41,8 @@ class UsuarioController extends BaseController
 
       return $datosSeguimiento;
     }
+    public function devuelveLineaCredito(Request $request)
+    {
+      return 1;
+    }
 }
