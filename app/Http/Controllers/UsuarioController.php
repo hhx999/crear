@@ -14,10 +14,18 @@ use App\FormValido;
 
 class UsuarioController extends BaseController
 {
+    public function login(Request $request)
+    {
+      return view('userTest.login');
+    }
 	/* MODO TEST: NUEVA INTERFAZ USUARIO */
     public function indexUser(Request $request)
     {
       return view('userTest.index');
+    }
+    public function financiamiento(Request $request)
+    {
+      return view('userTest.financiamiento');
     }
     public function creditos(Request $request)
     {

@@ -31,6 +31,18 @@
 	.opcionMenuUsuario:hover {
 		opacity:1;
 	}
+	.financiamiento {
+		background-image: url('../img/opcionesIndex/financiamiento.png');
+	}
+	.capacitaciones {
+		background-image: url('../img/opcionesIndex/capacitaciones.png');
+	}
+	.comercioInterior {
+		background-image: url('../img/opcionesIndex/comercioInterior.png');
+	}
+	.comercioExterior {
+		background-image: url('../img/opcionesIndex/comercioExterior.png');
+	}
 	.creditos {
 		background-image: url("../img/opcionesMenuUsuario/credito.png");
 	}

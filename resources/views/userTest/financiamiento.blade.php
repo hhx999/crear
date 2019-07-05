@@ -14,18 +14,18 @@
 		  </div>
 		  <div class="w3-container w3-quarter">
 		  	<a href="{{ url('/usuarioCreditos') }}">
-		  		<div class="opcionMenuUsuario capacitaciones">
+		  		<div class="opcionMenuUsuario creditos">
 					<p class="textIndexItems">
-				    	CAPACITACIONES
+				    	Pedí tu crédito!
 				    </p>
 			    </div>
 		  	</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
 		  	<a href="{{ url('/usuarioTramites') }}">
-			    <div class="opcionMenuUsuario financiamiento">
+			    <div class="opcionMenuUsuario tramites">
 			    	<p class="textIndexItems">
-				    	FINANCIAMIENTO
+				    	Consultá tus TRÁMITES
 				    </p>
 			    </div>
 		    </a>
@@ -37,16 +37,16 @@
 		  <div class="w3-container w3-quarter">
 		  </div>
 		  <div class="w3-container w3-quarter">
-		    <div class="opcionMenuUsuario comercioInterior">
+		    <div class="opcionMenuUsuario borradores">
 		    	<p class="textIndexItems">
-			    		COMERCIO INTERIOR
+			    		BORRADORES
 			    </p>
 		    </div>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		    <div class="opcionMenuUsuario comercioExterior">
+		    <div class="opcionMenuUsuario documentacion">
 		    	<p class="textIndexItems">
-			    		COMERCIO EXTERIOR
+			    		DOCUMENTACIÓN
 			    </p>
 		    </div>
 		  </div>

@@ -58,7 +58,9 @@ $router->get('/logout','FormularioController@logoutUser');
 
 
 //TEST NUEVA INTERFAZ USUARIO
+$router->get('/usuarioLogin','UsuarioController@login');
 $router->get('/usuarioIndex','UsuarioController@indexUser');
+$router->get('/usuarioFinanciamiento','UsuarioController@financiamiento');
 $router->get('/usuarioTramites','UsuarioController@tramitesUser');
 $router->get('/usuarioCreditos','UsuarioController@creditos');
 
