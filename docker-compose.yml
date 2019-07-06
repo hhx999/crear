@@ -8,7 +8,13 @@ services:
       - MARIADB_USER=my_user
       - MARIADB_DATABASE=my_database
       - MARIADB_PASSWORD=my_password
-
+  chrome:
+    image: robcherry/docker-chromedriver
+    environment:
+     CHROMEDRIVER_WHITELISTED_IPS: ""
+     CHROMEDRIVER_PORT: "9515"
+    ports:
+     - 9515:9515
   myapp:
     tty: true
     image: laravelcrear
