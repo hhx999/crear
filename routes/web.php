@@ -59,9 +59,14 @@ $router->get('/logout','FormularioController@logoutUser');
 
 //TEST NUEVA INTERFAZ USUARIO
 $router->get('/usuarioLogin','UsuarioController@login');
-$router->get('/usuarioIndex','UsuarioController@indexUser');
-$router->get('/usuarioFinanciamiento','UsuarioController@financiamiento');
-$router->get('/usuarioTramites','UsuarioController@tramitesUser');
-$router->get('/usuarioCreditos','UsuarioController@creditos');
+$router->post('/usuarioLogin','UsuarioController@login');
+$router->get('/usuarioLogout','UsuarioController@logout');
 
-$router->post('/datosSeguimiento','UsuarioController@devuelveDatosSeguimiento');
+Route::group(['middleware' => ['comprobarrole:user']], function () {
+	Route::get('/usuarioIndex','UsuarioController@indexUser');
+	Route::get('/usuarioFinanciamiento','UsuarioController@financiamiento');
+	Route::get('/usuarioTramites','UsuarioController@tramitesUser');
+	Route::get('/usuarioCreditos','UsuarioController@creditos');
+	Route::post('/datosSeguimiento','UsuarioController@devuelveDatosSeguimiento');
+});
+

@@ -17,7 +17,7 @@ class UsuarioTableSeeder extends Seeder
 
         $usuario = new Usuario();
         $usuario->dni = '39355458';
-        $usuario->nombre = 'Borjas Test';
+        $usuario->nombreApellido = 'Borjas Test';
         $usuario->email = 'borjas@example.com';
         $usuario->password = bcrypt('borjas');
         $usuario->verificado = 1;
@@ -26,7 +26,7 @@ class UsuarioTableSeeder extends Seeder
 
         $usuario = new Usuario();
         $usuario->dni = '777';
-        $usuario->nombre = 'Admin';
+        $usuario->nombreApellido = 'Admin';
         $usuario->email = 'admin@example.com';
         $usuario->password = bcrypt('1234');
         $usuario->verificado = 1;

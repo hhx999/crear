@@ -15,16 +15,16 @@ class CreateUSUARIOSTable extends Migration {
 		Schema::create('USUARIOS', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->integer('cuit')->unique('cuit');
+			$table->integer('dni')->unique('dni');
 			$table->string('password', 255);
-			$table->string('nombreApellido', 20);
-			$table->date('fecNacimiento');
-			$table->string('domicilio', 45);
+			$table->string('nombreApellido', 45);
+			$table->date('fecNacimiento')->nullable();
+			$table->string('domicilio', 45)->nullable();
 			$table->string('email', 45);
-			$table->string('localidad', 45);
-			$table->string('provincia', 45);
-			$table->string('agencia', 45);
-			$table->string('telefono', 45);
+			$table->string('localidad', 45)->nullable();
+			$table->string('provincia', 45)->nullable();
+			$table->string('agencia', 45)->nullable();
+			$table->string('telefono', 45)->nullable();
 			$table->boolean('verificado')->default(0);
 			$table->string('rol', 20);
 			$table->date('updated_at')->nullable();

@@ -22,7 +22,7 @@
 		  	</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		  	<a href="{{ url('/usuarioTramites') }}">
+		  	<a href="{{ url('/usuarioFinanciamiento') }}">
 			    <div class="opcionMenuUsuario financiamiento">
 			    	<p class="textIndexItems">
 				    	FINANCIAMIENTO

@@ -12,12 +12,20 @@
 			padding: 10px;
 			margin-top: 30px;
 			margin-bottom: 30px;
+			color: black;
 		}
 		.formLogin ul {
 			margin-left: -40px;
 		}
 		.formLogin ul li {
 			display: block;
+		}
+		.formLogin input {
+			color: black;
+			text-align: center;
+		}
+		.formLogin span {
+			color:white;
 		}
 	</style>
 
@@ -27,13 +35,16 @@
 		</div>
 		<div class="w3-container w3-half">
 			<div class="formLogin">
-				<form method="post" name="login" >
+			@if ($msgError)
+				<strong>Whoops!</strong> <span>{{ $msgError }}</span>
+			@endif
+				<form method="post" action="" name="login" >
 					<ul>
 						<li>
-							<label>CUIT/CUIL</label>
+							<label>DNI</label>
 						</li>
 						<li>
-							<input type="text" name="cuit">
+							<input type="text" name="dni">
 						</li>
 						<li>
 							<label>Contraseña</label>
