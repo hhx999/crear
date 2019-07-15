@@ -3,6 +3,8 @@
 <head>
 <title>@yield('title')- PLATAFORMA CREAR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="{{ asset('img/logos/logocrearfirma.png') }}" sizes="32x32">
+
   <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
   <link rel="stylesheet" href="{{ asset('css/userItemsIndex.css') }}">
   <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
