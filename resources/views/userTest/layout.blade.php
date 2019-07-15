@@ -21,14 +21,14 @@
         	<img src="{{ asset('img/logos/CREARlogo-blanco.png') }}" class="logoCrear">
         </a>
         @show
-        @if(isset($estado))
+        @if(null !== Session::get('usuario'))
         <div class="w3-col m12" style="margin-top: 20px;margin-bottom: 20px;">
           <hr>
           <div class="w3-bar w3-darkblue">
             <a href="{{url('/usuarioIndex')}}" class="w3-bar-item w3-button">Inicio</a>
             <a href="{{url('/usuarioDatos')}}" class="w3-bar-item w3-button w3-hide-small">Perfil</a>
             <a href="{{url('/usuarioDatos')}}" class="w3-bar-item w3-button w3-hide-small">Configuración</a>
-            <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-button w3-hide-small">Salir</a>
+            <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-red w3-button w3-hide-small">Salir</a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
           </div>
           <div id="demo" class="w3-bar-block w3-red w3-hide w3-hide-large w3-hide-medium">
@@ -39,9 +39,6 @@
         </div>
         @endif
         @yield('content')
-        <div class="w3-col m12">
-          <hr>
-        </div>    
     </div>
   <div class="w3-col m1 w3-center"><p></p></div>
 <script>
