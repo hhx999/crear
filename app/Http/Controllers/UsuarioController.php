@@ -59,6 +59,7 @@ class UsuarioController extends BaseController
         $usuario->password = bcrypt($request->password);
         $usuario->nombreApellido = $request->nombreApellido;
         $usuario->fecNacimiento = Helpers::cambioFormatoFecha($request->fecNacimiento);
+        $usuario->actividadPrincipal = $request->actividadPrincipal;
         $usuario->domicilio = $request->domicilio;
         $usuario->localidad = $request->localidad;
         $usuario->provincia = $request->provincia;

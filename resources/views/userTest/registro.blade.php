@@ -115,7 +115,7 @@ Q- SERVICIOS DE ORGANIZACIONES Y ORGANOS EXTRATERRITORIALES
 			<label>
 				Telefono:
 			</label>
-			<input type="text" name="Telefono">
+			<input type="text" name="telefono">
 			<br><br>
 			<input type="submit" name="enviar" value="Registrarse">
 		</form>
