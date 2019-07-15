@@ -61,6 +61,8 @@ $router->get('/logout','FormularioController@logoutUser');
 $router->get('/usuarioLogin','UsuarioController@login');
 $router->post('/usuarioLogin','UsuarioController@login');
 $router->get('/usuarioLogout','UsuarioController@logout');
+$router->get('/usuarioRegistro','UsuarioController@registro');
+$router->post('/usuarioRegistro','UsuarioController@registro');
 
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/usuarioIndex','UsuarioController@indexUser');

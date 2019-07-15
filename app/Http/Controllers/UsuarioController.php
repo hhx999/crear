@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
+use App\Helpers;
 
 use App\Formulario;
 use App\FormValido;
@@ -46,6 +47,28 @@ class UsuarioController extends BaseController
         }
       }
       return view('userTest.login', ["msgError" => $msgError]);
+    }
+    public function registro(Request $request)
+    {
+      $rol = 'user';
+      $msg = "";
+      if ($request->enviar) {
+        $usuario = new Usuario();
+        $usuario->rol = $rol;
+        $usuario->dni = $request->dni;
+        $usuario->password = bcrypt($request->password);
+        $usuario->nombreApellido = $request->nombreApellido;
+        $usuario->fecNacimiento = Helpers::cambioFormatoFecha($request->fecNacimiento);
+        $usuario->domicilio = $request->domicilio;
+        $usuario->localidad = $request->localidad;
+        $usuario->provincia = $request->provincia;
+        $usuario->agencia = $request->agencia;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+        $usuario->save();
+        $msg = "Usuario creado, espere el mail de confirmación por parte de la agencia para acceder al sistema.";
+      }
+      return view('userTest.registro', ["msg" => $msg]);
     }
     public function logout(Request $request)
     {

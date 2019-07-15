@@ -5,6 +5,13 @@
 		a {
 			text-decoration: none;
 		}
+		a small {
+			-webkit-transition: color 0.5s; /* Safari prior 6.1 */
+			transition: color 0.5s;
+		}
+		a small:hover {
+			color: #97db4f;
+		}
 		.formLogin {
 			background-color: rgb(69, 92, 135);
 			border: 1px white solid;
@@ -57,7 +64,7 @@
 						</li>
 						<br>
 						<li>
-							<small>No tenés cuenta? Registrate acá!</small>
+							<a href="{{url('/usuarioRegistro')}}"><small>No tenés cuenta? Registrate acá!</small></a>
 						</li>
 					</ul>
 				</form>
