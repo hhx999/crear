@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
   <link rel="stylesheet" href="{{ asset('css/userItemsIndex.css') }}">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
   <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <style type="text/css">
@@ -28,7 +29,7 @@
           <hr>
           <div class="w3-bar w3-darkblue">
             <a href="{{url('/usuarioIndex')}}" class="w3-bar-item w3-button">Inicio</a>
-            <a href="{{url('/usuarioDatos')}}" class="w3-bar-item w3-button w3-hide-small">Perfil</a>
+            <a href="{{url('/perfil')}}" class="w3-bar-item w3-button w3-hide-small">Perfil</a>
             <a href="{{url('/usuarioDatos')}}" class="w3-bar-item w3-button w3-hide-small">Configuración</a>
             <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-red w3-button w3-hide-small">Salir</a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>

@@ -1,6 +1,6 @@
 @extends('userTest.layout')
 	
-	@section('title') Inicio @endsection
+	@section('title') Registro @endsection
 	<style type="text/css">
 		a {
 			text-decoration: none;
@@ -64,7 +64,6 @@ N- SERVICIOS SOCIALES Y DE SALUD
 O- SERVICIOS COMUNITARIOS, SOCIALES Y PERSONALES N.C.P.
 P- SERVICIOS DE HOGARES PRIVADOS QUE CONTRATAN SERVICIO DOMESTICO
 Q- SERVICIOS DE ORGANIZACIONES Y ORGANOS EXTRATERRITORIALES
-
 			 -->
 			<div align="center">
 				<div style="border:2px solid #97db4f;padding 20px; width: 33%; margin-top: 10px;margin-bottom: 10px;">
