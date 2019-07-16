@@ -11,4 +11,8 @@ class PerfilController extends Controller
     {
     	return view('perfil.index');
     }
+    public function emprendimientos()
+    {
+    	return view('perfil.emprendimientos');
+    }
 }

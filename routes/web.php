@@ -71,5 +71,6 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/usuarioCreditos','UsuarioController@creditos');
 	Route::post('/datosSeguimiento','UsuarioController@devuelveDatosSeguimiento');
 	Route::get('perfil','PerfilController@index');
+	Route::get('perfil/emprendimientos','PerfilController@emprendimientos');
 });
 

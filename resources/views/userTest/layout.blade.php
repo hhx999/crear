@@ -27,10 +27,18 @@
         @if(null !== Session::get('usuario'))
         <div class="w3-col m12" style="margin-top: 20px;margin-bottom: 20px;">
           <hr>
-          <div class="w3-bar w3-darkblue">
+          <div class="w3-bar">
             <a href="{{url('/usuarioIndex')}}" class="w3-bar-item w3-button">Inicio</a>
+            <div class="w3-dropdown-hover">
+              <button class="w3-button">Áreas</button>
+              <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="#" class="w3-bar-item w3-button">Capacitaciones</a>
+                <a href="{{url('/usuarioFinanciamiento')}}" class="w3-bar-item w3-button">Financiamiento</a>
+                <a href="#" class="w3-bar-item w3-button">Comercio Interior</a>
+                <a href="#" class="w3-bar-item w3-button">Comercio Exterior</a>
+              </div>
+            </div>
             <a href="{{url('/perfil')}}" class="w3-bar-item w3-button w3-hide-small">Perfil</a>
-            <a href="{{url('/usuarioDatos')}}" class="w3-bar-item w3-button w3-hide-small">Configuración</a>
             <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-red w3-button w3-hide-small">Salir</a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
           </div>
