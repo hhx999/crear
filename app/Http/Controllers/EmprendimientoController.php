@@ -9,7 +9,6 @@ class EmprendimientoController extends Controller
 {
     public function create(Request $request)
     {
-    	var_dump($request->enviar);
     	if ($request->enviar)
     	{
     		$usuario_id = $request->session()->get('id_usuario');
