@@ -1,6 +1,6 @@
 @extends('userTest.layout')
 	
-	@section('title') Perfil @endsection
+	@section('title') Perfil - Emprendimientos @endsection
 
 	@section('content')
 
@@ -11,7 +11,9 @@
 	  	<div class="w3-panel">
 	  		<div class="w3-row-padding" style="margin:0 -16px">
 		      <div class="w3-third">
+		      	<a href="{{url('/perfil/emprendimientos/create')}}">
 		        <button class="w3-button w3-green">Registrar un nuevo emprendimiento</button>
+		        </a>
 		      </div>
 		      <div class="w3-twothird">
 			  <table class="w3-table">
