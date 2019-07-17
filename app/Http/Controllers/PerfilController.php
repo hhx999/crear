@@ -8,13 +8,15 @@ use App\Usuario;
 class PerfilController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-    	return view('perfil.index');
+    	$usuario_id = $request->session()->get('id_usuario');
+    	$usuario = Usuario::find($usuario_id);
+    	$n_emprendimientos = count($usuario->emprendimientos);
+    	return view('perfil.index', ['n_emprendimientos' => $n_emprendimientos]);
     }
     public function emprendimientos(Request $request)
     {
-    	$emprendimientos = '';
     	$usuario_id = $request->session()->get('id_usuario');
     	$nombreApellido = $request->session()->get('nombreApellido');
     	$usuario = Usuario::find($usuario_id);
