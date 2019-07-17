@@ -23,18 +23,20 @@
 			      <th>Nombre del encargado</th>
 			      <th>Acciones</th>
 			    </tr>
-			    <tr>
-			      <td>20-39355458-5</td>
-			      <td>Emprendimiento frutícola</td>
-			      <td>Vega Riveras, Borjas</td>
-			      <td>
-			      	<select style="color: black;">
-			      		<option>-</option>
-			      		<option>Editar</option>
-			      		<option>Eliminar</option>
-			      	</select>
-			      </td>
-			    </tr>
+			    <?php for ($i=0; $i < count($emprendimientos); $i++) { 
+			    	echo "<tr>";
+			    	echo "<td>".$emprendimientos[$i]->cuit."</td>";
+			    	echo "<td>".$emprendimientos[$i]->denominacion."</td>";
+			    	echo "<td>".$nombreApellido."</td>";
+			    	print_r("<td>
+					      	<select style='color: black;'>
+					      		<option>-</option>
+					      		<option>Editar</option>
+					      		<option>Eliminar</option>
+					      	</select>
+					      </td>");
+			    	echo "</tr>";
+			    } ?>
 			  </table>
 			 </div>
 			</div>

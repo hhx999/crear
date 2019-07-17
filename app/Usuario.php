@@ -16,5 +16,8 @@ class Usuario extends Model {
     ];
 
     // Relationships
-
+    public function emprendimientos()
+    {
+        return $this->hasMany('App\Emprendimiento');
+    }
 }
