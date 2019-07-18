@@ -7,8 +7,15 @@
 
   <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
   <link rel="stylesheet" href="{{ asset('css/userItemsIndex.css') }}">
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+  <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+ <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('css/jquery.steps.css')}}">
   <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script src="{{asset('js/modernizr-2.6.2.min.js')}}"></script>
+  <script src="{{asset('js/jquery.steps.js')}}"></script>
+
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 </head>
 <style type="text/css">
 	.menuPrincipal {

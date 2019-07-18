@@ -9,8 +9,20 @@ class EmprendimientoController extends Controller
 {
     public function create(Request $request)
     {
-    	if ($request->enviar)
+    	if ($request->isMethod('post'))
     	{
+    		$validatedData = $request->validate([
+		        'denominacion' => 'required',
+		        'tipoSociedad' => 'required',
+		        'cuit' => 'required',
+		        'domicilio' => 'required',
+		        'localidad' => 'required',
+		        'provincia' => 'required',
+		        'provincia' => 'required',
+		        'codPostal' => 'required',
+		        'email' => 'required',
+		        'telefono' => 'required'
+		    ]);
     		$usuario_id = $request->session()->get('id_usuario');
             $emprendimiento = new Emprendimiento;
             $emprendimiento->denominacion = $request->denominacion;
