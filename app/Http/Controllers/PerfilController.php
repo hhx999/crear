@@ -23,9 +23,12 @@ class PerfilController extends Controller
     	$nombreApellido = $request->session()->get('nombreApellido');
     	$usuario = Usuario::find($usuario_id);
         $trabaja = Trabaja::where('usuario_id',$usuario_id)->get();
+        $emprendimientos = '';
+        $cargos = '';
         for ($i=0; $i < count($trabaja); $i++) { 
             $emprendimientos[] = Emprendimiento::find($trabaja[$i]->emprendimiento_id);
+            $cargos[] = $trabaja[$i]->cargo;
         }
-    	return view('perfil.emprendimientos', ["emprendimientos" => $emprendimientos, "nombreApellido" => $nombreApellido]);
+    	return view('perfil.emprendimientos', ["emprendimientos" => $emprendimientos, 'cargo' => $cargos]);
     }
 }

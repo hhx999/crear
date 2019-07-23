@@ -19,24 +19,31 @@
 			  <table class="w3-table">
 			    <tr>
 			      <th>CUIT</th>
-			      <th>Nombre del emprendimiento</th>
-			      <th>Nombre del encargado</th>
+			      <th>Emprendimiento</th>
+			      <th>Cargo</th>
 			      <th>Acciones</th>
 			    </tr>
-			    <?php for ($i=0; $i < count($emprendimientos); $i++) { 
-			    	echo "<tr>";
-			    	echo "<td>".$emprendimientos[$i]->cuit."</td>";
-			    	echo "<td>".$emprendimientos[$i]->denominacion."</td>";
-			    	echo "<td>".$nombreApellido."</td>";
-			    	print_r("<td>
-					      	<select style='color: black;'>
-					      		<option>-</option>
-					      		<option>Editar</option>
-					      		<option>Eliminar</option>
-					      	</select>
-					      </td>");
-			    	echo "</tr>";
-			    } ?>
+			    <?php 
+			    if (!empty($emprendimientos)) {
+			    	# code...
+			    	for ($i=0; $i < count($emprendimientos); $i++) { 
+				    	echo "<tr>";
+				    	echo "<td>".$emprendimientos[$i]->cuit."</td>";
+				    	echo "<td>".$emprendimientos[$i]->denominacion."</td>";
+				    	echo "<td>".$cargo[$i]."</td>";
+				    	print_r("<td>
+						      	<select style='color: black;'>
+						      		<option disabled selected>-</option>
+						      		<option>Editar</option>
+						      		<option>Eliminar</option>
+						      	</select>
+						      </td>");
+				    	echo "</tr>";
+			    	}
+			    } else {
+			    	echo "<tr><td style='text-align:center;' colspan='4'>No existen registros.</td></tr>";
+			    }
+			 	 ?>
 			  </table>
 			 </div>
 			</div>
