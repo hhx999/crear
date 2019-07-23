@@ -70,7 +70,16 @@
 							 </select>
 						</div>
 					</div>
-					<div class="w3-quarter"><p></p></div>
+					<div class="w3-half">
+						<div style="padding: 20px;">
+						    <label>Cargo</label>
+						    <select class="w3-select" name="cargo">
+							    <option value="" disabled selected>Elegí el cargo...</option>
+							    <option value="jefe">Jefe</option>
+							    <option value="responsable">Responsable</option>
+							 </select>
+						</div>
+					</div>
 					<div class="w3-half">
 					    <div style="padding: 20px;">
 					    	<label>C.U.I.T.</label>

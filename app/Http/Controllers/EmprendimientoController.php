@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Emprendimiento;
+use App\Trabaja;
 
 class EmprendimientoController extends Controller
 {
@@ -15,6 +16,7 @@ class EmprendimientoController extends Controller
 		        'denominacion' => 'required',
 		        'tipoSociedad' => 'required',
 		        'cuit' => 'required',
+                'cargo' => 'required',
 		        'domicilio' => 'required',
 		        'localidad' => 'required',
 		        'provincia' => 'required',
@@ -34,8 +36,13 @@ class EmprendimientoController extends Controller
             $emprendimiento->codPostal = $request->codPostal;
             $emprendimiento->email = $request->email;
             $emprendimiento->telefono = $request->telefono;
-            $emprendimiento->usuario_id = $usuario_id;
             $emprendimiento->save();
+
+            $trabaja = new Trabaja;
+            $trabaja->usuario_id = $usuario_id;
+            $trabaja->emprendimiento_id = $emprendimiento->id;
+            $trabaja->cargo = $request->cargo;
+            $trabaja->save();
     	}
     	return view('emprendimientos.create');
     }
