@@ -25,8 +25,13 @@
         	.wizard > .steps {
         		width: 130% !important;
         	}
-        	ul li {
-        		display: block;
+        	.errores {
+        		display: table; 
+        		list-style-type: disc; 
+        		align-items: left;
+        		font-size: 16px;
+        	}
+        	.errores li {
         		color: black;
         	}
         </style>
@@ -34,13 +39,14 @@
 			<div class="w3-panel w3-amber w3-display-container">
 			  <span onclick="this.parentElement.style.display='none'"
 			  class="w3-button w3-large w3-display-topright">&times;</span>
-			  <br>
 			  <h4><b style="color: black;">No se completaron los campos necesarios</b></h4>
-			   	<ul>
+			  <div align="center">
+			   	<ul class="errores">
 			        @foreach ($errors->all() as $error)
 			            <li>{{ $error }}</li>
 			        @endforeach
 			  	</ul>
+			  </div>
 			</div>
 		@endif
         <form method="post" action="" name="formRegistroEmprendimiento" class="formRegistroEmprendimiento" id="formRegistroEmprendimiento">

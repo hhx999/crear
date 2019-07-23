@@ -14,8 +14,8 @@ class CreateEmprendimientosTable extends Migration
     public function up()
     {
         Schema::create('emprendimientos', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
+            //$table->engine = 'InnoDB';
+            $table->integer('id', true);
             $table->timestamps();
             $table->string('denominacion');
             $table->string('tipoSociedad');
@@ -26,7 +26,6 @@ class CreateEmprendimientosTable extends Migration
             $table->string('codPostal');
             $table->string('email');
             $table->string('telefono');
-            $table->integer('usuario_id')->index('FK_UsuarioEmprendimiento');
         });
     }
 
