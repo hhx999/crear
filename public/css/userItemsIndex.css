@@ -104,3 +104,22 @@
 	    -webkit-appearance: none;
 	    text-align: center;
 	}
+	/*************************/
+	/* Capacitaciones */
+
+	.capacitate {
+		background-color: #a6d35d;
+		background-image: url('../img/opcionesIndex/capacitaciones.png');
+	}
+	.capacitador {
+		background-color: #a6d35d;
+		background-image: url("../img/opcionesCapacitaciones/reg_capacitador.png");
+	}
+	.consultaCapacitacion {
+		background-color: #a6d35d;
+		background-image: url("../img/opcionesCapacitaciones/consultaCapacitacion.png");
+	}
+	.documentacionCapacitacion {
+		background-color: #a6d35d;
+		background-image: url("../img/opcionesMenuUsuario/documentacion.png");
+	}

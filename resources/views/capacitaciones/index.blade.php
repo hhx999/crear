@@ -14,7 +14,7 @@
 		  </div>
 		  <div class="w3-container w3-quarter">
 		  	<a href="{{ url('/usuarioCreditos') }}">
-		  		<div class="opcionMenuUsuario capacitaciones">
+		  		<div class="opcionMenuUsuario capacitate">
 					<p class="textIndexItems">
 				    	Capacitate!
 				    </p>
@@ -23,9 +23,9 @@
 		  </div>
 		  <div class="w3-container w3-quarter">
 		  	<a href="{{ url('/usuarioFinanciamiento') }}">
-			    <div class="opcionMenuUsuario financiamiento">
+			    <div class="opcionMenuUsuario capacitador">
 			    	<p class="textIndexItems">
-				    	Registrate como capacitador
+				    	Inscribite<br>como capacitador
 				    </p>
 			    </div>
 		    </a>
@@ -37,16 +37,16 @@
 		  <div class="w3-container w3-quarter">
 		  </div>
 		  <div class="w3-container w3-quarter">
-		    <div class="opcionMenuUsuario comercioInterior">
+		    <div class="opcionMenuUsuario consultaCapacitacion">
 		    	<p class="textIndexItems">
-			    		Consultá tus capacitaciones
+			    		Consultá<br>tus capacitaciones
 			    </p>
 		    </div>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		    <div class="opcionMenuUsuario comercioExterior">
+		    <div class="opcionMenuUsuario documentacionCapacitacion">
 		    	<p class="textIndexItems">
-			    		Agregá tu documentación
+			    		Agregá<br>tu documentación
 			    </p>
 		    </div>
 		  </div>
