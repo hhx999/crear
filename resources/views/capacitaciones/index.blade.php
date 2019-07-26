@@ -13,7 +13,7 @@
 		  <div class="w3-container w3-quarter">
 		  </div>
 		  <div class="w3-container w3-quarter">
-		  	<a href="{{ url('/usuarioCreditos') }}">
+		  	<a href="{{ url('/capacitaciones/capacitate') }}">
 		  		<div class="opcionMenuUsuario capacitate">
 					<p class="textIndexItems">
 				    	Capacitate!
@@ -22,7 +22,7 @@
 		  	</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		  	<a href="{{ url('/usuarioFinanciamiento') }}">
+		  	<a href="{{ url('/capacitaciones/inscripcion') }}">
 			    <div class="opcionMenuUsuario capacitador">
 			    	<p class="textIndexItems">
 				    	Inscribite<br>como capacitador

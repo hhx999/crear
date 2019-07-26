@@ -75,5 +75,6 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('perfil/emprendimientos/create','EmprendimientoController@create');
 	Route::post('perfil/emprendimientos/create','EmprendimientoController@create');
 	Route::get('/capacitaciones','CapacitacionesController@index');
+	Route::get('/capacitaciones/inscripcion','CapacitacionesController@inscripcion');
 });
 

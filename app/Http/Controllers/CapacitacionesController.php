@@ -11,4 +11,8 @@ class CapacitacionesController extends Controller
     {
     	return view('capacitaciones.index');
     }
+    public function inscripcion()
+    {
+    	return view('capacitaciones.inscripcion');
+    }
 }

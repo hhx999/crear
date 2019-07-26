@@ -6,7 +6,7 @@
 	
 	<header class="w3-container" style="padding-top:22px">
 	    <h3><b><i class="fa fa-dashboard"></i> Registrar emprendimiento</b></h3>
-	  </header>
+	</header>
 		<script>
                 $(function ()
                 {
