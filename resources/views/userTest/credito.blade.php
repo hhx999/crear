@@ -75,139 +75,107 @@
 }
 	</style>
 	@section('content')
-	<div class="w3-row">
-		  <div class="w3-container w3-quarter">
-		  </div>
-		  <div class="w3-container w3-half">
-			<div class="formPreguntasUsuario">
-				<form method="post" name="preguntas" >
-					<br>
-					<label><b>¿Qué actividad realiza?</b></label><br>
-					<input type="text" name="actividad" style="color: black;">
-					<hr>
-					<p><b>Elija el rubro de la actividad que realiza...</b></p>
-					<div style="text-align: left;margin-left: 20%;">
-						<ul class="buttons">
-							<li><input type="radio" id="radiobtn_1" class="radiobtn" name="rubro" value="procesosValor"><span></span>
-								<label for="radiobtn_1">Procesos agregados de valor</label></li>
-							<li>
-								<input type="radio" id="radiobtn_2" class="radiobtn" name="rubro" value="serviciosProfesionales"><span></span>
-								<label for="radiobtn_2">Prestación de servicios profesionales</label></li>
-							<li>
-								<input type="radio" id="radiobtn_3" class="radiobtn" name="rubro" value="Comercio"><span></span>
-								<label for="radiobtn_3">Comercio</label>
-							</li>
-						</ul>
-					</div>
-					<div class="preguntas Comercio"></div>
-					<hr>
-					<p><b>Actualmente se encuentra en...</b></p>
-					<div style="text-align: left;margin-left: 20%;">
-						<ul class="buttons">
-							<li>
-								<input type="radio" id="radiobtn_4" class="radiobtn" name="estadoSolicitante" value="Informal"><span></span>
-								<label for="radiobtn_4">Estado informal</label>
-							</li>
-							<li>
-								<input type="radio" id="radiobtn_5" class="radiobtn" name="estadoSolicitante" value="Inscripto"><span></span>
-								<label for="radiobtn_5">Responsable inscripto</label>
-							</li>
-							<li>
-								<input type="radio" id="radiobtn_6" class="radiobtn" name="estadoSolicitante" value="Monotributista"><span></span>
-								<label for="radiobtn_6">Monotributista</label>
-							</li>
-							<li>
-								<input type="radio" id="radiobtn_7" class="radiobtn" name="estadoSolicitante" value="otro">
-								<span></span>
-								<label for="radiobtn_7">Otro</label>
-							</li>
-						</ul>
-					</div>
-					<div class="preguntas Inscripto"></div>
-					<div class="preguntas Monotributo"></div>
-					<div class="preguntas Otro"></div>
-					<hr>
-					<label><b>¿Qué antigüedad formal tiene?</b></label><br>
-					<input type="text" name="antiguedad" style="color: black !important;"><br>
-					<hr>
-					<label><b>Ingrese el monto solicitado:</b></label><br>
-					<input type="text" name="monto" style="color: black !important;"><br>
-					<br>
-				<input class="w3-button w3-gray" type="reset" value="Limpiar Campos" />
-				<input id="enviar" type="button" class="w3-button w3-green" value="Enviar Respuestas"></input>
-				</form>
+			<script>
+                $(function ()
+                {
+                    $("#wizard").steps({
+                        headerTag: "h2",
+                        bodyTag: "section",
+                        transitionEffect: "slideLeft",
+                        onFinished: function (event, currentIndex) {
+								$("#formRegistroEmprendimiento").submit();
+							}
+                    });
+                    $("#wizard").steps("setStep",3);
+                });
+        </script>
+        <style type="text/css">
+        	.errores {
+        		display: table; 
+        		list-style-type: disc; 
+        		align-items: left;
+        		font-size: 16px;
+        	}
+        	.errores li {
+        		color: black;
+        	}
+        </style>
+        @if ($errors->any())
+			<div class="w3-panel w3-amber w3-display-container">
+			  <span onclick="this.parentElement.style.display='none'"
+			  class="w3-button w3-large w3-display-topright">&times;</span>
+			  <h4><b style="color: black;">No se completaron los campos necesarios</b></h4>
+			  <div align="center">
+			   	<ul class="errores">
+			        @foreach ($errors->all() as $error)
+			            <li>{{ $error }}</li>
+			        @endforeach
+			  	</ul>
+			  </div>
 			</div>
-		</div>
-		<div class="w3-container w3-quarter">
-		</div>
-	</div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		if ($(this).prop( "checked", false )) {
-				$('.Comercio div:first').remove();
-			}
-		$('input[type="radio"]').click(function() {
-			if ($(this).is(':checked') && $(this).val() == 'Comercio') {
-				$('.Comercio div:first').remove();
-				$('.Comercio').append('<div>\
-						<p><b>Cuál es el destino del financiamiento?</b></p>\
-						<label>Comprar productos para revender.</label><input type="radio" name="destino" value="Reventa"><br>\
-						<label>Acondicionamiento del local</label><input type="radio" name="destino" value="Acondicionamiento"><br>\
-						<label>Compra de maquinaria</label><input type="radio" name="destino" value="Maquinaria"><br><br>\
-					</div>');
-			} else if ($(this).val() == 'procesosValor' || $(this).val() == 'serviciosProfesionales' ){
-				$('.Comercio div:first').remove();
-			}
-			if ($(this).val() == 'Informal') {
-				$('.Monotributo div:first').remove();
-				$('.Otro div:first').remove();
-				$('.Inscripto div:first').remove();
-			}
-
-			if ($(this).val() == 'Inscripto') {
-				$('.Monotributo div:first').remove();
-				$('.Otro div:first').remove();
-				$('.Inscripto div:first').remove();
-				divFactura = '<div>\
-								<label><b>Cuanto es el monto que actualmente está facturando?</b></label><br>\
-										<input type="text" name="facturaInscripto"><br>\
-								</div>';
-				$('.Inscripto').append(divFactura);
-			} else if ($(this).val() == 'Monotributista') {
-				$('.Inscripto div:first').remove();
-				$('.Otro div:first').remove();
-				$('.Monotributo div:first').remove();
-				divCategoria = '<div>\
-									<label><b>Que categoría de Monotributo es?</b></label><br>\
-									<input type="text" name="categoriaMonotributo" style="color:black !important;"><br>\
-								</div>';
-				$('.Monotributo').append(divCategoria);
-			}
-			else if ($(this).val() == 'otro') {
-				$('.Inscripto div:first').remove();
-				$('.Monotributo div:first').remove();
-				$('.Otro div:first').remove();
-				divOtro = '<div>\
-									<input type="text" name="otroEstado"><br>\
-								</div>';
-				$('.Otro').append(divOtro);
-			}
-		}); 
-
-		  $("input#enviar").click(function(){
-		  	var divFinal = $("<div class='respuestas'></div>");
-		  	divFinal.append('<b>Datos enviados</b><br>');
-		    var preguntasForm = $('form').serializeArray();
-			var preguntasFormObject = {};
-			$.each(preguntasForm,
-			    function(i, v) {
-			        preguntasFormObject[v.name] = v.value;
-			        divFinal.append("<b>"+v.name+"</b>: "+v.value+"<br>");
-			    });
-			$('.w3-half').prepend(divFinal);
-		  });
-		});
-	</script>
+		@endif
+        <form method="post" action="" name="formRegistroEmprendimiento" class="formRegistroEmprendimiento" id="formRegistroEmprendimiento">
+            <div id="wizard">
+                <h2>Estado del solicitante</h2>
+                <section>
+					<div class="w3-col m12">
+						<div style="margin-right: 10px;margin-left: 10px;">
+						    <select class="w3-select" name="tipoSociedad">
+							    <option value="" disabled selected>Elegí el estado en el que se encuentra...</option>
+							    <option value="Sociedad Anónima (S.A.)">Estado informal</option>
+							    <option value="Sociedad de Responsabilidad Limitada (S.R.L.)">Monotributista</option>
+							    <option value="Sociedad por Acciones Simplificada (S.A.S.)">Responsable inscripto</option>
+							 </select>
+						</div>
+					</div>
+                </section>
+                <h2>Destino de la financiación</h2>
+                <section>
+                   	<div class="w3-row">
+					  <div class="w3-container w3-quarter">
+					  </div>
+					  <div class="w3-container w3-half">
+						<div class="formPreguntasUsuario">
+							<form class="w3-container w3-card-4" name=preguntas>
+							  <input class="w3-check" type="checkbox" checked="checked">
+							  <label>Comprar productos para revender</label></p>
+							  <p>
+							  <input class="w3-check" type="checkbox">
+							  <label> Acondicionamiento del local</label></p>
+							  <p>
+							  <input class="w3-check" type="checkbox">
+							  <label>Compra de maquinaria</label></p>
+							</form>
+						</div>
+					</div>
+					<div class="w3-container w3-quarter">
+					</div>
+				</div>
+                </section>
+                <h2>Antigüedad</h2>
+                <section>
+                	<div class="w3-container w3-quarter">
+					</div>
+                    <div class="w3-half">
+                    	<div style="margin-right: 10px;margin-left: 10px;">
+						    <label>Antigüedad formal:</label>
+						    <input class="w3-input w3-border" type="text" name="email" placeholder="Ingrese su antigüedad...">
+						</div>
+					</div>
+                </section>
+                <h2>Monto</h2>
+                <section>
+                	<div class="w3-container w3-quarter">
+					</div>
+                    <div class="w3-half">
+                    	<div style="margin-right: 10px;margin-left: 10px;">
+						    <label>Monto</label>
+						    <input class="w3-input w3-border" type="text" name="email" placeholder="Ingrese el monto solicitado...">
+						</div>
+					</div>
+                </section>
+            </div>
+        </form>
 	@endsection
 <!--
 
