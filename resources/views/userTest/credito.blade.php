@@ -83,7 +83,18 @@
                         bodyTag: "section",
                         transitionEffect: "slideLeft",
                         onFinished: function (event, currentIndex) {
-								$("#formRegistroEmprendimiento").submit();
+								$("#formCuestionarioLineas").submit();
+								/*
+								var divFinal = $("<div class='respuestas'></div>");
+							  	divFinal.append('<b>Datos enviados</b><br>');
+							    var preguntasForm = $('form').serializeArray();
+								var preguntasFormObject = {};
+								$.each(preguntasForm,
+								    function(i, v) {
+								        preguntasFormObject[v.name] = v.value;
+								        divFinal.append("<b>"+v.name+"</b>: "+v.value+"<br>");
+								    });
+								$('.contenedorCuestionario').prepend(divFinal);*/
 							}
                     });
                     $("#wizard").steps("setStep",3);
@@ -114,68 +125,86 @@
 			  </div>
 			</div>
 		@endif
-        <form method="post" action="" name="formRegistroEmprendimiento" class="formRegistroEmprendimiento" id="formRegistroEmprendimiento">
-            <div id="wizard">
-                <h2>Estado del solicitante</h2>
-                <section>
-					<div class="w3-col m12">
-						<div style="margin-right: 10px;margin-left: 10px;">
-						    <select class="w3-select" name="tipoSociedad">
-							    <option value="" disabled selected>Elegí el estado en el que se encuentra...</option>
-							    <option value="Sociedad Anónima (S.A.)">Estado informal</option>
-							    <option value="Sociedad de Responsabilidad Limitada (S.R.L.)">Monotributista</option>
-							    <option value="Sociedad por Acciones Simplificada (S.A.S.)">Responsable inscripto</option>
-							 </select>
+		<div class="contenedorCuestionario">
+	        <form method="post" action="" name="formCuestionarioLineas" class="formCuestionarioLineas" id="formCuestionarioLineas">
+	            <div id="wizard">
+	                <h2>Estado del solicitante</h2>
+	                <section>
+						<div class="w3-col m12">
+							<div style="margin-right: 10px;margin-left: 10px;">
+							    <select class="w3-select" name="estado">
+								    <option value="" disabled selected>Elegí el estado en el que se encuentra...</option>
+								    <option value="1">Estado informal</option>
+								    <option value="2">Monotributo social</option>
+								    <option value="3">Monotributo desde A hasta E</option>
+								    <option value="4">Monotributo desde E hasta K</option>
+								    <option value="5">Responsable inscripto</option>
+								 </select>
+							</div>
+						</div>
+	                </section>
+	                <h2>Antigüedad</h2>
+	                <section>
+	                	<div class="w3-container w3-quarter">
+						</div>
+	                    <div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Antigüedad formal:</label>
+							    <input class="w3-input" type="radio" name="antiguedad" value="1">Si
+							    <input class="w3-input" type="radio" name="antiguedad" value="0">No
+							</div>
+						</div>
+	                </section>
+	                <h2>Destino de la financiación</h2>
+	                <section>
+	                   	<div class="w3-row">
+						  <div class="w3-container w3-quarter">
+						  </div>
+						  <div class="w3-container w3-half">
+							<div class="formPreguntasUsuario">
+								  <input class="w3-check" type="checkbox" name="destino[]" value="a">
+								  <label>Comprar productos para revender</label></p>
+								  <p>
+								  <input class="w3-check" type="checkbox" name="destino[]" value="b">
+								  <label> Acondicionamiento del local</label></p>
+								  <p>
+								  <input class="w3-check" type="checkbox" name="destino[]" value="c">
+								  <label>Compra de maquinaria</label></p>
+								</form>
+							</div>
+						</div>
+						<div class="w3-container w3-quarter">
 						</div>
 					</div>
-                </section>
-                <h2>Destino de la financiación</h2>
-                <section>
-                   	<div class="w3-row">
-					  <div class="w3-container w3-quarter">
-					  </div>
-					  <div class="w3-container w3-half">
-						<div class="formPreguntasUsuario">
-							<form class="w3-container w3-card-4" name=preguntas>
-							  <input class="w3-check" type="checkbox" checked="checked">
-							  <label>Comprar productos para revender</label></p>
-							  <p>
-							  <input class="w3-check" type="checkbox">
-							  <label> Acondicionamiento del local</label></p>
-							  <p>
-							  <input class="w3-check" type="checkbox">
-							  <label>Compra de maquinaria</label></p>
-							</form>
+	                </section>
+	                <h2>Monto</h2>
+	                <section>
+	                	<div class="w3-container w3-quarter">
 						</div>
-					</div>
-					<div class="w3-container w3-quarter">
-					</div>
-				</div>
-                </section>
-                <h2>Antigüedad</h2>
-                <section>
-                	<div class="w3-container w3-quarter">
-					</div>
-                    <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Antigüedad formal:</label>
-						    <input class="w3-input w3-border" type="text" name="email" placeholder="Ingrese su antigüedad...">
+	                    <div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Monto</label>
+							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+							</div>
 						</div>
-					</div>
-                </section>
-                <h2>Monto</h2>
-                <section>
-                	<div class="w3-container w3-quarter">
-					</div>
-                    <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Monto</label>
-						    <input class="w3-input w3-border" type="text" name="email" placeholder="Ingrese el monto solicitado...">
-						</div>
-					</div>
-                </section>
-            </div>
-        </form>
+	                </section>
+	            </div>
+	        </form>
+        </div>
+        <script type="text/javascript">
+        	$("input#enviar").click(function(){
+		  	var divFinal = $("<div class='respuestas'></div>");
+		  	divFinal.append('<b>Datos enviados</b><br>');
+		    var preguntasForm = $('form').serializeArray();
+			var preguntasFormObject = {};
+			$.each(preguntasForm,
+			    function(i, v) {
+			        preguntasFormObject[v.name] = v.value;
+			        divFinal.append("<b>"+v.name+"</b>: "+v.value+"<br>");
+			    });
+			$('.w3-half').prepend(divFinal);
+		  });
+        </script>
 	@endsection
 <!--
 
