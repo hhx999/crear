@@ -84,17 +84,6 @@
                         transitionEffect: "slideLeft",
                         onFinished: function (event, currentIndex) {
 								$("#formCuestionarioLineas").submit();
-								/*
-								var divFinal = $("<div class='respuestas'></div>");
-							  	divFinal.append('<b>Datos enviados</b><br>');
-							    var preguntasForm = $('form').serializeArray();
-								var preguntasFormObject = {};
-								$.each(preguntasForm,
-								    function(i, v) {
-								        preguntasFormObject[v.name] = v.value;
-								        divFinal.append("<b>"+v.name+"</b>: "+v.value+"<br>");
-								    });
-								$('.contenedorCuestionario').prepend(divFinal);*/
 							}
                     });
                     $("#wizard").steps("setStep",3);
@@ -123,6 +112,14 @@
 			        @endforeach
 			  	</ul>
 			  </div>
+			</div>
+		@endif
+
+		@if ($lineas)
+			<div style="background-color: grey;">
+				@foreach ($lineas as $linea)
+					{{$linea->lineas}}
+				@endforeach
 			</div>
 		@endif
 		<div class="contenedorCuestionario">

@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
         //Tipos de créditos según los formularios cargados
         $this->call(CredTipoTableSeeder::class);
 
+        //Reglas de cuestionario cargadas
+        $this->call(CuestionarioLineaSeeder::class);
+
 
     }
 }
