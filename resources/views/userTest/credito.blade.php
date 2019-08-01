@@ -114,15 +114,14 @@
 			  </div>
 			</div>
 		@endif
-
-		@if ($lineas)
-			<div style="background-color: grey;">
-				@foreach ($lineas as $linea)
-					{{$linea->lineas}}
-				@endforeach
-			</div>
-		@endif
 		<div class="contenedorCuestionario">
+			@isset($lineas)
+				<div>
+					@foreach ($lineas as $linea)
+						{{$linea->lineas}}
+					@endforeach
+				</div>
+			@endisset
 	        <form method="post" action="" name="formCuestionarioLineas" class="formCuestionarioLineas" id="formCuestionarioLineas">
 	            <div id="wizard">
 	                <h2>Estado del solicitante</h2>
