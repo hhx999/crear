@@ -9,6 +9,10 @@
 		padding: 10px;
 		margin-top: 30px;
 		margin-bottom: 30px;
+		display: flex;
+	}
+	.formPreguntasUsuario p {
+		margin:10px;
 	}
 	.preguntas div {
 		animation: animateElement linear .6s;
@@ -102,6 +106,70 @@
         	.w3-half {
         		padding: 20px;
         	}
+/* The container */
+.container {
+  display: flex !important;
+  margin-left: 42%;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
         </style>
         @if ($errors->any())
 			<div class="w3-panel w3-amber w3-display-container">
@@ -200,15 +268,22 @@
 							</div>
 						</div>
 	                </section>
-	                <h2>Antigüedad mayor a 2 años?</h2>
+	                <h2>Antigüedad formal</h2>
 	                <section>
 	                	<div class="w3-container w3-quarter">
 						</div>
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Antigüedad formal:</label>
-							    <input class="w3-input" type="radio" name="antiguedad" value="1">Si
-							    <input class="w3-input" type="radio" name="antiguedad" value="0">No
+							    <h4>Antigüedad mayor a 2 años?</h4>
+							    <label class="container">SI
+								  <input type="radio" checked="checked" name="antiguedad" value="1">
+								  <span class="checkmark"></span>
+								</label>
+								<br>
+								<label class="container">NO
+								  <input type="radio" checked="checked" name="antiguedad" value="0">
+								  <span class="checkmark"></span>
+								</label>
 							</div>
 						</div>
 	                </section>
@@ -219,6 +294,7 @@
 						  </div>
 						  <div class="w3-container w3-half">
 							<div class="formPreguntasUsuario">
+								<p>
 								  <input class="w3-check" type="checkbox" name="destino[]" value="a">
 								  <label>Comprar productos para revender</label></p>
 								  <p>
@@ -245,9 +321,8 @@
 							</div>
 						</div>
 	                </section>
-	            </div>
-	        </form>
-        </div>
+	        	</form>
+	        </div>
         <script type="text/javascript">
         	$("input#enviar").click(function(){
 		  	var divFinal = $("<div class='respuestas'></div>");
