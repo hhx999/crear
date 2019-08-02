@@ -99,6 +99,9 @@
         	.errores li {
         		color: black;
         	}
+        	.w3-half {
+        		padding: 20px;
+        	}
         </style>
         @if ($errors->any())
 			<div class="w3-panel w3-amber w3-display-container">
@@ -115,13 +118,71 @@
 			</div>
 		@endif
 		<div class="contenedorCuestionario">
-			@isset($lineas)
-				<div>
-					@foreach ($lineas as $linea)
-						{{$linea->lineas}}
-					@endforeach
+			<div class="w3-col m12">
+				@isset($lineas_principales)
+				<div class="w3-row">
+				<h3>Líneas accesibles</h3>
+					<div>
+						@foreach ($lineas_principales as $linea)
+							@if ($linea['numero'] == 1)
+							<div class="w3-half">
+								 <div class="w3-card-4" style="background-color: #077187;">
+
+									<header class="w3-container">
+									  <h3>Línea emprendedor <i style="color: lightgrey;">({{$linea['monto']}})</i></h3>
+									</header>
+									<div class="w3-container">
+									  <p>Ver bases y condiciones</p>
+									  <p>Descargar formulario de inscripción</p>
+									</div>
+
+									<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
+
+								</div>
+							</div>
+							@endif
+
+							@if ($linea['numero'] == 5)
+							<div class="w3-half">
+								<div class="w3-card-4" style="background-color: #077187;">
+
+									<header class="w3-container">
+									  <h3>Línea Stock <i style="color: lightgrey;">({{$linea['monto']}})</i></h3>
+									</header>
+									<div class="w3-container">
+									  <p>Ver bases y condiciones</p>
+									  <p>Descargar formulario de inscripción</p>
+									</div>
+
+									<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
+
+								</div>
+							</div>
+							@endif
+
+							@if ($linea['numero'] == 4)
+							<div class="w3-half">
+								<div class="w3-card-4" style="background-color: #077187;">
+
+									<header class="w3-container">
+									  <h3>Línea Tasa Subsidiada <i style="color: lightgrey;">({{$linea['monto']}})</i></h3>
+									</header>
+									<div class="w3-container">
+									  <p>Ver bases y condiciones</p>
+									  <p>Descargar formulario de inscripción</p>
+									</div>
+
+									<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
+
+								</div>
+							</div>
+							@endif
+						@endforeach
+					</div>
+				@endisset
+					
 				</div>
-			@endisset
+			</div>
 	        <form method="post" action="" name="formCuestionarioLineas" class="formCuestionarioLineas" id="formCuestionarioLineas">
 	            <div id="wizard">
 	                <h2>Estado del solicitante</h2>
@@ -139,7 +200,7 @@
 							</div>
 						</div>
 	                </section>
-	                <h2>Antigüedad</h2>
+	                <h2>Antigüedad mayor a 2 años?</h2>
 	                <section>
 	                	<div class="w3-container w3-quarter">
 						</div>
@@ -165,7 +226,7 @@
 								  <label> Acondicionamiento del local</label></p>
 								  <p>
 								  <input class="w3-check" type="checkbox" name="destino[]" value="c">
-								  <label>Compra de maquinaria</label></p>
+								  <label>Compra de maquinaria y/o insumos</label></p>
 								</form>
 							</div>
 						</div>
