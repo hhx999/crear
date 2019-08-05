@@ -18,7 +18,7 @@ class FinanciamientoController extends Controller
     {
     	$lineas = DB::table('f__cuestionario_lineas')
 				->where('estado','=', intval($request->estado))
-			    ->where('antiguedad', '=', intval($request->antiguedad))
+			    ->where('antiguedad', '<=', intval($request->antiguedad))
 			    ->whereIn('destino', $request->destino)
 			    ->where('monto','>=',intval($request->monto))
 			    ->get();
