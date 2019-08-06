@@ -864,7 +864,7 @@ function refreshStepNavigation(wizard, options, state, oldIndex)
     var currentOrNewStepAnchor = getStepAnchor(wizard, state.currentIndex),
         currentInfo = $("<span class=\"current-info audible\">" + options.labels.current + " </span>"),
         stepTitles = wizard.find(".content > .title");
-
+        
     if (oldIndex != null)
     {
         var oldStepAnchor = getStepAnchor(wizard, oldIndex);

@@ -5,7 +5,16 @@
 	@section('content')
 	<style type="text/css">
 		.w3-half {
-			padding-left: 30px !important;
+			padding: 10px !important;
+		}
+		.wizard .content {
+		    min-height: 100px;
+		}
+		.wizard .content > .body {
+		    width: 100%;
+		    height: auto;
+		    padding: 15px;
+		    position: relative;
 		}
 	</style>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
@@ -42,8 +51,16 @@
 								<input class="w3-input" type="text" name="localidadSolicitante" placeholder="Ingresar localidad del solicitante...">
 							</div>
 							<div class="w3-half">
-								<label>Localidad</label>
-								<input class="w3-input" type="text" name="localidadSolicitante" placeholder="Ingresar localidad del solicitante...">
+								<label>Agencia</label>
+								<input class="w3-input" type="text" name="agenciaSolicitante" placeholder="Ingresar la agencia más cercana del solicitante...">
+							</div>
+							<div class="w3-half">
+								<label>Monto a solicitar</label>
+								<input class="w3-input" type="text" name="montoSolicitado" placeholder="Ingresar el monto que desea solicitar...">
+							</div>
+							<div class="w3-half">
+								<label>Descripción del emprendimiento</label>
+								<input class="w3-input" type="text" name="descEmprendimiento" placeholder="Ingresar una breve descripción del emprendimiento...">
 							</div>
 						</div>
 	                </section>
@@ -149,7 +166,7 @@
 	<style type="text/css">
 		label.error 
 		{
-			color: white !important;
+			color: #ff9183 !important;
 		}
 	</style>
 	<script>
@@ -159,23 +176,71 @@
                            required: true,
                            minlength: 7,
                            maxlength: 40
+                   },
+                   nombreSolicitante: {
+                           required: true,
+                           minlength: 10,
+                           maxlength: 40
+                   },
+                   localidadSolicitante: {
+                           required: true,
+                           maxlength: 40
+                   },
+                   agenciaSolicitante: {
+                           required: true,
+                           minlength: 3,
+                           maxlength: 40
+                   },
+                   montoSolicitado: {
+                        required: true,
+                        minStrict: 50000,
+                        maxStrict: 125000,
+                        number: true
+                    },
+                   descEmprendimiento: {
+                           required: true,
+                           minlength: 20,
+                           maxlength: 254
                    }
            },
            messages: {
                   tituloProyecto: {
-                           required: "Por favor, ingrese el título del proyecto.",
+                           required: "Campo obligatorio",
+                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
+                           maxlength: $.format("{0} caracteres son demasiados!")
+                   },
+                   nombreSolicitante: {
+                           required: "Campo obligatorio",
+                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
+                           maxlength: $.format("{0} caracteres son demasiados!")
+                   },
+                   localidadSolicitante: {
+                           required: "Campo obligatorio",
+                           maxlength: $.format("{0} caracteres son demasiados!")
+                   },
+                   agenciaSolicitante: {
+                           required: "Campo obligatorio",
+                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
+                           maxlength: $.format("{0} caracteres son demasiados!")
+                   },
+                   montoSolicitado: {
+                           required: "Campo obligatorio",
+                           minStrict: $.format("Se solicita un mínimo de ${0}"),
+                           maxStrict: $.format("El monto máximo solicitado puede ser de ${0}")
+                   },
+                   descEmprendimiento: {
+                           required: "Campo obligatorio",
                            minlength: $.format("Necesitamos por lo menos {0} caracteres"),
                            maxlength: $.format("{0} caracteres son demasiados!")
                    }
            }
-   });
+   	});
                 $(function ()
                 {
                     $("#wizard").steps({
                         headerTag: "h2",
                         bodyTag: "section",
                         transitionEffect: "slideLeft",
-                        autoFocus:true,
                         onStepChanging: function (event, currentIndex, newIndex)
 						{
 							return $("#formLineaEmprendedor").valid();
