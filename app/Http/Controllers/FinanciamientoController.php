@@ -35,4 +35,8 @@ class FinanciamientoController extends Controller
 
 		return view('userTest.credito', ['lineas_principales' => $lineas_principales]);
     }
+    function ingresarLineaEmprendedor(Request $request)
+    {
+    	return view('financiamiento.ingresarLineaEmprendedor');
+    }
 }

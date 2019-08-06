@@ -323,24 +323,4 @@
 	                </section>
 	        	</form>
 	        </div>
-        <script type="text/javascript">
-        	$("input#enviar").click(function(){
-		  	var divFinal = $("<div class='respuestas'></div>");
-		  	divFinal.append('<b>Datos enviados</b><br>');
-		    var preguntasForm = $('form').serializeArray();
-			var preguntasFormObject = {};
-			$.each(preguntasForm,
-			    function(i, v) {
-			        preguntasFormObject[v.name] = v.value;
-			        divFinal.append("<b>"+v.name+"</b>: "+v.value+"<br>");
-			    });
-			$('.w3-half').prepend(divFinal);
-		  });
-        </script>
 	@endsection
-<!--
-
-4- Que antiguedad formal tiene?
-
-5- Que monto necesita?
--->

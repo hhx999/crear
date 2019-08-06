@@ -70,6 +70,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/usuarioTramites','UsuarioController@tramitesUser');
 	Route::get('/usuarioCreditos','FinanciamientoController@creditos');
 	Route::post('/usuarioCreditos','FinanciamientoController@cuestionarioCreditos');
+	Route::get('/financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
 	Route::post('/datosSeguimiento','UsuarioController@devuelveDatosSeguimiento');
 	Route::get('perfil','PerfilController@index');
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos');
