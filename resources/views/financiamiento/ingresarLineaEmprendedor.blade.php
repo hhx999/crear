@@ -16,6 +16,10 @@
 		    padding: 15px;
 		    position: relative;
 		}
+		label.error 
+		{
+			color: #ff9183 !important;
+		}
 	</style>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 		@if ($errors->any())
@@ -163,92 +167,6 @@
 	                </section>
 	   </div>
 	</form>
-	<style type="text/css">
-		label.error 
-		{
-			color: #ff9183 !important;
-		}
-	</style>
-	<script>
-    $( "#formLineaEmprendedor" ).validate({
-           rules: {
-                  tituloProyecto: {
-                           required: true,
-                           minlength: 7,
-                           maxlength: 40
-                   },
-                   nombreSolicitante: {
-                           required: true,
-                           minlength: 10,
-                           maxlength: 40
-                   },
-                   localidadSolicitante: {
-                           required: true,
-                           maxlength: 40
-                   },
-                   agenciaSolicitante: {
-                           required: true,
-                           minlength: 3,
-                           maxlength: 40
-                   },
-                   montoSolicitado: {
-                        required: true,
-                        minStrict: 50000,
-                        maxStrict: 125000,
-                        number: true
-                    },
-                   descEmprendimiento: {
-                           required: true,
-                           minlength: 20,
-                           maxlength: 254
-                   }
-           },
-           messages: {
-                  tituloProyecto: {
-                           required: "Campo obligatorio",
-                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
-                           maxlength: $.format("{0} caracteres son demasiados!")
-                   },
-                   nombreSolicitante: {
-                           required: "Campo obligatorio",
-                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
-                           maxlength: $.format("{0} caracteres son demasiados!")
-                   },
-                   localidadSolicitante: {
-                           required: "Campo obligatorio",
-                           maxlength: $.format("{0} caracteres son demasiados!")
-                   },
-                   agenciaSolicitante: {
-                           required: "Campo obligatorio",
-                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
-                           maxlength: $.format("{0} caracteres son demasiados!")
-                   },
-                   montoSolicitado: {
-                           required: "Campo obligatorio",
-                           minStrict: $.format("Se solicita un mínimo de ${0}"),
-                           maxStrict: $.format("El monto máximo solicitado puede ser de ${0}")
-                   },
-                   descEmprendimiento: {
-                           required: "Campo obligatorio",
-                           minlength: $.format("Necesitamos por lo menos {0} caracteres"),
-                           maxlength: $.format("{0} caracteres son demasiados!")
-                   }
-           }
-   	});
-                $(function ()
-                {
-                    $("#wizard").steps({
-                        headerTag: "h2",
-                        bodyTag: "section",
-                        transitionEffect: "slideLeft",
-                        onStepChanging: function (event, currentIndex, newIndex)
-						{
-							return $("#formLineaEmprendedor").valid();
-						},
-                        onFinished: function (event, currentIndex) {
-								$("#formLineaEmprendedor").submit();
-							}
-                    });
-                });
-        </script>
+	<script src="{{asset('js/financiamiento/lineaEmprendedor/rules.js')}}"></script>
+	<script src="{{asset('js/financiamiento/lineaEmprendedor/steps.js')}}"></script>
 	@endsection
