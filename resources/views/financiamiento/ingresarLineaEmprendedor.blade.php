@@ -297,25 +297,25 @@
 							<br>
 							<p><b>DETALLE EL-LOS PRODUCTOS O SERVICIOS QUE OFRECE /RÁ</b></p>
 						</div>
-						<div class="w3-col m12" style="padding: 20px;">
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descProdServicios" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<p><b>EXPERIENCIA O FORMACIÓN DE EL/LOS EMPRENDEDORES PARA EL DESARROLLO DEL EMPRENDIMIENTO</b></p>
 						</div>
-						<div class="w3-col m12" style="padding: 20px;">
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="experienciaEmprendedores" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<p><b>OPORTUNIDAD DE MERCADO O  PROBLEMA QUE  RESUELVE</b></p>
 						</div>
-						<div class="w3-col m12" style="padding: 20px;">
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="oportunidadMercado" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<p><b>DESCRIPCIÓN DEL DESTINO DEL FINANCIAMIENTO</b></p>
 						</div>
-						<div class="w3-col m12" style="padding: 20px;">
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descFinanciamiento" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 	                </section>
@@ -331,7 +331,7 @@
 								<i style="color: lightgrey;">(Describir perfil de cliente actual: edad, nivel socio-económico - intereses)</i>
 							</p>
 						</div>
-						<div class="w3-col m12" style="padding: 20px;">
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionClientes" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 						<div class="w3-quarter"><p></p></div>
@@ -352,7 +352,7 @@
 								<i style="color: lightgrey;">(Describir perfil de tus proveedores: nombre o razón social, productos o servicios adquiridos, volumén de compra)</i>
 							</p>
 						</div>
-						<div class="w3-col m12" style="padding: 20px;">
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionProveedores" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 						<div class="w3-quarter"><p></p></div>
@@ -361,6 +361,62 @@
 							    <label>Ubicación de los proveedores</label>
 							    <select class="w3-select" name="ubicacionProveedores">
 								    <option value="" disabled selected>Elegí la ubicación de tus proveedores...</option>
+								    <option value="Local">Local</option>
+								    <option value="Provincial">Provincial</option>
+								    <option value="Nacional">Nacional</option>
+								 </select>
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>COMPETENCIA ¿Quién vende lo mismo que vos o algo parecido? </b><br>
+								<i style="color: lightgrey;">(Describir perfil de tus proveedores: nombre o razón social, productos o servicios que ofrece)</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionCompetencia" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+							<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Ubicación de la competencia</label>
+							    <select class="w3-select" name="ubicacionCompetencia">
+								    <option value="" disabled selected>Elegí la ubicación tu competencia...</option>
+								    <option value="Local">Local</option>
+								    <option value="Provincial">Provincial</option>
+								    <option value="Nacional">Nacional</option>
+								 </select>
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>¿CUÁL SERÍA TU VENTAJA EN COMPARACIÓN CON LOS COMPETIDORES?</b><br>
+								<i style="color: lightgrey;">¿Cómo te diferencias?</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="ventajaCompetidores" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>ESTRATEGIAS DE PROMOCIÓN QUE UTILIZARÁ</b><br>
+								<i style="color: lightgrey;">¿Cómo vas a hacer conocer tu producto o servicio?</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="estrategiasPromocion" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>PUNTOS DE VENTA</b><br>
+								<i style="color: lightgrey;">¿Dónde vas a vender?</i>
+							</p>
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+							<div style="margin-right: 10px;margin-left: 10px;">
+							    <select class="w3-select" name="puntosVenta">
+								    <option value="" disabled selected>Elegí el punto de venta...</option>
 								    <option value="Local">Local</option>
 								    <option value="Provincial">Provincial</option>
 								    <option value="Nacional">Nacional</option>
