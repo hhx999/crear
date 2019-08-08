@@ -316,17 +316,55 @@
 							<p><b>DESCRIPCIÓN DEL DESTINO DEL FINANCIAMIENTO</b></p>
 						</div>
 						<div class="w3-col m12" style="padding: 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="destinoFinanciamiento" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descFinanciamiento" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 	                </section>
 	                <h2>MERCADO</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
+	                	<div class="w3-col l12">
+		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+								    <p>MERCADO Y COMERCIALIZACIÓN</p>
+								</div>
 						</div>
-	                    <div class="w3-half">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+	                	<div class="w3-col m12">
+							<p><b>PRINCIPALES CLIENTES - ¿Quién te compra? </b><br>
+								<i style="color: lightgrey;">(Describir perfil de cliente actual: edad, nivel socio-económico - intereses)</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionClientes" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+							<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Ubicación de los clientes</label>
+							    <select class="w3-select" name="ubicacionClientes">
+								    <option value="" disabled selected>Elegí la ubicación de tus clientes...</option>
+								    <option value="Local">Local</option>
+								    <option value="Provincial">Provincial</option>
+								    <option value="Nacional">Nacional</option>
+								 </select>
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>PROVEEDORES ¿A quién le comprás tus materias primas o insumos? </b><br>
+								<i style="color: lightgrey;">(Describir perfil de tus proveedores: nombre o razón social, productos o servicios adquiridos, volumén de compra)</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionProveedores" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+							<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Ubicación de los proveedores</label>
+							    <select class="w3-select" name="ubicacionProveedores">
+								    <option value="" disabled selected>Elegí la ubicación de tus proveedores...</option>
+								    <option value="Local">Local</option>
+								    <option value="Provincial">Provincial</option>
+								    <option value="Nacional">Nacional</option>
+								 </select>
 							</div>
 						</div>
 	                </section>
