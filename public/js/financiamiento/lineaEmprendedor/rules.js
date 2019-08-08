@@ -1,4 +1,5 @@
     $( "#formLineaEmprendedor" ).validate({
+    	/*
            rules: {
                   tituloProyecto: {
                            required: true,
@@ -60,5 +61,5 @@
                            minlength: $.format("Necesitamos por lo menos {0} caracteres"),
                            maxlength: $.format("{0} caracteres son demasiados!")
                    }
-           }
+           }*/
    	});

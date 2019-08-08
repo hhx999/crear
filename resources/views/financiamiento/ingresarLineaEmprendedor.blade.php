@@ -20,6 +20,71 @@
 		{
 			color: #ff9183 !important;
 		}
+		/* The container */
+		.container {
+		  display: table-cell !important;
+		  margin-left: 42%;
+		  position: relative;
+		  padding-left: 30px;
+		  padding-right: 20px;
+		  margin-bottom: 12px;
+		  cursor: pointer;
+		  font-size: 16px;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		/* Hide the browser's default radio button */
+		.container input {
+		  position: absolute;
+		  opacity: 0;
+		  cursor: pointer;
+		}
+
+		/* Create a custom radio button */
+		.checkmark {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  height: 25px;
+		  width: 25px;
+		  background-color: #eee;
+		  border-radius: 50%;
+		}
+
+		/* On mouse-over, add a grey background color */
+		.container:hover input ~ .checkmark {
+		  background-color: #ccc;
+		}
+
+		/* When the radio button is checked, add a blue background */
+		.container input:checked ~ .checkmark {
+		  background-color: #2196F3;
+		}
+
+		/* Create the indicator (the dot/circle - hidden when not checked) */
+		.checkmark:after {
+		  content: "";
+		  position: absolute;
+		  display: none;
+		}
+
+		/* Show the indicator (dot/circle) when checked */
+		.container input:checked ~ .checkmark:after {
+		  display: block;
+		}
+
+		/* Style the indicator (dot/circle) */
+		.container .checkmark:after {
+		 	top: 9px;
+			left: 9px;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: white;
+		}
 	</style>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 		@if ($errors->any())
@@ -41,6 +106,11 @@
 	            <div id="wizard">
 	                <h2>PORTADA</h2>
 	                <section>
+	                	<div class="w3-col l12">
+	                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+							    <p>PORTADA</p>
+							</div>
+						</div>
 						<div class="w3-col m12">
 							<div class="w3-half">
 								<label>Título del proyecto</label>
@@ -70,45 +140,100 @@
 	                </section>
 	                <h2>INFORMACIÓN</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
-						</div>
-	                    <div class="w3-half">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <h4>Antigüedad mayor a 2 años?</h4>
-							    <label class="container">SI
-								  <input type="radio" checked="checked" name="antiguedad" value="1">
-								  <span class="checkmark"></span>
-								</label>
-								<br>
-								<label class="container">NO
-								  <input type="radio" checked="checked" name="antiguedad" value="0">
-								  <span class="checkmark"></span>
-								</label>
+	                    <div class="w3-col l12">
+	                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+							    <p>INFORMACIÓN DEL EMPRENDEDOR</p>
 							</div>
+						</div>
+						<div class="w3-col l12">
+								<p><b>Datos generales</b></p>
+						</div>
+						<div class="w3-half">
+	                    	<label>Nombre y apellido</label>
+							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor...">
+						</div>
+						<div class="w3-half">
+	                    	<label>DNI</label>
+							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor...">
+						</div>
+						<div class="w3-half">
+	                    	<label>Localidad</label>
+							<input class="w3-input" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor...">
+						</div>
+						<div class="w3-half">
+	                    	<label>Domicilio</label>
+							<input class="w3-input" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor...">
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>Datos de contacto</b></p>
+						</div>
+						<div class="w3-half">
+	                    	<label>Telefono</label>
+							<input class="w3-input" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor...">
+						</div>
+						<div class="w3-half">
+	                    	<label>Email</label>
+							<input class="w3-input" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor...">
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+	                    	<label>Facebook</label>
+							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar el facebook del emprendedor...">
+						</div>
+						<div class="w3-quarter"></div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>Formación y ocupación</b></p>
+						</div>
+						<div class="w3-col m12">
+							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
+							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el emprendedor)</i></h4>
+							    <div style="display: inline-block;">
+							    	<label class="container">Ninguno
+							    		<input type="radio" checked="checked" name="gradoInstruccion" value="Ninguno">
+							    		<span class="checkmark"></span>
+							    	</label>
+								    <label class="container">Primario
+									  <input type="radio" name="gradoInstruccion" value="Primario">
+									  <span class="checkmark"></span>
+									</label>
+									<label class="container">Secundario
+									  <input type="radio" name="gradoInstruccion" value="Secundario">
+									  <span class="checkmark"></span>
+									</label>
+									<label class="container">Terceario
+									  <input type="radio" name="gradoInstruccion" value="Terceario">
+									  <span class="checkmark"></span>
+									</label>
+									<label class="container">Universitario
+									  <input type="radio" name="gradoInstruccion" value="Universitario">
+									  <span class="checkmark"></span>
+									</label>
+							    </div>
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<label>Otra ocupación que desarrolle en la actualidad<br><i style="color: lightgrey;">(Si no realiza ninguna dejelo la casilla en blanco)</i></label>
+							<input class="w3-input" type="text" name="otraOcupación" placeholder="Ingresar otra ocupación del emprendedor...">
+						</div>
+						<div class="w3-half">
+							<label>Ingreso mensual</label>
+							<input class="w3-input" type="text" name="ingresoMensual" placeholder="Ingresar el ingreso mensual del emprendedor...">
+						</div>
+						<div class="w3-half">
+							<label>Deseo de capacitación</label>
+							<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro...">
 						</div>
 	                </section>
 	                <h2>DATOS GENERALES</h2>
 	                <section>
-	                   	<div class="w3-row">
-						  <div class="w3-container w3-quarter">
-						  </div>
-						  <div class="w3-container w3-half">
-							<div class="formPreguntasUsuario">
-								<p>
-								  <input class="w3-check" type="checkbox" name="destino[]" value="a">
-								  <label>Comprar productos para revender</label></p>
-								  <p>
-								  <input class="w3-check" type="checkbox" name="destino[]" value="b">
-								  <label> Acondicionamiento del local</label></p>
-								  <p>
-								  <input class="w3-check" type="checkbox" name="destino[]" value="c">
-								  <label>Compra de maquinaria y/o insumos</label></p>
-								</form>
-							</div>
+	                	<h2>DATOS GENERALES</h2>
+		                <div class="w3-col l12">
+		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+								    <p>Datos generales del emprendimiento</p>
+								</div>
 						</div>
-						<div class="w3-container w3-quarter">
-						</div>
-					</div>
 	                </section>
 	                <h2>ASPECTOS SOCIALES</h2>
 	                <section>
