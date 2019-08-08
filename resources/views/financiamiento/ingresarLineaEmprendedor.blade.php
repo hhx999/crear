@@ -228,22 +228,95 @@
 	                </section>
 	                <h2>DATOS GENERALES</h2>
 	                <section>
-	                	<h2>DATOS GENERALES</h2>
 		                <div class="w3-col l12">
 		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
-								    <p>Datos generales del emprendimiento</p>
+								    <p>Datos generales o propuesta del emprendimiento</p>
 								</div>
 						</div>
-	                </section>
-	                <h2>ASPECTOS SOCIALES</h2>
-	                <section>
-	                	<div class="w3-container w3-quarter">
+						<div class="w3-col m12">
+							<br>
+							<p><b>Datos generales del emprendimiento</b></p>
 						</div>
-	                    <div class="w3-half">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+						<div class="w3-half">
+							<label>Actividad principal</label>
+							<input class="w3-input" type="text" name="actPrincipalEmprendimiento" placeholder="Ingrese la actividad principal del emprendimiento...">
+						</div>
+						<div class="w3-half">
+							<label>Fecha del inicio a la actividad</label>
+							<input class="w3-input" type="text" name="fecInicioEmprendimiento" readonly placeholder="No existe registro del inicio del emprendimiento...">
+						</div>
+						<div class="w3-half">
+							<label>Antigüedad</label>
+							<input class="w3-input" type="text" name="antiguedadEmprendimiento" placeholder="Ingrese la antigüedad del emprendimiento...">
+						</div>
+						<div class="w3-half">
+							<label>Número de CUIL o CUIT</label>
+							<input class="w3-input" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento...">
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+							<label>Número de ingresos brutos</label>
+							<input class="w3-input" type="text" name="ingresosBrutosEmprendimiento" placeholder="Ingrese los ingresos brutos del emprendimiento...">
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>Localización del emprendimiento</b></p>
+						</div>
+						<div class="w3-half">
+							<label>Domicilio real</label>
+							<input class="w3-input" type="text" name="domicilioEmprendimiento" placeholder="Ingrese el domicilio del emprendimiento...">
+						</div>
+						<div class="w3-half">
+							<label>Localidad</label>
+							<input class="w3-input" type="text" name="localidadEmprendimiento" placeholder="Ingrese la localidad del emprendimiento...">
+						</div>
+						<div class="w3-col m12">
+							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
+							    <h4>Lugar donde se desarrolla es:</h4>
+							    <div style="display: inline-block;">
+							    	<label class="container">Otro
+									  <input type="radio" name="gradoInstruccion" value="Otro" checked="checked">
+									  <span class="checkmark"></span>
+									</label>
+							    	<label class="container">Propio
+							    		<input type="radio" name="gradoInstruccion" value="Propio">
+							    		<span class="checkmark"></span>
+							    	</label>
+								    <label class="container">Prestado
+									  <input type="radio" name="gradoInstruccion" value="Prestado">
+									  <span class="checkmark"></span>
+									</label>
+									<label class="container">Alquilado
+									  <input type="radio" name="gradoInstruccion" value="Alquilado">
+									  <span class="checkmark"></span>
+									</label>
+							    </div>
 							</div>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>DETALLE EL-LOS PRODUCTOS O SERVICIOS QUE OFRECE /RÁ</b></p>
+						</div>
+						<div class="w3-col m12" style="padding: 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descProdServicios" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<p><b>EXPERIENCIA O FORMACIÓN DE EL/LOS EMPRENDEDORES PARA EL DESARROLLO DEL EMPRENDIMIENTO</b></p>
+						</div>
+						<div class="w3-col m12" style="padding: 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="experienciaEmprendedores" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<p><b>OPORTUNIDAD DE MERCADO O  PROBLEMA QUE  RESUELVE</b></p>
+						</div>
+						<div class="w3-col m12" style="padding: 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="oportunidadMercado" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<p><b>DESCRIPCIÓN DEL DESTINO DEL FINANCIAMIENTO</b></p>
+						</div>
+						<div class="w3-col m12" style="padding: 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="destinoFinanciamiento" maxlength="254" style="resize:none"></textarea></p>
 						</div>
 	                </section>
 	                <h2>MERCADO</h2>
@@ -280,6 +353,17 @@
 						</div>
 	                </section>
 	                <h2>MANIFESTACIÓN DE LOS BIENES DEL GARANTE</h2>
+	                <section>
+	                	<div class="w3-container w3-quarter">
+						</div>
+	                    <div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Monto</label>
+							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+							</div>
+						</div>
+	                </section>
+	                <h2>DOCUMENTACIÓN</h2>
 	                <section>
 	                	<div class="w3-container w3-quarter">
 						</div>
