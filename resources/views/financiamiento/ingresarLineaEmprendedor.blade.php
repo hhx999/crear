@@ -104,40 +104,6 @@
 
 		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
 	            <div id="wizard">
-	                <h2>PORTADA</h2>
-	                <section>
-	                	<div class="w3-col l12">
-	                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
-							    <p>PORTADA</p>
-							</div>
-						</div>
-						<div class="w3-col m12">
-							<div class="w3-half">
-								<label>Título del proyecto</label>
-								<input id="tituloProyecto" class="w3-input" type="text" name="tituloProyecto" placeholder="Ingresar nombre del proyecto...">
-							</div>
-							<div class="w3-half">
-								<label>Nombre solicitante</label>
-								<input id="nombreSolicitante" class="w3-input" type="text" name="nombreSolicitante" placeholder="Ingresar nombre del solicitante...">
-							</div>
-							<div class="w3-half">
-								<label>Localidad</label>
-								<input class="w3-input" type="text" name="localidadSolicitante" placeholder="Ingresar localidad del solicitante...">
-							</div>
-							<div class="w3-half">
-								<label>Agencia</label>
-								<input class="w3-input" type="text" name="agenciaSolicitante" placeholder="Ingresar la agencia más cercana del solicitante...">
-							</div>
-							<div class="w3-half">
-								<label>Monto a solicitar</label>
-								<input class="w3-input" type="text" name="montoSolicitado" placeholder="Ingresar el monto que desea solicitar...">
-							</div>
-							<div class="w3-half">
-								<label>Descripción del emprendimiento</label>
-								<input class="w3-input" type="text" name="descEmprendimiento" placeholder="Ingresar una breve descripción del emprendimiento...">
-							</div>
-						</div>
-	                </section>
 	                <h2>INFORMACIÓN</h2>
 	                <section>
 	                    <div class="w3-col l12">
@@ -161,7 +127,7 @@
 							<input class="w3-input" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor...">
 						</div>
 						<div class="w3-half">
-	                    	<label>Domicilio</label>
+	                    	<label>Domicilio real</label>
 							<input class="w3-input" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor...">
 						</div>
 						<div class="w3-col m12">
@@ -178,8 +144,8 @@
 						</div>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
-	                    	<label>Facebook</label>
-							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar el facebook del emprendedor...">
+	                    	<label>Redes sociales:<i style="color: lightgrey;">(facebook,instagram,etc.)</i></label>
+							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar redes sociales del emprendedor...">
 						</div>
 						<div class="w3-quarter"></div>
 						<div class="w3-col m12">
@@ -263,7 +229,7 @@
 							<p><b>Localización del emprendimiento</b></p>
 						</div>
 						<div class="w3-half">
-							<label>Domicilio real</label>
+							<label>Domicilio comercial</label>
 							<input class="w3-input" type="text" name="domicilioEmprendimiento" placeholder="Ingrese el domicilio del emprendimiento...">
 						</div>
 						<div class="w3-half">
@@ -337,7 +303,7 @@
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Ubicación de los clientes</label>
+							    <label>Ubicación de los principales clientes</label>
 							    <select class="w3-select" name="ubicacionClientes">
 								    <option value="" disabled selected>Elegí la ubicación de tus clientes...</option>
 								    <option value="Local">Local</option>
@@ -358,7 +324,7 @@
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Ubicación de los proveedores</label>
+							    <label>Ubicación de los principales proveedores</label>
 							    <select class="w3-select" name="ubicacionProveedores">
 								    <option value="" disabled selected>Elegí la ubicación de tus proveedores...</option>
 								    <option value="Local">Local</option>
@@ -379,7 +345,7 @@
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Ubicación de la competencia</label>
+							    <label>Ubicación de las principales competencias</label>
 							    <select class="w3-select" name="ubicacionCompetencia">
 								    <option value="" disabled selected>Elegí la ubicación tu competencia...</option>
 								    <option value="Local">Local</option>
@@ -426,12 +392,168 @@
 	                </section>
 	                <h2>PROD. COSTOS Y RESULTADOS</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
+	                	<div class="w3-col l12">
+		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+								    <p>PRODUCCIÓN, COSTOS Y RESULTADOS</p>
+								</div>
 						</div>
-	                    <div class="w3-half">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+						<div class="w3-col m12">
+							<br>
+							<p><b>PROCESO PRODUCTIVO</b><br>
+								<i style="color: lightgrey;">MATERIAS PRIMAS O INSUMOS QUE SE NECESITAN</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="materiasPrimas" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<br>
+								<i style="color: lightgrey;">HERRAMIENTAS O MAQUINARIAS NECESARIAS PARA PRODUCIR O BRINDAR EL SERVICIO</i>
+							</p>
+						</div>
+						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descHerramientas" maxlength="254" style="resize:none"></textarea></p>
+						</div>
+						<div class="w3-col m12">
+							<br>
+							<p><b>VENTAS</b><br>
+								<i style="color: lightgrey;">VOLUMEN ESTIMADO DE VENTAS FUTURAS</i>
+							</p>
+							<p id="crearVenta" style="color: #3ae93a;cursor: pointer;">Agregar nueva venta</p>
+						</div>
+						<div class="w3-col m12" id="ventasMes">
+						</div>
+						<div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
+	          				<div class="w3-col m12">
+								<br>
+								<p><b>OTROS COSTOS DEL EMPRENDIMIENTO</b><br>
+								</p>
+							</div>
+					          <div class="w3-col m3">
+					            <p><label>Insumos y materias primas:</label></p>
+					            <input placeholder="Insumos y materias primas..." class="sumable" maxlength="10" name="insumosCostos" id="insumos_materias" value="0">
+					          </div>
+
+					          <div class="w3-col m3">
+					            <p><label >Alquileres:</label></p>
+					            <input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="0">
+					          </div>
+
+					          <div class="w3-col m3">
+					            <p><label>Servicios(luz-agua-gas-internet):</label></p>
+					            <input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="0">
+					          </div>
+					          <div class="w3-col m3">
+					            <p><label>Monotributo:</label></p>
+					            <input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="0">
+					          </div>
+					          <div class="w3-col m3">
+					            <p><label>Ingresos brutos:</label></p>
+					            <p><input placeholder="Ingresos brutos..." class="sumable" maxlength="10" name="ingresosBrutosCostos" id="ingresos_brutos" value="0"></p>
+					          </div>
+					          <div class="w3-col m3">
+					            <p><label>Seguros:</label></p>
+					            <p><input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="0"></p>
+					          </div>
+					          <div class="w3-col m3">
+					            <p><label>Combustible:</label></p>
+					            <p><input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="0"></p>
+					          </div>
+					          <div class="w3-col m3">
+					            <p><label>Sueldos:</label></p>
+					            <p><input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="0"></p>
+					          </div>
+					          <div class="w3-col m3" style="height: 90px;"></div>
+					          <div class="w3-col m3">
+					            <p><label>Comercialización:</label></p>
+					            <p><input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="0"></p>
+					          </div>
+					          <div class="w3-col m3">
+					            <p><label>Otros:</label></p>
+					            <p><input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="0"></p>
+					          </div>
+					          <div class="w3-col m12">
+					            <p><label>Cuota anual de amortización de crédito:</label></p>
+					            <p><input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="0"></p>
+					          </div>
+					          <hr>
+					          <div class="w3-col m12">
+					            <p align="center">TOTAL</p>
+					            <p><input type="text" id="total_costos" name="total_costos"></p>
+					          </div>
+      					</div>
+						<style type="text/css">
+							#eliminarVenta {
+								float: right;
+								border: 1px solid;
+								padding: 1px 7px;
+								cursor: pointer;
+								float:right;
+							}
+						</style>
+						<script type="text/javascript">
+							$('#crearVenta').click(function(){
+								$('#ventasMes').append('<div class="w3-half" align="center" style="padding: 10px;border: 2px solid;">\
+									<div class="w3-col m12">\
+										<span id="eliminarVenta">x</span>\
+									</div>\
+								<div class="w3-col m6">\
+									<label>Producto o Servicio</label>\
+									<input type="text" name="producto" style="border: 2px solid black;">\
+								</div>\
+								<div class="w3-col m6" style="height: 65px;">\
+									<label>Unidad de medida</label>\
+									<input type="text" name="udMedida" style="border: 2px solid black;">\
+								</div>\
+								<div class="w3-col m4" align="center">\
+									<label>Cant. Año</label>\
+									<input type="text" id="cant_anio" name="cantAnio" style="border: 2px solid black;">\
+								</div>\
+								<div class="w3-col m4" align="center">\
+									<label>Precio</label>\
+									<input type="text" id="precio" name="precio" style="border: 2px solid black;">\
+								</div>\
+								<div class="w3-col m4">\
+									<label>Total</label>\
+									<input type="text" id="total" style="border: 2px solid black;width: -moz-available;" readonly>\
+								</div>\
+							</div>');
+							});
+						</script>
+						<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+						<script type="text/javascript" src="{{ asset('js/calculo_ventas.js') }}"></script>
+	                </section>
+	                <h2>INVERSIÓN</h2>
+	                <section>
+	                	<div class="w3-col l12">
+	                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+							    <p>PORTADA</p>
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<div class="w3-half">
+								<label>Título del proyecto</label>
+								<input id="tituloProyecto" class="w3-input" type="text" name="tituloProyecto" placeholder="Ingresar nombre del proyecto...">
+							</div>
+							<div class="w3-half">
+								<label>Nombre solicitante</label>
+								<input id="nombreSolicitante" class="w3-input" type="text" name="nombreSolicitante" placeholder="Ingresar nombre del solicitante...">
+							</div>
+							<div class="w3-half">
+								<label>Localidad</label>
+								<input class="w3-input" type="text" name="localidadSolicitante" placeholder="Ingresar localidad del solicitante...">
+							</div>
+							<div class="w3-half">
+								<label>Agencia</label>
+								<input class="w3-input" type="text" name="agenciaSolicitante" placeholder="Ingresar la agencia más cercana del solicitante...">
+							</div>
+							<div class="w3-half">
+								<label>Monto a solicitar</label>
+								<input class="w3-input" type="text" name="montoSolicitado" placeholder="Ingresar el monto que desea solicitar...">
+							</div>
+							<div class="w3-half">
+								<label>Descripción del emprendimiento</label>
+								<input class="w3-input" type="text" name="descEmprendimiento" placeholder="Ingresar una breve descripción del emprendimiento...">
 							</div>
 						</div>
 	                </section>
