@@ -96,6 +96,10 @@ class UsuarioController extends BaseController
     {
       return view('userTest.tramites');
     }
+    public function simuladorCreditos(Request $request)
+    {
+      return view('userTest.simuladorCreditos');
+    }
     public function devuelveDatosSeguimiento(Request $request)
     {
       $formulario = Formulario::where('numeroProyecto', $request->numeroProyecto)->latest()->firstOrFail();
