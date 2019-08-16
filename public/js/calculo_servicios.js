@@ -5,8 +5,8 @@ $('#costos_emprendimiento').on('blur','input', function(event) {
 });
     function actualizarTotal() {
       var nuevoTotal = 0;
-
-      $('#costos_emprendimiento .sumable').each(function () {
+      console.log('entro');
+      $('.sumable').each(function () {
         var monto = parseFloat($(this).val());
 
         if (isNaN(monto)) {

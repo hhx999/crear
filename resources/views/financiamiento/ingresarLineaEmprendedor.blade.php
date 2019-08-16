@@ -492,36 +492,72 @@
 							}
 						</style>
 						<script type="text/javascript">
-							$('#crearVenta').click(function(){
-								$('#ventasMes').append('<div class="w3-half" align="center" style="padding: 10px;border: 2px solid;">\
-									<div class="w3-col m12">\
-										<span id="eliminarVenta">x</span>\
-									</div>\
-								<div class="w3-col m6">\
-									<label>Producto o Servicio</label>\
-									<input type="text" name="producto" style="border: 2px solid black;">\
-								</div>\
-								<div class="w3-col m6" style="height: 65px;">\
-									<label>Unidad de medida</label>\
-									<input type="text" name="udMedida" style="border: 2px solid black;">\
-								</div>\
-								<div class="w3-col m4" align="center">\
-									<label>Cant. Año</label>\
-									<input type="text" id="cant_anio" name="cantAnio" style="border: 2px solid black;">\
-								</div>\
-								<div class="w3-col m4" align="center">\
-									<label>Precio</label>\
-									<input type="text" id="precio" name="precio" style="border: 2px solid black;">\
-								</div>\
-								<div class="w3-col m4">\
-									<label>Total</label>\
-									<input type="text" id="total" style="border: 2px solid black;width: -moz-available;" readonly>\
-								</div>\
-							</div>');
-							});
-						</script>
-						<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
-						<script type="text/javascript" src="{{ asset('js/calculo_ventas.js') }}"></script>
+			$('#crearVenta').click(function(){
+					$('#ventasMes').append('<div class="w3-half" align="center" style="padding: 10px;border: 2px solid;">\
+						<div class="w3-col m12" >\
+							<div onClick="remove(this);">\
+								<span style="float:right;cursor:pointer;">x</span>\
+							</div>\
+						</div>\
+						<div class="w3-col m6">\
+							<label>Producto o Servicio</label>\
+							<input type="text" name="producto" style="border: 2px solid black;">\
+						</div>\
+						<div class="w3-col m6" style="height: 65px;">\
+							<label>Unidad de medida</label>\
+							<input type="text" name="udMedida" style="border: 2px solid black;">\
+						</div>\
+						<div class="w3-col m4" align="center">\
+							<label>Cant. Año</label>\
+							<input type="text" class="operacionVenta" id="cantAnio" name="cantAnio" style="border: 2px solid black;">\
+						</div>\
+						<div class="w3-col m4" align="center">\
+							<label>Precio</label>\
+							<input type="text" class="operacionVenta" id="precio" name="precio" style="border: 2px solid black;">\
+						</div>\
+						<div class="w3-col m4">\
+							<label>Total</label>\
+							<input type="text" class="operacionVenta" id="totalVenta" style="border: 2px solid black;width: -moz-available;">\
+						</div>\
+					</div>');
+			});
+		</script>
+		<script type="text/javascript">
+			function remove(e)
+			{
+				$(e).parent('div').parent('div').remove();
+			}
+			(function() {
+				$('#ventasMes').on('blur','input', function(event) {
+				  actualizarTotal();
+				});
+				    function actualizarTotal() {
+				      var nuevoTotal = 0;
+				      var vt_cantAnio = 0;
+				      $('.operacionVenta').each(function () {
+				      	if ($(this).attr('id') == 'cantAnio')
+						{
+							var vt_cantAnio = $(this).attr('value');
+						}
+						if ($(this).attr('id') == 'precio') {
+				        	var precio = parseFloat($(this).val());
+						}
+						if ($(this).attr('id') == 'totalVenta')
+						{
+							$('#totalVenta').val(nuevoTotal);
+						}
+
+				        if (isNaN(precio)) {
+				        } else {
+				        	console.log(vt_cantAnio);
+				        	console.log(precio);
+				          	nuevoTotal = vt_cantAnio * precio;
+				        }
+				      });
+				    }
+				})();
+		</script>
+		<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
 	                </section>
 	                <h2>INVERSIÓN</h2>
 	                <section>
@@ -592,6 +628,7 @@
 	                </section>
 	   </div>
 	</form>
+	<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
 	<script src="{{asset('js/financiamiento/lineaEmprendedor/rules.js')}}"></script>
 	<script src="{{asset('js/financiamiento/lineaEmprendedor/steps.js')}}"></script>
 	@endsection
