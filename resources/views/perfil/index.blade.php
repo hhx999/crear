@@ -55,14 +55,18 @@
 	      	</a>
 	    </div>
 	    <div class="w3-quarter">
-	      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-	        <div class="w3-left"><i class="fas fa-award w3-xxxlarge"></i></div>
-	        <div class="w3-right">
-	          <h3>2</h3>
-	        </div>
-	        <div class="w3-clear"></div>
-	        <h4>Inscripciones a globas</h4>
-	      </div>
+	    	<a href="{{url('simuladorCreditos')}}">
+	    		<div class="itemPerfil">
+				    <div class="w3-container w3-orange w3-text-white w3-padding-16">
+				        <div class="w3-left"><i class="fas fa-award w3-xxxlarge"></i></div>
+				        <div class="w3-right">
+				          <h3>-</h3>
+				        </div>
+				        <div class="w3-clear"></div>
+				        <h4>Simulador de créditos</h4>
+				    </div>
+		      	</div>
+		    </a>
 	    </div>
 	  </div>
 

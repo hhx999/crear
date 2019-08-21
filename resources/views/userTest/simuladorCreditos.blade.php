@@ -26,7 +26,6 @@
  </form>
  <br>
 
-
  <?php
 /**
 * Simulador de Credito
@@ -59,17 +58,17 @@ if (!empty($_GET)) {
 
 
 	print '
-	<div class="w3-col m6" style="border: 2px solid white;padding:10px;">
+	<div class="w3-col m6" style="border: 2px solid #8fc53f;padding:10px;">
 	<b>Valor:</b> $' .$valor. '<br/>
 	<b>Cuota:</b> $'.round($cuota,2). '<br />
 	<b>Deuda al inicio del periodo:</b> $'.$vp.'<br />
 	</div>
-	<div class="w3-col m6" style="border: 2px solid white;padding:10px;">
+	<div class="w3-col m6" style="border: 2px solid #8fc53f;padding:10px;">
 	<b>Tasa Anual:</b> ' .$tasa. '%<br/>
 	<b>Tasa Mensual:</b> ' .round(($tasa/12), 2). '%<br/>
 	<b>Interés periodo gracia:</b> $'.$interesGracia.'<br />
 	</div>
-	<div class="w3-col m12" style="border: 2px solid white;padding: 20px;">
+	<div class="w3-col m12" style="border: 2px solid #8fc53f;padding: 20px;">
 	<b>Valor CUOTA Francés: '.round($cuota + $interesGracia, 2).'</b><br /></div><br>';
 	print '
 	<table class="w3-table" style="margin-top:20px;">
