@@ -569,6 +569,11 @@
 	                </section>
 	                <h2>INVERSIÓN</h2>
 	                <section>
+	                	<div class="w3-col l12">
+		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+								    <p>INVERSIÓN</p>
+								</div>
+						</div>
 	                	<div class="w3-col m12">
 							<br>
 							<div>
@@ -657,6 +662,11 @@
 	                </section>
 	                <h2>MANIFESTACIÓN DE BIENES DEL EMPRENDEDOR</h2>
 	                <section>
+	                	<div class="w3-col l12">
+		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+								    <p>MANIFESTACIÓN DE BIENES DEL EMPRENDEDOR</p>
+								</div>
+						</div>
 	                	<div class="w3-col m12" align="center">
 	                		<b>DISPONIBILIDADES</b>
 	                	</div>
@@ -816,6 +826,11 @@
 	                </section>
 	                <h2>MANIFESTACIÓN DE LOS BIENES DEL GARANTE</h2>
 	                <section>
+	                	<div class="w3-col l12">
+		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
+								    <p>MANIFESTACIÓN DE LOS BIENES DEL GARANTE</p>
+								</div>
+						</div>
 	                	<div class="w3-col m12" align="center">
 	                		<b>DISPONIBILIDADES</b>
 	                	</div>
