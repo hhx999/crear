@@ -241,19 +241,19 @@
 							    <h4>Lugar donde se desarrolla es:</h4>
 							    <div style="display: inline-block;">
 							    	<label class="container">Otro
-									  <input type="radio" name="gradoInstruccion" value="Otro" checked="checked">
+									  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
 									  <span class="checkmark"></span>
 									</label>
 							    	<label class="container">Propio
-							    		<input type="radio" name="gradoInstruccion" value="Propio">
+							    		<input type="radio" name="lugarEmprendimiento" value="Propio">
 							    		<span class="checkmark"></span>
 							    	</label>
 								    <label class="container">Prestado
-									  <input type="radio" name="gradoInstruccion" value="Prestado">
+									  <input type="radio" name="lugarEmprendimiento" value="Prestado">
 									  <span class="checkmark"></span>
 									</label>
 									<label class="container">Alquilado
-									  <input type="radio" name="gradoInstruccion" value="Alquilado">
+									  <input type="radio" name="lugarEmprendimiento" value="Alquilado">
 									  <span class="checkmark"></span>
 									</label>
 							    </div>
@@ -481,7 +481,7 @@
 					          <hr>
 					          <div class="w3-col m12">
 					            <p align="center">TOTAL</p>
-					            <p><input type="text" id="total_costos" name="total_costos"></p>
+					            <p><input type="text" id="total_costos"></p>
 					          </div>
       					</div>
 						<style type="text/css">
