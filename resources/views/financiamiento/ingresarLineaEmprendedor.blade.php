@@ -657,23 +657,319 @@
 	                </section>
 	                <h2>MANIFESTACIÓN DE BIENES DEL EMPRENDEDOR</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
-						</div>
+	                	<div class="w3-col m12" align="center">
+	                		<b>DISPONIBILIDADES</b>
+	                	</div>
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+							    <label>Efectivo</label>
+							    <input class="w3-input w3-border" type="text" name="efectivoMBE" placeholder="Ingrese el efectivo...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Cuentas bancarias</label>
+							    <input class="w3-input w3-border" type="text" name="cuentasBancariasMBE" placeholder="Ingrese el monto de cuentas bancarias...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Créditos por ventas</label>
+							    <input class="w3-input w3-border" type="text" name="creditosVentasMBE" placeholder="Ingrese el monto de créditos por ventas...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Otros créditos</label>
+							    <input class="w3-input w3-border" type="text" name="otrosCreditosMBE" placeholder="Ingrese el monto de otros créditos...">
+							</div>
+						</div>
+						<div class="w3-col m12" align="center">
+							<b>BIENES DE CAMBIO</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Mercaderías</label>
+							    <input class="w3-input w3-border" type="text" name="mercaderiasMBE" placeholder="Ingrese el monto de las mercaderías...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Materias primas</label>
+							    <input class="w3-input w3-border" type="text" name="materiasPrimasMBE" placeholder="Ingrese el monto de las materias primas...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Insumos</label>
+							    <input class="w3-input w3-border" type="text" name="insumosMBE" placeholder="Ingrese el monto de los insumos...">
+							</div>
+						</div>
+						<div class="w3-col m12" align="center">
+							<b>BIENES DE USO</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Inmuebles</label>
+							    <input class="w3-input w3-border" type="text" name="inmueblesMBE" placeholder="Ingrese el monto de los inmuebles...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Rodados</label>
+							    <input class="w3-input w3-border" type="text" name="rodadosMBE" placeholder="Ingrese el monto de los rodados...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Maquinarias y equipos</label>
+							    <input class="w3-input w3-border" type="text" name="maquinariasEquiposMBE" placeholder="Ingrese el monto de las maquinarias y equipos...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Instalaciones</label>
+							    <input class="w3-input w3-border" type="text" name="instalacionesMBE" placeholder="Ingrese el monto de las instalaciones...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<b>DEUDAS COMERCIALES</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>En cuentas corrientes</label>
+							    <input class="w3-input w3-border" type="text" name="deudaCuentasCorrientesMBE" placeholder="Ingrese la deuda en cuentas corrientes...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Cheques de pago diferido</label>
+							    <input class="w3-input w3-border" type="text" name="deudaChequesPagoDiferidoMBE" placeholder="Ingrese la deuda de cheques de pago diferido...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Documentadas</label>
+							    <input class="w3-input w3-border" type="text" name="documentadasMBE" placeholder="Ingrese las deudas documentadas...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Otras</label>
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasComercialesMBE" placeholder="Ingrese otras deudas comerciales...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<b>DEUDAS BANCARIAS</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Tarjetas de crédito</label>
+							    <input class="w3-input w3-border" type="text" name="deudaTarjetasCreditoMBE" placeholder="Ingrese las deudas de tarjetas de crédito...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Con garantía hipotecaria(Inmuebles)</label>
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaHipotecariaMBE" placeholder="Ingrese las deudas con garantía hipotecaria...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Con garantía prendaria(Rodados)</label>
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaPrendariaMBE" placeholder="Ingrese las deudas con garantia prendaria...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<b>DEUDAS FISCALES</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>AFIP</label>
+							    <input class="w3-input w3-border" type="text" name="deudaAfipMBE" placeholder="Ingrese la deuda con AFIP...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Rentas Río Negro</label>
+							    <input class="w3-input w3-border" type="text" name="deudaRentasRnMBE" placeholder="Ingrese la deuda con Rentas Río Negro...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Tributos municipales</label>
+							    <input class="w3-input w3-border" type="text" name="deudaTributosMunicipalesMBE" placeholder="Ingrese la deuda con tributos municipales...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Deudas sociales</label>
+							    <input class="w3-input w3-border" type="text" name="deudasSocialesMBE" placeholder="Ingrese las deudas de aportes, contribuciones, salarios, etc...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Otras Deudas</label>
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasMBE" placeholder="Ingrese otras deudas...">
 							</div>
 						</div>
 	                </section>
 	                <h2>MANIFESTACIÓN DE LOS BIENES DEL GARANTE</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
-						</div>
+	                	<div class="w3-col m12" align="center">
+	                		<b>DISPONIBILIDADES</b>
+	                	</div>
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
+							    <label>Efectivo</label>
+							    <input class="w3-input w3-border" type="text" name="efectivoMBG" placeholder="Ingrese el efectivo...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Cuentas bancarias</label>
+							    <input class="w3-input w3-border" type="text" name="cuentasBancariasMBG" placeholder="Ingrese el monto de cuentas bancarias...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Créditos por ventas</label>
+							    <input class="w3-input w3-border" type="text" name="creditosVentasMBG" placeholder="Ingrese el monto de créditos por ventas...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Otros créditos</label>
+							    <input class="w3-input w3-border" type="text" name="otrosCreditosMBG" placeholder="Ingrese el monto de otros créditos...">
+							</div>
+						</div>
+						<div class="w3-col m12" align="center">
+							<b>BIENES DE CAMBIO</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Mercaderías</label>
+							    <input class="w3-input w3-border" type="text" name="mercaderiasMBG" placeholder="Ingrese el monto de las mercaderías...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Materias primas</label>
+							    <input class="w3-input w3-border" type="text" name="materiasPrimasMBG" placeholder="Ingrese el monto de las materias primas...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Insumos</label>
+							    <input class="w3-input w3-border" type="text" name="insumosMBG" placeholder="Ingrese el monto de los insumos...">
+							</div>
+						</div>
+						<div class="w3-col m12" align="center">
+							<b>BIENES DE USO</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Inmuebles</label>
+							    <input class="w3-input w3-border" type="text" name="inmueblesMBG" placeholder="Ingrese el monto de los inmuebles...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Rodados</label>
+							    <input class="w3-input w3-border" type="text" name="rodadosMBG" placeholder="Ingrese el monto de los rodados...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Maquinarias y equipos</label>
+							    <input class="w3-input w3-border" type="text" name="maquinariasEquiposMBG" placeholder="Ingrese el monto de las maquinarias y equipos...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Instalaciones</label>
+							    <input class="w3-input w3-border" type="text" name="instalacionesMBG" placeholder="Ingrese el monto de las instalaciones...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<b>DEUDAS COMERCIALES</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>En cuentas corrientes</label>
+							    <input class="w3-input w3-border" type="text" name="deudaCuentasCorrientesMBG" placeholder="Ingrese la deuda en cuentas corrientes...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Cheques de pago diferido</label>
+							    <input class="w3-input w3-border" type="text" name="deudaChequesPagoDiferidoMBG" placeholder="Ingrese la deuda de cheques de pago diferido...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Documentadas</label>
+							    <input class="w3-input w3-border" type="text" name="documentadasMBG" placeholder="Ingrese las deudas documentadas...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Otras</label>
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasComercialesMBG" placeholder="Ingrese otras deudas comerciales...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<b>DEUDAS BANCARIAS</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Tarjetas de crédito</label>
+							    <input class="w3-input w3-border" type="text" name="deudaTarjetasCreditoMBG" placeholder="Ingrese las deudas de tarjetas de crédito...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Con garantía hipotecaria(Inmuebles)</label>
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaHipotecariaMBG" placeholder="Ingrese las deudas con garantía hipotecaria...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Con garantía prendaria(Rodados)</label>
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaPrendariaMBG" placeholder="Ingrese las deudas con garantia prendaria...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<b>DEUDAS FISCALES</b>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>AFIP</label>
+							    <input class="w3-input w3-border" type="text" name="deudaAfipMBG" placeholder="Ingrese la deuda con AFIP...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Rentas Río Negro</label>
+							    <input class="w3-input w3-border" type="text" name="deudaRentasRnMBG" placeholder="Ingrese la deuda con Rentas Río Negro...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Tributos municipales</label>
+							    <input class="w3-input w3-border" type="text" name="deudaTributosMunicipalesMBG" placeholder="Ingrese la deuda con tributos municipales...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Deudas sociales</label>
+							    <input class="w3-input w3-border" type="text" name="deudasSocialesMBG" placeholder="Ingrese las deudas de aportes, contribuciones, salarios, etc...">
+							</div>
+						</div>
+						<div class="w3-col m12">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Otras Deudas</label>
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasMBG" placeholder="Ingrese otras deudas...">
 							</div>
 						</div>
 	                </section>
@@ -682,10 +978,7 @@
 	                	<div class="w3-container w3-quarter">
 						</div>
 	                    <div class="w3-half">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
-							</div>
+	                    	<p>En construcción...</p>
 						</div>
 	                </section>
 	   </div>
