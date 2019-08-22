@@ -29,7 +29,7 @@
         		width: 130% !important;
         	}
         	.wizard > .content {
-        		height: 20em !important;
+        		height: 21em !important;
         	} 
         	.errores {
         		display: table; 
@@ -88,7 +88,7 @@
 					</div>
 					<div class="w3-half">
 						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Tipo de sociedad</label>
+						    <label>Actividad principal</label>
 						    <select class="w3-select" style="padding: 4px 0px !important;" name="tipoSociedad">
 						    	<option value="" disabled selected>Seleccioná la actividad que realizás...</option>
 							    <option value="a">A- AGRICULTURA, GANADERÍA, CAZA Y SILVICULTURA</option>
@@ -161,7 +161,8 @@
 							 </select>
 						</div>
 					</div>
-					<div class="w3-half">
+					<div class="w3-col m12">
+						<hr>
 						<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Agencia</label>
 						    <select class="w3-select" style="padding: 4px 0px !important;" name="agencia">
@@ -194,8 +195,12 @@
 			$(function(){
 				$.datepicker.setDefaults($.datepicker.regional["es"]);
 			    $("#datepicker").datepicker({
-			    	dateFormat: "dd-mm-yy"
+			    	dateFormat: "dd-mm-yy",
+			    	changeMonth: true,
+		            changeYear: true,
+    				yearRange: "1920:2019"
 			    });
 			});
+
 		</script>
 	@endsection
