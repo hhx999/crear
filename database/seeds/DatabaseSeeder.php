@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
         //Agencias Crear
         $this->call(AgenciaTableSeeder::class);
 
+        //Localidades de Río Negro
+        $this->call(LocalidadSeeder::class);
+        
         //Tipos de formularios
         $this->call(FormTipoTableSeeder::class);
 
@@ -34,6 +37,7 @@ class DatabaseSeeder extends Seeder
 
         //Reglas de cuestionario cargadas
         $this->call(CuestionarioLineaSeeder::class);
+
 
 
     }

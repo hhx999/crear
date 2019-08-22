@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Localidad;
 
 class LocalidadSeeder extends Seeder
 {

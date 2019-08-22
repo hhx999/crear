@@ -119,7 +119,11 @@
 					<div class="w3-half">
 						<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Localidad</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="localidad" placeholder="Ingrese su localidad...">
+						    <select class="w3-select" style="padding: 4px 0px !important;" name="localidad">
+						    	@foreach ($localidades as $localidad)
+								    <option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+								@endforeach
+							 </select>
 						</div>
 					  </div>
 					<div class="w3-half">
