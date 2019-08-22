@@ -90,6 +90,7 @@
 						<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Tipo de sociedad</label>
 						    <select class="w3-select" style="padding: 4px 0px !important;" name="tipoSociedad">
+						    	<option value="" disabled selected>Seleccioná la actividad que realizás...</option>
 							    <option value="a">A- AGRICULTURA, GANADERÍA, CAZA Y SILVICULTURA</option>
 								<option value="b">B- PESCA Y SERVICIOS CONEXOS</option>
 								<option value="c">C- EXPLOTACIÓN DE MINAS Y CANTERAS</option>
@@ -120,6 +121,7 @@
 						<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Localidad</label>
 						    <select class="w3-select" style="padding: 4px 0px !important;" name="localidad">
+						    	<option value="" disabled selected>Seleccioná tu localidad de residencia...</option>
 						    	@foreach ($localidades as $localidad)
 								    <option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
 								@endforeach
@@ -129,13 +131,45 @@
 					<div class="w3-half">
 						<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Provincia</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="provincia" placeholder="Ingrese su provincia de residencia...">
+						    <select class="w3-select" style="padding: 4px 0px !important;" name="provincia">
+						    	<option value="" disabled selected>Seleccioná la provincia real...</option>
+							    <option value="Buenos Aires">Buenos Aires</option>
+								<option value="Buenos Aires-GBA">Buenos Aires-GBA</option>
+								<option value="Capital Federal">Capital Federal</option>
+								<option value="Catamarca">Catamarca</option>
+								<option value="Chaco">Chaco</option>
+								<option value="Chubut">Chubut</option>
+								<option value="Córdoba">Córdoba</option>
+								<option value="Corrientes">Corrientes</option>
+								<option value="Entre Ríos">Entre Ríos</option>
+								<option value="Formosa">Formosa</option>
+								<option value="Jujuy">Jujuy</option>
+								<option value="La Pampa">La Pampa</option>
+								<option value="La Rioja">La Rioja</option>
+								<option value="Mendoza">Mendoza</option>
+								<option value="Misiones">Misiones</option>
+								<option value="Neuquén">Neuquén</option>
+								<option value="Río Negro">Río Negro</option>
+								<option value="Salta">Salta</option>
+								<option value="San Juan">San Juan</option>
+								<option value="San Luis">San Luis</option>
+								<option value="Santa Cruz">Santa Cruz</option>
+								<option value="Santa Fe">Santa Fe</option>
+								<option value="Santiago del Estero">Santiago del Estero</option>
+								<option value="Tierra del Fuego">Tierra del Fuego</option>
+								<option value="Tucumán">Tucumán</option>
+							 </select>
 						</div>
 					</div>
 					<div class="w3-half">
 						<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Agencia</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="agencia" placeholder="Ingrese la agencia más cercana a su localidad...">
+						    <select class="w3-select" style="padding: 4px 0px !important;" name="agencia">
+						    	<option value="" disabled selected>Seleccioná la agencia más cercana a tu localidad...</option>
+						    	@foreach ($agencias as $agencia)
+								    <option value="{{$agencia->id}}">{{$agencia->nombre}}</option>
+								@endforeach
+							 </select>
 						</div>
 					</div>
                 </section>

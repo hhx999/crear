@@ -15,6 +15,7 @@ use App\Formulario;
 use App\FormValido;
 use App\Usuario;
 use App\Localidad;
+use App\Agencia;
 
 class UsuarioController extends BaseController
 {
@@ -54,6 +55,7 @@ class UsuarioController extends BaseController
       $rol = 'user';
       $msg = "";
       $localidades = Localidad::orderBy('nombre', 'asc')->get();
+      $agencias = Agencia::orderBy('nombre','asc')->get();
       if ($request->enviar) {
         $usuario = new Usuario();
         $usuario->rol = $rol;
@@ -71,7 +73,7 @@ class UsuarioController extends BaseController
         $usuario->save();
         $msg = "Usuario creado, espere el mail de confirmación por parte de la agencia para acceder al sistema.";
       }
-      return view('userTest.registro', ["msg" => $msg, 'localidades' => $localidades]);
+      return view('userTest.registro', ["msg" => $msg, 'localidades' => $localidades, 'agencias' => $agencias]);
     }
     public function logout(Request $request)
     {
