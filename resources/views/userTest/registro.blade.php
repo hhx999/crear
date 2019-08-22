@@ -1,6 +1,6 @@
 @extends('userTest.layout')
 	
-	@section('title') Perfil - Emprendimientos @endsection
+	@section('title') Registro de usuario @endsection
 
 	@section('content')
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -81,9 +81,9 @@
 						</div>
 					</div>
 					<div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
+                    	<div style="margin-right: 10px;margin-left: 10px;" align="center">
 						    <label>Fecha de nacimiento</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="fecNacimiento" id="datepicker" placeholder="Ingrese su fecha de nacimiento...">
+						    <input style="width: 50%;" class="w3-input w3-border w3-round-large" type="text" name="fecNacimiento" id="datepicker" placeholder="Ingrese su fecha de nacimiento...">
 						</div>
 					</div>
 					<div class="w3-half">
@@ -156,9 +156,7 @@
 			$(function(){
 				$.datepicker.setDefaults($.datepicker.regional["es"]);
 			    $("#datepicker").datepicker({
-			    	dateFormat: "dd-mm-yy",
-			        changeMonth: true,
-			        changeYear: true
+			    	dateFormat: "dd-mm-yy"
 			    });
 			});
 		</script>
