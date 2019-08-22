@@ -56,7 +56,7 @@ class UsuarioController extends BaseController
       $msg = "";
       $localidades = Localidad::orderBy('nombre', 'asc')->get();
       $agencias = Agencia::orderBy('nombre','asc')->get();
-      if ($request->enviar) {
+      if ($request->isMethod('post')) {
         $usuario = new Usuario();
         $usuario->rol = $rol;
         $usuario->dni = $request->dni;

@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="{{asset('js/jquery.ui.datepicker-es.js')}}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	
 	<header class="w3-container" style="padding-top:22px">
 	    <h3><b><i class="fa fa-dashboard"></i> Registráte para poder acceder a la plataforma!</b></h3>
@@ -17,8 +18,12 @@
                         headerTag: "h2",
                         bodyTag: "section",
                         transitionEffect: "slideLeft",
+                        onStepChanging: function (event, currentIndex, newIndex)
+		                  {
+		                    return $("#formRegistroUsuario").valid();
+		                  },
                         onFinished: function (event, currentIndex) {
-								$("#formRegistroEmprendimiento").submit();
+								$("#formRegistroUsuario").submit();
 							}
                     });
                     $("#wizard").steps("setStep",3);
@@ -29,7 +34,7 @@
         		width: 130% !important;
         	}
         	.wizard > .content {
-        		height: 21em !important;
+        		height: 30em !important;
         	} 
         	.errores {
         		display: table; 
@@ -40,7 +45,17 @@
         	.errores li {
         		color: black;
         	}
+        	.wizard > .content > .body label.error {
+        		color: #ffb6ac !important;
+        	}
         </style>
+        @if ($msg)
+			<div class="w3-panel w3-amber w3-display-container">
+			  <span onclick="this.parentElement.style.display='none'"
+			  class="w3-button w3-large w3-display-topright">&times;</span>
+			  <h4><b style="color: black;">{{$msg}}</b></h4>
+			</div>
+		@endif
         @if ($errors->any())
 			<div class="w3-panel w3-amber w3-display-container">
 			  <span onclick="this.parentElement.style.display='none'"
@@ -55,41 +70,41 @@
 			  </div>
 			</div>
 		@endif
-        <form method="post" action="" name="formRegistroEmprendimiento" class="formRegistroEmprendimiento" id="formRegistroEmprendimiento">
+        <form method="post" action="" name="formRegistroUsuario" class="formRegistroUsuario" id="formRegistroUsuario">
             <div id="wizard">
                 <h2>Datos principales</h2>
                 <section>
                     <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
+                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>DNI</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="dni" placeholder="Ingrese su DNI...">
+						    <input id="dni" class="w3-input w3-border w3-round-large" type="text" name="dni" placeholder="Ingrese su DNI...">
 						</div>
 					</div>
 					<div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
+                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Contraseña</label>
-						    <input class="w3-input w3-border w3-round-large" type="password" name="password" placeholder="Ingrese una contraseña...">
+						    <input id="password" class="w3-input w3-border w3-round-large" type="password" name="password" placeholder="Ingrese una contraseña...">
 						</div>
 					</div>
                 </section>
                 <h2>Datos personales</h2>
                 <section>
                 	<div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
+                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Nombre y apellido</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="nombreApellido" placeholder="Ingrese su nombre y apellido...">
+						    <input id="nombreApellido" class="w3-input w3-border w3-round-large" type="text" name="nombreApellido" placeholder="Ingrese su nombre y apellido...">
 						</div>
 					</div>
 					<div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;" align="center">
+                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;" align="center">
 						    <label>Fecha de nacimiento</label>
-						    <input style="width: 50%;" class="w3-input w3-border w3-round-large" type="text" name="fecNacimiento" id="datepicker" placeholder="Ingrese su fecha de nacimiento...">
+						    <input id="fecNacimiento" style="width: 50%;" class="w3-input w3-border w3-round-large" type="text" name="fecNacimiento" id="datepicker" placeholder="Ingrese su fecha de nacimiento...">
 						</div>
 					</div>
 					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
+						<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Actividad principal</label>
-						    <select class="w3-select" style="padding: 4px 0px !important;" name="tipoSociedad">
+						    <select id="actividad" class="w3-select" style="padding: 4px 0px !important;" name="actividad">
 						    	<option value="" disabled selected>Seleccioná la actividad que realizás...</option>
 							    <option value="a">A- AGRICULTURA, GANADERÍA, CAZA Y SILVICULTURA</option>
 								<option value="b">B- PESCA Y SERVICIOS CONEXOS</option>
@@ -112,15 +127,15 @@
 						</div>
 					</div>
                     <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
+                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Domicilio</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="domicilio" placeholder="Ingrese su domicilio real...">
+						    <input id="domicilio" class="w3-input w3-border w3-round-large" type="text" name="domicilio" placeholder="Ingrese su domicilio real...">
 						</div>
 					</div>
 					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
+						<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Localidad</label>
-						    <select class="w3-select" style="padding: 4px 0px !important;" name="localidad">
+						    <select id="localidad" class="w3-select" style="padding: 4px 0px !important;" name="localidad">
 						    	<option value="" disabled selected>Seleccioná tu localidad de residencia...</option>
 						    	@foreach ($localidades as $localidad)
 								    <option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
@@ -129,9 +144,9 @@
 						</div>
 					  </div>
 					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
+						<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Provincia</label>
-						    <select class="w3-select" style="padding: 4px 0px !important;" name="provincia">
+						    <select id="provincia" class="w3-select" style="padding: 4px 0px !important;" name="provincia">
 						    	<option value="" disabled selected>Seleccioná la provincia real...</option>
 							    <option value="Buenos Aires">Buenos Aires</option>
 								<option value="Buenos Aires-GBA">Buenos Aires-GBA</option>
@@ -163,9 +178,9 @@
 					</div>
 					<div class="w3-col m12">
 						<hr>
-						<div style="margin-right: 10px;margin-left: 10px;">
+						<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Agencia</label>
-						    <select class="w3-select" style="padding: 4px 0px !important;" name="agencia">
+						    <select id="agencia" class="w3-select" style="padding: 4px 0px !important;" name="agencia">
 						    	<option value="" disabled selected>Seleccioná la agencia más cercana a tu localidad...</option>
 						    	@foreach ($agencias as $agencia)
 								    <option value="{{$agencia->id}}">{{$agencia->nombre}}</option>
@@ -177,13 +192,13 @@
                 <h2>Datos de contacto</h2>
                 <section>
                     <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
+                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>E-mail</label>
-						    <input class="w3-input w3-border" type="text" name="email" placeholder="Ingrese un email para poder contactarnos con usted...">
+						    <input id="email" class="w3-input w3-border" type="text" name="email" placeholder="Ingrese un email para poder contactarnos con usted...">
 						</div>
 					</div>
 					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
+						<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Telefono</label>
 						    <input class="w3-input w3-border" type="text" name="telefono" placeholder="Ingrese su telefono de contacto...">
 						</div>
@@ -202,5 +217,79 @@
 			    });
 			});
 
+		</script>
+		<script type="text/javascript">
+			    $( "#formRegistroUsuario" ).validate({
+			           rules: {
+			                  dni: {
+			                           required: true,
+			                           maxlength: 8
+			                   },
+			                   password: {
+			                           required: true,
+			                           minlength: 6,
+			                           maxlength: 25
+			                   },
+			                   nombreApellido: {
+			                           required: true,
+			                           maxlength: 44
+			                   },
+			                   actividad: {
+			                           required: true
+			                   },
+			                   domicilio: {
+			                           required: true,
+			                           maxlength: 100
+			                   },
+			                   localidad: {
+			                           required: true
+			                   },
+			                   provincia: {
+			                           required: true
+			                   },
+			                   agencia: {
+			                           required: true
+			                   },
+			                   email: {
+			                           required: true,
+			                           maxlength: 100
+			                   }
+			           },
+			           messages: {
+			                  dni: {
+			                           required: "Campo obligatorio",
+			                           maxlength: $.format("{0} carácteres son demasiados!")
+			                   },
+			                   password: {
+			                           required: "Campo obligatorio",
+			                           minlength: $.format("Necesitamos por lo menos {0} carácteres"),
+			                           maxlength: $.format("{0} carácteres son demasiados!")
+			                   },
+			                   nombreApellido: {
+			                           required: "Campo obligatorio",
+			                           maxlength: $.format("{0} carácteres son demasiados!")
+			                   },
+			                   actividad: {
+			                           required: "Campo obligatorio"
+			                   },
+			                   domicilio: {
+			                           required: "Campo obligatorio",
+			                           maxlength: $.format("{0} carácteres son demasiados!")
+			                   },
+			                   localidad: {
+			                           required: "Campo obligatorio"
+			                   },
+			                   provincia: {
+			                           required: "Campo obligatorio"
+			                   },
+			                   agencia: {
+			                           required: "Campo obligatorio"
+			                   },
+			                   email: {
+			                           required: "Campo obligatorio",
+			                           maxlength: $.format("{0} carácteres son demasiados!")
+			                   }
+			           }
+			   	});
 		</script>
 	@endsection
