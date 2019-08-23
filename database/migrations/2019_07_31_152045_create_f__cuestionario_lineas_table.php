@@ -19,7 +19,6 @@ class CreateFCuestionarioLineasTable extends Migration
             $table->string('estado',10);
             $table->string('antiguedad',10);
             $table->string('destino',20);
-            $table->string('monto',20);
             $table->string('lineas',30);
         });
     }
