@@ -14,12 +14,13 @@ class CreateFCuestionarioLineasTable extends Migration
     public function up()
     {
         Schema::create('f__cuestionario_lineas', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('estado',10);
             $table->string('antiguedad',10);
             $table->string('destino',20);
-            $table->string('lineas',30);
+            $table->integer('form_tipo_id')->index('FK_TipoFormularioCuestionario');
         });
     }
 
