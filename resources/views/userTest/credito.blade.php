@@ -192,11 +192,10 @@
 				<h3>Líneas accesibles</h3>
 					<div>
 						@foreach ($lineas_principales as $linea)
-							@if ($linea['numero'] == 1)
 							<div class="w3-half">
 								<div class="w3-card-4" style="background-color: #077187;">
 										<header class="w3-container">
-										  <h3>Línea emprendedor <i style="color: lightgrey;">({{$linea['monto']}})</i></h3>
+										  <h3><i style="color: lightgrey;">{{$linea->nombre}}</i></h3>
 										</header>
 										<div class="w3-container">
 										  <p>Ver bases y condiciones</p>
@@ -207,43 +206,6 @@
 										</a>
 								</div>
 							</div>
-							@endif
-
-							@if ($linea['numero'] == 5)
-							<div class="w3-half">
-								<div class="w3-card-4" style="background-color: #077187;">
-
-									<header class="w3-container">
-									  <h3>Línea Stock <i style="color: lightgrey;">({{$linea['monto']}})</i></h3>
-									</header>
-									<div class="w3-container">
-									  <p>Ver bases y condiciones</p>
-									  <p>Descargar formulario de inscripción</p>
-									</div>
-
-									<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
-
-								</div>
-							</div>
-							@endif
-
-							@if ($linea['numero'] == 4)
-							<div class="w3-half">
-								<div class="w3-card-4" style="background-color: #077187;">
-
-									<header class="w3-container">
-									  <h3>Línea Tasa Subsidiada <i style="color: lightgrey;">({{$linea['monto']}})</i></h3>
-									</header>
-									<div class="w3-container">
-									  <p>Ver bases y condiciones</p>
-									  <p>Descargar formulario de inscripción</p>
-									</div>
-
-									<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
-
-								</div>
-							</div>
-							@endif
 						@endforeach
 					</div>
 				@endisset

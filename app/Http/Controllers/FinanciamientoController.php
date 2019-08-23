@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\F_CuestionarioLinea;
 use App\Formulario;
+use App\FormTipo;
 use App\Helpers;
 
 class FinanciamientoController extends Controller
@@ -17,24 +18,18 @@ class FinanciamientoController extends Controller
     }
     function cuestionarioCreditos(Request $request)
     {
-    	$lineas = DB::table('f__cuestionario_lineas')
+    	$opcionesCuestionario = DB::table('f__cuestionario_lineas')
 				->where('estado','=', intval($request->estado))
 			    ->where('antiguedad', '<=', intval($request->antiguedad))
 			    ->whereIn('destino', $request->destino)
-			    ->where('monto','>=',intval($request->monto))
-			    ->get();
-		foreach ($lineas as $l_index) {
-			$linea['numero'] = $l_index->lineas;
-			$linea['monto'] = $l_index->monto;
-			$lineas_principales[] = $linea;
-			$lineas_principales = Helpers::unique_multidim_array($lineas_principales,'numero'); 
+			    ->distinct()
+			    ->get('form_tipo_id');
+
+		foreach ($opcionesCuestionario as $opcion) {
+			$lineas[] = FormTipo::find($opcion->form_tipo_id);
 		}
 
-		if (!isset($lineas_principales)) {
-			$lineas_principales = [];
-		}
-
-		return view('userTest.credito', ['lineas_principales' => $lineas_principales]);
+		return view('userTest.credito', ['lineas_principales' => $lineas]);
     }
     function ingresarLineaEmprendedor(Request $request)
     {
