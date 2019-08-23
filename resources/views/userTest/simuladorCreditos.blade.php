@@ -73,9 +73,9 @@ if (!empty($_GET)) {
 	print '
 	<table class="w3-table" style="margin-top:20px;">
 		<tbody>
-			<tr>
 				<th>Periodo</th>
-				<th>Amortización del periodo</th>
+				<th>CUOTA</th>
+				<th>Capital</th>
 				<th>Interes</th>
 				<th>IVA</th>
 				<th>Cuota Francés</th>
@@ -94,9 +94,9 @@ if (!empty($_GET)) {
 	for ($i=0; $i <= ($plazo+$gracia); $i++) {
 		if ($i <= $gracia) {
 			echo "<tr>";
-			print '<td>'.$i.'</td>
+			print '<td>'.$i.'</td><td>0</td>
 			<td> 0 </td><td> '.round($vp,2).'</td><td>'.round($f_iva,2).'</td>
-			<td>'.round($f_cuotaFrances,2).'</td><td>'.round($f_monto,2).'</td></tr>';
+			<td>'.round($f_cuotaFrances,2).'</td><td>'.round($f_monto,2).'</td><td>0</td></tr>';
 
 		} else {
 			$f_vp = $f_monto * $mes;
@@ -104,8 +104,11 @@ if (!empty($_GET)) {
 			$f_monto = $f_monto - $amortizacion;
 			$f_iva = ($f_vp*$iva)-$f_vp;
 			$f_tamor = $f_tamor + $amortizacion;
+			$cuotaFinal = $amortizacion + $f_vp + $f_iva;
 			echo "<tr>";
-			print '<td>'.$i.'</td>
+			print '
+			<td>'.$i.'</td>
+			<td><b>'.round($cuotaFinal,2).'</b></td>
 			<td> '.round($amortizacion,2).' </td><td> '.round($f_vp,2).'</td><td>'.round($f_iva,2).'</td>
 			<td>'.round($f_cuotaFrances,2).'</td><td>'.round($f_monto,2).'</td><td>'.round($f_tamor,2).'</td></tr>';
 		}
