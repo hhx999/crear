@@ -57,6 +57,18 @@ class UsuarioController extends BaseController
       $localidades = Localidad::orderBy('nombre', 'asc')->get();
       $agencias = Agencia::orderBy('nombre','asc')->get();
       if ($request->isMethod('post')) {
+        $validatedData = $request->validate([
+            'dni' => 'required',
+            'password' => 'required',
+            'nombreApellido' => 'required',
+                'fecNacimiento' => 'required',
+            'actividadPrincipal' => 'required',
+            'domicilio' => 'required',
+            'localidad' => 'required',
+            'provincia' => 'required',
+            'agencia' => 'required',
+            'email' => 'required'
+        ]);
         $usuario = new Usuario();
         $usuario->rol = $rol;
         $usuario->dni = $request->dni;
