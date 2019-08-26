@@ -56,7 +56,7 @@ class UsuarioController extends BaseController
       $msg = "";
       $localidades = Localidad::orderBy('nombre', 'asc')->get();
       $agencias = Agencia::orderBy('nombre','asc')->get();
-      if ($request->isMethod('post')) {/*
+      if ($request->isMethod('post')) {
         $validatedData = $request->validate([
             'dni' => 'required',
             'password' => 'required',
@@ -68,9 +68,9 @@ class UsuarioController extends BaseController
             'provincia' => 'required',
             'agencia' => 'required',
             'email' => 'required'
-        ]);*/
+        ]);
         if (self::comprobarDNI($request) == 0)
-          { /*
+          { 
             $usuario = new Usuario();
             $usuario->rol = $rol;
             $usuario->dni = $request->dni;
@@ -84,7 +84,7 @@ class UsuarioController extends BaseController
             $usuario->agencia = $request->agencia;
             $usuario->email = $request->email;
             $usuario->telefono = $request->telefono;
-            $usuario->save();*/
+            $usuario->save();
             $msg = "Usuario creado, espere el mail de confirmación por parte de la agencia para acceder al sistema.";
           } else {
             $msg = "Whoops! El usuario ya existe o no pudo ser registrado.";

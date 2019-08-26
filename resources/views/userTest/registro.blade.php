@@ -7,7 +7,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="{{asset('js/jquery.ui.datepicker-es.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-	
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<header class="w3-container" style="padding-top:22px">
 	    <h3><b><i class="fa fa-dashboard"></i> Registráte para poder acceder a la plataforma!</b></h3>
 	</header>
@@ -23,7 +23,11 @@
 		                    return $("#formRegistroUsuario").valid();
 		                  },
                         onFinished: function (event, currentIndex) {
-								$("#formRegistroUsuario").submit();
+                        	if (grecaptcha.getResponse()) {
+                        		$("#formRegistroUsuario").submit();
+			                } else {
+			                    alert('Por favor, confirme el CAPTCHA antes de proceder.')
+			                }
 							}
                     });
                     $("#wizard").steps("setStep",3);
@@ -89,28 +93,25 @@
 						</div>
 					</div>
 					<script type="text/javascript">
-	$('#dniBlur').on('blur','input',function(event) {
-    var datos = {};
-        datos['dni'] = $('#dni').val();
-
-    $.ajax({
-        type: 'POST',
-        url: "{{ url('/comprobarDNI') }}",
-        data : datos
-    }).done(function (data) {
-    	//crear array para respuestas
-    	var datos = ['DNI válido','DNI duplicado'];
-    	var colores = ['#3ed67d','#d9486c'];
-    	console.log(datos);
-    	$('#notificacion').css('color',colores[data]);
-    	$('#notificacion').text(datos[data]);
-    	//mostrar respuestas indexadas
-    }).fail(function () {
-        console.log('Error contacte con el administrador de la aplicación.');
-    });
-  }); 
-</script>
-
+					$('#dniBlur').on('blur','input',function(event) {
+					    var datos = {};
+					        datos['dni'] = $('#dni').val();
+					    $.ajax({
+					        type: 'POST',
+					        url: "{{ url('/comprobarDNI') }}",
+					        data : datos
+					    }).done(function (data) {
+					    	//crea array para respuestas
+					    	var datos = ['DNI válido','DNI duplicado'];
+					    	var colores = ['#3ed67d','#d9486c'];
+					    	//mostrar respuestas indexadas
+					    	$('#notificacion').css('color',colores[data]);
+					    	$('#notificacion').text(datos[data]);
+					    }).fail(function () {
+					        console.log('Error contacte con el administrador de la aplicación.');
+					    });
+					  }); 
+					</script>
                 </section>
                 <h2>Datos personales</h2>
                 <section>
@@ -216,6 +217,7 @@
                 </section>
                 <h2>Datos de contacto</h2>
                 <section>
+
                     <div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>E-mail</label>
@@ -228,20 +230,22 @@
 						    <input class="w3-input w3-border" type="text" name="telefono" placeholder="Ingrese su telefono de contacto...">
 						</div>
 					</div>
+					<div class="w3-col m12">
+						<div class="g-recaptcha" data-sitekey="<?= env('GOOGLE_RECAPTCHA_KEY') ?>"></div>
+					</div>
                 </section>
             </div>
         </form>
-        <script type="text/javascript">
+		<script type="text/javascript">
 			$(function(){
 				$.datepicker.setDefaults($.datepicker.regional["es"]);
-			    $("#datepicker").datepicker({
-			    	dateFormat: "dd-mm-yy",
-			    	changeMonth: true,
-		            changeYear: true,
-    				yearRange: "1920:2019"
-			    });
-			});
-
+					$("#datepicker").datepicker({
+						dateFormat: "dd-mm-yy",
+						changeMonth: true,
+						changeYear: true,
+				    	yearRange: "1920:2019"
+					});
+				});
 		</script>
 		<script type="text/javascript">
 			    $( "#formRegistroUsuario" ).validate({
