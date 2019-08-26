@@ -50,10 +50,10 @@
         	}
         </style>
         @if ($msg)
-			<div class="w3-panel w3-amber w3-display-container">
+			<div class="w3-panel w3-teal w3-display-container">
 			  <span onclick="this.parentElement.style.display='none'"
 			  class="w3-button w3-large w3-display-topright">&times;</span>
-			  <h4><b style="color: black;">{{$msg}}</b></h4>
+			  <h4><b>{{$msg}}</b></h4>
 			</div>
 		@endif
         @if ($errors->any())
@@ -70,12 +70,14 @@
 			  </div>
 			</div>
 		@endif
+		<div id="notificacion" style="padding: 20px;">
+		</div>
         <form method="post" action="" name="formRegistroUsuario" class="formRegistroUsuario" id="formRegistroUsuario">
             <div id="wizard">
                 <h2>Datos principales</h2>
                 <section>
                     <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
+                    	<div id="dniBlur" style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>DNI</label>
 						    <input id="dni" class="w3-input w3-border w3-round-large" type="text" name="dni" placeholder="Ingrese su DNI...">
 						</div>
@@ -86,6 +88,29 @@
 						    <input id="password" class="w3-input w3-border w3-round-large" type="password" name="password" placeholder="Ingrese una contraseña...">
 						</div>
 					</div>
+					<script type="text/javascript">
+	$('#dniBlur').on('blur','input',function(event) {
+    var datos = {};
+        datos['dni'] = $('#dni').val();
+
+    $.ajax({
+        type: 'POST',
+        url: "{{ url('/comprobarDNI') }}",
+        data : datos
+    }).done(function (data) {
+    	//crear array para respuestas
+    	var datos = ['DNI válido','DNI duplicado'];
+    	var colores = ['#3ed67d','#d9486c'];
+    	console.log(datos);
+    	$('#notificacion').css('color',colores[data]);
+    	$('#notificacion').text(datos[data]);
+    	//mostrar respuestas indexadas
+    }).fail(function () {
+        console.log('Error contacte con el administrador de la aplicación.');
+    });
+  }); 
+</script>
+
                 </section>
                 <h2>Datos personales</h2>
                 <section>
@@ -292,4 +317,4 @@
 			           }
 			   	});
 		</script>
-	@endsection
+@endsection

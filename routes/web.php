@@ -63,6 +63,7 @@ $router->post('/usuarioLogin','UsuarioController@login');
 $router->get('/usuarioLogout','UsuarioController@logout');
 $router->get('/usuarioRegistro','UsuarioController@registro');
 $router->post('/usuarioRegistro','UsuarioController@registro');
+$router->post('/comprobarDNI','UsuarioController@comprobarDNI');
 
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/usuarioIndex','UsuarioController@indexUser');
@@ -80,7 +81,6 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/capacitaciones/inscripcion','CapacitacionesController@inscripcion');
 	Route::get('/simuladorCreditos','UsuarioController@simuladorCreditos');
 	Route::post('/simuladorCreditos','UsuarioController@simuladorCreditos');
-
 	Route::post('/financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
 });
 

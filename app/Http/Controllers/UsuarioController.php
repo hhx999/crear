@@ -56,36 +56,51 @@ class UsuarioController extends BaseController
       $msg = "";
       $localidades = Localidad::orderBy('nombre', 'asc')->get();
       $agencias = Agencia::orderBy('nombre','asc')->get();
-      if ($request->isMethod('post')) {
+      if ($request->isMethod('post')) {/*
         $validatedData = $request->validate([
             'dni' => 'required',
             'password' => 'required',
             'nombreApellido' => 'required',
-                'fecNacimiento' => 'required',
-            'actividadPrincipal' => 'required',
+            'fecNacimiento' => 'required',
+            'actividad' => 'required',
             'domicilio' => 'required',
             'localidad' => 'required',
             'provincia' => 'required',
             'agencia' => 'required',
             'email' => 'required'
-        ]);
-        $usuario = new Usuario();
-        $usuario->rol = $rol;
-        $usuario->dni = $request->dni;
-        $usuario->password = bcrypt($request->password);
-        $usuario->nombreApellido = $request->nombreApellido;
-        $usuario->fecNacimiento = Helpers::cambioFormatoFecha($request->fecNacimiento);
-        $usuario->actividadPrincipal = $request->actividadPrincipal;
-        $usuario->domicilio = $request->domicilio;
-        $usuario->localidad = $request->localidad;
-        $usuario->provincia = $request->provincia;
-        $usuario->agencia = $request->agencia;
-        $usuario->email = $request->email;
-        $usuario->telefono = $request->telefono;
-        $usuario->save();
-        $msg = "Usuario creado, espere el mail de confirmación por parte de la agencia para acceder al sistema.";
+        ]);*/
+        if (self::comprobarDNI($request) == 0)
+          { /*
+            $usuario = new Usuario();
+            $usuario->rol = $rol;
+            $usuario->dni = $request->dni;
+            $usuario->password = bcrypt($request->password);
+            $usuario->nombreApellido = $request->nombreApellido;
+            $usuario->fecNacimiento = Helpers::cambioFormatoFecha($request->fecNacimiento);
+            $usuario->actividadPrincipal = $request->actividad;
+            $usuario->domicilio = $request->domicilio;
+            $usuario->localidad = $request->localidad;
+            $usuario->provincia = $request->provincia;
+            $usuario->agencia = $request->agencia;
+            $usuario->email = $request->email;
+            $usuario->telefono = $request->telefono;
+            $usuario->save();*/
+            $msg = "Usuario creado, espere el mail de confirmación por parte de la agencia para acceder al sistema.";
+          } else {
+            $msg = "Whoops! El usuario ya existe o no pudo ser registrado.";
+          }
       }
       return view('userTest.registro', ["msg" => $msg, 'localidades' => $localidades, 'agencias' => $agencias]);
+    }
+    public function comprobarDNI(Request $request)
+    {
+      if ($request->isMethod('post') && $request->has('dni')) {
+        $respuesta = 0;
+        if (Usuario::where('dni', $request->input('dni') )->first()) {
+          $respuesta = 1;
+        }
+      return $respuesta;
+      }
     }
     public function logout(Request $request)
     {
