@@ -129,6 +129,73 @@ class UsuarioController extends BaseController
     }
     public function simuladorCreditos(Request $request)
     {
+      if ($request->isMethod('post')) {
+
+        //Valores ingresados por usuario
+        $valor = $request->monto;
+        $plazo = $request->plazo;
+        $gracia = $request->gracia;
+        //Valores ingresados por administración
+        $tasa = $request->tasaInteres;
+        $iva = 1.21;
+
+        //tasa anual
+        $anual = $tasa/100;
+        //tasa mensual
+        $mes = round(($anual/12), 6);
+        //interés
+        $vp = $valor * $mes;
+
+        //interés gracia
+        $interesGracia = $vp * $gracia / $plazo;
+        //cuota francesa
+        $cuota = $valor / ((pow((1+$mes), $plazo)-1)/($mes*pow((1+$mes), $plazo)));
+        //Cuota FINAL promedio de todos los meses sin gracia
+        $cuotaPromedio = 0;
+
+
+        //Resultados del sistema funcionando
+        $resultadosSistema = [];
+
+        //monto del financiamiento para tratar en el sistema
+        $f_monto = $valor;
+        //calculo de iva para tratar en el sistema
+        $f_iva = ($vp*$iva)-$vp;
+        //amortización para tratar en sistema
+        $f_tamor = 0;
+
+        for ($i=0; $i <= ($plazo+$gracia); $i++) {
+          if ($i <= $gracia) {
+            $cuotaFinal = $vp + $f_iva;
+            $resultadosSistema[$i]['periodo'] = $i;
+            $resultadosSistema[$i]['deudaPeriodo'] = $f_monto;
+            $resultadosSistema[$i]['capital'] = 0;
+            $resultadosSistema[$i]['interes'] = $vp;
+            $resultadosSistema[$i]['iva'] = $f_iva;
+            $resultadosSistema[$i]['cuotaTotal'] = $cuotaFinal;
+
+          } else {
+            //calculos sistema
+            $f_vp = $f_monto * $mes;
+            $amortizacion = $cuota - $f_vp;
+            $f_monto = $f_monto - $amortizacion;
+            $f_iva = ($f_vp*$iva)-$f_vp;
+            $f_tamor = $f_tamor + $amortizacion;
+            $cuotaFinal = $amortizacion + $f_vp + $f_iva;
+            $cuotaPromedio += $cuotaFinal;
+            $resultadosSistema[$i]['periodo'] = $i;
+            $resultadosSistema[$i]['deudaPeriodo'] = $f_monto;
+            $resultadosSistema[$i]['capital'] = $amortizacion;
+            $resultadosSistema[$i]['interes'] = $f_vp;
+            $resultadosSistema[$i]['iva'] = $f_iva;
+            $resultadosSistema[$i]['cuotaTotal'] = $cuotaFinal;
+          }
+        }
+        $cuotaPromedio = $cuotaPromedio/30;
+        echo "<pre>";
+        print_r($resultadosSistema);
+        echo "</pre>";
+      }
       return view('userTest.simuladorCreditos');
     }
     public function devuelveDatosSeguimiento(Request $request)

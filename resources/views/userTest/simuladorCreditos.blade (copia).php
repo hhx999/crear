@@ -34,53 +34,69 @@
 */
  //Variables que deben ser ingresadas por el usuario desde un formulario
 if (!empty($_GET)) {
-
-	//Valores ingresados por usuario
 	$valor = $_GET['monto'];
 	$plazo = $_GET['plazo'];
-	$gracia = $_GET['gracia'];
 
-	//Valores ingresados por administración
+	//Valor de la tasa de interes, debe ser ingresada por el administrador
 	$tasa = $_GET['tasaInteres'];
 	$iva = 1.21;
 
-	//tasa anual
 	$anual = $tasa/100;
-	//tasa mensual
 	$mes = round(($anual/12), 6);
-	//interés
 	$vp = $valor * $mes;
 
-	//interés gracia
+	$a = ((pow((1+$mes), $plazo)-1)/($mes*pow((1+$mes), $plazo)));
+
+	$gracia = $_GET['gracia'];
+
 	$interesGracia = $vp * $gracia / $plazo;
-	//cuota francesa
-	$cuota = $valor / ((pow((1+$mes), $plazo)-1)/($mes*pow((1+$mes), $plazo)));
 
-	//Cuota FINAL promedio de todos los meses sin gracia
+	$cuota = $valor / ((pow((1+$mes), $plazo)-1)/($mes*pow((1+$mes), $plazo))); 
+
+	$cpm = ($cuota/($valor/1000000));
+
 	$cuotaPromedio = 0;
+	print '
+	<div class="w3-col m6" style="border: 2px solid #8fc53f;padding:10px;">
+	<b>Valor:</b> $' .$valor. '<br/>
+	<b>Cuota:</b> $'.round($cuota,2). '<br />
+	<b>Deuda al inicio del periodo:</b> $'.$vp.'<br />
+	</div>
+	<div class="w3-col m6" style="border: 2px solid #8fc53f;padding:10px;">
+	<b>Tasa Anual:</b> ' .$tasa. '%<br/>
+	<b>Tasa Mensual:</b> ' .round(($tasa/12), 2). '%<br/>
+	<b>Interés periodo gracia:</b> $'.$interesGracia.'<br />
+	</div>
+	<div class="w3-col m12" style="border: 2px solid #8fc53f;padding: 20px;">
+	<b>Valor CUOTA Promedio: '.round($cuotaPromedio, 2).'</b><br /></div><br>';
+	print '
+	<table class="w3-table" style="margin-top:20px;">
+		<tbody>
+				<th>Periodo</th>
+				<th>Deuda periodo</th>
+				<th>Capital</th>
+				<th>Interes</th>
+				<th>IVA</th>
+				<th>CUOTA TOTAL</th>
+			<tr>
+		</tbody>
+		<tbody>
+	';
 
-	//Resultados del sistema funcionando
-	$resultadosSistema = [];
-
-	//monto del financiamiento para tratar en el sistema
+	$f_cuotaFrances = $cuota;
 	$f_monto = $valor;
-	//calculo de iva para tratar en el sistema
 	$f_iva = ($vp*$iva)-$vp;
-	//amortización para tratar en sistema
 	$f_tamor = 0;
-
 	for ($i=0; $i <= ($plazo+$gracia); $i++) {
 		if ($i <= $gracia) {
-			$cuotaFinal = $vp + $f_iva;
-			$resultadosSistema[$i]['periodo'] = $i;
-			$resultadosSistema[$i]['deudaPeriodo'] = $f_monto;
-			$resultadosSistema[$i]['capital'] = 0;
-			$resultadosSistema[$i]['interes'] = $vp;
-			$resultadosSistema[$i]['iva'] = $f_iva;
-			$resultadosSistema[$i]['cuotaTotal'] = $cuotaFinal;
+			echo "<tr>";
+			print '<td>'.$i.'</td>
+			<td>'.round($f_monto,2).'</td>
+			<td> 0 </td><td> '.round($vp,2).'</td><td>'.round($f_iva,2).'</td>
+			<td>'.round($vp + $f_iva, 2).'</td>
+			</tr>';
 
 		} else {
-			//calculos sistema
 			$f_vp = $f_monto * $mes;
 			$amortizacion = $cuota - $f_vp;
 			$f_monto = $f_monto - $amortizacion;
@@ -88,18 +104,20 @@ if (!empty($_GET)) {
 			$f_tamor = $f_tamor + $amortizacion;
 			$cuotaFinal = $amortizacion + $f_vp + $f_iva;
 			$cuotaPromedio += $cuotaFinal;
-			$resultadosSistema[$i]['periodo'] = $i;
-			$resultadosSistema[$i]['deudaPeriodo'] = $f_monto;
-			$resultadosSistema[$i]['capital'] = $amortizacion;
-			$resultadosSistema[$i]['interes'] = $f_vp;
-			$resultadosSistema[$i]['iva'] = $f_iva;
-			$resultadosSistema[$i]['cuotaTotal'] = $cuotaFinal;
+			echo "<tr>";
+			print '
+			<td>'.$i.'</td>
+			<td>'.round($f_monto,2).'</td>
+			<td> '.round($amortizacion,2).' </td><td> '.round($f_vp,2).'</td><td>'.round($f_iva,2).'</td>
+			<td><b>'.round($cuotaFinal,2).'</b></td></tr>';
 		}
 	}
 	$cuotaPromedio = $cuotaPromedio/30;
-	echo "<pre>";
-	print_r($resultadosSistema);
-	echo "</pre>";
+	print '
+		</tbody>
+	</table>
+	<b>'.round($cuotaPromedio, 2).'</b>
+	';
 }
 
 ?> 
