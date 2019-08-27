@@ -23,5 +23,6 @@ class FormTipoTableSeeder extends Seeder
         $formTipo = new FormTipo();
         $formTipo->nombre = 'Línea Tasa Subsidiada';
         $formTipo->save();
+
     }
 }

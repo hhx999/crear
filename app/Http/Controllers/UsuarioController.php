@@ -129,6 +129,11 @@ class UsuarioController extends BaseController
     }
     public function simuladorCreditos(Request $request)
     {
+      //Cuota FINAL promedio de todos los meses sin gracia
+      $cuotaPromedio = NULL;
+      $resultadosSistema = NULL;
+      $resultadosPrincipales = NULL;
+
       if ($request->isMethod('post')) {
 
         //Valores ingresados por usuario
@@ -143,18 +148,24 @@ class UsuarioController extends BaseController
         $anual = $tasa/100;
         //tasa mensual
         $mes = round(($anual/12), 6);
-        //interés
+        //deuda inicio del periodo
         $vp = $valor * $mes;
 
         //interés gracia
         $interesGracia = $vp * $gracia / $plazo;
         //cuota francesa
         $cuota = $valor / ((pow((1+$mes), $plazo)-1)/($mes*pow((1+$mes), $plazo)));
-        //Cuota FINAL promedio de todos los meses sin gracia
-        $cuotaPromedio = 0;
 
 
         //Resultados del sistema funcionando
+        $resultadosPrincipales = [
+          'monto' => $valor,
+          'plazoTotal' => ($plazo+$gracia),
+          'deudaInicioPeriodo' => $vp,
+          'tasaAnual' => $tasa,
+          'tasaMensual' => round(($tasa/12), 2),
+          'interesGracia' => $interesGracia
+        ];
         $resultadosSistema = [];
 
         //monto del financiamiento para tratar en el sistema
@@ -192,11 +203,8 @@ class UsuarioController extends BaseController
           }
         }
         $cuotaPromedio = $cuotaPromedio/30;
-        echo "<pre>";
-        print_r($resultadosSistema);
-        echo "</pre>";
       }
-      return view('userTest.simuladorCreditos');
+      return view('userTest.simuladorCreditos', ['cuotaPromedio' => $cuotaPromedio, 'resultadosPrincipales' => $resultadosPrincipales, 'resultadosSistema' => $resultadosSistema]);
     }
     public function devuelveDatosSeguimiento(Request $request)
     {
