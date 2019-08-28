@@ -33,7 +33,9 @@
 		  <div class="w3-container w3-quarter">
 		  </div>
 		</div>
-	<!-- Segunda fila de cuadros de opciones -->
+	<!--Segunda fila de cuadros de opciones 
+			Comercio exterior e interior no se encuentran habilitados  -->
+	<!-- 
 		  <div class="w3-container w3-quarter">
 		  </div>
 		  <div class="w3-container w3-quarter">
@@ -51,6 +53,6 @@
 		    </div>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		  </div>
+		  </div>-->
 
 	@endsection

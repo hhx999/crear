@@ -81,7 +81,7 @@
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;">
 							    <select class="w3-select" name="estado">
-								    <option value="" disabled selected>Elegí el estado en el que se encuentra...</option>
+								    <option value="" disabled selected>Elegí el estado en el que te encontrás...</option>
 								    <option value="1">Estado informal</option>
 								    <option value="2">Monotributo social</option>
 								    <option value="3">Monotributo desde A hasta E</option>
@@ -97,7 +97,7 @@
 						</div>
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <h4>Antigüedad mayor a 2 años?</h4>
+							    <h4><b>¿Tú antigüedad es mayor a 2 años?</b></h4>
 							    <ul style="display: inline-flex;text-decoration: none;">
 							    	<li style="display: inherit;margin:20px;">
 								  		<input type="radio" checked="checked" name="antiguedad" value="1">
@@ -117,6 +117,7 @@
 						  	<div class="w3-container w3-quarter">
 						  	</div>
 						  	<div class="w3-container w3-half" align="center">
+						  		<h4><b>¿En dónde planeás destinar el financiamiento?</b></h4>
 								<ul style="display: table;text-decoration: none;">
 							    	<li style="display: inherit;margin:20px;">
 										  <input class="w3-check" type="checkbox" name="destino[]" value="a">
