@@ -14,6 +14,17 @@ class FormTipoTableSeeder extends Seeder
     {
         $formTipo = new FormTipo();
         $formTipo->nombre = 'Línea Emprendedor';
+        $formTipo->habilitada = 1;
+        $formTipo->save();
+
+        $formTipo = new FormTipo();
+        $formTipo->nombre = 'Línea MiPymes';
+        $formTipo->habilitada = 1;
+        $formTipo->save();
+
+        $formTipo = new FormTipo();
+        $formTipo->nombre = 'Línea Sector Turístico';
+        $formTipo->habilitada = 1;
         $formTipo->save();
 
         $formTipo = new FormTipo();

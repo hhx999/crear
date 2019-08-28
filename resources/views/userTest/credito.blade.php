@@ -1,82 +1,22 @@
 @extends('userTest.layout')
 
 	@section('title') Inicio @endsection
-<style type="text/css">
-	.formPreguntasUsuario {
-		background-color: rgb(69, 92, 135);
-		border: 1px white solid;
-		border-radius: 10px;
-		padding: 10px;
-		margin-top: 30px;
-		margin-bottom: 30px;
-		display: flex;
-	}
-	.formPreguntasUsuario p {
-		margin:10px;
-	}
-	.preguntas div {
-		animation: animateElement linear .6s;
-  		animation-iteration-count: 1;
-		border:1px white solid;
-		border-left: 4px white solid !important;
-		border:1px white solid;border-left: 4px white solid !important;
-		border-radius: 10px;
-	}
-	@keyframes animateElement{
-	  0% {
-	    opacity:0;
-	    transform:  translate(0px,10px);
-	  }
-	  100% {
-	    opacity:1;
-	    transform:  translate(0px,0px);
-	  }
-	}
-	.respuestas {
-		margin-top: 20px;
-		padding: 10px;
-		-webkit-box-shadow: -4px 3px 20px -7px rgba(0,0,0,0.75);
-		-moz-box-shadow: -4px 3px 20px -7px rgba(0,0,0,0.75);
-		box-shadow: -4px 3px 20px -7px rgba(0,0,0,0.75);
-		background-color: #75e078;
-		color: black !important;
-		border-radius: 10px;
-	}
-/* Radio button */
-.radiobtn {
-  display: none;
-}
-.buttons {
-  margin-left: -40px;
-}
-.buttons li {
-  display: block;
-}
-.buttons li label{
-  padding-left: 30px;
-  position: relative;
-  left: -25px;
-}
-.buttons li label:hover {
-  cursor: pointer;
-}
-.buttons li span {
-  display: inline-block;
-  position: relative;
-  top: 5px;
-  border: 2px solid #ccc;
-  width: 18px;
-  height: 18px;
-  background: #fff;
-}
-.radiobtn:checked + span::before{
-  content: '';
-  border: 2px solid #fff;
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background-color: #c3e3fc;
-}
+	<style type="text/css">
+			.wizard > .steps {
+        		width: 130% !important;
+        	}
+        	.errores {
+        		display: table; 
+        		list-style-type: disc; 
+        		align-items: left;
+        		font-size: 16px;
+        	}
+        	.errores li {
+        		color: black;
+        	}
+        	.w3-half {
+        		padding: 20px;
+        	}
 	</style>
 	@section('content')
 			<script>
@@ -93,84 +33,6 @@
                     $("#wizard").steps("setStep",3);
                 });
         </script>
-        <style type="text/css">
-        	.errores {
-        		display: table; 
-        		list-style-type: disc; 
-        		align-items: left;
-        		font-size: 16px;
-        	}
-        	.errores li {
-        		color: black;
-        	}
-        	.w3-half {
-        		padding: 20px;
-        	}
-/* The container */
-.container {
-  display: flex !important;
-  margin-left: 42%;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.container .checkmark:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
-}
-        </style>
         @if ($errors->any())
 			<div class="w3-panel w3-amber w3-display-container">
 			  <span onclick="this.parentElement.style.display='none'"
@@ -236,51 +98,43 @@
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <h4>Antigüedad mayor a 2 años?</h4>
-							    <label class="container">SI
-								  <input type="radio" checked="checked" name="antiguedad" value="1">
-								  <span class="checkmark"></span>
-								</label>
-								<br>
-								<label class="container">NO
-								  <input type="radio" checked="checked" name="antiguedad" value="0">
-								  <span class="checkmark"></span>
-								</label>
+							    <ul style="display: inline-flex;text-decoration: none;">
+							    	<li style="display: inherit;margin:20px;">
+								  		<input type="radio" checked="checked" name="antiguedad" value="1">
+							    		<label class="container"> SI </label>
+							    	</li>
+							    	<li style="display: inherit;margin:20px;">
+								  		<input type="radio" checked="checked" name="antiguedad" value="0">
+							    		<label class="container"> NO </label>
+							    	</li>
+							    </ul>
 							</div>
 						</div>
 	                </section>
 	                <h2>Destino de la financiación</h2>
 	                <section>
-	                   	<div class="w3-row">
-						  <div class="w3-container w3-quarter">
-						  </div>
-						  <div class="w3-container w3-half">
-							<div class="formPreguntasUsuario">
-								<p>
-								  <input class="w3-check" type="checkbox" name="destino[]" value="a">
-								  <label>Comprar productos para revender</label></p>
-								  <p>
-								  <input class="w3-check" type="checkbox" name="destino[]" value="b">
-								  <label> Acondicionamiento del local</label></p>
-								  <p>
-								  <input class="w3-check" type="checkbox" name="destino[]" value="c">
-								  <label>Compra de maquinaria y/o insumos</label></p>
-								</form>
+	                <div class="w3-row">
+						  	<div class="w3-container w3-quarter">
+						  	</div>
+						  	<div class="w3-container w3-half" align="center">
+								<ul style="display: table;text-decoration: none;">
+							    	<li style="display: inherit;margin:20px;">
+										  <input class="w3-check" type="checkbox" name="destino[]" value="a">
+										  <label>Comprar productos para revender</label>
+									</li>
+								  	<li style="display: inherit;margin:20px;">
+									  <input class="w3-check" type="checkbox" name="destino[]" value="b">
+									  <label> Acondicionamiento del local</label>
+								  	</li>
+								  	<li style="display: inherit;margin:20px;">
+									  <input class="w3-check" type="checkbox" name="destino[]" value="c">
+									  <label>Compra de maquinaria y/o insumos</label>
+									</li>
+								</ul>
 							</div>
-						</div>
 						<div class="w3-container w3-quarter">
 						</div>
 					</div>
-	                </section>
-	                <h2>Monto</h2>
-	                <section>
-	                	<div class="w3-container w3-quarter">
-						</div>
-	                    <div class="w3-half">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Monto</label>
-							    <input class="w3-input w3-border" type="text" name="monto" placeholder="Ingrese el monto solicitado...">
-							</div>
-						</div>
 	                </section>
 	        	</form>
 	        </div>

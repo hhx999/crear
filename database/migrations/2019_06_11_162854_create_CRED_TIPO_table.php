@@ -15,8 +15,11 @@ class CreateCREDTIPOTable extends Migration {
 		Schema::create('CRED_TIPO', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->integer('monto');
-			$table->text('descripcion', 65535);
+			$table->float('monto')->nullable();
+			$table->float('tasaInteres')->nullable();
+			$table->integer('gracia')->nullable();
+			$table->integer('plazo')->nullable();
+			$table->boolean('activo')->default(0);
 			$table->integer('form_tipo_id')->index('FK_TipoFormularioCredTipo');
 			$table->date('updated_at')->nullable();
 			$table->date('created_at')->nullable();

@@ -12,43 +12,33 @@ class CredTipoTableSeeder extends Seeder
      */
     public function run()
     {
-/*
-- Informales - Sin monotributo con garantía
-- Con monotributo social - sin garantía a sola firma
-Tasa de interés: 15,3% fija anual*
-36 meses de pago de crédito
-6 meses de gracia con pago de intereses
-Presentación: Proyecto + Presupuesto + Garante
-*/
+    	$lineas = ['emprendedor' => 1, 'mipymes' => 2, 'turistico' => 3, 'stock' => 4, 'tasaSubsidiada' => 5];
+
 		$credito = new CredTipo();
 		$credito->monto = "50000";
-		$credito->descripcion = "- Informales - Sin monotributo con garantía
-- Con monotributo social - sin garantía a sola firma
-Tasa de interés: 15,3% fija anual*
-36 meses de pago de crédito
-6 meses de gracia con pago de intereses
-Presentación: Proyecto + Presupuesto + Garante";
-		$credito->form_tipo_id = 1;
+		$credito->tasaInteres = 15.3;
+		$credito->plazo = 30;
+		$credito->gracia = 6;
+		$credito->activo = 1;
+		$credito->form_tipo_id = $lineas['emprendedor'];
 		$credito->save();
 
 		$credito = new CredTipo();
 		$credito->monto = "80000";
-		$credito->descripcion = "- Monotributista Social o Común a sola firma (sin garantía) - hasta 36 meses
-Tasa de interés: 15,3% fija anual*
-6 meses de gracia con interés $1234,20
-30 meses de pago de crédito $2960
-Presentación: Proyecto + Presupuesto + documentación del emprendimiento";
-		$credito->form_tipo_id = 1;
+		$credito->tasaInteres = 15.3;
+		$credito->plazo = 30;
+		$credito->gracia = 6;
+		$credito->activo = 1;
+		$credito->form_tipo_id = $lineas['emprendedor'];
 		$credito->save();
 
 		$credito = new CredTipo();
 		$credito->monto = "125000";
-		$credito->descripcion = "- Monotributista común con garante
-Tasa de interés: 15,3% fija anual*
-6 meses de gracia, pago solo interés $1928,44
-30 meses de pago de crédito $4600
-Presentación: Proyecto + Presupuesto + documentación del emprendimiento";
-		$credito->form_tipo_id = 1;
+		$credito->tasaInteres = 15.3;
+		$credito->plazo = 30;
+		$credito->gracia = 6;
+		$credito->activo = 1;
+		$credito->form_tipo_id = $lineas['emprendedor'];
 		$credito->save();
     }
 }

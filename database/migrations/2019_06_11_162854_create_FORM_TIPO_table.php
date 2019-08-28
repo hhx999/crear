@@ -16,10 +16,7 @@ class CreateFORMTIPOTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('nombre', 85);
-			$table->float('monto')->nullable();
-			$table->float('tasaInteres')->nullable();
-			$table->integer('gracia')->nullable();
-			$table->integer('plazoMax')->nullable();
+			$table->boolean('habilitada')->default(0);
 			$table->date('updated_at')->nullable();
 			$table->date('created_at')->nullable();
 		});
