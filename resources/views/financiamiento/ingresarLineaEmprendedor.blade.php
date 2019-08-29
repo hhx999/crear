@@ -109,6 +109,25 @@
 			$(document).ready(function(){
 
 			    $("#guardarBorrador").click(function(){
+			    	var params = [
+		               {
+		                 name: "estado",
+		                 value: '0'
+		               }
+		             ];
+			        $('#formLineaEmprendedor').submit(function(){ //listen for submit event
+					    $.each(params, function(i,param){
+					        $('<input />').attr('type', 'hidden')
+					            .attr('name', param.name)
+					            .attr('value', param.value)
+					            .appendTo('#formLineaEmprendedor');
+					    });
+					    console.log('Guardar borrador OK');
+					    return true;
+					});
+					$("#formLineaEmprendedor").submit();
+
+			    });
 
 			});
 
