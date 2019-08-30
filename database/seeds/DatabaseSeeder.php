@@ -38,6 +38,9 @@ class DatabaseSeeder extends Seeder
         //Reglas de cuestionario cargadas
         $this->call(CuestionarioLineaSeeder::class);
 
+        //Actividades principales
+        $this->call(ActividadesPrincipalesSeeder::class);
+
 
 
     }

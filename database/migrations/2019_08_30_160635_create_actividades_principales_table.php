@@ -16,6 +16,7 @@ class CreateActividadesPrincipalesTable extends Migration
         Schema::create('actividades_principales', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('nombre');
         });
     }
 
