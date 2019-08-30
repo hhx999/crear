@@ -112,7 +112,7 @@
 			    	var params = [
 		               {
 		                 name: "estado",
-		                 value: '0'
+		                 value: 'borrador'
 		               }
 		             ];
 			        $('#formLineaEmprendedor').submit(function(){ //listen for submit event
@@ -122,7 +122,6 @@
 					            .attr('value', param.value)
 					            .appendTo('#formLineaEmprendedor');
 					    });
-					    console.log('Guardar borrador OK');
 					    return true;
 					});
 					$("#formLineaEmprendedor").submit();
