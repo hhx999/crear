@@ -12,7 +12,7 @@ class CredTipoTableSeeder extends Seeder
      */
     public function run()
     {
-    	$lineas = ['emprendedor' => 1, 'mipymes' => 2, 'turistico' => 3, 'stock' => 4, 'tasaSubsidiada' => 5];
+    	$lineas = config('constantes.lineasCreditos');
 
 		$credito = new CredTipo();
 		$credito->monto = "50000";

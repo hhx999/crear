@@ -9,7 +9,6 @@ use App\F_CuestionarioLinea;
 use App\Formulario;
 use App\FormTipo;
 use App\Helpers;
-use App\Config;
 
 class FinanciamientoController extends Controller
 {
@@ -43,8 +42,6 @@ class FinanciamientoController extends Controller
 			$idForm = 1;
 			//Creación del formulario
 			$formulario = new Formulario;
-
-
 			$estadosValidos = config('constantes.estadosIngresoForm');
 			if (array_key_exists($request->estado, $estadosValidos)) {
 				//Agregamos los parametros faltantes al request

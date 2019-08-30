@@ -18,5 +18,12 @@ return [
         "estadosIngresoForm" => [
           'borrador' => 1,
           'enviado' => 2
-        ]
-    ];
+        ],
+        "lineasCreditos" => [
+        	'emprendedor' => 1, 
+        	'mipymes' => 2, 
+        	'turistico' => 3, 
+        	'stock' => 4, 
+        	'tasaSubsidiada' => 5
+    	]
+];
