@@ -9,6 +9,9 @@
 
 	@section('content')
 	<!-- Primera fila de cuadros de opciones -->
+	<div class="w3-col m12">
+		<p><b>Financiamiento</b></p>
+	</div>
 	 	<div class="w3-row itemsMenuUsuario">
 		  <div class="w3-container w3-quarter">
 		  </div>

@@ -118,20 +118,22 @@
 						  	</div>
 						  	<div class="w3-container w3-half" align="center">
 						  		<h4><b>¿En dónde planeás destinar el financiamiento?</b></h4>
-								<ul style="display: table;text-decoration: none;">
-							    	<li style="display: inherit;margin:20px;">
-										  <input class="w3-check" type="checkbox" name="destino[]" value="a">
-										  <label>Comprar productos para revender</label>
-									</li>
-								  	<li style="display: inherit;margin:20px;">
-									  <input class="w3-check" type="checkbox" name="destino[]" value="b">
-									  <label> Acondicionamiento del local</label>
-								  	</li>
-								  	<li style="display: inherit;margin:20px;">
-									  <input class="w3-check" type="checkbox" name="destino[]" value="c">
-									  <label>Compra de maquinaria y/o insumos</label>
-									</li>
-								</ul>
+						  		<div style="width: 290px; height: 100px; overflow-y: scroll;">
+									<ul style="display: table;text-decoration: none;">
+								    	<li style="display: flex;padding: 10px;background-color: #0006061a;">
+											  <input class="w3-check" type="checkbox" name="destino[]" value="a">
+											  <label>Comprar productos para revender</label>
+										</li>
+									  	<li style="display: flex;padding: 10px;background-color: #0A0A0A0A;">
+										  <input class="w3-check" type="checkbox" name="destino[]" value="b">
+										  <label> Acondicionamiento del local</label>
+									  	</li>
+									  	<li style="display: flex;padding: 10px;background-color: #0006061a;">
+										  <input class="w3-check" type="checkbox" name="destino[]" value="c">
+										  <label>Compra de maquinaria y/o insumos</label>
+										</li>
+									</ul>
+								</div>
 							</div>
 						<div class="w3-container w3-quarter">
 						</div>

@@ -20,6 +20,7 @@
 	  </header>
 
 	  <div class="w3-row-padding w3-margin-bottom">
+	  	<!--
 	    <div class="w3-quarter">
 	      <div class="w3-container w3-red w3-padding-16">
 	        <div class="w3-left"><i class="fas fa-graduation-cap w3-xxxlarge"></i></div>
@@ -40,7 +41,8 @@
 	        <h4>Mis créditos</h4>
 	      </div>
 	    </div>
-	    <div class="w3-quarter">
+	-->
+	    <div class="w3-col m6">
 	    	<a href="{{url('perfil/emprendimientos')}}">
 		    	<div class="itemPerfil">
 			      <div class="w3-container w3-teal w3-padding-16">
@@ -54,7 +56,7 @@
 		    	</div>
 	      	</a>
 	    </div>
-	    <div class="w3-quarter">
+	    <div class="w3-col m6">
 	    	<a href="{{url('simuladorCreditos')}}">
 	    		<div class="itemPerfil">
 				    <div class="w3-container w3-orange w3-text-white w3-padding-16">
