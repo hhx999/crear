@@ -50,6 +50,7 @@
 		<div class="contenedorCuestionario">
 			<div class="w3-col m12">
 				@isset($lineas_principales)
+				
 				<div class="w3-row">
 				<h3>Líneas accesibles</h3>
 					<div>
@@ -87,7 +88,7 @@
 								    <option value="3">Monotributo desde A hasta E</option>
 								    <option value="4">Monotributo desde E hasta K</option>
 								    <option value="5">Responsable inscripto</option>
-								 </select>
+								</select>
 							</div>
 						</div>
 	                </section>

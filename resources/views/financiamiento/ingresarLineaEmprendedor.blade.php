@@ -104,7 +104,7 @@
 
 		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
 			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
-			<br>
+			<br><br>
 			<script>
 
 			$(document).ready(function(){
@@ -126,7 +126,6 @@
 					    return true;
 					});
 					$("#formLineaEmprendedor").submit();
-
 			    });
 
 			});
@@ -209,7 +208,7 @@
 							</div>
 						</div>
 						<div class="w3-col m12">
-							<label>Otra ocupación que desarrolle en la actualidad<br><i style="color: lightgrey;">(Si no realiza ninguna dejelo la casilla en blanco)</i></label>
+							<label>Otra ocupación que desarrolle en la actualidad<br><i style="color: lightgrey;">(Si no realiza ninguna deje la casilla en blanco)</i></label>
 							<input class="w3-input" type="text" name="otraOcupación" placeholder="Ingresar otra ocupación del emprendedor...">
 						</div>
 						<div class="w3-half">
