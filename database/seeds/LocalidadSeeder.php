@@ -235,5 +235,8 @@ class LocalidadSeeder extends Seeder
         $localidad = new Localidad();
         $localidad->nombre = 'Yaminué';
         $localidad->save();
+        $localidad = new Localidad();
+        $localidad->nombre = 'Otra localidad';
+        $localidad->save();
     }
 }
