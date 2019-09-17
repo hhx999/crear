@@ -135,23 +135,9 @@
 						    <label>Actividad principal</label>
 						    <select id="actividad" class="w3-select" style="padding: 4px 0px !important;" name="actividad">
 						    	<option value="" disabled selected>Seleccioná la actividad que realizás...</option>
-							    <option value="a">A- AGRICULTURA, GANADERÍA, CAZA Y SILVICULTURA</option>
-								<option value="b">B- PESCA Y SERVICIOS CONEXOS</option>
-								<option value="c">C- EXPLOTACIÓN DE MINAS Y CANTERAS</option>
-								<option value="d">D- INDUSTRIA MANUFACTURERA</option>
-								<option value="e">E- ELECTRICIDAD, GAS Y AGUA</option>
-								<option value="f">F- CONSTRUCCIÓN</option>
-								<option value="g">G- COMERCIO AL POR MAYOR Y AL POR MENOR, REPARACIÓN DE VEHÍCULOS, AUTOMOTORES, MOTOCICLETAS, EFECTOS PERSONALES Y ENSERES DOMÉSTICOS</option>
-								<option value="h">H- SERIVICIOS DE HOTELERÍA Y RESTAURANTES</option>
-								<option value="i">I- SERVICIO DE TRANSPORTE DE ALMACENAMIENTO Y DE COMUNICACIONES</option>
-								<option value="j">J- INTERMEDIACIÓN FINANCIERA Y OTROS SERVICIOS FINANCIEROS</option>
-								<option value="k">K- SERVICIOS INMOBILIARIOS, EMPRESARIALES Y DE ALQUILER</option>
-								<option value="l">L- ADMINISTRACIÓN PÚBLICA, DEFENSA Y SEGURIDAD SOCIAL OBLIGATORIA</option>
-								<option value="m">M- ENSEÑANZA</option>
-								<option value="n">N- SERVICIOS SOCIALES Y DE SALUD</option>
-								<option value="o">O- SERVICIOS COMUNITARIOS, SOCIALES Y PERSONALES N.C.P.</option>
-								<option value="p">P- SERVICIOS DE HOGARES PRIVADOS QUE CONTRATAN SERVICIO DOMESTICO</option>
-								<option value="q">Q- SERVICIOS DE ORGANIZACIONES Y ORGANOS EXTRATERRITORIALES</option>
+						    	@foreach($actPrincipales as $actividad)
+						    		<option value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+						    	@endforeach
 							 </select>
 						</div>
 					</div>

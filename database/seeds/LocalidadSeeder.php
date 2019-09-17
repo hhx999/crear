@@ -12,8 +12,8 @@ class LocalidadSeeder extends Seeder
      */
     public function run()
     {
-        //(1596, 17, 'Aguada Cecilio'),
         $localidad = new Localidad();
+
         $localidad->nombre = 'Aguada de Guerra';
         $localidad->save();
 
@@ -48,7 +48,6 @@ class LocalidadSeeder extends Seeder
         $localidad = new Localidad();
         $localidad->nombre = 'Cerro Policía';
         $localidad->save();
-
         $localidad = new Localidad();
         $localidad->nombre = 'Cervantes';
         $localidad->save();

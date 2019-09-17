@@ -16,6 +16,7 @@ use App\FormValido;
 use App\Usuario;
 use App\Localidad;
 use App\Agencia;
+use App\ActividadesPrincipales;
 
 class UsuarioController extends BaseController
 {
@@ -56,6 +57,7 @@ class UsuarioController extends BaseController
       $msg = "";
       $localidades = Localidad::orderBy('nombre', 'asc')->get();
       $agencias = Agencia::orderBy('nombre','asc')->get();
+      $actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
       if ($request->isMethod('post')) {
         $validatedData = $request->validate([
             'dni' => 'required',
@@ -90,7 +92,7 @@ class UsuarioController extends BaseController
             $msg = "Whoops! El usuario ya existe o no pudo ser registrado.";
           }
       }
-      return view('userTest.registro', ["msg" => $msg, 'localidades' => $localidades, 'agencias' => $agencias]);
+      return view('userTest.registro', ["msg" => $msg, 'localidades' => $localidades, 'agencias' => $agencias, 'actPrincipales' => $actPrincipales]);
     }
     public function comprobarDNI(Request $request)
     {
