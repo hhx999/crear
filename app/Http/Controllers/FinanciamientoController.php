@@ -9,6 +9,7 @@ use App\F_CuestionarioLinea;
 use App\Formulario;
 use App\FormTipo;
 use App\Helpers;
+use App\Usuario;
 
 class FinanciamientoController extends Controller
 {
@@ -34,6 +35,10 @@ class FinanciamientoController extends Controller
     }
     function ingresarLineaEmprendedor(Request $request)
     {
+    	$idUsuario = $request->session()->get('id_usuario');
+
+    	$dataUsuario = Usuario::find($idUsuario);
+
     	if ($request->isMethod('post'))
 		{
 			//id de usuario
@@ -52,6 +57,6 @@ class FinanciamientoController extends Controller
 				return "Estado desconocido por sistema.";
 			}
 		}
-    	return view('financiamiento.ingresarLineaEmprendedor');
+    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario]);
     }
 }

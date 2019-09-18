@@ -16,5 +16,16 @@ class Usuario extends Model {
     ];
 
     // Relationships
-    
+    public function get_localidad()
+	{
+	    return $this->belongsTo('App\Localidad', 'localidad');
+	}
+	public function get_agencia()
+	{
+	    return $this->hasOne('App\Agencia', 'agencia');
+	}
+	public function get_actividadPrincipal()
+	{
+	    return $this->belongsTo('App\ActividadesPrincipales','actividadPrincipal');
+	}
 }

@@ -144,19 +144,19 @@
 						</div>
 						<div class="w3-half">
 	                    	<label>Nombre y apellido</label>
-							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor...">
+							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor..." value="{{$dataUsuario->nombreApellido}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>DNI</label>
-							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor...">
+							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$dataUsuario->dni}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Localidad</label>
-							<input class="w3-input" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor...">
+							<input class="w3-input" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor..." value="{{$dataUsuario->get_localidad->nombre ?? ''}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Domicilio real</label>
-							<input class="w3-input" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor...">
+							<input class="w3-input" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor..." value="{{$dataUsuario->domicilio}}">
 						</div>
 						<div class="w3-col m12">
 							<br>
@@ -164,11 +164,11 @@
 						</div>
 						<div class="w3-half">
 	                    	<label>Telefono</label>
-							<input class="w3-input" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor...">
+							<input class="w3-input" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor..." value="{{$dataUsuario->telefono}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Email</label>
-							<input class="w3-input" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor...">
+							<input class="w3-input" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor..." value="{{$dataUsuario->email}}">
 						</div>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
@@ -233,7 +233,7 @@
 						</div>
 						<div class="w3-half">
 							<label>Actividad principal</label>
-							<input class="w3-input" type="text" name="actPrincipalEmprendimiento" placeholder="Ingrese la actividad principal del emprendimiento...">
+							<input class="w3-input" type="text" name="actPrincipalEmprendimiento" placeholder="Ingrese la actividad principal del emprendimiento..." value="{{$dataUsuario->get_actividadPrincipal->nombre ?? ''}}">
 						</div>
 						<div class="w3-half">
 							<label>Fecha del inicio a la actividad</label>
