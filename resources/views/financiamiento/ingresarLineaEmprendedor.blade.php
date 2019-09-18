@@ -163,7 +163,7 @@
 							<p><b>Datos de contacto</b></p>
 						</div>
 						<div class="w3-half">
-	                    	<label>Telefono</label>
+	                    	<label>Teléfono</label>
 							<input class="w3-input" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor..." value="{{$dataUsuario->telefono}}">
 						</div>
 						<div class="w3-half">
@@ -237,7 +237,7 @@
 						</div>
 						<div class="w3-half">
 							<label>Fecha del inicio a la actividad</label>
-							<input class="w3-input" type="text" name="fecInicioEmprendimiento" readonly placeholder="No existe registro del inicio del emprendimiento...">
+							<input class="w3-input" type="text" name="fecInicioEmprendimiento" readonly placeholder="Ingrese el inicio del emprendimiento...">
 						</div>
 						<div class="w3-half">
 							<label>Antigüedad</label>

@@ -72,22 +72,22 @@
  		<table class="w3-table">
 		    <thead>
 		      	<tr class="w3-blue-gray">
-		        	<th>Periodo</th>
-		        	<th>Deuda Periodo</th>
-		        	<th>Capital</th>
-		        	<th>Interés</th>
-		        	<th>IVA</th>
-		        	<th>CUOTA TOTAL</th>
+		        	<th style="text-align: center;">Periodo</th>
+		        	<th style="text-align: center;">Deuda Periodo</th>
+		        	<th style="text-align: center;">Capital</th>
+		        	<th style="text-align: center;">Interés</th>
+		        	<th style="text-align: center;">IVA</th>
+		        	<th style="text-align: center;">CUOTA TOTAL</th>
 		      	</tr>
 		    </thead>
  			@for($i = 1;$i < count($resultadosSistema); $i++)
 		    	<tr>
-		    		<td>{{ round($resultadosSistema[$i]['periodo'],2) }}</td>
-		    		<td>{{ round($resultadosSistema[$i]['deudaPeriodo'],2) }}</td>
-		    		<td>{{ round($resultadosSistema[$i]['capital'],2) }}</td>
-		    		<td>{{ round($resultadosSistema[$i]['interes'],2) }}</td>
-		    		<td>{{ round($resultadosSistema[$i]['iva'],2) }}</td>
-		    		<td>{{ round($resultadosSistema[$i]['cuotaTotal'],2) }}</td>
+		    		<td style="text-align: center;">{{ round($resultadosSistema[$i]['periodo'],2) }}</td>
+		    		<td style="text-align: center;">$ {{ round($resultadosSistema[$i]['deudaPeriodo'],2) }}</td>
+		    		<td style="text-align: center;">$ {{ round($resultadosSistema[$i]['capital'],2) }}</td>
+		    		<td style="text-align: center;">$ {{ round($resultadosSistema[$i]['interes'],2) }}</td>
+		    		<td style="text-align: center;">$ {{ round($resultadosSistema[$i]['iva'],2) }}</td>
+		    		<td style="text-align: center;"><b>$ {{ round($resultadosSistema[$i]['cuotaTotal'],2) }} </b></td>
 		    	</tr>
 			@endfor
 		</table>
