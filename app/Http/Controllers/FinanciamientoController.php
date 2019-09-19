@@ -64,8 +64,6 @@ class FinanciamientoController extends Controller
 				$formulario = Formulario::create($request->all());
 				$lastID = $formulario->id;
 
-				var_dump($lastID);
-
 				//Crear registro para posteriormente validar el formulario
 				if ($request->estado == 'enviado') {
 					$formValido = new FormValido;
@@ -74,7 +72,7 @@ class FinanciamientoController extends Controller
 				}
 
 				//Retornamos valores
-				//return $request->all();
+				return $request->all();
 			} else {
 				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
 				return "Estado desconocido por sistema.";
