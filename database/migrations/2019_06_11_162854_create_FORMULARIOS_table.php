@@ -38,7 +38,7 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->integer('ingresoMensual')->nullable();
 			$table->string('deseoCapacitacion', 45)->nullable();
 			//Datos generales del emprendimiento
-			$table->string('actPrincipalEmprendimiento', 120)->nullable();
+			$table->string('actPrincipalEmprendimiento', 255)->nullable();
 			$table->date('fecInicioEmprendimiento')->nullable();
 			$table->string('antiguedadEmprendimiento', 45)->nullable();
 			$table->string('cuitEmprendimiento', 20)->nullable();

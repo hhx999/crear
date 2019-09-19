@@ -10,6 +10,7 @@ use App\Formulario;
 use App\FormTipo;
 use App\Helpers;
 use App\Usuario;
+use App\FormValido;
 
 class FinanciamientoController extends Controller
 {
@@ -45,15 +46,37 @@ class FinanciamientoController extends Controller
 			$idUsuario = $request->session()->get('id_usuario');
 			//el tipo de formulario es 1(linea emprendedor)
 			$idForm = 1;
-			//Creación del formulario
-			$formulario = new Formulario;
 			$estadosValidos = config('constantes.estadosIngresoForm');
+
+			//El estado cuando es nulo es 'enviado'
+			if ($request->estado == NULL) {
+					$request->estado = 'enviado';
+				}
+			//Los estados enviados serán los que el administrador podrá ver y corregir
+			//Los estados borradores serán para ir guardando datos hasta estar seguros de enviar el formulario
+			//Los estados en esta parte son solo guías que ayudarán al usuario
+
 			if (array_key_exists($request->estado, $estadosValidos)) {
 				//Agregamos los parametros faltantes al request
 				$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm, 'estado' => $estadosValidos[$request->estado]]);
-				$formulario->create($request->all());
-				return $request->all();
+
+				//Creamos formulario
+				$formulario = Formulario::create($request->all());
+				$lastID = $formulario->id;
+
+				var_dump($lastID);
+
+				//Crear registro para posteriormente validar el formulario
+				if ($request->estado == 'enviado') {
+					$formValido = new FormValido;
+					$formValido->formulario_id = $lastID;
+					$formValido->save();
+				}
+
+				//Retornamos valores
+				//return $request->all();
 			} else {
+				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
 				return "Estado desconocido por sistema.";
 			}
 		}
