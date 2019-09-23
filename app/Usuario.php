@@ -28,4 +28,8 @@ class Usuario extends Model {
 	{
 	    return $this->belongsTo('App\ActividadesPrincipales','actividadPrincipal');
 	}
+	public function emprendimientos()
+	{
+		return $this->hasMany('App\Trabaja');
+	}
 }

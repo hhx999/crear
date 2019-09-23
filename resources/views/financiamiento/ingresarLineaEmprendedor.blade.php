@@ -86,6 +86,7 @@
 			background: white;
 		}
 	</style>
+	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 		@if ($errors->any())
 			<div class="w3-panel w3-amber w3-display-container">
@@ -136,27 +137,37 @@
 	                <section>
 	                    <div class="w3-col l12">
 	                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
-							    <p>INFORMACIÓN DEL EMPRENDEDOR</p>
+							    <p id="datosEmprendedor">INFORMACIÓN DEL EMPRENDEDOR</p>
 							</div>
 						</div>
+						  <div id="id01" class="w3-modal">
+						    <div class="w3-modal-content">
+						      <div class="w3-container">
+						        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
+						        <br>
+						        <p style="color: black;"> Los cambios generados en este formulario quedarán registrados en la base de datos del sistema, desea continuar?</p>
+						        <a href="#datosEmprendedor" class="w3-button w3-green" id="aceptaCambiosDatosEmprendedor">Si</a><a id="noAceptaCambiosDatosEmprendedor" href="#datosEmprendedor" class="w3-button w3-red">No</a>
+						      </div>
+						    </div>
+						  </div>
 						<div class="w3-col l12">
 								<p><b>Datos generales</b></p>
 						</div>
 						<div class="w3-half">
 	                    	<label>Nombre y apellido</label>
-							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor..." value="{{$dataUsuario->nombreApellido}}">
+							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor..." value="{{$dataUsuario->nombreApellido}}" readonly="on">
 						</div>
 						<div class="w3-half">
 	                    	<label>DNI</label>
-							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$dataUsuario->dni}}">
+							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$dataUsuario->dni}}" readonly="on">
 						</div>
 						<div class="w3-half">
 	                    	<label>Localidad</label>
-							<input class="w3-input" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor..." value="{{$dataUsuario->get_localidad->nombre ?? ''}}">
+							<input class="w3-input datosEmprendedor" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor..." value="{{$dataUsuario->get_localidad->nombre ?? ''}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Domicilio real</label>
-							<input class="w3-input" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor..." value="{{$dataUsuario->domicilio}}">
+							<input class="w3-input datosEmprendedor" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor..." value="{{$dataUsuario->domicilio}}">
 						</div>
 						<div class="w3-col m12">
 							<br>
@@ -164,12 +175,32 @@
 						</div>
 						<div class="w3-half">
 	                    	<label>Teléfono</label>
-							<input class="w3-input" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor..." value="{{$dataUsuario->telefono}}">
+							<input class="w3-input datosEmprendedor" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor..." value="{{$dataUsuario->telefono}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Email</label>
-							<input class="w3-input" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor..." value="{{$dataUsuario->email}}">
+							<input class="w3-input datosEmprendedor" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor..." value="{{$dataUsuario->email}}">
 						</div>
+						<script type="text/javascript">
+							var read = "on";
+							$('.datosEmprendedor').click(function(){
+								if (read != "off") {
+									document.getElementById('id01').style.display='block';
+								}
+							});
+							$('#aceptaCambiosDatosEmprendedor').click(function() {
+								console.log('Aceptó los cambios en los datos del emprendedor!');
+								$('.datosEmprendedor').each(function (index, value) {
+									$(this).prop('readonly', false);
+								});
+								document.getElementById('id01').style.display='none';
+								read = "off";
+							});
+							$('#noAceptaCambiosDatosEmprendedor').click(function() {
+								console.log('No aceptó los cambios en los datos del emprendedor');
+								document.getElementById('id01').style.display='none';
+							})
+						</script>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 	                    	<label>Redes sociales:<i style="color: lightgrey;">(facebook,instagram,etc.)</i></label>
@@ -220,6 +251,10 @@
 							<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro...">
 						</div>
 	                </section>
+	                <!--
+															DATOS EMPRENDIMIENTO
+	
+	                -->
 	                <h2>DATOS GENERALES</h2>
 	                <section>
 		                <div class="w3-col l12">
@@ -229,62 +264,200 @@
 						</div>
 						<div class="w3-col m12">
 							<br>
-							<p><b>Datos generales del emprendimiento</b></p>
+							<p id="datosEmprendimiento"><b>Datos generales del emprendimiento</b></p>
+						</div>
+						<div id="id02" class="w3-modal">
+						    <div class="w3-modal-content">
+						      <div class="w3-container">
+						        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
+						        <br>
+						        <p style="color: black;"> Los cambios generados en este formulario quedarán registrados en la base de datos del sistema, desea continuar?</p>
+						        <a href="#datosEmprendimiento" class="w3-button w3-green" id="aceptaCambiosDatosEmprendimiento">Si</a><a id="noAceptaCambiosDatosEmprendimiento" href="#datosEmprendimiento" class="w3-button w3-red">No</a>
+						      </div>
+						    </div>
+						  </div>
+						@isset($dataUsuario->emprendimientos)
+						<select class="w3-select" id="idEmprendimiento" name="idEmprendimiento">
+							<option selected disabled value="">Seleccioná tú emprendimiento...</option>
+							@foreach($dataUsuario->emprendimientos as $emprendimiento)
+								<option value="{{$emprendimiento->emprendimiento_id}}">Emprendimiento</option>
+							@endforeach
+						</select>
+						@endisset
+						<br>
+						<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
+							<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
+							<option value="nuevo">Nuevo</option>
+							<option value="en funcionamiento">En funcionamiento</option>
+						</select>
+						<div class="nuevoEmprendimiento">
+							<div class="w3-half">
+								<label>Denominación de la Sociedad</label>
+								<input class="w3-input w3-border w3-round-large" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento...">
+							</div>
+							<div class="w3-half">
+							<div style="margin-right: 10px;margin-left: 10px;">
+								    <label>Tipo de sociedad</label>
+								    <select class="w3-select" name="tipoSociedad">
+									    <option value="" disabled selected>Elegí el tipo de sociedad...</option>
+									    <option value="Sociedad Anónima (S.A.)">Sociedad Anónima (S.A.)</option>
+									    <option value="Sociedad de Responsabilidad Limitada (S.R.L.)">Sociedad de Responsabilidad Limitada (S.R.L.)</option>
+									    <option value="Sociedad por Acciones Simplificada (S.A.S.)">Sociedad por Acciones Simplificada (S.A.S.)</option>
+									 </select>
+								</div>
+							</div>
 						</div>
 						<div class="w3-half">
-							<label>Actividad principal</label>
-							<input class="w3-input" type="text" name="actPrincipalEmprendimiento" placeholder="Ingrese la actividad principal del emprendimiento..." value="{{$dataUsuario->get_actividadPrincipal->nombre ?? ''}}">
+							<div style="margin-right: 10px;margin-left: 10px;height: 60px;">
+								<label>Actividad principal</label>
+								<select id="actPrincipalEmprendimiento" class="w3-select datosEmprendimiento" name="actPrincipalEmprendimiento">
+									@if($dataUsuario->get_actividadPrincipal)
+										@foreach($actPrincipales as $actividad)
+											@if($actividad->id == $dataUsuario->getActividadPrincipal->id)
+											<option selected value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+											@else
+								    		<option value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+								    		@endif
+								    	@endforeach
+								   	@else
+								   	<option selected disabled value="">Seleccioná la actividad principal...</option>
+								   	@foreach($actPrincipales as $actividad)
+								    		<option value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+								    @endforeach
+							    	@endif
+								</select>
+							</div>
 						</div>
-						<div class="w3-half">
-							<label>Fecha del inicio a la actividad</label>
-							<input class="w3-input" type="text" name="fecInicioEmprendimiento" readonly placeholder="Ingrese el inicio del emprendimiento...">
+						<div class="enfuncionamientoEmprendimiento">
+							<div class="w3-half">
+								<label>Fecha de inicio(dd-mm-AAAA)</label>
+	      						<input class="w3-input datosEmprendimiento" data-placeholder="Ingrese la fecha de inicio del emprendimiento" name="fecInicioEmprendimiento" id="inicio_emprendimiento">
+							</div>
 						</div>
-						<div class="w3-half">
-							<label>Antigüedad</label>
-							<input class="w3-input" type="text" name="antiguedadEmprendimiento" placeholder="Ingrese la antigüedad del emprendimiento...">
+						<script type="text/javascript">
+							$(document).ready(function(){
+								$('#inicio_emprendimiento').mask('00-00-0000');
+								$('.nuevoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', true);
+									});
+								$('.datosEmprendimiento').each(function (index, value) {
+									$(this).prop('readonly', true);
+								});
+							});
+							var readEmprendimiento = "on";
+							$('.datosEmprendimiento').click(function(){
+								if (readEmprendimiento != "off") {
+									document.getElementById('id02').style.display='block';
+								}
+							});
+							$('#aceptaCambiosDatosEmprendimiento').click(function() {
+								console.log('Aceptó los cambios en los datos del emprendedor!');
+								$('.datosEmprendimiento').each(function (index, value) {
+									$(this).prop('readonly', false);
+								});
+								document.getElementById('id02').style.display='none';
+								readEmprendimiento = "off";
+							});
+							$('#noAceptaCambiosDatosEmprendimiento').click(function() {
+								console.log('No aceptó los cambios en los datos del emprendedor');
+								$('#actPrincipalEmprendimiento').attr("disabled", true); 
+								document.getElementById('id02').style.display='none';
+							})
+							$('#estadoEmprendimiento').change(function(){ 
+							    var value = $(this).val();
+							    if (value == 'nuevo') {
+							    	$('.nuevoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', false);
+									});
+									$('.enfuncionamientoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', true);
+									});
+							    } else if (value == 'en funcionamiento') {
+							    	$('.nuevoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', true);
+									});
+									$('.enfuncionamientoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', false);
+									});
+							    }
+							});
+						</script>
+						<div class="enfuncionamientoEmprendimiento">
+							<div class="w3-half">
+								<label>Antigüedad</label>
+								<input class="w3-input datosEmprendimiento" type="text" name="antiguedadEmprendimiento" placeholder="Ingrese la antigüedad del emprendimiento...">
+							</div>
 						</div>
 						<div class="w3-half">
 							<label>Número de CUIL o CUIT</label>
-							<input class="w3-input" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento...">
+							<input class="w3-input datosEmprendimiento" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento...">
 						</div>
-						<div class="w3-quarter"><p></p></div>
-						<div class="w3-half">
-							<label>Número de ingresos brutos</label>
-							<input class="w3-input" type="text" name="ingresosBrutosEmprendimiento" placeholder="Ingrese los ingresos brutos del emprendimiento...">
+						<div class="nuevoEmprendimiento">
+							<div class="w3-half">
+								<div style="padding: 20px;">
+								    <select class="w3-select" name="cargo">
+									    <option value="" disabled selected>Elegí el cargo del solicitante...</option>
+									    <option value="jefe">Jefe</option>
+									    <option value="responsable">Responsable</option>
+									 </select>
+								</div>
+							</div>
+							<div class="w3-col m12">
+								<br>
+								<p><b>Contacto del emprendimiento</b></p>
+							</div>
+							<div class="w3-half">
+		                    	<div style="margin-right: 10px;margin-left: 10px;">
+								    <label>E-mail</label>
+								    <input class="w3-input w3-border" type="text" name="emailEmprendimiento" placeholder="Ingrese el email vinculado al emprendimiento...">
+								</div>
+							</div>
+							<div class="w3-half">
+								<div style="margin-right: 10px;margin-left: 10px;">
+								    <label>Telefono</label>
+								    <input class="w3-input w3-border" type="text" name="telefonoEmprendimiento" placeholder="Ingrese el telefono de contacto con el emprendimiento...">
+								</div>
+							</div>
 						</div>
-						<div class="w3-col m12">
-							<br>
-							<p><b>Localización del emprendimiento</b></p>
-						</div>
-						<div class="w3-half">
-							<label>Domicilio comercial</label>
-							<input class="w3-input" type="text" name="domicilioEmprendimiento" placeholder="Ingrese el domicilio del emprendimiento...">
-						</div>
-						<div class="w3-half">
-							<label>Localidad</label>
-							<input class="w3-input" type="text" name="localidadEmprendimiento" placeholder="Ingrese la localidad del emprendimiento...">
-						</div>
-						<div class="w3-col m12">
-							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
-							    <h4>Lugar donde se desarrolla es:</h4>
-							    <div style="display: inline-block;">
-							    	<label class="container">Otro
-									  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
-									  <span class="checkmark"></span>
-									</label>
-							    	<label class="container">Propio
-							    		<input type="radio" name="lugarEmprendimiento" value="Propio">
-							    		<span class="checkmark"></span>
-							    	</label>
-								    <label class="container">Prestado
-									  <input type="radio" name="lugarEmprendimiento" value="Prestado">
-									  <span class="checkmark"></span>
-									</label>
-									<label class="container">Alquilado
-									  <input type="radio" name="lugarEmprendimiento" value="Alquilado">
-									  <span class="checkmark"></span>
-									</label>
-							    </div>
+						<div class="enfuncionamientoEmprendimiento">
+							<div class="w3-half">
+								<label>Número de ingresos brutos</label>
+								<input class="w3-input datosEmprendimiento" type="text" name="ingresosBrutosEmprendimiento" placeholder="Ingrese los ingresos brutos del emprendimiento...">
+							</div>
+							<div class="w3-col m12">
+								<br>
+								<p><b>Localización del emprendimiento</b></p>
+							</div>
+							<div class="w3-half">
+								<label>Domicilio comercial</label>
+								<input class="w3-input datosEmprendimiento" type="text" name="domicilioEmprendimiento" placeholder="Ingrese el domicilio del emprendimiento...">
+							</div>
+							<div class="w3-half">
+								<label>Localidad</label>
+								<input class="w3-input datosEmprendimiento" type="text" name="localidadEmprendimiento" placeholder="Ingrese la localidad del emprendimiento...">
+							</div>
+							<div class="w3-col m12">
+								<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
+								    <h4>Lugar donde se desarrolla es:</h4>
+								    <div style="display: inline-block;">
+								    	<label class="container">Otro
+										  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
+										  <span class="checkmark"></span>
+										</label>
+								    	<label class="container">Propio
+								    		<input type="radio" name="lugarEmprendimiento" value="Propio">
+								    		<span class="checkmark"></span>
+								    	</label>
+									    <label class="container">Prestado
+										  <input type="radio" name="lugarEmprendimiento" value="Prestado">
+										  <span class="checkmark"></span>
+										</label>
+										<label class="container">Alquilado
+										  <input type="radio" name="lugarEmprendimiento" value="Alquilado">
+										  <span class="checkmark"></span>
+										</label>
+								    </div>
+								</div>
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1026,6 +1199,11 @@
 	                </section>
 	   </div>
 	</form>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#inicio_emprendimiento').mask('00-00-0000');
+		});
+	</script>
 	<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
 	<script src="{{asset('js/financiamiento/lineaEmprendedor/rules.js')}}"></script>
 	<script src="{{asset('js/financiamiento/lineaEmprendedor/steps.js')}}"></script>

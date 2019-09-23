@@ -53,6 +53,11 @@
             <div id="wizard">
                 <h2>Datos principales</h2>
                 <section>
+                	<select class="w3-select" id="estadoEmprendimiento">
+							<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
+							<option value="nuevo">Nuevo</option>
+							<option value="en funcionamiento">En funcionamiento</option>
+					</select>
                     <div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Denominación de la Sociedad</label>

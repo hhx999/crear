@@ -11,6 +11,7 @@ use App\FormTipo;
 use App\Helpers;
 use App\Usuario;
 use App\FormValido;
+use App\ActividadesPrincipales;
 
 class FinanciamientoController extends Controller
 {
@@ -39,7 +40,9 @@ class FinanciamientoController extends Controller
     	$idUsuario = $request->session()->get('id_usuario');
 
     	$dataUsuario = Usuario::find($idUsuario);
-
+    	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
+    	//Verificar porque no lo toma vacío
+    	$emprendimientosUsuario = $dataUsuario->emprendimientos;
     	if ($request->isMethod('post'))
 		{
 			//id de usuario
@@ -69,6 +72,37 @@ class FinanciamientoController extends Controller
 					$formValido = new FormValido;
 					$formValido->formulario_id = $lastID;
 					$formValido->save();
+
+					$usuario = Usuario::find($idUsuario);
+					$usuario->localidad = $request->localidadEmprendedor;
+					$usuario->domicilio = $request->domicilioEmprendedor;
+					$usuario->email = $request->emailEmprendedor;
+					$usuario->telefono = $request->telefonoEmprendedor;
+					$usuario->actividadPrincipal = $request->actPrincipalEmprendimiento;
+					$usuario->save();
+					if ($request->estadoEmprendimiento == 'nuevo') {
+						$emprendimiento = new Emprendimiento;
+			            $emprendimiento->denominacion = $request->denominacion;
+			            $emprendimiento->tipoSociedad = $request->tipoSociedad;
+			            $emprendimiento->cuit = $request->cuitEmprendimiento;
+			            $emprendimiento->email = $request->emailEmprendimiento;
+			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
+			            $emprendimiento->save();
+
+			            $trabaja = new Trabaja;
+			            $trabaja->usuario_id = $idUsuario;
+			            $trabaja->emprendimiento_id = $emprendimiento->id;
+			            $trabaja->cargo = $request->cargo;
+			            $trabaja->save();
+					} else if ($request->estadoEmprendimiento == 'en funcionamiento') {
+						$emprendimiento = Emprendimiento::find($request->idEmprendimiento);
+			            $emprendimiento->cuit = $request->cuitEmprendimiento;
+			            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
+			            $emprendimiento->localidad = $request->localidadEmprendimiento;
+			            $emprendimiento->email = $request->emailEmprendimiento;
+			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
+			            $emprendimiento->save();
+					}
 				}
 
 				//Retornamos valores
@@ -76,8 +110,8 @@ class FinanciamientoController extends Controller
 			} else {
 				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
 				return "Estado desconocido por sistema.";
-			}
+			} 
 		}
-    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario]);
+    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales, 'emprendimientosUsuario' => $emprendimientosUsuario]);
     }
 }
