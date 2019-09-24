@@ -266,6 +266,7 @@
 							<br>
 							<p id="datosEmprendimiento"><b>Datos generales del emprendimiento</b></p>
 						</div>
+						<!-- Inicio del modal para el ingreso de datos del emprendedor -->
 						<div id="id02" class="w3-modal">
 						    <div class="w3-modal-content">
 						      <div class="w3-container">
@@ -276,20 +277,26 @@
 						      </div>
 						    </div>
 						  </div>
-						@isset($dataUsuario->emprendimientos)
-						<select class="w3-select" id="idEmprendimiento" name="idEmprendimiento">
-							<option selected disabled value="">Seleccioná tú emprendimiento...</option>
-							@foreach($dataUsuario->emprendimientos as $emprendimiento)
-								<option value="{{$emprendimiento->emprendimiento_id}}">Emprendimiento</option>
-							@endforeach
-						</select>
-						@endisset
+						<!-- Fin del modal datos de emprendedor -->
+
+						@if($emprendimientosUsuario)
+						<div class="w3-col m12">
+							<select class="w3-select" id="idEmprendimiento" name="idEmprendimiento">
+								<option selected disabled value="">Seleccioná tú emprendimiento...</option>
+								@foreach($emprendimientosUsuario as $emprendimiento)
+									<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
+								@endforeach
+							</select>
+						</div>
+						@endif
 						<br>
-						<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
-							<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
-							<option value="nuevo">Nuevo</option>
-							<option value="en funcionamiento">En funcionamiento</option>
-						</select>
+						<div class="w3-col m12">
+							<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
+								<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
+								<option value="nuevo">Nuevo</option>
+								<option value="en funcionamiento">En funcionamiento</option>
+							</select>
+						</div>
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
 								<label>Denominación de la Sociedad</label>
@@ -337,12 +344,25 @@
 						<script type="text/javascript">
 							$(document).ready(function(){
 								$('#inicio_emprendimiento').mask('00-00-0000');
-								$('.nuevoEmprendimiento').each(function (index, value) {
-										$(this).prop('hidden', true);
-									});
 								$('.datosEmprendimiento').each(function (index, value) {
 									$(this).prop('readonly', true);
+									$(this).prop('hidden', false);
 								});
+							});
+							$('#estadoEmprendimiento').change(function(){ 
+							    var value = $(this).val();
+							    if (value == 'nuevo') {
+							    	$('.nuevoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', false);
+									});
+									$('.enfuncionamientoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', true);
+									});
+							    } else if (value == 'en funcionamiento') {
+									$('.enfuncionamientoEmprendimiento').each(function (index, value) {
+										$(this).prop('hidden', false);
+									});
+							    }
 							});
 							var readEmprendimiento = "on";
 							$('.datosEmprendimiento').click(function(){
@@ -362,24 +382,10 @@
 								console.log('No aceptó los cambios en los datos del emprendedor');
 								$('#actPrincipalEmprendimiento').attr("disabled", true); 
 								document.getElementById('id02').style.display='none';
-							})
-							$('#estadoEmprendimiento').change(function(){ 
-							    var value = $(this).val();
-							    if (value == 'nuevo') {
-							    	$('.nuevoEmprendimiento').each(function (index, value) {
-										$(this).prop('hidden', false);
-									});
-									$('.enfuncionamientoEmprendimiento').each(function (index, value) {
-										$(this).prop('hidden', true);
-									});
-							    } else if (value == 'en funcionamiento') {
-							    	$('.nuevoEmprendimiento').each(function (index, value) {
-										$(this).prop('hidden', true);
-									});
-									$('.enfuncionamientoEmprendimiento').each(function (index, value) {
-										$(this).prop('hidden', false);
-									});
-							    }
+							});
+							$('#idEmprendimiento').change(function(){ 
+							    var idEmprendimiento = $(this).val();
+							    console.log(idEmprendimiento);
 							});
 						</script>
 						<div class="enfuncionamientoEmprendimiento">

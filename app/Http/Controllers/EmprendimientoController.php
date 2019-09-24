@@ -27,6 +27,7 @@ class EmprendimientoController extends Controller
 		    ]);
     		$usuario_id = $request->session()->get('id_usuario');
             $emprendimiento = new Emprendimiento;
+            $emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
             $emprendimiento->denominacion = $request->denominacion;
             $emprendimiento->tipoSociedad = $request->tipoSociedad;
             $emprendimiento->cuit = $request->cuit;

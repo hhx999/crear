@@ -17,13 +17,14 @@ class CreateEmprendimientosTable extends Migration
             //$table->engine = 'InnoDB';
             $table->integer('id', true);
             $table->timestamps();
+            $table->string('estadoEmprendimiento');
             $table->string('denominacion');
             $table->string('tipoSociedad');
             $table->string('cuit',12);
-            $table->string('domicilio');
-            $table->string('localidad');
-            $table->string('provincia');
-            $table->string('codPostal');
+            $table->string('domicilio')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('provincia')->nullable();
+            $table->string('codPostal')->nullable();
             $table->string('email');
             $table->string('telefono');
         });

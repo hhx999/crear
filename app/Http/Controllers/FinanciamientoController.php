@@ -12,6 +12,7 @@ use App\Helpers;
 use App\Usuario;
 use App\FormValido;
 use App\ActividadesPrincipales;
+use App\Emprendimiento;
 
 class FinanciamientoController extends Controller
 {
@@ -41,8 +42,13 @@ class FinanciamientoController extends Controller
 
     	$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	//Verificar porque no lo toma vacío
-    	$emprendimientosUsuario = $dataUsuario->emprendimientos;
+    	
+    	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
+    	for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
+    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->id);
+    	}
+
+    	//Obtenemos los datos mediante POST
     	if ($request->isMethod('post'))
 		{
 			//id de usuario
@@ -67,12 +73,13 @@ class FinanciamientoController extends Controller
 				$formulario = Formulario::create($request->all());
 				$lastID = $formulario->id;
 
-				//Crear registro para posteriormente validar el formulario
+				//Generamos el formulario para enviarlo a los técnicos
 				if ($request->estado == 'enviado') {
+					//Crear registro para posteriormente validar el formulario
 					$formValido = new FormValido;
 					$formValido->formulario_id = $lastID;
 					$formValido->save();
-
+					//Actualizamos el usuario
 					$usuario = Usuario::find($idUsuario);
 					$usuario->localidad = $request->localidadEmprendedor;
 					$usuario->domicilio = $request->domicilioEmprendedor;
@@ -80,11 +87,16 @@ class FinanciamientoController extends Controller
 					$usuario->telefono = $request->telefonoEmprendedor;
 					$usuario->actividadPrincipal = $request->actPrincipalEmprendimiento;
 					$usuario->save();
-					if ($request->estadoEmprendimiento == 'nuevo') {
+
+					if (!$request->idEmprendimiento) {
+						//Si no existe un emprendimiento cargado en la bd creamos uno...
 						$emprendimiento = new Emprendimiento;
+						$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
 			            $emprendimiento->denominacion = $request->denominacion;
 			            $emprendimiento->tipoSociedad = $request->tipoSociedad;
 			            $emprendimiento->cuit = $request->cuitEmprendimiento;
+			            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
+			            $emprendimiento->localidad = $request->localidadEmprendimiento;
 			            $emprendimiento->email = $request->emailEmprendimiento;
 			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
 			            $emprendimiento->save();
@@ -94,8 +106,9 @@ class FinanciamientoController extends Controller
 			            $trabaja->emprendimiento_id = $emprendimiento->id;
 			            $trabaja->cargo = $request->cargo;
 			            $trabaja->save();
-					} else if ($request->estadoEmprendimiento == 'en funcionamiento') {
+					} else {
 						$emprendimiento = Emprendimiento::find($request->idEmprendimiento);
+						$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
 			            $emprendimiento->cuit = $request->cuitEmprendimiento;
 			            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
 			            $emprendimiento->localidad = $request->localidadEmprendimiento;
@@ -112,6 +125,6 @@ class FinanciamientoController extends Controller
 				return "Estado desconocido por sistema.";
 			} 
 		}
-    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales, 'emprendimientosUsuario' => $emprendimientosUsuario]);
+    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales, 'emprendimientosUsuario' => $emprendimientos]);
     }
 }
