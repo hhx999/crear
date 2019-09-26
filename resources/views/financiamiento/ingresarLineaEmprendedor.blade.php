@@ -130,7 +130,6 @@
 			    });
 
 			});
-
 			</script>
 	            <div id="wizard">
 	                <h2>INFORMACIÓN</h2>
@@ -162,9 +161,27 @@
 							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$dataUsuario->dni}}" readonly="on">
 						</div>
 						<div class="w3-half">
-	                    	<label>Localidad</label>
-							<input class="w3-input datosEmprendedor" type="text" name="localidadEmprendedor" placeholder="Ingresar la localidad del emprendedor..." value="{{$dataUsuario->get_localidad->nombre ?? ''}}">
+							<div style="margin-right: 10px;margin-left: 10px;height: 60px;">
+								<label>Localidad</label>
+								<select class="w3-select datosEmprendimiento" name="localidadEmprendedor">
+									@if(!empty($dataUsuario->get_localidad))
+										@foreach($localidades as $localidad)
+											@if($localidad->id == $dataUsuario->get_localidad->id)
+											<option selected value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+											@else
+								    		<option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+								    		@endif
+								    	@endforeach
+								   	@else
+								   	<option selected disabled value="">Seleccioná tu localidad...</option>
+								   	@foreach($localidades as $localidad)
+								    		<option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+								    @endforeach
+							    	@endif
+								</select>
+							</div>
 						</div>
+
 						<div class="w3-half">
 	                    	<label>Domicilio real</label>
 							<input class="w3-input datosEmprendedor" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor..." value="{{$dataUsuario->domicilio}}">
@@ -318,9 +335,9 @@
 							<div style="margin-right: 10px;margin-left: 10px;height: 60px;">
 								<label>Actividad principal</label>
 								<select id="actPrincipalEmprendimiento" class="w3-select datosEmprendimiento" name="actPrincipalEmprendimiento">
-									@if($dataUsuario->get_actividadPrincipal)
+									@if(!empty($dataUsuario->get_actividadPrincipal))
 										@foreach($actPrincipales as $actividad)
-											@if($actividad->id == $dataUsuario->getActividadPrincipal->id)
+											@if($actividad->id == $dataUsuario->get_actividadPrincipal->id)
 											<option selected value="{{$actividad->id}}">{{$actividad->nombre}}</option>
 											@else
 								    		<option value="{{$actividad->id}}">{{$actividad->nombre}}</option>

@@ -13,6 +13,8 @@ use App\Usuario;
 use App\FormValido;
 use App\ActividadesPrincipales;
 use App\Emprendimiento;
+use App\Trabaja;
+use App\Localidad;
 
 class FinanciamientoController extends Controller
 {
@@ -42,7 +44,8 @@ class FinanciamientoController extends Controller
 
     	$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	
+    	$emprendimientos = NULL;
+    	$localidades = Localidad::orderBy('nombre','asc')->get();
     	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
     	for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
     		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->id);
@@ -56,7 +59,6 @@ class FinanciamientoController extends Controller
 			//el tipo de formulario es 1(linea emprendedor)
 			$idForm = 1;
 			$estadosValidos = config('constantes.estadosIngresoForm');
-
 			//El estado cuando es nulo es 'enviado'
 			if ($request->estado == NULL) {
 					$request->estado = 'enviado';
@@ -117,7 +119,6 @@ class FinanciamientoController extends Controller
 			            $emprendimiento->save();
 					}
 				}
-
 				//Retornamos valores
 				return $request->all();
 			} else {
@@ -125,6 +126,6 @@ class FinanciamientoController extends Controller
 				return "Estado desconocido por sistema.";
 			} 
 		}
-    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales, 'emprendimientosUsuario' => $emprendimientos]);
+    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
     }
 }

@@ -4,6 +4,7 @@ $(function ()
           headerTag: "h2",
           bodyTag: "section",
           transitionEffect: "slideLeft",
+          enableAllSteps: true,
                 onStepChanging: function (event, currentIndex, newIndex)
                   {
                     return $("#formLineaEmprendedor").valid();
