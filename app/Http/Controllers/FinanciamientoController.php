@@ -48,7 +48,7 @@ class FinanciamientoController extends Controller
     	$localidades = Localidad::orderBy('nombre','asc')->get();
     	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
     	for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
-    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->id);
+    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
     	}
 
     	//Obtenemos los datos mediante POST
