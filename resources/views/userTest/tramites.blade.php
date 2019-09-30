@@ -8,7 +8,7 @@
 				Ingresá el número del proyecto:
 			</h3>
 
-				<input class="w3-input w3-border" name="numeroProyecto" type="text" placeholder="Por favor ingrese el número de proyecto habilitado por el sistema" style="color:black !important;text-align: center;">
+				<input class="w3-input w3-border" name="numeroSeguimiento" type="text" placeholder="Por favor ingrese el número de proyecto habilitado por el sistema" style="color:black !important;text-align: center;">
 				<br>
 				<a class="w3-button w3-blue" id="buscarSeguimientoProyecto" style="text-decoration: none;">Buscar proyecto</a>
 			<hr>

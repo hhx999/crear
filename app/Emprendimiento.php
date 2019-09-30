@@ -17,5 +17,10 @@ class Emprendimiento extends Model
     ];
 
     // Relationships
+
+    public function trabajaEn()
+    {
+        return $this->hasOne('App\Trabaja','emprendimiento_id');
+    }
     
 }

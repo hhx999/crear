@@ -949,7 +949,7 @@ th {
 <script type="text/javascript" src="{{ asset('js/bienes_garante.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/calculo_items.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/nombreInputsStyle.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/rules_validation.js') }}"></script>
+<!--<script type="text/javascript" src="{{ asset('js/rules_validation.js') }}"></script>-->
 
 <input type="hidden" id="urlRevision" value="{{ url('/agregarRevision') }}">
 

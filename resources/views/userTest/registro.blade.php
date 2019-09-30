@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<header class="w3-container" style="padding-top:22px">
 	    <h3><b><i class="fa fa-dashboard"></i> Registráte para poder acceder a la plataforma!</b></h3>
@@ -17,6 +18,7 @@
                         headerTag: "h2",
                         bodyTag: "section",
                         transitionEffect: "slideLeft",
+                        enableAllSteps: true,
                         onStepChanging: function (event, currentIndex, newIndex)
 		                  {
 		                    return $("#formRegistroUsuario").valid();
@@ -130,6 +132,9 @@
 						    <input id="fecNacimiento" style="width: 50%;" class="w3-input w3-border w3-round-large" type="text" name="fecNacimiento" id="datepicker" placeholder="Ingrese su fecha de nacimiento...">
 						</div>
 					</div>
+					<script type="text/javascript">
+						$('#fecNacimiento').mask('00-00-0000');
+					</script>
 					<div class="w3-half">
 						<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
 						    <label>Actividad principal</label>

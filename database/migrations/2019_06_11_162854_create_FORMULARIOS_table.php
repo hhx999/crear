@@ -16,6 +16,7 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->integer('id', true);
 			//Estado del proyecto
 			$table->integer('estado')->nullable();
+			$table->integer('numeroSeguimiento')->nullable();
 			//Portada del formulario, la portada la llenan los administradores del crear
 			$table->string('tituloProyecto', 45)->nullable();
 			$table->string('nombreSolicitante', 45)->nullable();

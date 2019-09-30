@@ -53,7 +53,21 @@ class CuestionarioLineaSeeder extends Seeder
         $cuestionarioLinea = new F_CuestionarioLinea();
         $cuestionarioLinea->estado = '3';
         $cuestionarioLinea->antiguedad = '0';
+        $cuestionarioLinea->destino = 'c';
+        $cuestionarioLinea->form_tipo_id = $lineas['emprendedor'];
+        $cuestionarioLinea->save();
+
+        $cuestionarioLinea = new F_CuestionarioLinea();
+        $cuestionarioLinea->estado = '3';
+        $cuestionarioLinea->antiguedad = '1';
         $cuestionarioLinea->destino = 'b';
+        $cuestionarioLinea->form_tipo_id = $lineas['emprendedor'];
+        $cuestionarioLinea->save();
+
+        $cuestionarioLinea = new F_CuestionarioLinea();
+        $cuestionarioLinea->estado = '3';
+        $cuestionarioLinea->antiguedad = '1';
+        $cuestionarioLinea->destino = 'c';
         $cuestionarioLinea->form_tipo_id = $lineas['emprendedor'];
         $cuestionarioLinea->save();
 

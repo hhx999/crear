@@ -22,6 +22,10 @@ class UsuarioController extends BaseController
 {
     public function login(Request $request)
     {
+      if ($request->session()->get('id_usuario')) {
+        return redirect(url('/usuarioIndex'));
+                  exit();
+      }
       $msgError = '';
       if (!empty($request->input('dni'))) {
         try {
@@ -55,7 +59,7 @@ class UsuarioController extends BaseController
     {
       $rol = 'user';
       $msg = "";
-      $localidades = Localidad::orderBy('nombre', 'asc')->get();
+      $localidades = Localidad::orderBy('id', 'asc')->get();
       $agencias = Agencia::orderBy('nombre','asc')->get();
       $actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
       if ($request->isMethod('post')) {
@@ -210,13 +214,13 @@ class UsuarioController extends BaseController
     }
     public function devuelveDatosSeguimiento(Request $request)
     {
-      $formulario = Formulario::where('numeroProyecto', $request->numeroProyecto)->latest()->firstOrFail();
+      $formulario = Formulario::where('numeroSeguimiento', $request->numeroSeguimiento)->latest()->firstOrFail();
 
       $estado = $formulario->estado;
       $pasosValidos = $formulario->pasosValidos;
       $observaciones = $pasosValidos->observaciones;
 
-      $datosSeguimiento = ['numeroProyecto' => $formulario->numeroProyecto, 'nombreSolicitante' => $formulario->nombreSolicitante, 'estado' => $estado ,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones];
+      $datosSeguimiento = ['numeroSeguimiento' => $formulario->numeroSeguimiento, 'nombreSolicitante' => $formulario->nombreApellido, 'estado' => $estado ,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones];
       $datosSeguimiento = json_encode($datosSeguimiento);
 
       return $datosSeguimiento;

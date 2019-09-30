@@ -296,23 +296,24 @@
 						  </div>
 						<!-- Fin del modal datos de emprendedor -->
 
+						<div class="w3-col m12" style="border: 2px white solid;">
 						@if($emprendimientosUsuario)
-						<div class="w3-col m12">
-							<select class="w3-select" id="idEmprendimiento" name="idEmprendimiento">
-								<option selected disabled value="">Seleccioná tú emprendimiento...</option>
-								@foreach($emprendimientosUsuario as $emprendimiento)
-									<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
-								@endforeach
-							</select>
-						</div>
-						@endif
-						<br>
-						<div class="w3-col m12">
-							<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
-								<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
-								<option value="nuevo">Nuevo</option>
-								<option value="en funcionamiento">En funcionamiento</option>
-							</select>
+							<div class="w3-half">
+								<select class="w3-select" id="idEmprendimiento" name="idEmprendimiento">
+									<option selected disabled value="">Seleccioná tú emprendimiento...</option>
+									@foreach($emprendimientosUsuario as $emprendimiento)
+										<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
+									@endforeach
+								</select>
+							</div>
+							@endif
+							<div class="w3-half">
+								<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
+									<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
+									<option value="nuevo">Nuevo</option>
+									<option value="en funcionamiento">En funcionamiento</option>
+								</select>
+							</div>
 						</div>
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
@@ -322,7 +323,7 @@
 							<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
 								    <label>Tipo de sociedad</label>
-								    <select class="w3-select" name="tipoSociedad">
+								    <select id="tipoSociedad" class="w3-select" name="tipoSociedad">
 									    <option value="" disabled selected>Elegí el tipo de sociedad...</option>
 									    <option value="Sociedad Anónima (S.A.)">Sociedad Anónima (S.A.)</option>
 									    <option value="Sociedad de Responsabilidad Limitada (S.R.L.)">Sociedad de Responsabilidad Limitada (S.R.L.)</option>
@@ -332,9 +333,9 @@
 							</div>
 						</div>
 						<div class="w3-half">
-							<div style="margin-right: 10px;margin-left: 10px;height: 60px;">
+							<div style="margin-right: 10px;margin-left: 10px;height: 60px;" class="datosEmprendimiento">
 								<label>Actividad principal</label>
-								<select id="actPrincipalEmprendimiento" class="w3-select datosEmprendimiento" name="actPrincipalEmprendimiento">
+								<select id="actPrincipalEmprendimiento" class="w3-select" name="actPrincipalEmprendimiento">
 									@if(!empty($dataUsuario->get_actividadPrincipal))
 										@foreach($actPrincipales as $actividad)
 											@if($actividad->id == $dataUsuario->get_actividadPrincipal->id)
@@ -366,6 +367,35 @@
 									$(this).prop('hidden', false);
 								});
 							});
+							$('#idEmprendimiento').change(function () {
+								var datos = {};
+							        datos['idEmprendimiento'] = $(this).val();
+							    $.ajax({
+							        type: 'POST',
+							        url: "{{ url('/obtenerDatosEmprendimiento') }}",
+							        data : datos
+							    }).done(function (data) {
+							    	//crea array para respuestas
+							    	//console.log(data.estadoEmprendimiento);
+							    	$('#estadoEmprendimiento option[value="'+data.estadoEmprendimiento+'"]').attr('selected', 'selected');
+							    	if (data.estadoEmprendimiento == 'en funcionamiento') {
+							    		$('#estadoEmprendimiento option:not(:selected)').attr('disabled', true);
+							    	}
+							    	 $('input[name="denominacion"]').val(data.denominacion);
+							    	 $('input[name="tipoSociedad"]').val(data.tipoSociedad);
+							    	 $('#tipoSociedad option[value="'+data.tipoSociedad+'"]').attr('selected', 'selected');
+							    	 $('input[name="cuitEmprendimiento"]').val(data.cuit);
+							    	 $('#cargoEmprendimiento option[value="'+data.cargo+'"]').attr('selected', 'selected');
+							    	$('#cargoEmprendimiento option:not(:selected)').attr('disabled', true);
+							    	 $('input[name="domicilioEmprendimiento"]').val(data.domicilio);
+							    	 $('input[name="localidadEmprendimiento"]').val(data.localidad);
+							    	 $('input[name="emailEmprendimiento"]').val(data.email);
+							    	 $('input[name="telefonoEmprendimiento"]').val(data.telefono);
+							    	console.log('OK 202!');
+							    }).fail(function () {
+							        console.log('Error contacte con el administrador de la aplicación.');
+							    });
+							})
 							$('#estadoEmprendimiento').change(function(){ 
 							    var value = $(this).val();
 							    if (value == 'nuevo') {
@@ -400,10 +430,6 @@
 								$('#actPrincipalEmprendimiento').attr("disabled", true); 
 								document.getElementById('id02').style.display='none';
 							});
-							$('#idEmprendimiento').change(function(){ 
-							    var idEmprendimiento = $(this).val();
-							    console.log(idEmprendimiento);
-							});
 						</script>
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
@@ -418,7 +444,7 @@
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
 								<div style="padding: 20px;">
-								    <select class="w3-select" name="cargo">
+								    <select class="w3-select" id="cargoEmprendimiento" name="cargo">
 									    <option value="" disabled selected>Elegí el cargo del solicitante...</option>
 									    <option value="jefe">Jefe</option>
 									    <option value="responsable">Responsable</option>
@@ -437,7 +463,7 @@
 							</div>
 							<div class="w3-half">
 								<div style="margin-right: 10px;margin-left: 10px;">
-								    <label>Telefono</label>
+								    <label>Teléfono</label>
 								    <input class="w3-input w3-border" type="text" name="telefonoEmprendimiento" placeholder="Ingrese el telefono de contacto con el emprendimiento...">
 								</div>
 							</div>

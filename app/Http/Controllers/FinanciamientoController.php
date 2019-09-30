@@ -25,6 +25,7 @@ class FinanciamientoController extends Controller
     }
     function cuestionarioCreditos(Request $request)
     {
+    	$lineas = NULL;
     	$opcionesCuestionario = DB::table('f__cuestionario_lineas')
 				->where('estado','=', intval($request->estado))
 			    ->where('antiguedad', '<=', intval($request->antiguedad))
@@ -38,6 +39,29 @@ class FinanciamientoController extends Controller
 
 		return view('userTest.credito', ['lineas_principales' => $lineas]);
     }
+    function obtenerDatosEmprendimiento(Request $request)
+    {
+    	$idUsuario = $request->session()->get('id_usuario');
+    	$datosUsuario = Usuario::find($idUsuario);
+    	$datosEmprendimiento = NULL;
+
+    	if ($request->isMethod('post')) {
+	        if ($datosUsuario->emprendimientos) {
+	          	for ($i=0; $i < count($datosUsuario->emprendimientos); $i++) { 
+		    		$datosEmprendimientos[$i] = Emprendimiento::find($datosUsuario->emprendimientos[$i]->emprendimiento_id);
+		    	}
+	        }
+	        if ($request->has('idEmprendimiento')) {
+	        	foreach ($datosEmprendimientos as $emprendimiento) {
+	        		if ($emprendimiento->id == $request->input('idEmprendimiento')) {
+	        			$emprendimientoSolicitado = $emprendimiento;
+	        			$emprendimientoSolicitado['cargo'] = $emprendimiento->trabajaEn->cargo;
+	        		}
+	        	}
+	        	return $emprendimientoSolicitado;
+	        }
+    	}
+    }
     function ingresarLineaEmprendedor(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
@@ -45,7 +69,7 @@ class FinanciamientoController extends Controller
     	$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$emprendimientos = NULL;
-    	$localidades = Localidad::orderBy('nombre','asc')->get();
+    	$localidades = Localidad::all();
     	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
     	for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
     		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
@@ -63,6 +87,8 @@ class FinanciamientoController extends Controller
 			if ($request->estado == NULL) {
 					$request->estado = 'enviado';
 				}
+			$fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
+			$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]);
 			//Los estados enviados serán los que el administrador podrá ver y corregir
 			//Los estados borradores serán para ir guardando datos hasta estar seguros de enviar el formulario
 			//Los estados en esta parte son solo guías que ayudarán al usuario
@@ -77,6 +103,10 @@ class FinanciamientoController extends Controller
 
 				//Generamos el formulario para enviarlo a los técnicos
 				if ($request->estado == 'enviado') {
+					$numeroSeguimiento = $dataUsuario->dni . $lastID;
+					$addFormNumeroSeguimiento = Formulario::find($lastID);
+					$addFormNumeroSeguimiento->numeroSeguimiento = $numeroSeguimiento;
+					$addFormNumeroSeguimiento->save();
 					//Crear registro para posteriormente validar el formulario
 					$formValido = new FormValido;
 					$formValido->formulario_id = $lastID;
@@ -118,6 +148,7 @@ class FinanciamientoController extends Controller
 			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
 			            $emprendimiento->save();
 					}
+					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
 				}
 				//Retornamos valores
 				return $request->all();

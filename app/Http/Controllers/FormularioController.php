@@ -50,6 +50,10 @@ class FormularioController extends Controller
       $session = $request->session();
 
       $msgError = '';
+      if ($request->session()->get('id_usuario') != 777) {
+        return redirect(url('/usuarioLogin'));
+        exit();
+      }
       if (!empty($request->input('dni'))) {
         try {
           $usuario = Usuario::where('dni', $request->input('dni') )->first();
