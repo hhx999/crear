@@ -1,6 +1,6 @@
 @extends('userTest.layout')
 	
-	@section('title') Perfil @endsection
+	@section('title') Mi perfil @endsection
 <style type="text/css">
 	a {
 		text-decoration: none !important;
@@ -18,6 +18,79 @@
 	<header class="w3-container" style="padding-top:22px">
 	    <h5><b><i class="fa fa-dashboard"></i> Mi perfil</b></h5>
 	</header>
+	<style>
+		.escaleraEmprendedor {
+			display:block;
+			height:60px;
+		}
+		.escaleraEmprendedor:before {
+		    content: '\25CF';
+			display: block;
+			width: 0px;
+			height: 23px;
+			position: relative;
+			left: 290px;
+			top: 0px;
+			font-size: 30px;
+		}
+		.final:before {
+			content: '▶';
+		}
+		.activoEscalera:before {
+			content: "•";
+			color: #6bc55d !important;
+			font-size: 60px;
+		    top: -20px;
+		    left: 285px;
+		}
+		.escaleraEmprendedor .item {
+			border-left: 2px solid;
+			border-top: 2px solid;
+			width: 300px;
+			height: 30px;
+			padding: 30px;
+		}
+		.escaleraEmprendedor .item.active{
+			border-left: 4px solid #009688;
+			border-top: 4px solid #009688;
+			width: 300px;
+			height: 30px;
+			padding: 30px;
+		}
+		.txtEscalon {
+			position: relative;
+			top:-70px;
+		}
+		</style>
+	<div class="w3-col m12">
+		<div style="margin-bottom: 50px;">
+			<div class="escaleraEmprendedor final" style="margin-left:900px;">
+				<div class="item">
+					<span class="txtEscalon">Responsable Inscripto</span>
+				</div>
+			</div>
+			<div class="escaleraEmprendedor" style="margin-left:600px;">
+				<div class="item">
+					<span class="txtEscalon">Monotributista de F-K</span>
+				</div>
+			</div>
+			<div class="escaleraEmprendedor" style="margin-left:300px;">
+				<div class="item">
+					<span class="txtEscalon">Monotributista de A-E</span>
+				</div>
+			</div>
+			<div class="escaleraEmprendedor activoEscalera">
+				<div class="item active" style="border-left: 0px !important;">
+					<span class="txtEscalon">Informal</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.escaleraEmprendedor .item').click( function() {
+			$(this).toggleClass('active');
+		});
+	</script>
 	  <div class="w3-row-padding w3-margin-bottom">
 	    <div class="w3-col m6">
 	    	<a href="{{url('perfil/emprendimientos')}}">

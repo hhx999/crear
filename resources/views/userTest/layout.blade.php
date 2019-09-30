@@ -36,14 +36,14 @@
           <hr>
           <div class="w3-bar">
             <a href="{{url('/usuarioIndex')}}" class="w3-bar-item w3-button">Inicio</a>
-            <a href="{{url('/perfil')}}" class="w3-bar-item w3-button w3-hide-small">Perfil</a>
-            <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-red w3-button w3-hide-small">Salir</a>
+            <a href="{{url('/perfil')}}" class="w3-bar-item w3-button w3-hide-small">Mi Perfil</a>
+            <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-red w3-button w3-hide-small">Cerrar sesión</a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
           </div>
           <div id="demo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
             <a href="{{url('/usuarioIndex')}}" class="w3-bar-item w3-button">Inicio</a>
-            <a href="{{url('/perfil')}}" class="w3-bar-item w3-button">Perfil</a>
-            <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-button">Salir</a>
+            <a href="{{url('/perfil')}}" class="w3-bar-item w3-button">Mi Perfil</a>
+            <a href="{{url('/usuarioLogout')}}" class="w3-bar-item w3-button">Cerrar sesión</a>
           </div>
         </div>
         @endif
