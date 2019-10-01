@@ -123,7 +123,7 @@
 			$(window).on("load",function(){
 				$(".consultaSituacion").remove();
 				$(".graficoSituacion").css('opacity','1');
-				$(".graficoSituacion").fadeIn(5000);
+				$(".graficoSituacion").fadeIn("slow",1);
 				$(".escaleraEmprendedor").each(function() {
 					console.log($(this).attr("id"));
 					$(this).toggleClass('activoEscalera')
@@ -131,7 +131,6 @@
 					$(this).children('span').children('span').css('font-weight','bold');
 				});
 				$(".escaleraEmprendedor").each(function() {
-					console.log($(this).attr("id"));
 					$(this).toggleClass('activoEscalera')
 					$(this).children('div').toggleClass('active');
 					$(this).children('span').children('span').css('font-weight','bold');

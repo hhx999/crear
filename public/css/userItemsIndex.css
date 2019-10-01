@@ -29,10 +29,10 @@
 		opacity:0.75;
 	}
 	.opcionMenuUsuario.capacitaciones {
-		background-color: #a6d35d;
+		background-color: #57f95d;
 	}
 	.opcionMenuUsuario.financiamiento {
-		background-color: #ffc857;
+		background-color: #ffe754;
 	}
 	.opcionMenuUsuario.comercioInterior {
 		background-color:  #e9724c;
@@ -56,19 +56,19 @@
 		background-image: url('../img/opcionesIndex/comercioExterior.png');
 	}
 	.creditos {
-		background-color: #ffc857;
+		background-color: #ffe754;
 		background-image: url("../img/opcionesMenuUsuario/credito.png");
 	}
 	.tramites {
-		background-color: #ffc857;
+		background-color: #ffe754;
 		background-image: url("../img/opcionesMenuUsuario/tramites.png");
 	}
 	.borradores {
-		background-color: #ffc857;
+		background-color: #ffe754;
 		background-image: url("../img/opcionesMenuUsuario/borradores.png");
 	}
 	.documentacion {
-		background-color: #ffc857;
+		background-color: #ffe754;
 		background-image: url("../img/opcionesMenuUsuario/documentacion.png");
 	}
 	.textIndexItems {
@@ -108,18 +108,18 @@
 	/* Capacitaciones */
 
 	.capacitate {
-		background-color: #a6d35d;
+		background-color: #57f95d;
 		background-image: url('../img/opcionesIndex/capacitaciones.png');
 	}
 	.capacitador {
-		background-color: #a6d35d;
+		background-color: #57f95d;
 		background-image: url("../img/opcionesCapacitaciones/reg_capacitador.png");
 	}
 	.consultaCapacitacion {
-		background-color: #a6d35d;
+		background-color: #57f95d;
 		background-image: url("../img/opcionesCapacitaciones/consultaCapacitacion.png");
 	}
 	.documentacionCapacitacion {
-		background-color: #a6d35d;
+		background-color: #57f95d;
 		background-image: url("../img/opcionesMenuUsuario/documentacion.png");
 	}
