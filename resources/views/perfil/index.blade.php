@@ -24,53 +24,86 @@
 			height:60px;
 		}
 		.escaleraEmprendedor:before {
-		    content: '\25CF';
+		    content: '•';
 			display: block;
 			width: 0px;
 			height: 23px;
 			position: relative;
-			left: 260px;
-			top: 0px;
-			font-size: 30px;
+			left: 24%;
+			top: -7px;
+			font-size: 3em;
 		}
 		.final:before {
 			content: '▶';
+			font-size: 25px;
+			top: 5px;
 		}
 		.activoEscalera:before {
 			content: "•";
 			color: #6bc55d !important;
 			font-size: 60px;
-		    top: -20px;
-		    left: 255px;
+		    top: -15px;
+		    left: 23.7%;
 		}
 		.escaleraEmprendedor .item {
 			border-left: 2px solid;
 			border-top: 2px solid;
-			width: 270px;
+			width: 25%;
 			height: 30px;
 			padding: 30px;
 		}
 		.escaleraEmprendedor .item.active{
 			border-left: 4px solid #009688;
 			border-top: 4px solid #009688;
-			width: 270px;
+			width: 25%;
 			height: 30px;
 			padding: 30px;
 		}
 		.txtEscalon {
 			position: relative;
-			top:-70px;
+			top:-85px;
 		}
 		.consultaSituacion {
 				z-index: 10;
 				position: relative;
-				top: 100;
+				top: -250px;
 		}
 		.graficoSituacion {
 			opacity: 0.3;
 		}
 		</style>
 	<div class="w3-col m12">
+		<div class="graficoSituacion">
+		<p>Situación impositiva</p>
+		<div style="margin-bottom: 50px;">
+				<div style="margin-left: 75%;width: 100%;">
+					<div id="ResponsableInscripto" class="escaleraEmprendedor final">
+						<div class="item">
+							<span class="txtEscalon">Responsable Inscripto</span>
+						</div>
+					</div>
+				</div>
+				<div style="margin-left: 50%;width: 100%;">
+					<div id="MonotributoFK" class="escaleraEmprendedor">
+						<div class="item">
+							<span class="txtEscalon">Monotributista de F-K</span>
+						</div>
+					</div>
+				</div>
+				<div style="margin-left: 25%;width: 100%;">
+					<div id="MonotributoAE" class="escaleraEmprendedor">
+						<div class="item">
+							<span class="txtEscalon">Monotributista de A-E</span>
+						</div>
+					</div>
+				</div>
+				<div id="Informal" class="escaleraEmprendedor">
+					<div class="item" style="border-left: 0px;">
+						<span class="txtEscalon">Informal</span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="consultaSituacion">
 			<p>Cual es tu situación impositiva?</p>
 			<select name="situacionImpositiva">
@@ -83,48 +116,33 @@
 			<br>
 			<a href="#miPerfil" class="w3-button w3-cyan" id="enviarSituacion" style="color: white !important;">Enviar</a>
 		</div>
-		<div class="graficoSituacion">
-		<p>Situación impositiva</p>
-			<div style="margin-bottom: 50px;">
-				<div id="ResponsableInscripto" class="escaleraEmprendedor final" style="margin-left:830px;">
-					<div class="item">
-						<span class="txtEscalon">Responsable Inscripto</span>
-					</div>
-				</div>
-				<div id="MonotributoFK" class="escaleraEmprendedor" style="margin-left:560px;">
-					<div class="item">
-						<span class="txtEscalon">Monotributista de F-K</span>
-					</div>
-				</div>
-				<div id="MonotributoAE" class="escaleraEmprendedor" style="margin-left:290px;">
-					<div class="item">
-						<span class="txtEscalon">Monotributista de A-E</span>
-					</div>
-				</div>
-				<div id="Informal" class="escaleraEmprendedor activoEscalera" style="margin-left: 20px;">
-					<div class="item active" style="border-left: 0px !important;">
-						<span class="txtEscalon">Informal</span>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	@if($situacionImpositiva)
-	<input type="hidden" id="actualSituacion">
+	<input type="hidden" id="actualSituacion" value="{{$situacionImpositiva}}">
 		<script type="text/javascript">
 			$(window).on("load",function(){
 				$(".consultaSituacion").remove();
 				$(".graficoSituacion").css('opacity','1');
 				$(".graficoSituacion").fadeIn(5000);
 				$(".escaleraEmprendedor").each(function() {
-					if($('#actualSituacion') == $(this).attr("id"))
+					console.log($(this).attr("id"));
+					$(this).toggleClass('activoEscalera')
+					$(this).children('div').toggleClass('active');
+					$(this).children('span').children('span').css('font-weight','bold');
+				});
+				$(".escaleraEmprendedor").each(function() {
+					console.log($(this).attr("id"));
+					$(this).toggleClass('activoEscalera')
+					$(this).children('div').toggleClass('active');
+					$(this).children('span').children('span').css('font-weight','bold');
+					if($('#actualSituacion').val() == $(this).attr("id"))
 					{
 						$(this).toggleClass('activoEscalera')
 						$(this).children('div').toggleClass('active');
 						$(this).children('span').children('span').css('font-weight','bold');
+						return false;
 					}
-					console.log('ok');
-				})
+				});
 		    });
 		</script>
 	@endif
