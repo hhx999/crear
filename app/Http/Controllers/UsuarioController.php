@@ -229,4 +229,16 @@ class UsuarioController extends BaseController
     {
       return 1;
     }
+    public function agregarSituacionImpositiva(Request $request) 
+    {
+      $idUsuario = $request->session()->get('id_usuario');
+      try {
+        $usuario = Usuario::find($idUsuario);
+        $usuario->situacionImpositiva = $request->situacionImpositiva;
+        $usuario->save();
+      } catch (Exception $e) {
+        return 0;
+      }
+      return 1;
+    }
 }

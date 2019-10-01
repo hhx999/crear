@@ -83,5 +83,6 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::post('/simuladorCreditos','UsuarioController@simuladorCreditos');
 	Route::post('/financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
 	Route::post('/obtenerDatosEmprendimiento','FinanciamientoController@obtenerDatosEmprendimiento');
+	Route::post('agregarSituacion','UsuarioController@agregarSituacionImpositiva');
 });
 

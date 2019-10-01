@@ -15,7 +15,7 @@
 	}
 </style>
 	@section('content')
-	<header class="w3-container" style="padding-top:22px">
+	<header class="w3-container" style="padding-top:22px" id="miPerfil">
 	    <h5><b><i class="fa fa-dashboard"></i> Mi perfil</b></h5>
 	</header>
 	<style>
@@ -61,38 +61,92 @@
 			position: relative;
 			top:-70px;
 		}
+		.consultaSituacion {
+				z-index: 10;
+				position: relative;
+				top: 100;
+		}
+		.graficoSituacion {
+			opacity: 0.3;
+		}
 		</style>
-	<div>
 	<div class="w3-col m12">
-		<div style="margin-bottom: 50px;">
-			<div class="escaleraEmprendedor final" style="margin-left:830px;">
-				<div class="item">
-					<span class="txtEscalon">Responsable Inscripto</span>
+		<div class="consultaSituacion">
+			<p>Cual es tu situación impositiva?</p>
+			<select name="situacionImpositiva">
+				<option selected disabled>Seleccioná tú situación impositiva...</option>
+				<option value="Informal">Informal</option>
+				<option value="MonotributoAE">Monotributo(A hasta E)</option>
+				<option value="MonotributoFK">Monotributo(F hasta K)</option>
+				<option value="ResponsableInscripto">Responsable incripto</option>
+			</select>
+			<br>
+			<a href="#miPerfil" class="w3-button w3-cyan" id="enviarSituacion" style="color: white !important;">Enviar</a>
+		</div>
+		<div class="graficoSituacion">
+		<p>Situación impositiva</p>
+			<div style="margin-bottom: 50px;">
+				<div id="ResponsableInscripto" class="escaleraEmprendedor final" style="margin-left:830px;">
+					<div class="item">
+						<span class="txtEscalon">Responsable Inscripto</span>
+					</div>
 				</div>
-			</div>
-			<div class="escaleraEmprendedor" style="margin-left:560px;">
-				<div class="item">
-					<span class="txtEscalon">Monotributista de F-K</span>
+				<div id="MonotributoFK" class="escaleraEmprendedor" style="margin-left:560px;">
+					<div class="item">
+						<span class="txtEscalon">Monotributista de F-K</span>
+					</div>
 				</div>
-			</div>
-			<div class="escaleraEmprendedor" style="margin-left:290px;">
-				<div class="item">
-					<span class="txtEscalon">Monotributista de A-E</span>
+				<div id="MonotributoAE" class="escaleraEmprendedor" style="margin-left:290px;">
+					<div class="item">
+						<span class="txtEscalon">Monotributista de A-E</span>
+					</div>
 				</div>
-			</div>
-			<div class="escaleraEmprendedor activoEscalera" style="margin-left: 20px;">
-				<div class="item active" style="border-left: 0px !important;">
-					<span class="txtEscalon">Informal</span>
+				<div id="Informal" class="escaleraEmprendedor activoEscalera" style="margin-left: 20px;">
+					<div class="item active" style="border-left: 0px !important;">
+						<span class="txtEscalon">Informal</span>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+	@if($situacionImpositiva)
+	<input type="hidden" id="actualSituacion">
+		<script type="text/javascript">
+			$(window).on("load",function(){
+				$(".consultaSituacion").remove();
+				$(".graficoSituacion").css('opacity','1');
+				$(".graficoSituacion").fadeIn(5000);
+				$(".escaleraEmprendedor").each(function() {
+					if($('#actualSituacion') == $(this).attr("id"))
+					{
+						$(this).toggleClass('activoEscalera')
+						$(this).children('div').toggleClass('active');
+						$(this).children('span').children('span').css('font-weight','bold');
+					}
+					console.log('ok');
+				})
+		    });
+		</script>
+	@endif
 	<script type="text/javascript">
-		$('.escaleraEmprendedor .item').click( function() {
-			$(this).toggleClass('active');
-			$(this).parent('div').toggleClass('activoEscalera');
-			$(this).children('span').css('font-weight','bold');
+		$('#enviarSituacion').click(function() {
+			console.log('Ok');
+			$.ajax({
+	            type: 'POST',
+	            url: "{{url('agregarSituacion')}}",
+	            data: {
+	                situacionImpositiva: $("select[name=situacionImpositiva]").val()
+	            },
+	            dataType: 'json',
+	            success: function(data) {
+	                window.location.reload();
+	                console.log(data);
+	            }
+	        }).fail( function( jqXHR, textStatus, errorThrown ) {
+	        	if (jqXHR.status == 404) {
+				    alert('No se encuentran resultados. [404]');
+				}
+	        });
 		});
 	</script>
 	  <div class="w3-row-padding w3-margin-bottom">

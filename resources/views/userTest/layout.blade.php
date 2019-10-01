@@ -62,8 +62,8 @@
 	}
 </style>
 <body class="bodyUI">
-  <div class="loader" align="center" style="padding-top: 300px;">
-    <img id="animation-rotate" src="{{ asset('img/logos/logocrearfirma.png') }}"><br>
+  <div class="loader" align="center" style="padding-top: 250px;">
+    <img id="animation-rotate" src="{{ asset('img/logos/logocrearfirma.png') }}" alt="Cargando..."><br>
   </div>
   	<div class="w3-col m1 w3-center"><p></p></div>
     	<div class="w3-col m10 w3-white w3-center contenedor">

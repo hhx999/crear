@@ -15,7 +15,10 @@ class PerfilController extends Controller
     	$usuario_id = $request->session()->get('id_usuario');
         $trabaja = Trabaja::where('usuario_id',$usuario_id)->get();
     	$n_emprendimientos = count($trabaja);
-    	return view('perfil.index', ['n_emprendimientos' => $n_emprendimientos]);
+
+        $usuario = Usuario::find($usuario_id);
+        $situacionImpositiva = $usuario->situacionImpositiva ?? NULL;
+    	return view('perfil.index', ['n_emprendimientos' => $n_emprendimientos, 'situacionImpositiva' => $situacionImpositiva]);
     }
     public function emprendimientos(Request $request)
     {
