@@ -29,7 +29,7 @@
 			width: 0px;
 			height: 23px;
 			position: relative;
-			left: 290px;
+			left: 260px;
 			top: 0px;
 			font-size: 30px;
 		}
@@ -41,19 +41,19 @@
 			color: #6bc55d !important;
 			font-size: 60px;
 		    top: -20px;
-		    left: 285px;
+		    left: 255px;
 		}
 		.escaleraEmprendedor .item {
 			border-left: 2px solid;
 			border-top: 2px solid;
-			width: 300px;
+			width: 270px;
 			height: 30px;
 			padding: 30px;
 		}
 		.escaleraEmprendedor .item.active{
 			border-left: 4px solid #009688;
 			border-top: 4px solid #009688;
-			width: 300px;
+			width: 270px;
 			height: 30px;
 			padding: 30px;
 		}
@@ -62,33 +62,37 @@
 			top:-70px;
 		}
 		</style>
+	<div>
 	<div class="w3-col m12">
 		<div style="margin-bottom: 50px;">
-			<div class="escaleraEmprendedor final" style="margin-left:900px;">
+			<div class="escaleraEmprendedor final" style="margin-left:830px;">
 				<div class="item">
 					<span class="txtEscalon">Responsable Inscripto</span>
 				</div>
 			</div>
-			<div class="escaleraEmprendedor" style="margin-left:600px;">
+			<div class="escaleraEmprendedor" style="margin-left:560px;">
 				<div class="item">
 					<span class="txtEscalon">Monotributista de F-K</span>
 				</div>
 			</div>
-			<div class="escaleraEmprendedor" style="margin-left:300px;">
+			<div class="escaleraEmprendedor" style="margin-left:290px;">
 				<div class="item">
 					<span class="txtEscalon">Monotributista de A-E</span>
 				</div>
 			</div>
-			<div class="escaleraEmprendedor activoEscalera">
+			<div class="escaleraEmprendedor activoEscalera" style="margin-left: 20px;">
 				<div class="item active" style="border-left: 0px !important;">
 					<span class="txtEscalon">Informal</span>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 	<script type="text/javascript">
 		$('.escaleraEmprendedor .item').click( function() {
 			$(this).toggleClass('active');
+			$(this).parent('div').toggleClass('activoEscalera');
+			$(this).children('span').css('font-weight','bold');
 		});
 	</script>
 	  <div class="w3-row-padding w3-margin-bottom">

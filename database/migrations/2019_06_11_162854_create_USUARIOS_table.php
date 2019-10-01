@@ -18,6 +18,7 @@ class CreateUSUARIOSTable extends Migration {
 			$table->integer('dni')->unique('dni');
 			$table->string('password', 255);
 			$table->string('nombreApellido', 45);
+			$table->string('situacionImpositiva')->nullable();
 			$table->date('fecNacimiento')->nullable();
 			$table->string('domicilio', 45)->nullable();
 			$table->string('email', 45);
