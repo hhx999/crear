@@ -77,6 +77,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos');
 	Route::get('perfil/emprendimientos/create','EmprendimientoController@create');
 	Route::post('perfil/emprendimientos/create','EmprendimientoController@create');
+	Route::post('perfil/actualizarDatosUsuario','PerfilController@actualizarDatosUsuario');
 	Route::get('/capacitaciones','CapacitacionesController@index');
 	Route::get('/capacitaciones/inscripcion','CapacitacionesController@inscripcion');
 	Route::get('/simuladorCreditos','UsuarioController@simuladorCreditos');

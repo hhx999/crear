@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Usuario;
 use App\Trabaja;
 use App\Emprendimiento;
+use App\Localidad;
+use App\Agencia;
+use App\ActividadesPrincipales;
 
 class PerfilController extends Controller
 {
@@ -18,7 +21,13 @@ class PerfilController extends Controller
 
         $usuario = Usuario::find($usuario_id);
         $situacionImpositiva = $usuario->situacionImpositiva ?? NULL;
-    	return view('perfil.index', ['n_emprendimientos' => $n_emprendimientos, 'situacionImpositiva' => $situacionImpositiva]);
+        $localidades = Localidad::all();
+        $agencias = Agencia::all();
+
+        $provincias = config('constantes.provincias');
+
+        $actividadesPrincipales = ActividadesPrincipales::all();
+    	return view('perfil.index', ['n_emprendimientos' => $n_emprendimientos, 'situacionImpositiva' => $situacionImpositiva, 'localidades' => $localidades, 'agencias' => $agencias,'actividadesPrincipales' => $actividadesPrincipales, 'usuario' => $usuario, 'provincias' => $provincias ]);
     }
     public function emprendimientos(Request $request)
     {
@@ -33,5 +42,22 @@ class PerfilController extends Controller
             $cargos[] = $trabaja[$i]->cargo;
         }
     	return view('perfil.emprendimientos', ["emprendimientos" => $emprendimientos, 'cargo' => $cargos]);
+    }
+    public function actualizarDatosUsuario(Request $request)
+    {
+        if($request->isMethod('post'))
+        {
+            $usuario_id = $request->session()->get('id_usuario');
+            $usuario = Usuario::find($usuario_id);
+                $usuario->domicilio = $request->domicilioUsuario;
+                $usuario->localidad = $request->localidadUsuario;
+                $usuario->provincia = $request->provinciaUsuario;
+                $usuario->agencia = $request->agenciaUsuario;
+                $usuario->actividadPrincipal = $request->actividadUsuario;
+                $usuario->email = $request->emailUsuario;
+                $usuario->telefono = $request->telefonoUsuario;
+            $usuario->save();
+            return redirect(url('/perfil'));
+        }
     }
 }

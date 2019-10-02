@@ -201,5 +201,81 @@
 		    </a>
 	    </div>
 	  </div>
+	  <div class="w3-col m12">
+	  	<h3><b>DATOS DE USUARIO</b></h3>
+	  	<form action="{{url('perfil/actualizarDatosUsuario')}}" method="post" name="formUsuario">
+	  		<div class="w3-col m12">
+				<input type="submit" name="enviarFormUsuario" class="w3-button w3-blue" value="Actualizar Datos">
+			</div>
+			<div class="w3-third" style="padding: 20px;">
+		  		<label>Domicilio:</label>
+		  		<input type="text" name="domicilioUsuario" class="w3-input" style="outline: none;background:rgba(0,0,0,0.03);color: white;" value="{{$usuario->domicilio}}">
+		  	</div>
+		  	<div class="w3-third" style="padding: 20px;">
+		  		<label>Email:</label>
+		  		<input type="text" name="emailUsuario" class="w3-input" style="outline: none;background:rgba(0,0,0,0.03);color: white;" value="{{$usuario->email}}">
+		  	</div>
+		  	<div class="w3-third" style="padding: 20px;">
+		  		<label>Teléfono:</label>
+		  		<input type="text" name="telefonoUsuario" class="w3-input" style="outline: none;background:rgba(0,0,0,0.03);color: white;" value="{{$usuario->telefono}}">
+		  	</div>
+		  	<div class="w3-half">
+				<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
+					<label>Localidad</label>
+						<select class="w3-select" style="padding: 4px 0px !important;" name="localidadUsuario">
+							@foreach ($localidades as $localidad)
+								@if($usuario->localidad == $localidad->id)
+								<option selected value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+								@else
+								<option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+								@endif
+							@endforeach
+						</select>
+				</div>
+			</div>
+		  	<div class="w3-half">
+				<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
+					<label>Provincia</label>
+						<select class="w3-select" style="padding: 4px 0px !important;" name="provinciaUsuario">
+						@foreach($provincias as $provincia)
+							@if($provincia == $usuario->provincia)
+							<option selected value="{{$provincia}}">{{$provincia}}</option>
+							@else
+							<option value="{{$provincia}}">{{$provincia}}</option>
+							@endif
+						@endforeach
+						</select>
+				</div>
+			</div>
+		  	<div class="w3-half">
+				<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
+					<label>Actividad principal</label>
+						<select class="w3-select" style="padding: 4px 0px !important;" name="actividadUsuario">
+							@foreach($actividadesPrincipales as $actividad)
+								@if($actividad->id == $usuario->actividadPrincipal)
+							    <option selected value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+							    @else
+							    <option value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+							    @endif
+							@endforeach
+						</select>
+				</div>
+			</div>
+			<div class="w3-half">
+				<div style="margin-right: 10px;margin-left: 10px;height: 95px;">
+					<label>Agencia</label>
+						<select class="w3-select" style="padding: 4px 0px !important;" name="agenciaUsuario">
+							@foreach ($agencias as $agencia)
+								@if($usuario->agencia == $agencia->id)
+								<option selected value="{{$agencia->id}}">{{$agencia->nombre}}</option>
+								@else
+								<option value="{{$agencia->id}}">{{$agencia->nombre}}</option>
+								@endif
+							@endforeach
+						</select>
+				</div>
+			</div>
+		</form>
+	  </div>
 
 	@endsection

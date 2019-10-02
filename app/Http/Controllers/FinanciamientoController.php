@@ -151,7 +151,7 @@ class FinanciamientoController extends Controller
 					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
 				}
 				//Retornamos valores
-				return $request->all();
+				return view('financiamiento.formBorrador');
 			} else {
 				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
 				return "Estado desconocido por sistema.";
