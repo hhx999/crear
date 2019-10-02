@@ -5,7 +5,7 @@ $(document).ready(function() {
             type: 'POST',
             url: $('#rutaGenerada').val(),
             data: {
-                numeroProyecto: $("input[name=numeroSeguimiento]").val()
+                numeroSeguimiento: $("input[name=numeroSeguimiento]").val()
             },
             dataType: 'json',
             success: function(data) {
@@ -17,7 +17,7 @@ $(document).ready(function() {
             	tableProyectos.addClass('w3-table');
             	var trProyectos = $('<tr></tr>'); 
             	trProyectos.append($('<th>Número del proyecto</th>'));
-            	trProyectos.append($('<th>Nombre del solicitante</th>'));
+            	trProyectos.append($('<th>Nombre del emprendedor</th>'));
             	trProyectos.append($('<th>Estado</th>'));
             	tableProyectos.append(trProyectos);
             	trProyectos = $('<tr></tr>');
@@ -40,19 +40,18 @@ $(document).ready(function() {
             	} else if (estado == 0) {
             		estado == '<span style="color:#f44336;">Eliminado</span>'
             	}
-            	/*
-            	$.each( pasosValidos, function( key, value ) {
-				  if (value != 0) {
-				  	estado = "<span style='color:light-green;'>Completo</span>";
-				  } else if ($.isEmptyObject(observaciones)) {
-				  	estado = "En espera";
-				  } else {
-				  	estado = "<span style='color:orange;'>Contiene observaciones</span><br><a href='{{ url('/editar') }}'>Ver formulario</a>";
-				  }
-				});*/
 				trProyectos.append($('<td>'+data.numeroSeguimiento+'</td>'));
-				trProyectos.append($('<td>'+data.nombreApellido+'</td>'));
-				trProyectos.append($('<td align="center">'+estado+'</td>'));
+				trProyectos.append($('<td>'+data.nombreEmprendedor+'</td>'));
+                if(observaciones)
+                {
+                    var agregadoObservaciones = '';   
+                    for (var i = 0;i < observaciones.length;i++ ) {
+                        agregadoObservaciones += '<br><b>'+observaciones[i].hoja+'</b>:'+observaciones[i].observacion+'<br>';
+                    }
+                    trProyectos.append($('<td align="center">'+estado+agregadoObservaciones+'</td>'));
+                } else {
+                    trProyectos.append($('<td align="center">'+estado+'</td>'));
+                }
 				tableProyectos.append(trProyectos);
 				$('#proyectos').append(tableProyectos);
 				/*trProyectos.append($('@get'));

@@ -214,13 +214,14 @@ class UsuarioController extends BaseController
     }
     public function devuelveDatosSeguimiento(Request $request)
     {
-      $formulario = Formulario::where('numeroSeguimiento', $request->numeroSeguimiento)->latest()->firstOrFail();
+      $formulario = Formulario::where('numeroSeguimiento', $request->numeroSeguimiento)
+      ->latest()->firstOrFail();
 
       $estado = $formulario->estado;
       $pasosValidos = $formulario->pasosValidos;
-      $observaciones = $pasosValidos->observaciones;
+      $observaciones = $pasosValidos->observaciones ?? NULL;
 
-      $datosSeguimiento = ['numeroSeguimiento' => $formulario->numeroSeguimiento, 'nombreSolicitante' => $formulario->nombreApellido, 'estado' => $estado ,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones];
+      $datosSeguimiento = ['numeroSeguimiento' => $formulario->numeroSeguimiento, 'nombreEmprendedor' => $formulario->nombreEmprendedor, 'estado' => $estado ,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones];
       $datosSeguimiento = json_encode($datosSeguimiento);
 
       return $datosSeguimiento;
