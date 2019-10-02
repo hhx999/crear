@@ -16,7 +16,7 @@
 </style>
 	@section('content')
 	<header class="w3-container" style="padding-top:22px" id="miPerfil">
-	    <h5><b><i class="fa fa-dashboard"></i> Mi perfil</b></h5>
+	    <h3><b><i class="fa fa-dashboard"></i> Mi perfil</b></h3>
 	</header>
 	<style>
 		.escaleraEmprendedor {
@@ -74,7 +74,7 @@
 		</style>
 	<div class="w3-col m12">
 		<div class="graficoSituacion">
-		<p>Situación impositiva</p>
+		<p>Situación impositiva <a href="#miPerfil" class="w3-button w3-green" id="editarSituacion" style="color: white !important;">Editar</a></p>
 		<div style="margin-bottom: 50px;">
 				<div style="margin-left: 75%;width: 100%;">
 					<div id="ResponsableInscripto" class="escaleraEmprendedor final">
@@ -121,9 +121,9 @@
 	<input type="hidden" id="actualSituacion" value="{{$situacionImpositiva}}">
 		<script type="text/javascript">
 			$(window).on("load",function(){
-				$(".consultaSituacion").remove();
+				$(".consultaSituacion").fadeOut(1000);
 				$(".graficoSituacion").css('opacity','1');
-				$(".graficoSituacion").fadeIn("slow",1);
+				$(".graficoSituacion").fadeIn(8000);
 				$(".escaleraEmprendedor").each(function() {
 					console.log($(this).attr("id"));
 					$(this).toggleClass('activoEscalera')
@@ -164,6 +164,11 @@
 				    alert('No se encuentran resultados. [404]');
 				}
 	        });
+		});
+		$('#editarSituacion').click(function() {
+			console.log('Ok');
+			$(".consultaSituacion").fadeIn(1000);
+			$(".graficoSituacion").css('opacity','0.2');
 		});
 	</script>
 	  <div class="w3-row-padding w3-margin-bottom">
