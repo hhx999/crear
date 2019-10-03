@@ -218,10 +218,13 @@
 								document.getElementById('id01').style.display='none';
 							})
 						</script>
-						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
-	                    	<label>Redes sociales:<i style="color: lightgrey;">(facebook,instagram,etc.)</i></label>
-							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar redes sociales del emprendedor...">
+	                    	<label>Facebook</label>
+							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor...">
+						</div>
+						<div class="w3-half">
+	                    	<label>Instagram</label>
+							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor...">
 						</div>
 						<div class="w3-quarter"></div>
 						<div class="w3-col m12">
@@ -230,7 +233,7 @@
 						</div>
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
-							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el emprendedor)</i></h4>
+							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
 							    <div style="display: inline-block;">
 							    	<label class="container">Ninguno
 							    		<input type="radio" checked="checked" name="gradoInstruccion" value="Ninguno">
@@ -257,15 +260,21 @@
 						</div>
 						<div class="w3-col m12">
 							<label>Otra ocupación que desarrolle en la actualidad<br><i style="color: lightgrey;">(Si no realiza ninguna deje la casilla en blanco)</i></label>
+						</div>
+						<div class="w3-half">
+							<label>Nombre de la ocupación</label>
 							<input class="w3-input" type="text" name="otraOcupación" placeholder="Ingresar otra ocupación del emprendedor...">
 						</div>
 						<div class="w3-half">
-							<label>Ingreso mensual</label>
+							<label>Ingreso mensual de la ocupación</label>
 							<input class="w3-input" type="text" name="ingresoMensual" placeholder="Ingresar el ingreso mensual del emprendedor...">
 						</div>
-						<div class="w3-half">
-							<label>Deseo de capacitación</label>
-							<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro...">
+						<div class="w3-col m12">
+							<div class="w3-third"><p></p></div>
+							<div class="w3-third">
+								<label>Deseo de capacitación</label>
+								<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro...">
+							</div>
 						</div>
 	                </section>
 	                <!--
@@ -446,8 +455,9 @@
 								<div style="padding: 20px;">
 								    <select class="w3-select" id="cargoEmprendimiento" name="cargo">
 									    <option value="" disabled selected>Elegí el cargo del solicitante...</option>
-									    <option value="jefe">Jefe</option>
-									    <option value="responsable">Responsable</option>
+									    <option value="1">Propietario</option>
+									    <option value="2">Representante legal</option>
+									    <option value="3">Socio de sociedad de hecho</option>
 									 </select>
 								</div>
 							</div>
@@ -487,7 +497,7 @@
 							</div>
 							<div class="w3-col m12">
 								<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
-								    <h4>Lugar donde se desarrolla es:</h4>
+								    <h4>El lugar donde se desarrolla el emprendimiento es:</h4>
 								    <div style="display: inline-block;">
 								    	<label class="container">Otro
 										  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
@@ -628,17 +638,48 @@
 								<i style="color: lightgrey;">¿Dónde vas a vender?</i>
 							</p>
 						</div>
-						<div class="w3-quarter"><p></p></div>
-						<div class="w3-half">
-							<div style="margin-right: 10px;margin-left: 10px;">
-							    <select class="w3-select" name="puntosVenta">
-								    <option value="" disabled selected>Elegí el punto de venta...</option>
-								    <option value="Local">Local</option>
-								    <option value="Provincial">Provincial</option>
-								    <option value="Nacional">Nacional</option>
-								 </select>
+						<style type="text/css">
+							.puntoVenta {
+								padding:20px;
+							}
+							.activoPuntoVenta {
+								background-color: #4d699c;
+							}
+						</style>
+						<div class="w3-col m12" style="border: 2px solid white;">
+							<div class="w3-third puntoVenta">
+								<input id="puntoVentaLocal" type="checkbox" name="puntoVentaLocal" value="seleccionado">
+								<label>Local<i style="color: #b3b3b3;">(
+								@foreach($localidades as $localidad)
+											@if($localidad->id == $dataUsuario->localidad)
+											{{$localidad->nombre}}
+											@endif
+								@endforeach
+								)
+								</i></label>
+							</div>
+							<div class="w3-third puntoVenta">
+								<input id="puntoVentaProvincial" type="checkbox" name="puntoVentaProvincial" value="seleccionado">
+								<label>Provincial
+									<i style="color: #b3b3b3;">(Río Negro)</i>
+								</label>
+							</div>
+							<div class="w3-third puntoVenta">
+								<input id="puntoVentaNacional" type="checkbox" name="puntoVentaNacional" value="seleccionado">
+								<label>Nacional<i style="color: #b3b3b3;">(Argentina)</i></label>
 							</div>
 						</div>
+						<script type="text/javascript">
+							$('#puntoVentaLocal').change(function() {
+								$(this).parent('div').toggleClass('activoPuntoVenta');
+							});
+							$('#puntoVentaProvincial').change(function() {
+								$(this).parent('div').toggleClass('activoPuntoVenta');
+							});
+							$('#puntoVentaNacional').change(function() {
+								$(this).parent('div').toggleClass('activoPuntoVenta');
+							});
+						</script>
 	                </section>
 	                <h2>PROD. COSTOS Y RESULTADOS</h2>
 	                <section>

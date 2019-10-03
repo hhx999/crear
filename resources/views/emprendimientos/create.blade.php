@@ -80,8 +80,9 @@
 						    <label>Cargo</label>
 						    <select class="w3-select" name="cargo">
 							    <option value="" disabled selected>Elegí el cargo...</option>
-							    <option value="jefe">Jefe</option>
-							    <option value="responsable">Responsable</option>
+							    <option value="1">Propietario</option>
+								<option value="2">Representante legal</option>
+								<option value="3">Socio de sociedad de hecho</option>
 							 </select>
 						</div>
 					</div>
