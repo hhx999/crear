@@ -148,7 +148,9 @@ class FinanciamientoController extends Controller
 			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
 			            $emprendimiento->save();
 					}
-					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
+					//Testeando datos de envío
+					return $request->all();
+					//return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
 				}
 				//Retornamos valores
 				return view('financiamiento.formBorrador');

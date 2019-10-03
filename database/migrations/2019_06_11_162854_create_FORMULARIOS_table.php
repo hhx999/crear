@@ -34,6 +34,7 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->string('telefonoEmprendedor', 20)->nullable();
 			$table->string('emailEmprendedor', 45)->nullable();
 			$table->string('facebookEmprendedor', 45)->nullable();
+			$table->string('instagramEmprendedor',45)->nullable();
 			$table->string('gradoInstruccion', 45)->nullable();
 			$table->string('otraOcupacion', 45)->nullable();
 			$table->integer('ingresoMensual')->nullable();
@@ -61,7 +62,9 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->string('ubicacionCompetencia', 45)->nullable();
 			$table->string('ventajaCompetidores')->nullable();
 			$table->string('estrategiasPromocion')->nullable();
-			$table->string('puntosVenta')->nullable();
+			$table->string('puntoVentaLocal')->nullable();
+            $table->string('puntoVentaProvincial')->nullable();
+            $table->string('puntoVentaNacional')->nullable();
 			//Producción costos y resultados
 			$table->string('materiasPrimas')->nullable();
 			$table->string('descHerramientas')->nullable();
