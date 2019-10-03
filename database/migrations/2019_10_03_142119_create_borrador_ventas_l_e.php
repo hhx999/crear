@@ -18,7 +18,7 @@ class CreateBorradorVentasLE extends Migration
             $table->string('producto', 45)->nullable();
             $table->string('udMedida', 45)->nullable();
             $table->integer('cantAnio')->nullable();
-            $table->float('precio', 10, 0);
+            $table->float('precio', 10, 0)->nullable();
             $table->integer('borrador_id')->nullable()->index('FK_FormularioBorradorVentas');
             $table->timestamps();
         });
