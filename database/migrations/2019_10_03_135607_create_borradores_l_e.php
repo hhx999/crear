@@ -14,7 +14,7 @@ class CreateBorradoresLE extends Migration
     public function up()
     {
         Schema::create('borradoresLE', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id',true);
             //Información del emprendedor, la primera hoja del formulario para el usuario
             $table->string('nombreEmprendedor', 45)->nullable();
             $table->string('dniEmprendedor', 45)->nullable();
@@ -136,8 +136,8 @@ class CreateBorradoresLE extends Migration
             $table->float('deudasSocialesMBG', 10, 0)->nullable()->default(0);
             $table->float('otrasDeudasMBG', 10, 0)->nullable()->default(0);
 
-            $table->integer('idUsuario')->index('FK_UsuarioFormulario');
-            $table->integer('form_tipo_id')->index('FK_TipoFormulario');
+            $table->integer('idUsuario')->index('FK_UsuarioFormularioBorrador');
+            $table->integer('form_tipo_id')->index('FK_TipoFormularioBorrador');
             $table->timestamps();
         });
     }
