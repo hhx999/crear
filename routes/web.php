@@ -59,30 +59,36 @@ $router->get('/logout','FormularioController@logoutUser');
 
 //TEST NUEVA INTERFAZ USUARIO
 $router->get('/usuarioLogin','UsuarioController@login');
-$router->post('/usuarioLogin','UsuarioController@login');
-$router->get('/usuarioLogout','UsuarioController@logout');
+$router->post('/usuarioLogin','UsuarioController@login'); //inicia session
+$router->get('/usuarioLogout','UsuarioController@logout'); //cierre de session
 $router->get('/usuarioRegistro','UsuarioController@registro');
-$router->post('/usuarioRegistro','UsuarioController@registro');
-$router->post('/comprobarDNI','UsuarioController@comprobarDNI');
+$router->post('/usuarioRegistro','UsuarioController@registro'); //registra usuario
+$router->post('/comprobarDNI','UsuarioController@comprobarDNI'); //comprueba si el dni existe dentro de los registros
 
 Route::group(['middleware' => ['comprobarrole:user']], function () {
-	Route::get('/usuarioIndex','UsuarioController@indexUser');
-	Route::get('/usuarioFinanciamiento','UsuarioController@financiamiento');
-	Route::get('/usuarioTramites','UsuarioController@tramitesUser');
-	Route::get('/usuarioCreditos','FinanciamientoController@creditos');
-	Route::post('/usuarioCreditos','FinanciamientoController@cuestionarioCreditos');
-	Route::get('/financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
-	Route::post('/datosSeguimiento','UsuarioController@devuelveDatosSeguimiento');
-	Route::get('perfil','PerfilController@index');
-	Route::get('perfil/emprendimientos','PerfilController@emprendimientos');
-	Route::get('perfil/emprendimientos/create','EmprendimientoController@create');
-	Route::post('perfil/emprendimientos/create','EmprendimientoController@create');
-	Route::post('perfil/actualizarDatosUsuario','PerfilController@actualizarDatosUsuario');
-	Route::get('/capacitaciones','CapacitacionesController@index');
-	Route::get('/capacitaciones/inscripcion','CapacitacionesController@inscripcion');
-	Route::get('/simuladorCreditos','UsuarioController@simuladorCreditos');
+	//------Rutas del inicio
+	Route::get('usuarioIndex','UsuarioController@indexUser');
+	Route::get('tramites','UsuarioController@tramitesUser'); //consultar tramites de financiamiento
+	Route::post('datosSeguimiento','UsuarioController@devuelveDatosSeguimiento'); //envia estado de formulario de financiamiento
+	Route::get('/simuladorCreditos','UsuarioController@simuladorCreditos'); //simulador de creditos, se encuentra en financiamiento
 	Route::post('/simuladorCreditos','UsuarioController@simuladorCreditos');
-	Route::post('/financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
+
+	//------Rutas de financiamiento
+	Route::get('financiamiento','UsuarioController@financiamiento');
+	Route::get('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
+	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
+	Route::get('financiamiento/informacion_creditos','FinanciamientoController@informacionCreditos');
+	Route::post('financiamiento/cuestionario_creditos','FinanciamientoController@cuestionarioCreditos');
+	//------Rutas de perfil
+	Route::get('perfil','PerfilController@index');
+	Route::get('perfil/emprendimientos','PerfilController@emprendimientos'); //panel de control emprendimientos
+	Route::get('perfil/emprendimientos/create','EmprendimientoController@create'); //formulario de creación de emprendimientos
+	Route::post('perfil/emprendimientos/create','EmprendimientoController@create'); //crear emprendimiento
+	Route::post('perfil/actualizarDatosUsuario','PerfilController@actualizarDatosUsuario'); //actualización de datos personales de USUARIO
+
+	//------Rutas para capacitaciones
+	Route::get('/capacitaciones','CapacitacionesController@index');
+	Route::get('/capacitaciones/inscripcion','CapacitacionesController@inscripcion'); //Inscripcion de un capacitador
 	Route::post('/obtenerDatosEmprendimiento','FinanciamientoController@obtenerDatosEmprendimiento');
 	Route::post('agregarSituacion','UsuarioController@agregarSituacionImpositiva');
 });

@@ -16,7 +16,7 @@
 		  <div class="w3-container w3-quarter">
 		  </div>
 		  <div class="w3-container w3-quarter">
-		  	<a href="{{ url('/usuarioCreditos') }}">
+		  	<a href="{{ url('financiamiento/informacion_creditos') }}">
 		  		<div class="opcionMenuUsuario creditos">
 					<p class="textIndexItems">
 				    	Pedí tu crédito!
@@ -25,7 +25,7 @@
 		  	</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		  	<a href="{{ url('/usuarioTramites') }}">
+		  	<a href="{{ url('/tramites') }}">
 			    <div class="opcionMenuUsuario tramites">
 			    	<p class="textIndexItems">
 				    	Consultá tus TRÁMITES

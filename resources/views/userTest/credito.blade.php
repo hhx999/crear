@@ -75,7 +75,7 @@
 					
 				</div>
 			</div>
-	        <form method="post" action="" name="formCuestionarioLineas" class="formCuestionarioLineas" id="formCuestionarioLineas">
+	        <form method="post" action="{{url('financiamiento/cuestionario_creditos')}}" name="formCuestionarioLineas" class="formCuestionarioLineas" id="formCuestionarioLineas">
 	            <div id="wizard">
 	                <h2>Estado del solicitante</h2>
 	                <section>

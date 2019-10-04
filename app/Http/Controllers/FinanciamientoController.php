@@ -19,7 +19,7 @@ use App\Localidad;
 class FinanciamientoController extends Controller
 {
     //
-    function creditos()
+    function informacionCreditos()
     {
     	return view('userTest.credito');
     }
