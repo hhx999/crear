@@ -28,25 +28,28 @@ $(document).ready(function() {
             	delete pasosValidos.updated_at;
             	delete pasosValidos.observaciones;
 
-            	estado = data.estado;
-            	if (estado == 2) {
+            	estadoForm = data.estado;
+                if (estadoForm == 0) {
+                    estado = '<span style="color:red;">Eliminado desde administración</span>';
+                }
+            	else if (estadoForm == 2) {
             		estado = '<span style="color:white">En espera</span>';
-            	} else if (estado == 3) {
+            	} else if (estadoForm == 3) {
             		estado = '<span style="color:#ff9800;">Observación</span>';
-            	} else if (estado == 4) {
+            	} else if (estadoForm == 4) {
             		estado = '<span style="color:#f0e68c;">Actualizado</span>';
-            	} else if (estado == 5) {
+            	} else if (estadoForm == 5) {
             		estado == '<span style="color:#8bc34a;">Completo</span>'
-            	} else if (estado == 0) {
-            		estado == '<span style="color:#f44336;">Eliminado</span>'
             	}
 				trProyectos.append($('<td>'+data.numeroSeguimiento+'</td>'));
 				trProyectos.append($('<td>'+data.nombreEmprendedor+'</td>'));
-                if(observaciones)
+                if(observaciones && estadoForm != 0)
                 {
                     var agregadoObservaciones = '';   
                     for (var i = 0;i < observaciones.length;i++ ) {
-                        agregadoObservaciones += '<br><b>'+observaciones[i].hoja+'</b>:'+observaciones[i].observacion+'<br>';
+                        if (observaciones[i].observacion) {
+                            agregadoObservaciones += '<ul><li><b>'+observaciones[i].hoja+'</b>:</li><li style="list-style-type: none;">'+observaciones[i].observacion+'</li></ul>';
+                        }
                     }
                     trProyectos.append($('<td align="center">'+estado+agregadoObservaciones+'</td>'));
                 } else {

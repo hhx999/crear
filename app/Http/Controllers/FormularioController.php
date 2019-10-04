@@ -314,12 +314,12 @@ class FormularioController extends Controller
 
             if ($formV == 1) {
               $formulario = Formulario::find($data['id']);
-              //Formulario estado 5 completo
+              // Si el formulario no tiene observaciones está completo
               $formulario->estado = 5;
               $formulario->save();
             } else {
               $formulario = Formulario::find($data['id']);
-              $formulario->estado = 2;
+              $formulario->estado = 3; //formulario en observación
               $formulario->save();
             }
 
