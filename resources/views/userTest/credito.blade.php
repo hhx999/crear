@@ -77,17 +77,21 @@
 			</div>
 	        <form method="post" action="{{url('financiamiento/cuestionario_creditos')}}" name="formCuestionarioLineas" class="formCuestionarioLineas" id="formCuestionarioLineas">
 	            <div id="wizard">
-	                <h2>Estado del solicitante</h2>
+	                <h2>Situación impositiva del solicitante</h2>
 	                <section>
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;">
 							    <select class="w3-select" name="estado">
-								    <option value="" disabled selected>Elegí el estado en el que te encontrás...</option>
-								    <option value="1">Estado informal</option>
-								    <option value="2">Monotributo social</option>
-								    <option value="3">Monotributo desde A hasta E</option>
-								    <option value="4">Monotributo desde E hasta K</option>
-								    <option value="5">Responsable inscripto</option>
+							    	@if(empty($usuario->situacionImpositiva))
+							    	<option value="" disabled selected>Elegí la situación impositiva del solicitante...</option>
+							    	@endif
+									@foreach ($situacionImpositiva as $estado)
+										@if($estado == $usuario->situacionImpositiva)	
+										<option value="{{$estado}}" selected> <?php echo array_search($estado, $situacionImpositiva); ?></option>
+										@else
+										<option value="{{$estado}}"> <?php echo array_search($estado, $situacionImpositiva); ?></option>
+										@endif
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -115,27 +119,41 @@
 	                <h2>Destino de la financiación</h2>
 	                <section>
 	                <div class="w3-row">
-						  	<div class="w3-container w3-quarter">
-						  	</div>
-						  	<div class="w3-container w3-half" align="center">
-						  		<h4><b>¿En dónde planeás destinar el financiamiento?</b></h4>
-						  		<div style="width: 290px; height: 100px; overflow-y: scroll;">
-									<ul style="display: table;text-decoration: none;">
-								    	<li style="display: flex;padding: 10px;background-color: #0006061a;">
-											  <input class="w3-check" type="checkbox" name="destino[]" value="a">
-											  <label>Comprar productos para revender</label>
-										</li>
-									  	<li style="display: flex;padding: 10px;background-color: #0A0A0A0A;">
-										  <input class="w3-check" type="checkbox" name="destino[]" value="b">
-										  <label> Acondicionamiento del local</label>
-									  	</li>
-									  	<li style="display: flex;padding: 10px;background-color: #0006061a;">
-										  <input class="w3-check" type="checkbox" name="destino[]" value="c">
-										  <label>Compra de maquinaria y/o insumos</label>
-										</li>
-									</ul>
-								</div>
+	                	<style type="text/css">
+							.destinoFinanciacion {
+								padding:20px;
+							}
+							.activoDestino {
+								background-color: #4d699c;
+							}
+						</style>
+						<div class="w3-col m12">
+							<h4><b>¿En dónde planeás destinar el financiamiento?</b></h4>
+							<br>
+							<div class="w3-third destinoFinanciacion">
+								<input id="destinoAcondicionamiento" type="checkbox" name="destino[]" value="b">
+								<label>Acondicionamiento del local</label>
 							</div>
+							<div class="w3-third destinoFinanciacion">
+								<input id="destinoCompraInsumos" type="checkbox" name="destino[]" value="c">
+								<label>Compra de maquinaria y/o insumos</label>
+							</div>
+							<div class="w3-third destinoFinanciacion">
+								<input id="destinoReventa" type="checkbox" name="destino[]" value="a">
+								<label>Comprar productos para revender</label>
+							</div>
+						</div>
+						<script type="text/javascript">
+							$('#destinoAcondicionamiento').change(function() {
+								$(this).parent('div').toggleClass('activoDestino');
+							});
+							$('#destinoCompraInsumos').change(function() {
+								$(this).parent('div').toggleClass('activoDestino');
+							});
+							$('#destinoReventa').change(function() {
+								$(this).parent('div').toggleClass('activoDestino');
+							});
+						</script>
 						<div class="w3-container w3-quarter">
 						</div>
 					</div>

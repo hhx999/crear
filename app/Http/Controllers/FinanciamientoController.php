@@ -19,13 +19,24 @@ use App\Localidad;
 class FinanciamientoController extends Controller
 {
     //
-    function informacionCreditos()
+    function informacionCreditos(Request $request)
     {
-    	return view('userTest.credito');
+    	$idUsuario = $request->session()->get('id_usuario');
+    	$usuario = Usuario::find($idUsuario);
+
+    	$situacionImpositiva = config('constantes.situacionImpositiva');
+
+    	return view('userTest.credito', ['situacionImpositiva' => $situacionImpositiva, 'usuario' => $usuario]);
     }
     function cuestionarioCreditos(Request $request)
     {
     	$lineas = NULL;
+    	$idUsuario = $request->session()->get('id_usuario');
+    	$usuario = Usuario::find($idUsuario);
+
+    	$situacionImpositiva = config('constantes.situacionImpositiva');
+
+    	$situacionImpositiva = config('constantes.situacionImpositiva');
     	$opcionesCuestionario = DB::table('f__cuestionario_lineas')
 				->where('estado','=', intval($request->estado))
 			    ->where('antiguedad', '<=', intval($request->antiguedad))
@@ -36,8 +47,7 @@ class FinanciamientoController extends Controller
 		foreach ($opcionesCuestionario as $opcion) {
 			$lineas[] = FormTipo::find($opcion->form_tipo_id);
 		}
-
-		return view('userTest.credito', ['lineas_principales' => $lineas]);
+		return view('userTest.credito', ['situacionImpositiva' => $situacionImpositiva, 'usuario' => $usuario, 'lineas_principales' => $lineas]);
     }
     function obtenerDatosEmprendimiento(Request $request)
     {

@@ -51,5 +51,12 @@ return [
           'Santiago del Estero',
           'Tierra del Fuego',
           'Tucumán',
+        ],
+        "situacionImpositiva" => [
+          'Estado informal' => 1, 
+          'Monotributo social' => 2, 
+          'Monotributo desde A hasta E' => 3, 
+          'Monotributo desde F hasta K' => 4, 
+          'Responsable inscripto' => 5
         ]
 ];

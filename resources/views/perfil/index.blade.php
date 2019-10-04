@@ -29,7 +29,7 @@
 			width: 0px;
 			height: 23px;
 			position: relative;
-			left: 24%;
+			left: 19%;
 			top: -7px;
 			font-size: 3em;
 		}
@@ -43,19 +43,19 @@
 			color: #6bc55d !important;
 			font-size: 60px;
 		    top: -15px;
-		    left: 23.7%;
+		    left: 18.7%;
 		}
 		.escaleraEmprendedor .item {
 			border-left: 2px solid;
 			border-top: 2px solid;
-			width: 25%;
+			width: 20%;
 			height: 30px;
 			padding: 30px;
 		}
 		.escaleraEmprendedor .item.active{
 			border-left: 4px solid #009688;
 			border-top: 4px solid #009688;
-			width: 25%;
+			width: 20%;
 			height: 30px;
 			padding: 30px;
 		}
@@ -76,28 +76,35 @@
 		<div class="graficoSituacion">
 		<p>Situación impositiva <a href="#miPerfil" class="w3-button w3-green" id="editarSituacion" style="color: white !important;">Editar</a></p>
 		<div style="margin-bottom: 50px;">
-				<div style="margin-left: 75%;width: 100%;">
-					<div id="ResponsableInscripto" class="escaleraEmprendedor final">
+				<div style="margin-left: 80%;width: 100%;">
+					<div id="5" class="escaleraEmprendedor final">
 						<div class="item">
 							<span class="txtEscalon">Responsable Inscripto</span>
 						</div>
 					</div>
 				</div>
-				<div style="margin-left: 50%;width: 100%;">
-					<div id="MonotributoFK" class="escaleraEmprendedor">
+				<div style="margin-left: 60%;width: 100%;">
+					<div id="4" class="escaleraEmprendedor">
 						<div class="item">
 							<span class="txtEscalon">Monotributista de F-K</span>
 						</div>
 					</div>
 				</div>
-				<div style="margin-left: 25%;width: 100%;">
-					<div id="MonotributoAE" class="escaleraEmprendedor">
+				<div style="margin-left: 40%;width: 100%;">
+					<div id="3" class="escaleraEmprendedor">
 						<div class="item">
 							<span class="txtEscalon">Monotributista de A-E</span>
 						</div>
 					</div>
 				</div>
-				<div id="Informal" class="escaleraEmprendedor">
+				<div style="margin-left: 20%;width: 100%;">
+					<div id="2" class="escaleraEmprendedor">
+						<div class="item">
+							<span class="txtEscalon">Monotributista social</span>
+						</div>
+					</div>
+				</div>
+				<div id="1" class="escaleraEmprendedor">
 					<div class="item" style="border-left: 0px;">
 						<span class="txtEscalon">Informal</span>
 					</div>
@@ -108,10 +115,11 @@
 			<p>Cual es tu situación impositiva?</p>
 			<select name="situacionImpositiva">
 				<option selected disabled>Seleccioná tú situación impositiva...</option>
-				<option value="Informal">Informal</option>
-				<option value="MonotributoAE">Monotributo(A hasta E)</option>
-				<option value="MonotributoFK">Monotributo(F hasta K)</option>
-				<option value="ResponsableInscripto">Responsable incripto</option>
+				<option value="1">Informal</option>
+				<option value="2">Monotributo Social</option>
+				<option value="3">Monotributo(A hasta E)</option>
+				<option value="4">Monotributo(F hasta K)</option>
+				<option value="5">Responsable incripto</option>
 			</select>
 			<br>
 			<a href="#miPerfil" class="w3-button w3-cyan" id="enviarSituacion" style="color: white !important;">Enviar</a>
