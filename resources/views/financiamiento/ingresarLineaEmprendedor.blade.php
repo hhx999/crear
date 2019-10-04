@@ -699,6 +699,7 @@
 						</div>
 						<div class="w3-col m12">
 							<br>
+								<p><b>PROCESO PRODUCTIVO</b><br>
 								<i style="color: lightgrey;">HERRAMIENTAS O MAQUINARIAS NECESARIAS PARA PRODUCIR O BRINDAR EL SERVICIO</i>
 							</p>
 						</div>
@@ -719,7 +720,7 @@
 						<div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
 	          				<div class="w3-col m12">
 								<br>
-								<p><b>OTROS COSTOS DEL EMPRENDIMIENTO</b><br>
+								<p><b>OTROS COSTOS DEL EMPRENDIMIENTO ANUALES</b><br>
 								</p>
 							</div>
 					          <div class="w3-col m3">
@@ -1123,6 +1124,43 @@
 								</div>
 						</div>
 	                	<div class="w3-col m12" align="center">
+	                		<b>DATOS PERSONALES DEL GARANTE</b>
+	                	</div>
+	                	<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Nombre del garante</label>
+							    <input class="w3-input w3-border" type="text" name="nombreMBG" placeholder="Ingrese el nombre del garante...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>DNI</label>
+							    <input class="w3-input w3-border" type="text" name="dniMBG" placeholder="Ingrese el dni del garante...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>CUIT</label>
+							    <input class="w3-input w3-border" type="text" name="cuitMBG" placeholder="Ingrese el cuit del garante...">
+							</div>
+						</div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Domicilio</label>
+							    <input class="w3-input w3-border" type="text" name="domicilioMBG" placeholder="Ingrese el domicilio del garante...">
+							</div>
+						</div>
+						<div class="w3-quarter"><p></p></div>
+						<div class="w3-half">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Localidad</label>
+							    <input class="w3-input w3-border" type="text" name="localidadMBG" placeholder="Ingrese la localidad del garante...">
+							</div>
+						</div>
+						<div class="w3-col m12" style="border-top: 2px solid white;margin-top: 20px;margin-bottom: 20px;">
+							
+						</div>
+						<div class="w3-col m12" align="center">
 	                		<b>DISPONIBILIDADES</b>
 	                	</div>
 	                    <div class="w3-half">
