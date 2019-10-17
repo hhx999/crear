@@ -30,7 +30,7 @@
 	  		@foreach($borradores as $borrador)
 	  			<tr>
 	  				<td>{{$borrador->id}}</td>
-	  				<td>{{$borrador->created_at}}</td>
+	  				<td><b>{{$borrador->created_at}}</b></td>
 	  				<td>{{array_search($borrador->form_tipo_id, $lineasCreditos) ?? 'Línea no asignada'}}</td>
 	  				<td>Asunto vacío</td>
 	  				<td align="center">
