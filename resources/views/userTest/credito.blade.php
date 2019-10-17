@@ -17,6 +17,25 @@
         	.w3-half {
         		padding: 20px;
         	}
+        	.nav{
+		    list-style:none;
+		    margin:0;
+		    padding:0;
+		    text-align:center;
+		    -webkit-border-radius: 100px;
+			-moz-border-radius: 100px;
+			border-radius: 100px;
+			background-color: #8080801a;
+			width: 100%;
+			margin-bottom: 20px;
+			}
+        	.nav li{
+		    display:inline;
+			}
+			.nav a{
+			    display:inline-block;
+			    padding:10px;
+			}
 	</style>
 	@section('content')
 			<script>
@@ -47,6 +66,16 @@
 			  </div>
 			</div>
 		@endif
+		<div class="w3-row">
+        	<div class="w3-third"><p></p></div>
+	  		<div class="w3-third">
+	  			<ul class="nav">
+	  				<li><a href="{{url('financiamiento')}}">Financiamiento</a>/</li>
+	  				<li>Pedí tu crédito</li>
+	  			</ul>
+	  		</div>
+	  		<div class="w3-third"><p></p></div>
+        </div>
 		<div class="contenedorCuestionario">
 			<div class="w3-col m12">
 				@isset($lineas_principales)

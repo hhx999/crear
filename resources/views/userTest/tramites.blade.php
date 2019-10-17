@@ -1,7 +1,38 @@
 @extends('userTest.layout')	
-	@section('title') Inicio @endsection
+	@section('title') Trámites @endsection
 
 	@section('content')
+	<style type="text/css">
+		.nav{
+		    list-style:none;
+		    margin:0;
+		    padding:0;
+		    text-align:center;
+		    -webkit-border-radius: 100px;
+			-moz-border-radius: 100px;
+			border-radius: 100px;
+			background-color: #8080801a;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		.nav li{
+		    display:inline;
+		}
+		.nav a{
+		    display:inline-block;
+		    padding:10px;
+		}
+	</style>
+	<div class="w3-row">
+        	<div class="w3-third"><p></p></div>
+	  		<div class="w3-third">
+	  			<ul class="nav">
+	  				<li><a href="{{url('financiamiento')}}">Financiamiento</a>/</li>
+	  				<li>Trámites</li>
+	  			</ul>
+	  		</div>
+	  		<div class="w3-third"><p></p></div>
+    </div>
 	<div class="w3-row">
 	  	<div class="w3-col" style="width:20%"><p></p></div>
 	  	<div class="w3-col" style="width:60%;"><h3>
