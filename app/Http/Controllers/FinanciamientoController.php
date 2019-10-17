@@ -15,6 +15,7 @@ use App\ActividadesPrincipales;
 use App\Emprendimiento;
 use App\Trabaja;
 use App\Localidad;
+use App\Borrador;
 
 class FinanciamientoController extends Controller
 {
@@ -72,6 +73,17 @@ class FinanciamientoController extends Controller
 	        }
     	}
     }
+    function borradores(Request $request)
+    {
+    	$idUsuario = $request->session()->get('id_usuario');
+    	$datosUsuario = Usuario::find($idUsuario);
+
+    	$lineas = config('constantes.lineasCreditos');
+
+    	$borradores = Borrador::latest()->orderBy('id', 'desc')->get();
+
+    	return view('financiamiento.borradores', ['borradores' => $borradores, 'lineasCreditos' => $lineas]);
+    }
     function ingresarLineaEmprendedor(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
@@ -99,8 +111,8 @@ class FinanciamientoController extends Controller
 				}
 			$fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
 			$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]);
-			//Los estados enviados serán los que el administrador podrá ver y corregir
-			//Los estados borradores serán para ir guardando datos hasta estar seguros de enviar el formulario
+			//Los formularios en estado enviado serán los que el administrador podrá ver y corregir
+			//Los formularios en estado borrador serán para ir guardando datos hasta estar seguros de enviar el formulario
 			//Los estados en esta parte son solo guías que ayudarán al usuario
 
 			if (array_key_exists($request->estado, $estadosValidos)) {
@@ -108,7 +120,7 @@ class FinanciamientoController extends Controller
 				$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm, 'estado' => $estadosValidos[$request->estado]]);
 
 				//Creamos formulario
-				$formulario = Formulario::create($request->all());
+				$formulario = Borrador::create($request->all());
 				$lastID = $formulario->id;
 
 				//Generamos el formulario para enviarlo a los técnicos

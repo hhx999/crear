@@ -79,6 +79,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
 	Route::get('financiamiento/informacion_creditos','FinanciamientoController@informacionCreditos');
 	Route::post('financiamiento/cuestionario_creditos','FinanciamientoController@cuestionarioCreditos');
+	Route::get('financiamiento/borradores','FinanciamientoController@borradores');
 	//------Rutas de perfil
 	Route::get('perfil','PerfilController@index');
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos'); //panel de control emprendimientos

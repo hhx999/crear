@@ -19,4 +19,4 @@
 	</div>
 <!-- -->
 <script type="text/javascript" src="{{ asset('js/tramites/seguimientoProyecto.js') }}"></script>
-	@endsection
+	@endsection 

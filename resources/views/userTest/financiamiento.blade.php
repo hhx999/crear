@@ -40,11 +40,13 @@
 		  <div class="w3-container w3-quarter">
 		  </div>
 		  <div class="w3-container w3-quarter">
-		    <div class="opcionMenuUsuario borradores">
-		    	<p class="textIndexItems">
-			    		BORRADORES
-			    </p>
-		    </div>
+		  	<a href="{{ url('financiamiento/borradores') }}">
+			    <div class="opcionMenuUsuario borradores">
+			    	<p class="textIndexItems">
+				    		BORRADORES
+				    </p>
+			    </div>
+			</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
 		    <div class="opcionMenuUsuario documentacion">
