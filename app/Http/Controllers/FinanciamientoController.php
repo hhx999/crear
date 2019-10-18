@@ -183,4 +183,24 @@ class FinanciamientoController extends Controller
 		}
     	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
     }
+    function cargarLineaEmprendedor(Request $request, $borrador_id = null)
+    {
+    	//id de usuario
+		$idUsuario = $request->session()->get('id_usuario');
+		$datosBorrador = Borrador::find($borrador_id) ?? null;
+
+		$dataUsuario = Usuario::find($idUsuario);
+    	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
+    	$emprendimientos = NULL;
+    	$localidades = Localidad::all();
+
+    	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
+    	if ($dataUsuario->emprendimientos) {
+    		for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
+	    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
+	    	}
+    	}
+
+		return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
+    }
 }

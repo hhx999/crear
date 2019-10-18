@@ -220,11 +220,11 @@
 						</script>
 						<div class="w3-half">
 	                    	<label>Facebook</label>
-							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor...">
+							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor..." value="{{$datosBorrador->facebook ?? ''}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Instagram</label>
-							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor...">
+							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor..." value="{{$datosBorrador->instagram ?? ''}}">
 						</div>
 						<div class="w3-quarter"></div>
 						<div class="w3-col m12">
