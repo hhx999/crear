@@ -220,11 +220,11 @@
 						</script>
 						<div class="w3-half">
 	                    	<label>Facebook</label>
-							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor..." value="{{$datosBorrador->facebook ?? ''}}">
+							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor..." value="{{$datosBorrador->facebookEmprendedor ?? ''}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Instagram</label>
-							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor..." value="{{$datosBorrador->instagram ?? ''}}">
+							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor..." value="{{$datosBorrador->instagramEmprendedor ?? ''}}">
 						</div>
 						<div class="w3-quarter"></div>
 						<div class="w3-col m12">
@@ -235,26 +235,22 @@
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
 							    <div style="display: inline-block;">
-							    	<label class="container">Ninguno
-							    		<input type="radio" checked="checked" name="gradoInstruccion" value="Ninguno">
-							    		<span class="checkmark"></span>
-							    	</label>
-								    <label class="container">Primario
-									  <input type="radio" name="gradoInstruccion" value="Primario">
-									  <span class="checkmark"></span>
-									</label>
-									<label class="container">Secundario
-									  <input type="radio" name="gradoInstruccion" value="Secundario">
-									  <span class="checkmark"></span>
-									</label>
-									<label class="container">Terceario
-									  <input type="radio" name="gradoInstruccion" value="Terceario">
-									  <span class="checkmark"></span>
-									</label>
-									<label class="container">Universitario
-									  <input type="radio" name="gradoInstruccion" value="Universitario">
-									  <span class="checkmark"></span>
-									</label>
+							    	@if(!empty($datosBorrador->gradoInstruccion))
+							    		<?php
+							    		$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+							    		foreach ($gradosInstruccion as $grado) {
+							    			if ($grado == $datosBorrador->gradoInstruccion) {
+							    				$checked = 'checked="checked"';
+							    			} else {
+							    				$checked = '';
+							    			}
+							    			print '<label class="container">'.$grado.'
+												    		<input type="radio" '.$checked.' name="gradoInstruccion" value="'.$grado.'">
+												    		<span class="checkmark"></span>
+												    	</label>';
+							    		}
+							    		?>
+							    	@endif
 							    </div>
 							</div>
 						</div>
@@ -263,17 +259,17 @@
 						</div>
 						<div class="w3-half">
 							<label>Nombre de la ocupación</label>
-							<input class="w3-input" type="text" name="otraOcupación" placeholder="Ingresar otra ocupación del emprendedor...">
+							<input class="w3-input" type="text" name="otraOcupacion" placeholder="Ingresar otra ocupación del emprendedor..." value="{{$datosBorrador->otraOcupacion ?? ''}}">
 						</div>
 						<div class="w3-half">
 							<label>Ingreso mensual de la ocupación</label>
-							<input class="w3-input" type="text" name="ingresoMensual" placeholder="Ingresar el ingreso mensual del emprendedor...">
+							<input class="w3-input" type="text" name="ingresoMensual" placeholder="Ingresar el ingreso mensual del emprendedor..." value="{{$datosBorrador->ingresoMensual ?? ''}}">
 						</div>
 						<div class="w3-col m12">
 							<div class="w3-third"><p></p></div>
 							<div class="w3-third">
 								<label>Deseo de capacitación</label>
-								<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro...">
+								<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro..." value="{{$datosBorrador->deseoCapacitacion ?? ''}}">
 							</div>
 						</div>
 	                </section>
