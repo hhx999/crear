@@ -49,8 +49,8 @@ class UsuarioController extends BaseController
           } else {
             $msgError = "Usuario incorrecto";
           }
-        } catch (Exception $e) {
-          $msgError = "Algo funcionó mal, por favor contacte con el webmaster. ERROR: ".$e;
+        } catch (\Illuminate\Database\QueryException $e) {
+          $msgError = "Algo funcionó mal, por favor comunique el problema al webmaster.";
         }
       }
       return view('userTest.login', ["msgError" => $msgError]);

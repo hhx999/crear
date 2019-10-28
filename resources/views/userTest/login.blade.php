@@ -19,7 +19,7 @@
 			padding: 10px;
 			margin-top: 30px;
 			margin-bottom: 30px;
-			color: black;
+			color: white;
 		}
 		.formLogin ul {
 			margin-left: -40px;
@@ -28,12 +28,21 @@
 			display: block;
 		}
 		.formLogin input {
-			color: black;
+			color: white;
 			text-align: center;
+			background-color: #fff0;
+			border:0px;
 		}
 		.formLogin span {
 			color:white;
 		}
+		input.ingreso{
+                position: relative;
+				left: -50px;
+				padding: 5px;
+                cursor:pointer;
+                border: none;
+            }
 	</style>
 
 	@section('content')
@@ -42,25 +51,20 @@
 		</div>
 		<div class="w3-container w3-half">
 			<div class="formLogin">
+				<h2>¡Bienvenido!</h2>
 			@if ($msgError)
 				<strong>Whoops!</strong> <span>{{ $msgError }}</span>
 			@endif
 				<form method="post" action="" name="login" >
 					<ul>
 						<li>
-							<label>DNI</label>
+							<input type="text" name="dni" placeholder="DNI">
 						</li>
 						<li>
-							<input type="text" name="dni">
-						</li>
-						<li>
-							<label>Contraseña</label>
-						</li>
-						<li>
-							<input type="Password" name="password">
+							<input type="Password" name="password" placeholder="Contraseña">
 						</li>
 						<li style="margin-top: 10px;">
-							<input type="submit" name="Enviar" value="Ingresar" class="w3-btn w3-blue">
+							<i class='fas fa-sign-in-alt' style='font-size:36px;position: relative;left: 30px;'><input type="submit" name="Enviar" value="      " class="ingreso"></i>
 						</li>
 						<br>
 						<li>
