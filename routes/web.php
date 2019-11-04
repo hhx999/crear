@@ -79,13 +79,13 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
 	Route::get('financiamiento/informacion_creditos','FinanciamientoController@informacionCreditos');
 	Route::post('financiamiento/cuestionario_creditos','FinanciamientoController@cuestionarioCreditos');
-	Route::get('financiamiento/borradores','FinanciamientoController@borradores');
+	Route::get('financiamiento/borradores','FinanciamientoController@borradores')->name('borradores');
 	Route::get('financiamiento/borradores/{id}','FinanciamientoController@cargarLineaEmprendedor');
 	
 	//------Rutas de perfil
 	Route::get('perfil','PerfilController@index');
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos'); //panel de control emprendimientos
-	Route::get('perfil/emprendimientos/create','EmprendimientoController@create'); //formulario de creación de emprendimientos
+	Route::get('perfil/emprendimientos/create','EmprendimientoController@create')->name('crearEmprendimiento'); //formulario de creación de emprendimientos
 	Route::post('perfil/emprendimientos/create','EmprendimientoController@create'); //crear emprendimiento
 	Route::post('perfil/actualizarDatosUsuario','PerfilController@actualizarDatosUsuario'); //actualización de datos personales de USUARIO
 

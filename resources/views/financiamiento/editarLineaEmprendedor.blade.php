@@ -102,17 +102,6 @@
 			  </div>
 			</div>
 		@endif
-		<div id="id02" class="w3-modal">
-			<div class="w3-modal-content">
-				<div class="w3-container">
-					<span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
-					<br>
-					<label style="color: black;">Guardar borrador <i style="color: gray;">({{date("d-m-Y")}})</i></label>
-					<input placeholder="Escribir asunto del formulario..." type="text" name="asuntoBorrador" id="asuntoBorrador" class="w3-input"><br>
-					<a href="#" id="enviarBorrador" class="w3-button w3-cyan" style="color: white !important;">Enviar</a>
-				</div>
-			</div>
-		</div>
 
 		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
 			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
@@ -122,26 +111,21 @@
 			$(document).ready(function(){
 
 			    $("#guardarBorrador").click(function(){
-			    	document.getElementById('id02').style.display='block';
-			    });
-			    $("#enviarBorrador").click(function() {
-			    	var asuntoBorrador = $('#asuntoBorrador').val();
 			    	var params = [
 		               {
 		                 name: "estado",
 		                 value: 'borrador'
-		               },
-		               {
-		               	 name: "asuntoBorrador",
-		               	 value: asuntoBorrador
 		               }
 		             ];
-					$.each(params, function(i,param){
-					    $('<input />').attr('type', 'hidden')
-					        .attr('name', param.name)
-					        .attr('value', param.value)
-					        .appendTo('#formLineaEmprendedor');
+			        $('#formLineaEmprendedor').submit(function(){ //listen for submit event
+					    $.each(params, function(i,param){
+					        $('<input />').attr('type', 'hidden')
+					            .attr('name', param.name)
+					            .attr('value', param.value)
+					            .appendTo('#formLineaEmprendedor');
 					    });
+					    return true;
+					});
 					$("#formLineaEmprendedor").submit();
 			    });
 
@@ -236,11 +220,11 @@
 						</script>
 						<div class="w3-half">
 	                    	<label>Facebook</label>
-							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor..." >
+							<input class="w3-input" type="text" name="facebookEmprendedor" placeholder="Ingresar nombre de facebook del emprendedor..." value="{{$datosForm->facebookEmprendedor ?? ''}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Instagram</label>
-							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor..." >
+							<input class="w3-input" type="text" name="instagramEmprendedor" placeholder="Ingresar usuario de instagram del emprendedor..." value="{{$datosForm->instagramEmprendedor ?? ''}}">
 						</div>
 						<div class="w3-quarter"></div>
 						<div class="w3-col m12">
@@ -279,17 +263,17 @@
 						</div>
 						<div class="w3-half">
 							<label>Nombre de la ocupación</label>
-							<input class="w3-input" type="text" name="otraOcupacion" placeholder="Ingresar otra ocupación del emprendedor..." >
+							<input class="w3-input" type="text" name="otraOcupacion" placeholder="Ingresar otra ocupación del emprendedor..." value="{{$datosForm->otraOcupacion ?? ''}}">
 						</div>
 						<div class="w3-half">
 							<label>Ingreso mensual de la ocupación</label>
-							<input class="w3-input" type="text" name="ingresoMensual" placeholder="Ingresar el ingreso mensual del emprendedor..." >
+							<input class="w3-input" type="text" name="ingresoMensual" placeholder="Ingresar el ingreso mensual del emprendedor..." value="{{$datosForm->ingresoMensual ?? ''}}">
 						</div>
 						<div class="w3-col m12">
 							<div class="w3-third"><p></p></div>
 							<div class="w3-third">
 								<label>Deseo de capacitación</label>
-								<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro..." >
+								<input class="w3-input" type="text" name="deseoCapacitacion" placeholder="Ingresar una capacitación deseada a futuro..." value="{{$datosForm->deseoCapacitacion ?? ''}}">
 							</div>
 						</div>
 	                </section>
@@ -330,18 +314,17 @@
 										<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
 									@endforeach
 								</select>
-								<a href="{{route('crearEmprendimiento')}}" style="text-decoration: none;cursor: pointer;">Registrá tu emprendimiento!</a>
 							</div>
-						@endif
+							@endif
 							<div class="w3-half">
 								<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
 									<?php
 									$estadosEmprendimiento = ['nuevo','en funcionamiento'];
-									if (!isset($dataUsuario->estadoEmprendimiento)) {
+									if (!isset($datosForm->estadoEmprendimiento)) {
 										print '<option value="" disabled selected>Elegí el estado del emprendimiento...</option>';
 									}
 									foreach ($estadosEmprendimiento as $estado) {
-										if ($estado == $dataUsuario->estadoEmprendimiento) {
+										if ($estado == $datosForm->estadoEmprendimiento) {
 											$selected = 'selected';
 										} else {
 											$selected = '';
@@ -355,7 +338,7 @@
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
 								<label>Denominación de la Sociedad</label>
-								<input class="w3-input w3-border w3-round-large" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento...">
+								<input class="w3-input w3-border w3-round-large" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento..." value="{{$datosForm->denominacion ?? ''}}">
 							</div>
 							<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
@@ -365,7 +348,7 @@
 									    <?php
 									    $tiposSociedad = ['Sociedad Anónima (S.A.)','Sociedad de Responsabilidad Limitada (S.R.L.)','Sociedad por Acciones Simplificada (S.A.S.)'];
 
-									    App\Helpers::crearOptionLE($tiposSociedad,NULL);
+									    App\Helpers::crearOptionLE($tiposSociedad,$datosForm->tipoSociedad);
 										 ?>
 									 </select>
 								</div>
@@ -395,7 +378,7 @@
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
 								<label>Fecha de inicio(dd-mm-AAAA)</label>
-	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento">
+	      						<input class="w3-input datosEmprendimiento" data-placeholder="Ingrese la fecha de inicio del emprendimiento" name="fecInicioEmprendimiento" id="inicio_emprendimiento">
 							</div>
 						</div>
 						<script type="text/javascript">

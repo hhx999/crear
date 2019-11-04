@@ -53,14 +53,17 @@
 			      <th>Asunto</th>
 			      <th>Acciones</th>
 			    </tr>
+			@if($borradores->isEmpty())
+				<tr><td colspan="5">No existen borradores.</td></tr>
+			@endif
 	  		@foreach($borradores as $borrador)
 	  			<tr>
 	  				<td>{{$borrador->id}}</td>
 	  				<td><b>{{$borrador->created_at}}</b></td>
 	  				<td>{{array_search($borrador->form_tipo_id, $lineasCreditos) ?? 'Línea no asignada'}}</td>
-	  				<td>Asunto vacío</td>
+	  				<td>{{$borrador->asuntoBorrador ?? 'Asunto vacío'}}</td>
 	  				<td align="center">
-	  					<a class="w3-button w3-teal" href="#">Abrir</a>
+	  					<a class="w3-button w3-teal" href="{{url('financiamiento/borradores/'.$borrador->id)}}">Abrir</a>
 	  					<a class="w3-button w3-red" href="#">Eliminar</a>
 	  				</td>
 	  			</tr>

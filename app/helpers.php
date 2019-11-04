@@ -6,7 +6,21 @@ use App\FormTipo;
 
 class Helpers 
 {
-    /*FUNCION PARA CAMBIAR EL FORMATO DE LA FECHA PARA SU POSTERIOR INGRESO EN LA BD*/
+    /*Crear options de select con conjunto de datos para el ingreso de linea emprendedor*/
+    //funcion toma dos parametros, primero el arreglo de datos y el otro la aguja 
+    public static function crearOptionLE($elementosSeleccionables,$datoSeleccionado) {
+        if(!isset($dato)) {
+            print '<option value="" disabled selected>Elegí la opción...</option>';
+        }
+        foreach ($elementosSeleccionables as $seleccion) {
+            if ($seleccion == $datoSeleccionado) {
+                $selected = 'selected';
+            } else {
+                $selected = '';
+            }
+            print '<option '.$selected.' value="'.$seleccion.'">'.$seleccion.'</option>';
+        }
+    }
     public static function unique_multidim_array($array, $key) {
         $temp_array = array();
         $i = 0;
@@ -21,6 +35,7 @@ class Helpers
         }
         return $temp_array;
     } 
+    /*FUNCION PARA CAMBIAR EL FORMATO DE LA FECHA PARA SU POSTERIOR INGRESO EN LA BD*/
 	public static function cambioFormatoFecha($fecCambia)
      {
      	if ($fecCambia) {		

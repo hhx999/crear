@@ -15,6 +15,7 @@ class CreateBorradoresLE extends Migration
     {
         Schema::create('borradoresLE', function (Blueprint $table) {
             $table->integer('id',true);
+            $table->string('asuntoBorrador',255)->nullable();
             //Información del emprendedor, la primera hoja del formulario para el usuario
             $table->string('nombreEmprendedor', 45)->nullable();
             $table->string('dniEmprendedor', 45)->nullable();

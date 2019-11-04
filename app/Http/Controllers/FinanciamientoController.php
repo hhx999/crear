@@ -80,7 +80,7 @@ class FinanciamientoController extends Controller
 
     	$lineas = config('constantes.lineasCreditos');
 
-    	$borradores = Borrador::latest()->orderBy('id', 'desc')->get();
+    	$borradores = Borrador::where('idUsuario',$idUsuario)->latest()->orderBy('id', 'desc')->get();
 
     	return view('financiamiento.borradores', ['borradores' => $borradores, 'lineasCreditos' => $lineas]);
     }
@@ -89,6 +89,7 @@ class FinanciamientoController extends Controller
     	$idUsuario = $request->session()->get('id_usuario');
 
     	$dataUsuario = Usuario::find($idUsuario);
+    	$datosForm = NULL;
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$emprendimientos = NULL;
     	$localidades = Localidad::all();
@@ -122,6 +123,10 @@ class FinanciamientoController extends Controller
 				//Creamos formulario
 				$formulario = Borrador::create($request->all());
 				$lastID = $formulario->id;
+
+				$borrador = Borrador::find($lastID);
+				$borrador->asuntoBorrador = $request->asuntoBorrador;
+				$borrador->save();
 
 				//Generamos el formulario para enviarlo a los técnicos
 				if ($request->estado == 'enviado') {
@@ -175,13 +180,14 @@ class FinanciamientoController extends Controller
 					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
 				}
 				//Retornamos valores
+				var_dump($request->asuntoBorrador);
 				return view('financiamiento.formBorrador');
 			} else {
 				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
 				return "Estado desconocido por sistema.";
 			} 
 		}
-    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
+    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos, 'datosForm' => $datosForm]);
     }
     function cargarLineaEmprendedor(Request $request, $borrador_id = null)
     {
