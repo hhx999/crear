@@ -121,12 +121,8 @@ class FinanciamientoController extends Controller
 				$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm, 'estado' => $estadosValidos[$request->estado]]);
 
 				//Creamos formulario
-				$formulario = Borrador::create($request->all());
+				$formulario = Formulario::create($request->all());
 				$lastID = $formulario->id;
-
-				$borrador = Borrador::find($lastID);
-				$borrador->asuntoBorrador = $request->asuntoBorrador;
-				$borrador->save();
 
 				//Generamos el formulario para enviarlo a los técnicos
 				if ($request->estado == 'enviado') {
@@ -178,10 +174,15 @@ class FinanciamientoController extends Controller
 					//Testeando datos de envío
 					//return $request->all();
 					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
+				} else {
+					$borrador = Borrador::create($request->all());
+					$ultimoBorrador = $borrador->id;
+					$borrador = Borrador::find($ultimoBorrador);
+					$borrador->asuntoBorrador = $request->asuntoBorrador;
+					$borrador->save();
+					//Retornamos valores
+					return view('financiamiento.formBorrador');
 				}
-				//Retornamos valores
-				var_dump($request->asuntoBorrador);
-				return view('financiamiento.formBorrador');
 			} else {
 				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
 				return "Estado desconocido por sistema.";

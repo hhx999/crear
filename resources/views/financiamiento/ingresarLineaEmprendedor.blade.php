@@ -102,7 +102,7 @@
 			  </div>
 			</div>
 		@endif
-		<div id="id02" class="w3-modal">
+		<div id="modalBorrador" class="w3-modal">
 			<div class="w3-modal-content">
 				<div class="w3-container">
 					<span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
@@ -122,7 +122,7 @@
 			$(document).ready(function(){
 
 			    $("#guardarBorrador").click(function(){
-			    	document.getElementById('id02').style.display='block';
+			    	document.getElementById('modalBorrador').style.display='block';
 			    });
 			    $("#enviarBorrador").click(function() {
 			    	var asuntoBorrador = $('#asuntoBorrador').val();
@@ -256,19 +256,19 @@
 							    		<span class="checkmark"></span>
 							    	</label>
 							    	<label class="container">Primario
-							    		<input type="radio" checked name="gradoInstruccion" value="Primario">
+							    		<input type="radio" name="gradoInstruccion" value="Primario">
 							    		<span class="checkmark"></span>
 							    	</label>
 							    	<label class="container">Secundario
-							    		<input type="radio" checked name="gradoInstruccion" value="Secundario">
+							    		<input type="radio" name="gradoInstruccion" value="Secundario">
 							    		<span class="checkmark"></span>
 							    	</label>
 							    	<label class="container">Terceario
-							    		<input type="radio" checked name="gradoInstruccion" value="Terceario">
+							    		<input type="radio" name="gradoInstruccion" value="Terceario">
 							    		<span class="checkmark"></span>
 							    	</label>
 							    	<label class="container">Universitario
-							    		<input type="radio" checked name="gradoInstruccion" value="Universitario">
+							    		<input type="radio" name="gradoInstruccion" value="Universitario">
 							    		<span class="checkmark"></span>
 							    	</label>
 							    </div>
