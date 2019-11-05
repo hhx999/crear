@@ -110,6 +110,10 @@ class Formulario extends Model {
     ];
 
     // Relationships
+    public function localidad()
+    {
+        return $this->belongsTo(Localidad::class,'localidadEmprendedor');
+    }
     public function referentes()
     {
         return $this->hasMany('App\Referencia');

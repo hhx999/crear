@@ -105,7 +105,7 @@ class FormularioController extends Controller
       } else {
         $formularios = Formulario::latest()->orderBy('id', 'desc')->get();
       }
-     return view('admin.index', ['formularios' => $formularios, 'nombreUsuario' => $session->get('nombreUsuario')]);
+     return view('admin.index', ['formularios' => $formularios, 'nombreUsuario' => $session->get('nombreApellido')]);
     }
 
     public function adminUsuarios(Request $request) {
@@ -296,7 +296,7 @@ class FormularioController extends Controller
      }
     public function agregarRevision(Request $request) {
       $session = $request->session();
-
+      $estados = config('constantes.estados');
       $result = 1;
       if ($request->isJson()) {
         $data = $request->json()->all();
@@ -315,11 +315,11 @@ class FormularioController extends Controller
             if ($formV == 1) {
               $formulario = Formulario::find($data['id']);
               // Si el formulario no tiene observaciones está completo
-              $formulario->estado = 5;
+              $formulario->estado = $estados['completo'];
               $formulario->save();
             } else {
               $formulario = Formulario::find($data['id']);
-              $formulario->estado = 3; //formulario en observación
+              $formulario->estado = $estados['observacion']; //formulario en observación
               $formulario->save();
             }
 
@@ -327,7 +327,6 @@ class FormularioController extends Controller
             $validacion->portada = $data['portada'];
             $validacion->infoEmprendedor = $data['infoEmprendedor'];
             $validacion->datosEmprendimiento = $data['datosEmprendimiento'];
-            $validacion->aspectosSociales = $data['aspectosSociales'];
             $validacion->mercado = $data['mercado'];
             $validacion->prodCostResultados = $data['prodCostResultados'];
             $validacion->mbe = $data['mbe'];

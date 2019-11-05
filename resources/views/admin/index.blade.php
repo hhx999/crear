@@ -109,13 +109,16 @@ box-shadow: 0px 0px 5px 5px #4caf50;
 
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
+    <fieldset style="margin-bottom: 20px;">
+      <legend style="color:green;">Opciones de administración</legend>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          <a href="{{ url('/logout') }}" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="{{ url('/ingresarForm') }}">Ingresar formulario</a>
+          <a href="{{ url('/logout') }}" class="w3-btn w3-red">Cerrar sesión(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
+          <a class="w3-btn w3-green" href="{{ url('/') }}">Ver sitio</a>
           <a class="w3-btn w3-light-green" href="{{ url('/registro') }}" style="color: #fff !important;">Registrar usuario</a>
           <a class="w3-btn w3-blue-gray" href="{{ url('/adminUsuarios') }}" style="color: #fff !important;">Ver usuarios</a>
         </div>
-        <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS -->
+      </fieldset>
+        <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS 
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
           ELIMINADO <span style="width: 15px;height: 15px;display: inline-block;" class="w3-red"></span>
           ENVIADO <span style="width: 15px;height: 15px;display: inline-block;border: 1px solid black;" class="w3-white"></span>
@@ -125,6 +128,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
           COMPLETO <span style="width: 15px;height: 15px;display: inline-block;" class="w3-light-green"></span>
           <br>
         </div>
+        -->
         <!-- FORMULARIO DE BUSQUEDA -->
         <div class="w3-col w3-container m4 l3 w3-white">
             <div class="w3-card-4">
@@ -139,16 +143,23 @@ box-shadow: 0px 0px 5px 5px #4caf50;
               </form>
             </div>
             <div class="w3-container">
-              <br>
-              <b>La búsqueda se puede hacer por:</b>
-              <div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
-                  <ul class="w3-ul">
-                  <li>Nombre del solicitante</li>
-                  <li>Localidad</li>
-                  <li>Agencia</li>
-                  <li>Monto</li>
-                </ul>
-                </div>
+              <ul>
+                <li style="display: table;">
+                  <span style="width: 15px;height: 15px;display: inline-block;" class="w3-red"></span> Eliminado
+                </li>
+                <li style="display: table;">
+                  <span style="width: 15px;height: 15px;display: inline-block;border: 1px solid black;" class="w3-white"></span> Enviado
+                </li>
+                <li style="display: table;">
+                  <span style="width: 15px;height: 15px;display: inline-block;" class="w3-orange"></span> Observación
+                </li>
+                <li style="display: table;">
+                  <span style="width: 15px;height: 15px;display: inline-block;" class="w3-khaki"></span> Actualización
+                </li>
+                <li style="display: table;">
+                  <span style="width: 15px;height: 15px;display: inline-block;" class="w3-green"></span> Completo
+                </li>
+              </ul>
             </div>
             <br>
         </div>
@@ -164,9 +175,6 @@ box-shadow: 0px 0px 5px 5px #4caf50;
               </a>
               <a href="javascript:void(0)" id="eliminados" class="tabLinks">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Eliminados</div>
-              </a>
-              <a href="javascript:void(0)" id="archivados" class="tabLinks">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Archivados</div>
               </a>
               <a href="javascript:void(0)" id="verTodos" class="tabLinks" style="text-decoration: none;">
                 <div class="w3-rest tablink w3-bottombar w3-hover-light-grey w3-padding">VER TODOS</div>
@@ -191,13 +199,6 @@ box-shadow: 0px 0px 5px 5px #4caf50;
               <br>
               <div class="w3-responsive">  
                 <?php Helpers::crearRegistrosForm('admin',$formularios,'eliminados');?>
-              </div>
-            </div>
-
-            <div id="archivados" class="w3-container city w3-animate-opacity" style="display:none">
-              <br>
-              <div class="w3-responsive">  
-                <?php Helpers::crearRegistrosForm('admin',$formularios,'archivados');?>
               </div>
             </div>
 

@@ -13,7 +13,8 @@ return [
           'enviado' => 2, 
           'observacion' => 3, 
           'actualizado' => 4, 
-          'completo' => 5
+          'completo' => 5,
+          'eliminado' => 6
         ],
         "estadosIngresoForm" => [
           'borrador' => 1,

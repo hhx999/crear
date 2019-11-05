@@ -49,6 +49,7 @@ class Helpers
     /* HELPERS PARA VISTAS DE ADMIN Y USUARIO, CREAN LOS REGISTROS Y SUS ACCIONES SEGUN EL ROL DEL USUARIO*/
     public static function crearRegistrosForm($rol,$formularios,$filtro = null) 
     {
+        $estados = config('constantes.estados');
         print_r('
             <table class="w3-table-all w3-hoverable">
                 <thead>
@@ -61,7 +62,6 @@ class Helpers
                     <th>SOLICITANTE</th>
                     <th>FECHA</th>
                     <th>LOCALIDAD</th>
-                    <th>AGENCIA</th>
                     <th>MONTO</th>
                     <th>LÍNEA DE CRÉDITO</th>
                     <th>ACCIONES</th>
@@ -76,79 +76,71 @@ class Helpers
                 $usuario = Usuario::find($idUsuario);
                 $formTipo = FormTipo::find($formularios[$i]->form_tipo_id);
                 if ($rol == 'admin' && $filtro == 'verTodos') {
-                    if ($formularios[$i]->estado == 0) {
+                    if ($formularios[$i]->estado == $estados['eliminado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-red'>";
                      }
-                    if ($formularios[$i]->estado == 1) {
+                    if ($formularios[$i]->estado == $estados['enviado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr>";
                      }
-                    if ($formularios[$i]->estado == 2) {
+                    if ($formularios[$i]->estado == $estados['observacion']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-orange'>";
                     }
-                    if ($formularios[$i]->estado == 3) {
+                    if ($formularios[$i]->estado == $estados['actualizado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-khaki'>";
                      }
-                    if ($formularios[$i]->estado == 4) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr class='w3-grey'>";
-                    }
-                    if ($formularios[$i]->estado == 5) {
+                    if ($formularios[$i]->estado == $estados['completo']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-light-green'>";
                     }
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
+                        echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                        echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->updated_at."</td>";
+                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
                         echo "</tr>";
                 }
                 else if ($rol == 'admin' && $filtro == 'tramite') {
-                    if ($formularios[$i]->estado == 1) {
+                    if ($formularios[$i]->estado == $estados['enviado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr>";
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
+                        echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                        echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->updated_at."</td>";
+                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
                         echo "</tr>";
                      } 
-                    if ($formularios[$i]->estado == 2) {
+                    if ($formularios[$i]->estado == $estados['observacion']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-orange'>";
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
+                        echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                        echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->updated_at."</td>";
+                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
                         echo "</tr>";
                     } 
-                    if ($formularios[$i]->estado == 3) {
+                    if ($formularios[$i]->estado == $estados['actualizado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-khaki'>";
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
+                        echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                        echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->updated_at."</td>";
+                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
@@ -156,31 +148,14 @@ class Helpers
                      } 
                 } 
                 else if ($rol == 'admin' && $filtro == 'eliminados') {
-                    if ($formularios[$i]->estado == 0) {
+                    if ($formularios[$i]->estado == $estados['eliminado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-red'>";
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
-                        echo "<td>".$formularios[$i]->montoSolicitado."</td>";
-                        echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
-                        echo "</tr>";
-                     }
-                }
-                else if ($rol == 'admin' && $filtro == 'archivados') {
-                    if ($formularios[$i]->estado == 4) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr class='w3-grey'>";
-                        echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
+                        echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                        echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->updated_at."</td>";
+                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
@@ -188,81 +163,19 @@ class Helpers
                      }
                 }
                 else if ($rol == 'admin' && $filtro == 'completos') {
-                    if ($formularios[$i]->estado == 5) {
+                    if ($formularios[$i]->estado == $estados['completo']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-light-green'>";
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
+                        echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                        echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->updated_at."</td>";
+                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
                         echo "</tr>";
                      }
-                }
-                else if ($rol == 'user' && $filtro == 'tramite')
-                {
-                     if ($formularios[$i]->estado == 1) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr>";
-                        echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
-                        echo "<td>".$formularios[$i]->montoSolicitado."</td>";
-                        echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
-                        echo "</tr>";
-                    }
-                    if ($formularios[$i]->estado == 2) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr class='w3-orange'>";
-                        echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
-                        echo "<td>".$formularios[$i]->montoSolicitado."</td>";
-                        echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
-                        echo "</tr>";
-                     }
-                     if ($formularios[$i]->estado == 3) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr class='w3-khaki'>";
-                        echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
-                        echo "<td>".$formularios[$i]->montoSolicitado."</td>";
-                        echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
-                        echo "</tr>";
-                     }
-                } else if ($rol == 'user' && $filtro == 'completos')
-                {
-                    if ($formularios[$i]->estado == 5) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr class='w3-light-green'>";
-                        echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
-                        echo "<td>".$formularios[$i]->numeroProyecto."</td>";
-                        echo "<td>".$formularios[$i]->nombreSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->fecPresentacionProyecto."</td>";
-                        echo "<td>".$formularios[$i]->localidadSolicitante."</td>";
-                        echo "<td>".$formularios[$i]->agenciaProyecto."</td>";
-                        echo "<td>".$formularios[$i]->montoSolicitado."</td>";
-                        echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
-                        echo "</tr>";
-                    }
                 }
             }
         }
