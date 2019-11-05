@@ -40,7 +40,6 @@ use App\Helpers;
     <span class="step" onclick="irTab(5)"></span>
     <span class="step" onclick="irTab(6)"></span>
     <span class="step" onclick="irTab(7)"></span>
-    <span class="step" onclick="irTab(8)"></span>
   </div>
 
 <!-- Modal de REVISIÓN -->
@@ -140,70 +139,61 @@ use App\Helpers;
     <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
       <p class="hoja" style="display: none;">infoEmprendedor</p>
     <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">INFORMACIÓN DEL EMPRENDEDOR</p>
-    <p align="center"><b>Datos personales:</b></p>
-
-    <div class="float-container">
-      <label>Nombre y apellido <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese nombre y apellido del emprendedor..."  name="nombreEmprendedor" id="nombreEmprendedor" maxlength="43" value="<?= $formularioEnviado->nombreEmprendedor ?>">
-    </div>
-
-    <div class="float-container">
-      <label>DNI <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese el número de documento..." name="dniEmprendedor" id="dni_emprendedor" maxlength="11" value="<?= $formularioEnviado->dniEmprendedor ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Localidad <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese la localidad en donde reside..." name="localidadEmprendedor" maxlength="43" value="<?= $formularioEnviado->localidadEmprendedor ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Domicilio <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese el domicilio real del emprendedor..." name="domicilioEmprendedor" maxlength="43" value="<?= $formularioEnviado->domicilioEmprendedor ?>">
-    </div>
-
-    <p align="center"><b>Datos de contacto:</b></p>
-
-    <div class="float-container">
-      <label>Teléfono <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese el número de teléfono..."  name="telefonoEmprendedor" maxlength="12" value="<?= $formularioEnviado->telefonoEmprendedor ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Email <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese su correo electrónico..."  name="emailEmprendedor" maxlength="43" value="<?= $formularioEnviado->emailEmprendedor ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Facebook</label>
-      <input data-placeholder="Ingrese su cuenta en facebook..."  name="facebookEmprendedor" maxlength="43" value="<?= $formularioEnviado->facebookEmprendedor ?>">
-    </div>
-    <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 100%;"></div>
-    
-    <p align="center"><b>Formación y ocupación:</b></p>
-    <p align="center">Grado de instrucción <span style="color:red;">&#10033;</span></p>
-    <p align="center"><em>Ingrese el último grado de instrucción finalizado por el emprendedor.</em></p>
-    <div class="lista_grados" align="center">
-      <?php Helpers::crearRadio('gradoInstruccion',$formularioEnviado->gradoInstruccion); ?>
-    </div>
-
-    <div class="float-container">
-      <label>Otra aplicación</label>
-      <input data-placeholder="Ingrese otra aplicación que desarrolle en la actualidad..." maxlength="43" name="otraOcupacion" value="<?= $formularioEnviado->otraOcupacion ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Ingreso mensual</label>
-      <input data-placeholder="Ingresar el salario mensual..." id="ingresoMensual" maxlength="10" name="ingresoMensual" value="<?= $formularioEnviado->ingresoMensual ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Deseo de capacitación</label>
-      <input data-placeholder="Deseo de capacitación..." maxlength="43" name="deseoCapacitacion" value="<?= $formularioEnviado->deseoCapacitacion ?>">
-    </div>
-
-  </div>
-
+ 
+                      <!-- DATOS PERSONALES DEL EMPRENDEDOR -->
+  <table class="w3-table-all">
+      <thead>
+      <tr class="w3-green">
+        <th colspan="2" style="text-align: center;font-size: 18px;">Datos personales del Emprendedor</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Nombre y apellido</th>
+      <td><?= $formularioEnviado->nombreEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>DNI:</th>
+      <td><?= $formularioEnviado->dniEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>Localidad</th>
+      <td><?= $formularioEnviado->localidadEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>Domicilio</th>
+      <td><?= $formularioEnviado->domicilioEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>Teléfono</th>
+      <td><?= $formularioEnviado->telefonoEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><?= $formularioEnviado->emailEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>Facebook</th>
+      <td><?= $formularioEnviado->facebookEmprendedor; ?></td>
+    </tr>
+    <tr>
+      <th>Grado de instrucción</th>
+      <td><?= $formularioEnviado->gradoInstruccion; ?></td>
+    </tr>
+    <tr>
+      <th>Otra ocupación que desarrolle en la actualidad</th>
+      <td><?= $formularioEnviado->otraOcupacion; ?></td>
+    </tr>
+    <tr>
+      <th>Ingreso mensual</th>
+      <td><?= $formularioEnviado->ingresoMensual; ?></td>
+    </tr>
+    <tr>
+      <th>Deseo capacitación</th>
+      <td><?= $formularioEnviado->deseoCapacitacion; ?></td>
+    </tr>
+  </table>
+  <br>
+</div>
   <!-- \\\\\\\\\\\\\\\\\\\\\\\ DATOS GENERALES EMPRENDIMIENTO  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
   <div class="tab">
     <?php
@@ -221,175 +211,72 @@ use App\Helpers;
     <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
       <p class="hoja" style="display: none;">datosEmprendimiento</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">DATOS GENERALES EMPRENDIMIENTO</p>
-
-    <div class="float-container">
-      <label>Actividad principal</label>
-      <input data-placeholder="Ingrese la actividad principal del emprendimiento..." name="actPrincipalEmprendimiento" maxlength="119" value="<?= $formularioEnviado->actPrincipalEmprendimiento ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Fecha de inicio(dd-mm-AAAA)</label>
-      <input data-placeholder="Ingrese la fecha de inicio del emprendimiento" name="fecInicioEmprendimiento" id="inicio_emprendimiento" value="<?= $formularioEnviado->fecInicioEmprendimiento ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Antigüedad</label>
-      <input data-placeholder="Ingrese la antigüedad del emprendimiento..." maxlength="43" name="antiguedadEmprendimiento" value="<?= $formularioEnviado->antiguedadEmprendimiento ?>">
-    </div>
-
-    <div class="float-container">
-      <label>CUIT</label>
-      <input data-placeholder="Ingrese el número de CUIT..." maxlength="19" name="cuitEmprendimiento" id="cuit_emprendimiento" value="<?= $formularioEnviado->cuitEmprendimiento ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Ingresos brutos</label>
-      <input data-placeholder="Ingrese el número de ingresos brutos del emprendimiento..." maxlength="10" name="ingresosBrutosEmprendimiento" id="ingresosBrutos" value="<?= $formularioEnviado->ingresosBrutosEmprendimiento ?>">
-    </div>
-    <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 100%;"></div>
-
-    <p align="center"><b>Localización del emprendimiento</b></p>
-
-    <div class="float-container">
-      <label>Domicilio real</label>
-      <input data-placeholder="Ingrese el domicilio real del emprendimiento..." maxlength="43" name="domicilioEmprendimiento" value="<?= $formularioEnviado->domicilioEmprendimiento ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Localidad</label>
-      <input data-placeholder="Ingrese la localidad del emprendimiento..." maxlength="43" name="localidadEmprendimiento" id="localidad_emprendimiento" autocomplete="off" value="<?= $formularioEnviado->localidadEmprendimiento ?>">
-    </div>
-
-    <p align="center"><b>El lugar donde se desarrolla es:</b></p>
-    <div class="lista_grados" align="center">
-    	<?php Helpers::crearRadio('lugarEmprendimiento',$formularioEnviado->lugarEmprendimiento); ?>
-    </div>
-    <p align="center"><b>DETALLE EL-LOS PRODUCTOS O SERVICIOS QUE OFRECERÁ:</b></p>
-    <p><textarea placeholder="Ingrese texto aquí..." maxlength="254" name="descProdServicios">
-    	<?= $formularioEnviado->descProdServicios ?>
-    </textarea></p>
-    <p align="center"><b>¿HA RECIBIDO APORTES O CRÉDITOS DE ORGANISMOS PÚBLICOS PARA EL DESARROLLO DEL PROYECTO?</b></p>
-    <p align="center"><em>En caso de no haber recibido aportes, deje vacíos los campos.</em></p>
-
-
-    <div class="float-container">
-      <label>Institución</label>
-      <input data-placeholder="Ingrese la institución de la cual ha recibido el aporte..." maxlength="43" name="institucionAporte" value="<?= $formularioEnviado->institucionAporte ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Fecha</label>
-      <input data-placeholder="Ingrese la fecha en la que ha recibido el aporte..." name="fecAporte" id="fecha_institucion" value="<?= $formularioEnviado->fecAporte ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Monto</label>
-      <input data-placeholder="Ingrese el monto del aporte" maxlength="10" name="montoAporte" id="montoAporte" value="<?= $formularioEnviado->montoAporte ?>">
-    </div>
-
-
-    <p align="center"><b>TIPO DE APORTE:</b></p>
-    <div class="lista_grados" align="center">
-    	<?php Helpers::crearRadio('tipoAporte',$formularioEnviado->tipoAporte); ?>
-    </div>
-    <p align="center">
-      <b>ESTADO DE DEVOLUCIÓN/RENDICIÓN:</b>
-    </p>
-    <div class="lista_grados" align="center">
-    	<?php Helpers::crearRadio('estadoAporte',$formularioEnviado->estadoAporte); ?>
-    </div>
-    <br><div style="border-top: 2px solid #4CAF50;display: inline-block;width: 100%;"></div>
-    <p align="center"><b>EXPERIENCIA O FORMACIÓN DE EL/LOS EMPRENDEDORES PARA EL DESARROLLO DEL EMPRENDIMIENTO:</b></p>
-    <p><textarea placeholder="Ingrese texto aquí..." maxlength="254" name="experienciaEmprendedores"> <?= $formularioEnviado->experienciaEmprendedores ?></textarea></p>
-    <p align="center"><b>OPORTUNIDAD DE MERCADO O  PROBLEMA QUE  RESUELVE:</b></p>
-    <p><textarea placeholder="Ingrese texto aquí..." maxlength="254" name="oportunidadMercado">
-    	<?= $formularioEnviado->oportunidadMercado ?>
-    </textarea></p>
-    <p align="center"><b>DESCRIPCIÓN DEL DESTINO DEL FINANCIAMIENTO:</b></p>
-    <p><textarea placeholder="Ingrese texto aquí..." maxlength="254" name="descFinanciamiento">
-    	<?= $formularioEnviado->descFinanciamiento ?>
-    </textarea></p>
+                              <!--EMPRENDIMIENTO-->
+  <table class="w3-table-all">
+      <thead>
+      <tr class="w3-green">
+        <th colspan="2" style="text-align: center;font-size: 18px;">EMPRENDIMIENTO</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Actividad principal</th>
+      <td><?= $formularioEnviado->actPrincipalEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>Fecha de inicio a la actividad</th>
+      <td><?= $formularioEnviado->fecInicioEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>Antiguedad</th>
+      <td><?= $formularioEnviado->antiguedadEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>Número de CUIT</th>
+      <td><?= $formularioEnviado->cuitEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>Número de ingresos brutos</th>
+      <td><?= $formularioEnviado->ingresosBrutosEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>Domicilio real</th>
+      <td><?= $formularioEnviado->domicilioEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>Localidad</th>
+      <td><?= $formularioEnviado->localidadEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th>El lugar donde se desarrolla es</th>
+      <td><?= $formularioEnviado->lugarEmprendimiento; ?></td>
+    </tr>
+    <tr>
+      <th colspan="2" style="text-align: center;">Detalle el-los productos o servicios que ofrecerá</th>
+    </tr>
+    <tr>
+      <td><?= $formularioEnviado->descProdServicios; ?></td>
+    </tr>
+    <tr>
+      <th colspan="2" style="text-align: center;">Experiencia o formación de el/los emprendedores para el desarrollo del emprendimiento</th>
+    </tr>
+    <tr>
+      <td><?= $formularioEnviado->experienciaEmprendedores ?></td>
+    </tr>
+    <tr>
+      <th colspan="2" style="text-align: center;">Oportunidad mercado</th>
+    </tr>
+    <tr>
+      <td><?= $formularioEnviado->oportunidadMercado ?></td>
+    </tr>
+    <tr>
+      <th colspan="2" style="text-align: center;">Descripción del financiamiento</th>
+    </tr>
+    <tr>
+      <td><?= $formularioEnviado->descFinanciamiento ?></td>
+    </tr>
+  </table>
+  <br>
   </div>
-  <!-- \\\\\\\\\\\\\\\\\\\\\\\ ASPECTOS SOCIALES  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-  <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'aspectosSociales') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para ASPECTOS SOCIALES:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
-    <?php Helpers::crearCheckValido('aspectosSociales',$pasosValidos->aspectosSociales) ?>
-
-    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="aspectosSociales">OBSERVACIÓN</button>
-      <p class="hoja" style="display: none;">aspectosSociales</p>
-      <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">ASPECTOS SOCIALES</p>
-
-    <p align="center">
-     <b> Situación laboral actual:</b>
-    </p>
-    <div class="lista_grados" align="center">
-    <?php Helpers::crearRadio('situacionLaboral',$formularioEnviado->situacionLaboral); ?>
-    </div>
-
-    <div class="float-container">
-      <label>Aclaraciones</label>
-      <input data-placeholder="Ingrese aclaraciones..." maxlength="79" name="aclaracionesGenerales" value="<?= $formularioEnviado->aclaracionesGenerales ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Ingreso</label>
-      <input data-placeholder="Ingrese el salario general..." maxlength="10" name="ingresoGenerales" id="ingresoGenerales" value="<?= $formularioEnviado->ingresoGenerales ?>">
-    </div>
-
-    <p align="center">
-     <b> Percepciones sociales: </b>
-    </p>
-    <div class="lista_grados" align="center">
-       	<?php Helpers::crearRadio('percepcionesSociales', $formularioEnviado->percepcionesSociales); ?>
-    </div>
-
-    <div class="float-container">
-      <label>Monto al mes</label>
-      <input data-placeholder="Ingrese el monto al mes de las percepciones sociales..." maxlength="10" name="montoMesPercepciones" id="montoMes" value="<?= $formularioEnviado->montoMesPercepciones ?>">
-    </div>
-
-    <div class="float-container">
-      <label>Personas a cargo</label>
-      <input data-placeholder="Ingrese la cantidad de personas que tiene a cargo..." maxlength="2" name="cantPersonasCargo" value="<?= $formularioEnviado->cantPersonasCargo ?>">
-    </div>
-
-    <p align="center">
-     <b> Lugar donde vivo es: </b>
-    </p>
-    <div class="lista_grados" align="center">
-      <?php Helpers::crearRadio('lugarHabita',$formularioEnviado->lugarHabita); ?>
-    </div>
-    <p align="center"><b>Personas o instituciones que pueden dar referencias sobre el emprendedor</b></p>
-    <input type="button" id="add_field" value="adicionar">
-    <br>
-    <?php 
-
-    if ($referentes) {
-    	echo '<div id="listas">';
-    	for ($i=0; $i < count($referentes); $i++) {
-    			print_r('
-				        <div>
-				            <input placeholder="Nombre y apellido/Institución"  name="nombre_ref[]" value="'.$referentes[$i]->nombre.'">
-				            <input placeholder="Localidad..."  name="localidad_ref[]" value="'.$referentes[$i]->localidad.'">
-				            <input placeholder="Telefono..."  name="telefono_ref[]" value="'.$referentes[$i]->telefono.'">
-				            <a href="#" class="remover_campo">Remover</a>
-                    <hr>
-				        </div>
-    				');
-    		}
-    	echo '</div>';
-    }
-    ?>
-    </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MERCADO  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
     <?php
@@ -409,68 +296,91 @@ use App\Helpers;
       <p class="hoja" style="display: none;">mercado</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">MERCADO</p>
 
-      <div id="clientes_mercado">
-        <p align="center"><b>PRINCIPALES CLIENTES - ¿Quién te compra?</b></p>
-        <input type="button" id="add_cliente" value="adicionar">
-        <br>
-       <?php
-	       if ($clientes) {
-	       		for ($i=0; $i < count($clientes); $i++) {
-	       			 	print_r('<div>
-	       			 		<hr>
-					          <input placeholder="Nombre y apellido..." type="text" name="nombre_cliente[]" value="'.$clientes[$i]->nombre.'">
-					          <input placeholder="Edad..." type="text" name="edad_cliente[]" value="'.$clientes[$i]->edad.'">
-					          <input placeholder="Ubicación..." type="text" name="ubicacion_cliente[]" value="'.$clientes[$i]->ubicacion.'">
-					          <input placeholder="Nivel socio-económico..." type="text" name="nivel_cliente[]" value="'.$clientes[$i]->nivelSocEconomico.'">
-					          <input placeholder="Intereses..." type="text" name="intereses_cliente[]" value="'.$clientes[$i]->intereses.'">
-					          <a href="#" class="remover_campo">Remover</a>
-					        </div>');
-	       		}
-	       }
-	      ?>      
-  		</div>
-      <div id="proveedores_mercado">
-        <p align="center"><b>PROVEEDORES ¿A quién le comprás tus materias primas o insumos?</b></p>
-        <input type="button" id="add_proveedor" value="adicionar">
-        <br>
-        <?php 
-        if ($proveedores) {
-        	for ($i=0; $i < count($proveedores); $i++) { 
-        			print_r('<div>
-        					<hr>
-					          <input placeholder="Nombre o razón social..." type="text" name="nombre_proveedor[]" value="'.$proveedores[$i]->nombre.'">
-					          <input placeholder="Ubicación..." type="text" name="ubicacion_proveedor[]" value="'.$proveedores[$i]->ubicacion.'">
-					          <input placeholder="Compra..." type="text" name="compra_proveedor[]" value="'.$proveedores[$i]->compra.'">
-					          <a href="#" class="remover_campo">Remover</a>
-					        </div>');
-        	}
-        }
-        ?>
-      </div>
-      <div id="competencia_mercado">
-        <p align="center"><b>COMPETENCIA ¿Quién vende lo mismo que vos o algo parecido?</b></p>
-        <input type="button" id="add_competencia" value="adicionar">
-        <br>
-        <?php 
-        if ($competencias) {
-        	for ($i=0; $i < count($competencias); $i++) { 
-        			print_r('<div>
-        					<hr>
-					          <input placeholder="Nombre o razón social..." type="text" name="nombre_competencia[]" value="'.$competencias[$i]->nombre.'">
-					          <input placeholder="Ubicación..." type="text" name="ubicacion_competencia[]" value="'.$competencias[$i]->ubicacion.'">
-					          <input placeholder="Qué ofrece..." type="text" name="ofrece_competencia[]" value="'.$competencias[$i]->ofrece.'">
-					          <a href="#" class="remover_campo">Remover</a>
-					        </div>');
-        	}
-        }
-        ?>
-      </div>
-      <p align="center"><b>¿CUÁL SERÍA TU VENTAJA EN COMPARACIÓN CON LOS COMPETIDORES? ¿Cómo te diferencias?</b></p>
-      <p><textarea placeholder="Ingrese texto aquí..." name="ventajaCompetidores" maxlength="254"><?= $formularioEnviado->ventajaCompetidores ?></textarea></p>
-      <p align="center"><b>ESTRATEGIAS DE PROMOCIÓN QUE UTILIZARÁ ¿Cómo vas a hacer conocer tu producto o servicio?</b></p>
-      <p><textarea placeholder="Ingrese texto aquí..." name="estrategiasPromocion" maxlength="254"><?= $formularioEnviado->estrategiasPromocion ?></textarea></p>
-      <p align="center"><b>PUNTOS DE VENTA ¿Dónde vas a vender?</b></p>
-      <p><textarea placeholder="Ingrese texto aquí..." name="puntosVenta" maxlength="254"><?= $formularioEnviado->puntosVenta ?></textarea></p> 
+     <table class="w3-table-all">
+      <thead>
+      <tr class="w3-green">
+        <th colspan="5" style="text-align: center;font-size: 18px;">Mercado</th>
+      </tr>
+    </thead>
+  </table>
+ <table class="w3-table-all">
+      <thead>
+      <tr class="w3-green">
+        <th colspan="2" style="text-align: center;font-size: 18px;">CLIENTES</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Descripción</th>
+      <td><?= $formularioEnviado->descripcionClientes; ?></td>
+    </tr>
+    <tr>
+      <th>Ubicación</th>
+      <td><?= $formularioEnviado->ubicacionClientes; ?></td>
+    </tr>
+</table>
+<table class="w3-table-all">
+      <thead>
+      <tr class="w3-green">
+        <th colspan="2" style="text-align: center;font-size: 18px;">PROVEEDORES</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Descripción</th>
+      <td><?= $formularioEnviado->descripcionProveedores; ?></td>
+    </tr>
+    <tr>
+      <th>Ubicación</th>
+      <td><?= $formularioEnviado->ubicacionProveedores; ?></td>
+    </tr>
+</table>
+<table class="w3-table-all">
+      <thead>
+      <tr class="w3-green">
+        <th colspan="2" style="text-align: center;font-size: 18px;">COMPETENCIA</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Descripción</th>
+      <td><?= $formularioEnviado->descripcionCompetencia; ?></td>
+    </tr>
+    <tr>
+      <th>Ubicación</th>
+      <td><?= $formularioEnviado->ubicacionCompetencia; ?></td>
+    </tr>
+</table>
+
+    <br>
+    <table class="w3-table-all">
+      <thead>
+          <tr>
+            <th style="text-align: center;">¿CUÁL SERÍA TU VENTAJA EN COMPARACIÓN CON LOS COMPETIDORES? ¿Cómo te diferencias?</th>
+          </tr>
+      </thead>
+      <tr>
+          <td><?= $formularioEnviado->ventajaCompetidores; ?></td>
+      </tr>
+    </table>
+  <br>
+      <table class="w3-table-all">
+      <thead>
+          <tr class="w3-green">
+            <th style="text-align: center;">Comercialización</th>
+          </tr>
+      </thead>
+      <tr>
+        <th style="text-align: center;">ESTRATEGIAS DE PROMOCIÓN QUE UTILIZARÁ ¿Cómo vas a hacer conocer tu producto o servicio?</th>
+      </tr>
+      <tr>
+          <td><?= $formularioEnviado->estrategiasPromocion; ?></td>
+      </tr>
+      <tr>
+        <th style="text-align: center;">PUNTOS DE VENTA ¿Dónde vas a vender?</th>
+      </tr>
+      <tr>
+          <td><?= $formularioEnviado->puntoVentaLocal ?? $formularioEnviado->puntoVentaProvincial ?? $formularioEnviado->puntoVentaNacional ?? 'No hay registro.'; ?></td>
+      </tr>
+    </table>
+    <br> 
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ PRODUCCIÓN - COSTOS - RESULTADOS  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
@@ -492,131 +402,89 @@ use App\Helpers;
       <p class="hoja" style="display: none;">prodCostResultados</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">PRODUCCIÓN - COSTOS - RESULTADOS</p>
 
-      <p align="center"><b>MATERIAS PRIMAS O INSUMOS QUE SE NECESITAN</b></p>
-      <p><textarea placeholder="Ingrese texto aquí..." name="materiasPrimas" maxlength="254"><?= $formularioEnviado->materiasPrimas ?></textarea></p>
-      <p align="center"><b>HERRAMIENTAS O MAQUINARIAS NECESARIAS PARA PRODUCIR O BRINDAR EL SERVICIO</b></p>
-      <p><textarea placeholder="Ingrese texto aquí..." name="descHerramientas" maxlength="254"><?= $formularioEnviado->descHerramientas ?></textarea></p>
-      <!-- ITEM DINAMICO VENTAS -->
-        <div id="ventas_financiamiento">
-          <p align="center"><b>VOLUMEN ESTIMADO DE VENTAS AL MES DE EJECUTAR EL FINANCIAMIENTO</b></p>
-          <input type="button" id="add_venta" value="adicionar">
-          <br>
-         <?php 
-	     $totalVentas = 0;
-	        if ($ventas) {
-	        	for ($i=0; $i < count($ventas); $i++) { 
-	        			print_r('<div id="ventas">
-	        				<hr>
-					              <input placeholder="Producto o servicio..." type="text" name="nombre_producto[]" value="'.$ventas[$i]->producto.'" >
-					              <input placeholder="Unidad de medida..." id="ud_medida" type="text" name="unidad_medida[]" value="'.$ventas[$i]->udMedida.'">
-					                  <div align="center">
-					                    <input placeholder="Cantidad por año" type="text" name="cant_anio[]" id="cant_anio" class="ventas_grande" value="'.$ventas[$i]->cantAnio.'">
-					                    <input placeholder="Precio..." type="text" name="precio[]" id="precio" class="ventas_grande" value="'.$ventas[$i]->precio.'">
-					                    <input placeholder= "Total" type="text" name="total[]" id="total" class="ventas_total" readonly value="'.$ventas[$i]->cantAnio * $ventas[$i]->precio.'">
-					                  </div>
-					                <a href="#" class="remover_campo">Remover</a>
-					            </div>');
-	        			$totalVentas += $ventas[$i]->cantAnio * $ventas[$i]->precio;
-	        	}
-	        }
-	        ?>
-        </div>
-      <!-- FIN ITEM DINAMICO VENTAS -->
-      <p align="center">TOTAL:</p>
-      <p><input placeholder= "Total" type="text" name="total_completo" id="total_completo" value="<?= $totalVentas ?>" readonly></p>
-      <div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
-          <p><b>OTROS COSTOS DEL EMPRENDIMIENTO</b></p>
-          <div>
-            <p><label>Insumos y materias primas:</label></p>
-            <input placeholder="Insumos y materias primas..." class="sumable" maxlength="10" name="insumosCostos" id="insumos_materias" value="<?= $formularioEnviado->insumosCostos ?>">
-          </div>
+     <br>
+    <table class="w3-table-all">
+      <thead>
+          <tr class="w3-green">
+            <th style="text-align: center;">Proceso productivo</th>
+          </tr>
+      </thead>
+      <tr>
+        <th style="text-align: center;">Materias primas o insumos que se necesitan</th>
+      </tr>
+      <tr>
+          <td><?= $formularioEnviado->materiasPrimas; ?></td>
+      </tr>
+      <tr>
+        <th style="text-align: center;">Herramientas o maquinarias necesarias para producir o brindar el servicio</th>
+      </tr>
+      <tr>
+          <td><?= $formularioEnviado->descHerramientas; ?></td>
+      </tr>
+    </table>
+    <br>
+      <?php //Helpers::crearDatosVentas($ventas); ?>
+    <br>
+    <table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">OTROS COSTOS DEL EMPRENDIMIENTO</th>
+        </tr>
+        <tr>
+          <th style="text-align: center">TIPO</th>
+          <th>AL AÑO</th>
+        </tr>
+      </thead>
+        <tr>
+          <td>INSUMOS Y MATERIAS PRIMAS</td>
+          <td style="text-align: center;"><?= $formularioEnviado->insumosCostos ?></td>
+        </tr>
+        <tr>
+          <td>ALQUILERES</td>
+          <td style="text-align: center;"><?= $formularioEnviado->alquileresCostos?></td>
+        </tr>
+        <tr>
+          <td>SERVICIOS (LUZ-AGUA-GAS-INTERNET)</td>
+          <td style="text-align: center;"><?= $formularioEnviado->serviciosCostos?></td>
+        </tr>
+        <tr>
+          <td>MONOTRIBUTO</td>
+          <td style="text-align: center;"><?= $formularioEnviado->monotributoCostos ?></td>
+        </tr>
+        <tr>
+          <td>INGRESOS BRUTOS</td>
+          <td style="text-align: center;"><?= $formularioEnviado->ingresosBrutosCostos ?></td>
+        </tr>
+        <tr>
+          <td>SEGUROS</td>
+          <td style="text-align: center;"><?= $formularioEnviado->segurosCostos ?></td>
+        </tr>
+        <tr>
+          <td>COMBUSTIBLE</td>
+          <td style="text-align: center;"><?= $formularioEnviado->combustibleCostos ?></td>
+        </tr>
+        <tr>
+          <td>SUELDOS</td>
+          <td style="text-align: center;"><?= $formularioEnviado->sueldosCostos ?></td>
+        </tr>
+        <tr>
+          <td>COMERCIALIZACIÓN</td>
+          <td style="text-align: center;"><?= $formularioEnviado->comercializacionCostos ?></td>
+        </tr>
+        <tr>
+          <td>OTROS</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrosCostos ?></td>
+        </tr>
+        <tr>
+          <td>CUOTA MENSUAL</td>
+          <td style="text-align: center;"><?= $formularioEnviado->segurosCostos ?></td>
+        </tr>
+        <tr>
+          <th>TOTAL </th>
+          <td style="text-align: center;"><?= Helpers::calcularTotalCostos($formularioEnviado); ?></td>
+        </tr>
+    </table>
 
-          <div>
-            <p><label >Alquileres:</label></p>
-            <input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="<?= $formularioEnviado->alquileresCostos ?>">
-          </div>
-
-          <div>
-            <p><label>Servicios(luz-agua-gas-internet)</label></p>
-            <input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="<?= $formularioEnviado->serviciosCostos ?>">
-          </div>
-          <div>
-            <p><label>Monotributo</label></p>
-            <input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="<?= $formularioEnviado->monotributoCostos ?>">
-          </div>
-          <div>
-            <p><label>Ingresos brutos</label></p>
-            <p><input placeholder="Ingresos brutos..." class="sumable" maxlength="10" name="ingresosBrutosCostos" id="ingresos_brutos" value="<?= $formularioEnviado->ingresosBrutosCostos ?>"></p>
-          </div>
-          <div>
-            <p><label>Seguros</label></p>
-            <p><input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="<?= $formularioEnviado->segurosCostos ?>"></p>
-          </div>
-          <div>
-            <p><label>Combustible</label></p>
-            <p><input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="<?= $formularioEnviado->combustibleCostos ?>"></p>
-          </div>
-          <div>
-            <p><label>Sueldos</label></p>
-            <p><input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="<?= $formularioEnviado->sueldosCostos ?>"></p>
-          </div>
-          <div>
-            <p><label>Comercialización</label></p>
-            <p><input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="<?= $formularioEnviado->comercializacionCostos ?>"></p>
-          </div>
-          <div>
-            <p><label>Otros</label></p>
-            <p><input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="<?= $formularioEnviado->otrosCostos ?>"></p>
-          </div>
-          <div>
-            <p><label>Cuota Mensual</label></p>
-            <p><input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="<?= $formularioEnviado->cuotaMensualCostos ?>"></p>
-          </div>
-            <p align="center">TOTAL</p>
-            <p><input type="text" id="total_costos" name="total_costos" value="<?= Helpers::calcularTotalCostos($formularioEnviado); ?>"></p>
-      </div>
-      <!-- ITEM DINAMICO BIENES FINANCIAMIENTO -->
-
-        <div id="financiamiento">
-          <p align="center"><b>BIENES A FINANCIAR</b></p>
-          <input type="button" id="add_itemFinan" value="adicionar">
-          <div id="item_financiamiento">
-         	<?php
-	        if ($items) {
-	        	$x = 0;
-	        	for ($i=0; $i < count($items); $i++) { 
-	        		echo '<div class="item_bien">';
-	        		if ($x == 0) {
-	        			echo '<p>'.Helpers::opcionSelectItems($items[$i]->nombreItem).'</p>';
-	        			print_r('
-              <p class="monto_bienes">
-                <input placeholder="Descripcion" type="text" name="descItemFinan[]" value="'.$items[$i]->descripcion.'">
-              </p>
-              <div align="center">
-                      <input placeholder="Cantidad por año" class="multiplo" type="text" name="cantAnioItemFinan[]" id="cant_anio" class="ventas_grande" value="'.$items[$i]->cantidad.'">
-                      <input placeholder="Precio..." class="multiplo" type="text" name="precioItemFinan[]" id="precio" value="'.$items[$i]->precioUnitario.'">
-                      <input placeholder= "Total" type="text" id="totalItems" class="ventas_total" value="'.$items[$i]->cantidad*$items[$i]->precioUnitario.'" readonly>
-              </div><br></div>');
-	        		} else {
-	        			echo '<p>'.Helpers::opcionSelectItems($items[$i]->nombreItem).'</p>';
-	        			print_r('
-			              <p class="monto_bienes">
-			              <input type="hidden" name="idItemFinan[]" value="'.$items[$i]->id.'" >
-			                <input placeholder="Descripcion" type="text" name="descItemFinan[]" value="'.$items[$i]->descripcion.'">
-			              </p>
-			              <div align="center">
-			                      <input placeholder="Cantidad por año" class="multiplo" type="text" name="cantAnioItemFinan[]" id="cant_anio" class="ventas_grande" value="'.$items[$i]->cantidad.'">
-			                      <input placeholder="Precio..." class="multiplo" type="text" name="precioItemFinan[]" id="precio" value="'.$items[$i]->precioUnitario.'">
-			                      <input placeholder= "Total" type="text" id="totalItems" class="ventas_total" value="'.$items[$i]->cantidad*$items[$i]->precioUnitario.'" readonly>
-			              </div><br><a href="#" class="remover_campo">Remover</a></div>');
-		       		}
-		       		$x++;
-	        	}
-	        }
-	        ?>
-          </div>
-        </div>
-         <!-- FIN ITEM DINAMICO BIENES FINANCIAMIENTO -->
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
         <div class="tab">
@@ -639,90 +507,149 @@ use App\Helpers;
       <p class="hoja" style="display: none;">mbe</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR</p>
 
-    <div class="float-container">
-      <label>Nombre y apellido</label>
-      <input type="text" data-placeholder="Ingresar nombre y Apellido..." maxlength="43" name="nombreMBE" id="nombre_mbe" value="<?= $formularioEnviado->nombreMBE ?>">
-    </div>
-    <div class="float-container">
-      <label>DNI</label>
-      <input type="text" data-placeholder="Ingresar DNI..." maxlength="11" name="dniMBE" value="<?= $formularioEnviado->dniMBE ?>">
-    </div>
-    <div class="float-container">
-      <label>CUIT</label>
-      <input type="text" data-placeholder="Ingresar CUIT..." maxlength="20" name="cuitMBE" value="<?= $formularioEnviado->cuitMBE ?>">
-    </div>
-    <div class="float-container">
-      <label>Localidad</label>
-      <input type="text" data-placeholder="Ingresar Localidad..." maxlength="43" name="localidadMBE" value="<?= $formularioEnviado->localidadMBE ?>">
-    </div>
-    <div class="float-container">
-      <label>Domicilio</label>
-      <input type="text" data-placeholder="Ingresar Domicilio..." maxlength="43" name="domicilioMBE" value="<?= $formularioEnviado->domicilioMBE ?>">
-    </div>
-
-    <div id="bienes_emprendedor">
-
-      <div id="disponibilidades">
-          <p align="center"><b>DISPONIBILIDADES</b></p>
-          <input type="button" id="add_disponibilidad" value="adicionar">
-          <?php
-          if (!empty($disponibilidades)) {
-            Helpers::crearPatrimonioEmprendedor('DISPONIBILIDADES',$disponibilidades);
-           }
-          ?>      
-      </div>
-      <div id="bienes_cambio">
-          <p align="center"><b>BIENES DE CAMBIO</b></p>
-          <input type="button" id="add_bien" value="adicionar">
-          <?php
-          if (!empty($bienes_cambio)) {
-            Helpers::crearPatrimonioEmprendedor('BIENES DE CAMBIO',$bienes_cambio);
-           }
-          ?>      
-      </div>
-      <div id="bienes_uso">
-          <p align="center"><b>BIENES DE USO</b></p>
-          <input type="button" id="add_bienuso" value="adicionar">
-          <?php
-          if (!empty($bienes_uso)) {
-            Helpers::crearPatrimonioEmprendedor('BIENES DE USO',$bienes_uso);
-           }
-          ?>      
-      </div>
-      <hr style="border-color: #0174b6;">
-      <div id="deudas_comerciales">
-          <p align="center"><b>DEUDAS COMERCIALES</b></p>
-          <input type="button" id="add_deudacomercial" value="adicionar">
-          <?php
-          if (!empty($deudas_comerciales)) {
-            Helpers::crearPatrimonioEmprendedor('DEUDAS COMERCIALES',$deudas_comerciales);
-           }
-          ?>      
-      </div>
-      <div id="deudas_bancarias">
-          <p align="center"><b>DEUDAS BANCARIAS</b></p>
-          <input type="button" id="add_deudabancaria" value="adicionar">
-          <?php
-          if (!empty($deudas_bancarias)) {
-            Helpers::crearPatrimonioEmprendedor('DEUDAS BANCARIAS',$deudas_bancarias);
-           }
-          ?>      
-      </div>
-      <div id="deudas_fiscales">
-          <p align="center"><b>DEUDAS FISCALES</b></p>
-          <input type="button" id="add_deudafiscal" value="adicionar">
-          <?php
-          if (!empty($deudas_fiscales)) {
-            Helpers::crearPatrimonioEmprendedor('DEUDAS FISCALES',$deudas_fiscales);
-           }
-          ?>      
-      </div>
-
-    </div>
-        
-        <p><input placeholder="Otras deudas..." maxlength="10" type="text" name="otras_deudas" value="<?=$formularioEnviado->otrasDeudasMBE?>"></p>
-    </div>
-   
+     <table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">MANIFESTACIÓN DE BIENES EMPRENDEDOR</th>
+        </tr>
+      </thead>
+        <tr>
+          <th>Nombre y apellido</th>
+          <td style="text-align: center;"><?= $formularioEnviado->nombreEmprendedor ?></td>
+        </tr>
+        <tr>
+          <th>DNI</th>
+          <td style="text-align: center;"><?= $formularioEnviado->dniEmprendedor ?></td>
+        </tr>
+        <tr>
+          <th>CUIT</th>
+          <td style="text-align: center;"><?= $formularioEnviado->cuitEmprendimiento ?></td>
+        </tr>
+        <tr>
+          <th>Localidad</th>
+          <td style="text-align: center;"><?= $formularioEnviado->localidadEmprendedor ?></td>
+        </tr>
+        <tr>
+          <th>Domicilio</th>
+          <td style="text-align: center;"><?= $formularioEnviado->domicilioEmprendedor ?></td>
+        </tr>
+    </table>
+    <br>
+     <table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">BIENES</th>
+        </tr>
+        <tr>
+          <th style="text-align: center">TIPO</th>
+          <th>MONTO</th>
+        </tr>
+      </thead>
+        <tr>
+          <td>Efectivo</td>
+          <td style="text-align: center;"><?= $formularioEnviado->efectivoMBE ?></td>
+        </tr>
+        <tr>
+          <td>Cuentas bancarias</td>
+          <td style="text-align: center;"><?= $formularioEnviado->cuentasBancariasMBE ?></td>
+        </tr>
+        <tr>
+          <td>Créditos por ventas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->creditosVentasMBE ?></td>
+        </tr>
+        <tr>
+          <td>Otros créditos</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrosCreditosMBE ?></td>
+        </tr>
+        <tr>
+          <td>Mercaderias</td>
+          <td style="text-align: center;"><?= $formularioEnviado->mercaderiasMBE ?></td>
+        </tr>
+        <tr>
+          <td>Materias primas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->materiasPrimasMBE ?></td>
+        </tr>
+        <tr>
+          <td>Insumos</td>
+          <td style="text-align: center;"><?= $formularioEnviado->insumosMBE ?></td>
+        </tr>
+        <tr>
+          <td>Rodados</td>
+          <td style="text-align: center;"><?= $formularioEnviado->rodadosMBE ?></td>
+        </tr>
+        <tr>
+          <td>Maquinarias y equipos</td>
+          <td style="text-align: center;"><?= $formularioEnviado->maquinariasEquiposMBE ?></td>
+        </tr>
+        <tr>
+          <td>Instalaciones</td>
+          <td style="text-align: center;"><?= $formularioEnviado->instalacionesMBE ?></td>
+        </tr>
+        <tr>
+          <th>TOTAL ACTIVO</th>
+          <td style="text-align: center;"> </td>
+        </tr>
+    </table>
+    <br>
+<table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">DEUDAS</th>
+        </tr>
+        <tr>
+          <th style="text-align: center">TIPO</th>
+          <th>MONTO</th>
+        </tr>
+      </thead>
+        <tr>
+          <td>En cuentas corrientes</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaCuentasCorrientesMBE ?></td>
+        </tr>
+        <tr>
+          <td>De cheques de pago diferido</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaChequesPagoDiferidoMBE ?></td>
+        </tr>
+        <tr>
+          <td>Documentadas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->documentadasMBE ?></td>
+        </tr>
+        <tr>
+          <td>Otras deudas comerciales</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrasDeudasComercialesMBE ?></td>
+        </tr>
+        <tr>
+          <td>Tarjetas de crédito</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaTarjetasCreditoMBE ?></td>
+        </tr>
+        <tr>
+          <td>Garantía prendaria</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaGarantiaPrendariaMBE ?></td>
+        </tr>
+        <tr>
+          <td>AFIP</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaAfipMBE ?></td>
+        </tr>
+        <tr>
+          <td>Rentas Río Negro</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaRentasRnMBE ?></td>
+        </tr>
+        <tr>
+          <td>Tributos municipales</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaTributosMunicipalesMBE ?></td>
+        </tr>
+        <tr>
+          <td>Sociales</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudasSocialesMBE ?></td>
+        </tr>
+        <tr>
+          <td>Otras deudas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrasDeudasMBE ?></td>
+        </tr>
+        <tr>
+          <th>TOTAL PASIVO</th>
+          <td style="text-align: center;"> </td>
+        </tr>
+    </table>
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MANIFESTACIÓN DE LOS BIENES DEL GARANTE  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
@@ -745,87 +672,149 @@ use App\Helpers;
       <p class="hoja" style="display: none;">mbg</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">MANIFESTACIÓN DE LOS BIENES DEL GARANTE</p>
 
-
-    <div class="float-container">
-      <label>Nombre y apellido</label>
-      <input type="text" data-placeholder="Ingresar nombre y Apellido..." maxlength="43" name="nombreMBG" value="<?= $formularioEnviado->nombreMBG ?>">
-    </div>
-    <div class="float-container">
-      <label>DNI</label>
-      <input type="text" data-placeholder="Ingresar DNI..." maxlength="11" name="dniMBG" value="<?= $formularioEnviado->dniMBG ?>">
-    </div>
-    <div class="float-container">
-      <label>CUIT</label>
-      <input type="text" data-placeholder="Ingresar CUIT..." maxlength="20" name="cuitMBG" value="<?= $formularioEnviado->cuitMBG ?>">
-    </div>
-    <div class="float-container">
-      <label>Localidad</label>
-      <input type="text" data-placeholder="Ingresar Localidad..." maxlength="43" name="localidadMBG" value="<?= $formularioEnviado->localidadMBG ?>">
-    </div>
-    <div class="float-container">
-      <label>Domicilio</label>
-      <input type="text" data-placeholder="Ingresar Domicilio..." maxlength="43" name="domicilioMBG">
-    </div>
-
-    <div id="bienes_garante">
-
-       <div id="disponibilidades_g">
-          <p align="center"><b>DISPONIBILIDADES</b></p>
-          <input type="button" id="add_disponibilidad_g" value="adicionar">
-          <?php
-          if (!empty($disponibilidades)) {
-            Helpers::crearPatrimonioGarante('DISPONIBILIDADES',$disponibilidades);
-           }
-          ?>      
-      </div>
-      <div id="bienes_cambio_g">
-          <p align="center"><b>BIENES DE CAMBIO</b></p>
-          <input type="button" id="add_bien_g" value="adicionar">
-          <?php
-          if (!empty($bienes_cambio)) {
-            Helpers::crearPatrimonioGarante('BIENES DE CAMBIO',$bienes_cambio);
-           }
-          ?>      
-      </div>
-      <div id="bienes_uso_g">
-          <p align="center"><b>BIENES DE USO</b></p>
-          <input type="button" id="add_bienuso_g" value="adicionar">
-          <?php
-          if (!empty($bienes_uso)) {
-            Helpers::crearPatrimonioGarante('BIENES DE USO',$bienes_uso);
-           }
-          ?>      
-      </div>
-      <hr style="border-color: #0174b6;">
-      <div id="deudas_comerciales_g">
-          <p align="center"><b>DEUDAS COMERCIALES</b></p>
-          <input type="button" id="add_deudacomercial_g" value="adicionar">
-          <?php
-          if (!empty($deudas_comerciales)) {
-            Helpers::crearPatrimonioGarante('DEUDAS COMERCIALES',$deudas_comerciales);
-           }
-          ?>      
-      </div>
-      <div id="deudas_bancarias_g">
-          <p align="center"><b>DEUDAS BANCARIAS</b></p>
-          <input type="button" id="add_deudabancaria_g" value="adicionar">
-          <?php
-          if (!empty($deudas_bancarias)) {
-            Helpers::crearPatrimonioGarante('DEUDAS BANCARIAS',$deudas_bancarias);
-           }
-          ?>      
-      </div>
-      <div id="deudas_fiscales_g">
-          <p align="center"><b>DEUDAS FISCALES</b></p>
-          <input type="button" id="add_deudafiscal_g" value="adicionar">
-          <?php
-          if (!empty($deudas_fiscales)) {
-            Helpers::crearPatrimonioGarante('DEUDAS FISCALES',$deudas_fiscales);
-           }
-          ?>      
-      </div>
-        
-        <p><input placeholder="Otras deudas..." type="text" name="otras_deudas_g" value="<?=$formularioEnviado->otrasDeudasMBG?>"></p>
+     <table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">MANIFESTACIÓN DE BIENES GARANTE</th>
+        </tr>
+      </thead>
+        <tr>
+          <th>Nombre y apellido</th>
+          <td style="text-align: center;"><?= $formularioEnviado->nombreMBG ?></td>
+        </tr>
+        <tr>
+          <th>DNI</th>
+          <td style="text-align: center;"><?= $formularioEnviado->dniMBG ?></td>
+        </tr>
+        <tr>
+          <th>CUIT</th>
+          <td style="text-align: center;"><?= $formularioEnviado->cuitMBG ?></td>
+        </tr>
+        <tr>
+          <th>Localidad</th>
+          <td style="text-align: center;"><?= $formularioEnviado->localidadMBG ?></td>
+        </tr>
+        <tr>
+          <th>Domicilio</th>
+          <td style="text-align: center;"><?= $formularioEnviado->domicilioMBG ?></td>
+        </tr>
+    </table>
+    <br>
+     <table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">BIENES</th>
+        </tr>
+        <tr>
+          <th style="text-align: center">TIPO</th>
+          <th>MONTO</th>
+        </tr>
+      </thead>
+        <tr>
+          <td>Efectivo</td>
+          <td style="text-align: center;"><?= $formularioEnviado->efectivoMBG ?></td>
+        </tr>
+        <tr>
+          <td>Cuentas bancarias</td>
+          <td style="text-align: center;"><?= $formularioEnviado->cuentasBancariasMBG ?></td>
+        </tr>
+        <tr>
+          <td>Créditos por ventas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->creditosVentasMBG ?></td>
+        </tr>
+        <tr>
+          <td>Otros créditos</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrosCreditosMBG ?></td>
+        </tr>
+        <tr>
+          <td>Mercaderias</td>
+          <td style="text-align: center;"><?= $formularioEnviado->mercaderiasMBG ?></td>
+        </tr>
+        <tr>
+          <td>Materias primas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->materiasPrimasMBG ?></td>
+        </tr>
+        <tr>
+          <td>Insumos</td>
+          <td style="text-align: center;"><?= $formularioEnviado->insumosMBG ?></td>
+        </tr>
+        <tr>
+          <td>Rodados</td>
+          <td style="text-align: center;"><?= $formularioEnviado->rodadosMBG ?></td>
+        </tr>
+        <tr>
+          <td>Maquinarias y equipos</td>
+          <td style="text-align: center;"><?= $formularioEnviado->maquinariasEquiposMBG ?></td>
+        </tr>
+        <tr>
+          <td>Instalaciones</td>
+          <td style="text-align: center;"><?= $formularioEnviado->instalacionesMBG ?></td>
+        </tr>
+        <tr>
+          <th>TOTAL ACTIVO</th>
+          <td style="text-align: center;"> </td>
+        </tr>
+    </table>
+    <br>
+<table class="w3-table-all">
+        <thead>
+        <tr>
+          <th class="w3-green" colspan="5" style="text-align: center;font-size: 16px;">DEUDAS</th>
+        </tr>
+        <tr>
+          <th style="text-align: center">TIPO</th>
+          <th>MONTO</th>
+        </tr>
+      </thead>
+        <tr>
+          <td>En cuentas corrientes</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaCuentasCorrientesMBG ?></td>
+        </tr>
+        <tr>
+          <td>De cheques de pago diferido</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaChequesPagoDiferidoMBG ?></td>
+        </tr>
+        <tr>
+          <td>Documentadas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->documentadasMBG ?></td>
+        </tr>
+        <tr>
+          <td>Otras deudas comerciales</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrasDeudasComercialesMBG ?></td>
+        </tr>
+        <tr>
+          <td>Tarjetas de crédito</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaTarjetasCreditoMBG ?></td>
+        </tr>
+        <tr>
+          <td>Garantía prendaria</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaGarantiaPrendariaMBG ?></td>
+        </tr>
+        <tr>
+          <td>AFIP</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaAfipMBG ?></td>
+        </tr>
+        <tr>
+          <td>Rentas Río Negro</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaRentasRnMBG ?></td>
+        </tr>
+        <tr>
+          <td>Tributos municipales</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudaTributosMunicipalesMBG ?></td>
+        </tr>
+        <tr>
+          <td>Sociales</td>
+          <td style="text-align: center;"><?= $formularioEnviado->deudasSocialesMBG ?></td>
+        </tr>
+        <tr>
+          <td>Otras deudas</td>
+          <td style="text-align: center;"><?= $formularioEnviado->otrasDeudasMBG ?></td>
+        </tr>
+        <tr>
+          <th>TOTAL PASIVO</th>
+          <td style="text-align: center;"> </td>
+        </tr>
+    </table>
     </div>
    
     </div>
