@@ -219,25 +219,39 @@ use App\Helpers;
       </tr>
     </thead>
     <tr>
-      <th>Actividad principal</th>
-      <td><?= $formularioEnviado->actPrincipalEmprendimiento; ?></td>
+      <th>Denominación del emprendimiento</th>
+      <td><?= $formularioEnviado->emprendimiento->denominacion; ?></td>
     </tr>
     <tr>
-      <th>Fecha de inicio a la actividad</th>
-      <td><?= $formularioEnviado->fecInicioEmprendimiento; ?></td>
+      <th>Estado</th>
+      <td><?= $formularioEnviado->emprendimiento->estadoEmprendimiento; ?></td>
     </tr>
+    <tr>
+      <th>Actividad principal</th>
+      <td><?= $formularioEnviado->actividadPrincipal->nombre; ?></td>
+    </tr>
+    @isset($formularioEnviado->fecInicioEmprendimiento)
+    <tr>
+      <th>Fecha de inicio a la actividad</th>
+      <td>{{$formularioEnviado->fecInicioEmprendimiento}}</td>
+    </tr>
+    @endisset
+    @isset($formularioEnviado->antiguedadEmprendimiento)
     <tr>
       <th>Antiguedad</th>
       <td><?= $formularioEnviado->antiguedadEmprendimiento; ?></td>
     </tr>
+    @endisset
     <tr>
-      <th>Número de CUIT</th>
+      <th>Número de CUIL/CUIT</th>
       <td><?= $formularioEnviado->cuitEmprendimiento; ?></td>
     </tr>
+    @isset($formularioEnviado->ingresosBrutosEmprendimiento)
     <tr>
       <th>Número de ingresos brutos</th>
       <td><?= $formularioEnviado->ingresosBrutosEmprendimiento; ?></td>
     </tr>
+    @endisset
     <tr>
       <th>Domicilio real</th>
       <td><?= $formularioEnviado->domicilioEmprendimiento; ?></td>

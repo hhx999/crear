@@ -111,9 +111,13 @@ class Formulario extends Model {
     ];
 
     // Relationships
-    public function localidad()
+    public function emprendimiento()
     {
-        return $this->belongsTo(Localidad::class,'localidadEmprendedor');
+        return $this->belongsTo(Emprendimiento::class,'emprendimiento_id');
+    }
+    public function actividadPrincipal()
+    {
+        return $this->belongsTo(ActividadesPrincipales::class,'actPrincipalEmprendimiento');
     }
     public function referentes()
     {

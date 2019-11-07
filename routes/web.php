@@ -68,7 +68,7 @@ $router->post('/comprobarDNI','UsuarioController@comprobarDNI'); //comprueba si 
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	//------Rutas del inicio
 	Route::get('usuarioIndex','UsuarioController@indexUser');
-	Route::get('tramites','UsuarioController@tramitesUser'); //consultar tramites de financiamiento
+	Route::get('tramites','UsuarioController@tramitesUser')->name('tramites'); //consultar tramites de financiamiento
 	Route::post('datosSeguimiento','UsuarioController@devuelveDatosSeguimiento'); //envia estado de formulario de financiamiento
 	Route::get('/simuladorCreditos','UsuarioController@simuladorCreditos'); //simulador de creditos, se encuentra en financiamiento
 	Route::post('/simuladorCreditos','UsuarioController@simuladorCreditos');

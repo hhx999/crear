@@ -271,20 +271,20 @@ class FormularioController extends Controller
 
         $formulario = Formulario::find($id);
 
-        $referentes = $formulario->referentes;
-        $clientes = $formulario->clientes;
-        $proveedores = $formulario->proveedores;
-        $competencias = $formulario->competencias;
-        $ventas = $formulario->ventas;
-        $items = $formulario->items;
-
+        //$referentes = $formulario->referentes;
+        //$clientes = $formulario->clientes;
+        //$proveedores = $formulario->proveedores;
+        //$competencias = $formulario->competencias;
+        //$ventas = $formulario->ventas;
+        //$items = $formulario->items;
+        /*
         $disponibilidades = $formulario->disponibilidades;
         $bienes_cambio = $formulario->bienescambio;
         $bienes_uso = $formulario->bienesuso;
         $deudas_comerciales = $formulario->deudascomerciales;
         $deudas_bancarias = $formulario->deudasbancarias;
         $deudas_fiscales = $formulario->deudasfiscales;
-
+  */
         $pasosValidos = $formulario->pasosValidos;
 
         $validacion = FormValido::find($pasosValidos->id);
@@ -292,7 +292,7 @@ class FormularioController extends Controller
 
         $documentacion = $formulario->documentacion;
 
-        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario, 'referentes' => $referentes, 'clientes' => $clientes, 'proveedores' => $proveedores, 'competencias' => $competencias, 'ventas' => $ventas,'items' => $items, 'disponibilidades' => $disponibilidades, 'bienes_cambio' => $bienes_cambio,'bienes_uso' => $bienes_uso, 'deudas_comerciales' => $deudas_comerciales,'deudas_bancarias' => $deudas_bancarias, 'deudas_fiscales' => $deudas_fiscales , 'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones]);
+        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones]);
      }
     public function agregarRevision(Request $request) {
       $session = $request->session();

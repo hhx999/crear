@@ -304,7 +304,7 @@
 						<div class="w3-col m12" style="border: 2px white solid;">
 						@if($emprendimientosUsuario)
 							<div class="w3-half">
-								<select class="w3-select" id="idEmprendimiento" name="idEmprendimiento">
+								<select class="w3-select" id="idEmprendimiento" name="emprendimiento_id">
 									<option selected disabled value="">Seleccioná tú emprendimiento...</option>
 									@foreach($emprendimientosUsuario as $emprendimiento)
 										<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>

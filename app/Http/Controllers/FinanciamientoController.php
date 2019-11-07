@@ -116,6 +116,37 @@ class FinanciamientoController extends Controller
 			//Los formularios en estado borrador serán para ir guardando datos hasta estar seguros de enviar el formulario
 			//Los estados en esta parte son solo guías que ayudarán al usuario
 
+			if (!$request->idEmprendimiento) {
+						//Si no existe un emprendimiento cargado en la bd creamos uno...
+						$emprendimiento = new Emprendimiento;
+						$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
+			            $emprendimiento->denominacion = $request->denominacion;
+			            $emprendimiento->tipoSociedad = $request->tipoSociedad;
+			            $emprendimiento->cuit = $request->cuitEmprendimiento;
+			            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
+			            $emprendimiento->localidad = $request->localidadEmprendimiento;
+			            $emprendimiento->email = $request->emailEmprendimiento;
+			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
+			            $emprendimiento->save();
+
+			            $trabaja = new Trabaja;
+			            $trabaja->usuario_id = $idUsuario;
+			            $trabaja->emprendimiento_id = $emprendimiento->id;
+			            $trabaja->cargo = $request->cargo;
+			            $trabaja->save();
+
+			            $request->request->add(['emprendimiento_id' => $emprendimiento->id]);
+					} else {
+						//Sino se actualiza el emprendimiento
+						$emprendimiento = Emprendimiento::find($request->idEmprendimiento);
+						$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
+						$emprendimiento->cuit = $request->cuitEmprendimiento;
+						$emprendimiento->domicilio = $request->domicilioEmprendimiento;
+						$emprendimiento->localidad = $request->localidadEmprendimiento;
+						$emprendimiento->email = $request->emailEmprendimiento;
+						$emprendimiento->telefono = $request->telefonoEmprendimiento;
+						$emprendimiento->save();
+					}
 			if (array_key_exists($request->estado, $estadosValidos)) {
 				//Agregamos los parametros faltantes al request
 				$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm, 'estado' => $estadosValidos[$request->estado]]);
@@ -143,34 +174,6 @@ class FinanciamientoController extends Controller
 					$usuario->actividadPrincipal = $request->actPrincipalEmprendimiento;
 					$usuario->save();
 
-					if (!$request->idEmprendimiento) {
-						//Si no existe un emprendimiento cargado en la bd creamos uno...
-						$emprendimiento = new Emprendimiento;
-						$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
-			            $emprendimiento->denominacion = $request->denominacion;
-			            $emprendimiento->tipoSociedad = $request->tipoSociedad;
-			            $emprendimiento->cuit = $request->cuitEmprendimiento;
-			            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
-			            $emprendimiento->localidad = $request->localidadEmprendimiento;
-			            $emprendimiento->email = $request->emailEmprendimiento;
-			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
-			            $emprendimiento->save();
-
-			            $trabaja = new Trabaja;
-			            $trabaja->usuario_id = $idUsuario;
-			            $trabaja->emprendimiento_id = $emprendimiento->id;
-			            $trabaja->cargo = $request->cargo;
-			            $trabaja->save();
-					} else {
-						$emprendimiento = Emprendimiento::find($request->idEmprendimiento);
-						$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
-			            $emprendimiento->cuit = $request->cuitEmprendimiento;
-			            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
-			            $emprendimiento->localidad = $request->localidadEmprendimiento;
-			            $emprendimiento->email = $request->emailEmprendimiento;
-			            $emprendimiento->telefono = $request->telefonoEmprendimiento;
-			            $emprendimiento->save();
-					}
 					//Testeando datos de envío
 					//return $request->all();
 					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
