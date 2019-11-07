@@ -143,6 +143,8 @@ class CreateFORMULARIOSTable extends Migration {
 
 			$table->integer('idUsuario')->index('FK_UsuarioFormulario');
 			$table->integer('form_tipo_id')->index('FK_TipoFormulario');
+			$table->integer('emprendimiento_id')->index('FK_EmprendimientoFormulario');
+
 			$table->timestamps();
 		});
 	}

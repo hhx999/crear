@@ -393,6 +393,7 @@ class FormularioController extends Controller
      public function eliminarFormulario(Request $request)
      {
       $session = $request->session();
+      $estados = config('constantes.estados');
 
         $result = 0;
         if ($request->isJson()) {
@@ -403,7 +404,7 @@ class FormularioController extends Controller
             $data = $request->all();
             $id = $data['id'];
             $formulario = Formulario::find($id);
-            $formulario->estado = 0;
+            $formulario->estado = $estados['eliminado'];
             $formulario->save();
             $result = 1;
         }
