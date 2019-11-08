@@ -268,23 +268,11 @@ class FormularioController extends Controller
      public function adminFormulario($id, Request $request)
      {
       $session = $request->session();
+      $idUsuario = $request->session()->get('id_usuario');
+      $datosTecnico = Usuario::find($idUsuario);
 
         $formulario = Formulario::find($id);
 
-        //$referentes = $formulario->referentes;
-        //$clientes = $formulario->clientes;
-        //$proveedores = $formulario->proveedores;
-        //$competencias = $formulario->competencias;
-        //$ventas = $formulario->ventas;
-        //$items = $formulario->items;
-        /*
-        $disponibilidades = $formulario->disponibilidades;
-        $bienes_cambio = $formulario->bienescambio;
-        $bienes_uso = $formulario->bienesuso;
-        $deudas_comerciales = $formulario->deudascomerciales;
-        $deudas_bancarias = $formulario->deudasbancarias;
-        $deudas_fiscales = $formulario->deudasfiscales;
-  */
         $pasosValidos = $formulario->pasosValidos;
 
         $validacion = FormValido::find($pasosValidos->id);
@@ -292,7 +280,22 @@ class FormularioController extends Controller
 
         $documentacion = $formulario->documentacion;
 
-        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones]);
+        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones, 'datosTecnico' => $datosTecnico]);
+     }
+     public function agregarPortada(Request $request)
+     {
+      $idUsuario = $request->session()->get('id_usuario');
+      $datosTecnico = Usuario::find($idUsuario);
+
+       $formulario = Formulario::find($request->idFormulario);
+       $formulario->tituloProyecto = $request->tituloProyecto;
+       $formulario->nombreSolicitante = $request->nombreSolicitante;
+       $formulario->localidadSolicitante = $request->localidadSolicitante;
+       $formulario->agenciaProyecto = $request->agenciaProyecto;
+       $formulario->numeroProyecto = $request->numeroProyecto;
+       $formulario->montoSolicitado = $request->montoSolicitado;
+       $formulario->fecPresentacionProyecto = $request->fecPresentacionProyecto;
+       $formulario->descEmprendimiento = $request->descEmprendimiento;
      }
     public function agregarRevision(Request $request) {
       $session = $request->session();

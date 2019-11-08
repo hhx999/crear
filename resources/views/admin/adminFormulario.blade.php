@@ -18,11 +18,10 @@ use App\Helpers;
 </head>
 <body>
   <br>
-<form id="regForm" action="crearFormulario" method="POST">
   <h1>Línea Emprendedor</h1>
   <H3 align="center">Línea de créditos para emprendedores</H3>
 
-
+<form id="regForm" action="{{route('agregarPortada')}}" method="POST">
   <a href="{{ url('/admin') }}"><button type="button">Volver a FORMULARIOS</button></a><br>
   <div class="barraCol1"></div>
   <div class="barraCol2"></div>
@@ -65,7 +64,6 @@ use App\Helpers;
 
 </div>
 <!-- FIN DE Modal de REVISIÓN -->
-
   <div class="tab">
     <input type="input" name="idValidacion" id="idValidacion" value="<?=$pasosValidos->id?>" hidden>
     
@@ -86,42 +84,55 @@ use App\Helpers;
       <p class="hoja" style="display: none;">portada</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">PORTADA</p>
     <!-- ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª-->
-
-    <!-- hidden inputs -->
-    <p><input type="hidden" name="idFormulario" id="idFormulario" value="<?=$id ?>"></p>
-    <p><input type="hidden" name="numeroProyecto" value="<?=$formularioEnviado->numeroProyecto ?>"></p>
-    <p><input type="hidden" name="fecPresentacionProyecto" value="<?=$formularioEnviado->fecPresentacionProyecto ?>"></p>
-    <p><input type="hidden" name="idUsuario" value="<?=$formularioEnviado->idUsuario ?>"></p>
-    <!-- fin hidden -->
-
-    <div class="float-container">
-      <label>Título del proyecto <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese título del proyecto..." name="tituloProyecto" maxlength="43" id="tituloProyecto" value="<?= $formularioEnviado->tituloProyecto ?>">
+    @if (\Session::has('success'))
+    <div style="padding: 10px;background-color: #8bc34a;color: white;" align="center">
+        <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('success') !!}</p>
     </div>
+    @endif
+      <input type="submit" name="agregarPortada" value="Agregar portada">
+      <!-- hidden inputs -->
+      <p><input type="hidden" name="idFormulario" id="idFormulario" value="<?=$id ?>"></p>
+      <p><input type="hidden" name="idUsuario" value="<?=$formularioEnviado->idUsuario ?>"></p>
+      <!-- fin hidden -->
 
-    <div class="float-container">
-      <label>Nombre y apellido <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese nombre y apellido del solicitante ..." name="nombreSolicitante" maxlength="43" value="<?= $formularioEnviado->nombreSolicitante ?>">
+      <div class="float-container">
+        <label>Título del proyecto<span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese título del proyecto..." name="tituloProyecto" maxlength="43" id="tituloProyecto" value="<?= $formularioEnviado->tituloProyecto ?>">
+      </div>
+
+      <div class="float-container">
+        <label>Número de proyecto<span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese el número del proyecto..." name="numeroProyecto" maxlength="43" id="numeroProyecto" value="<?= $formularioEnviado->numeroProyecto ?>">
+      </div>
+
+      <div class="float-container">
+        <label>Fecha de presentación del proyecto<span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese la fecha en la que fue presentado el proyecto..." name="fecPresentacionProyecto" maxlength="43" id="fecPresentacionProyecto" value="<?= $formularioEnviado->fecPresentacionProyecto ?>">
+      </div>
+
+      <div class="float-container">
+        <label>Nombre y apellido<span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese nombre y apellido del solicitante ..." name="nombreSolicitante" maxlength="43" value="<?= $formularioEnviado->nombreSolicitante ?>">
+      </div>
+
+      <div class="float-container">
+        <label>Localidad <span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese localidad..." name="localidadSolicitante" maxlength="43" value="<?= $formularioEnviado->localidadSolicitante ?>" id="localidadPortada">
+      </div>
+
+      <div class="float-container">
+        <label>Agencia <span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese agencia..." name="agenciaProyecto" maxlength="43" value="<?= $formularioEnviado->agenciaProyecto ?>" id="agenciaPortada">
+      </div>
+
+      <div class="float-container">
+        <label>Monto a solicitar <span style="color:red;">&#10033;</span></label>
+        <input data-placeholder="Ingrese el monto solicitado..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ?>">
+      </div>
+
+      <p align="center"><b>BREVE DESCRIPCIÓN DEL EMPRENDIMIENTO Y JUSTIFICACIÓN DE LA NECESIDAD DE FINANCIAMIENTO <span style="color:red;">&#10033;</span></b></p>
+      <p><textarea placeholder="Ingrese texto aquí..." name="descEmprendimiento" maxlength="254"> <?= $formularioEnviado->descEmprendimiento ?> </textarea></p>
     </div>
-
-    <div class="float-container">
-      <label>Localidad <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese localidad..." name="localidadSolicitante" maxlength="43" value="<?= $formularioEnviado->localidadSolicitante ?>" id="localidadPortada">
-    </div>
-
-    <div class="float-container">
-      <label>Agencia <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese agencia..." name="agenciaProyecto" maxlength="43" value="<?= $formularioEnviado->agenciaProyecto ?>" id="agenciaPortada">
-    </div>
-
-    <div class="float-container">
-      <label>Monto a solicitar <span style="color:red;">&#10033;</span></label>
-      <input data-placeholder="Ingrese el monto solicitado..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ?>">
-    </div>
-
-    <p align="center"><b>BREVE DESCRIPCIÓN DEL EMPRENDIMIENTO Y JUSTIFICACIÓN DE LA NECESIDAD DE FINANCIAMIENTO <span style="color:red;">&#10033;</span></b></p>
-    <p><textarea placeholder="Ingrese texto aquí..." name="descEmprendimiento" maxlength="254"> <?= $formularioEnviado->descEmprendimiento ?> </textarea></p>
-  </div>
   <!-- FIN TAB PORTADA -->
   <!-- \\\\\\\\\\\\\\\\\\\\\\\ INFORMACION EMPRENDEDOR  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">

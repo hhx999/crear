@@ -11,6 +11,7 @@ class Formulario extends Model {
 "idUsuario",
 "form_tipo_id",
 "emprendimiento_id",
+"tecnico_id",
 "estado",
 "nombreEmprendedor",
 "dniEmprendedor",

@@ -27,15 +27,15 @@ $router->get('/registro','FormularioController@registroUsuarios');
 $router->post('/registro','FormularioController@registroUsuarios');
 
 Route::group(['middleware' => ['comprobarrole:admin']], function () {
-	Route::get('/admin','FormularioController@adminIndex');
-	Route::get('/adminFormulario/{id}', 'FormularioController@adminFormulario');
-	Route::post('/agregarRevision', 'FormularioController@agregarRevision');
-	Route::post('adminFormulario/crearFormulario', 'FormularioController@crearFormulario');
-	Route::post('/eliminarFormulario/', 'FormularioController@eliminarFormulario');
-	Route::get('/adminUsuarios','FormularioController@adminUsuarios');
-	Route::post('/verificarUsuarios','FormularioController@verificarUsuarios');
-	Route::post('/registroAjax','FormularioController@comprobarUsuario');
-	Route::get('/generarPdf/{id}','FormularioController@crearPDF');
+	Route::get('/admin','TecnicoController@adminIndex');
+	Route::get('/adminFormulario/{id}', 'TecnicoController@adminFormulario');
+	Route::post('/agregarRevision', 'TecnicoController@agregarRevision');
+	Route::post('/agregarPortada', 'TecnicoController@agregarPortada')->name('agregarPortada');
+	Route::post('/eliminarFormulario/', 'TecnicoController@eliminarFormulario');
+	Route::get('/adminUsuarios','TecnicoController@adminUsuarios');
+	Route::post('/verificarUsuarios','TecnicoController@verificarUsuarios');
+	Route::post('/registroAjax','TecnicoController@comprobarUsuario');
+	Route::get('/generarPdf/{id}','TecnicoController@crearPDF');
 });
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/user','FormularioController@userindex');
