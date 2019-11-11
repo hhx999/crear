@@ -84,6 +84,26 @@ class FinanciamientoController extends Controller
 
     	return view('financiamiento.borradores', ['borradores' => $borradores, 'lineasCreditos' => $lineas]);
     }
+    function guardarBorrador(Request $request)
+    {
+    	try {
+    		$idForm = FormTipo::where('nombre','Línea Emprendedor')->first()->id;
+	    	$idUsuario = $request->session()->get('id_usuario');
+	    	$fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
+	    	$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]);
+	    	$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm]);
+
+	    	$borrador = Borrador::create($request->all());
+	    	$ultimoBorrador = $borrador->id;
+			$borrador = Borrador::find($ultimoBorrador);
+			$borrador->asuntoBorrador = $request->asuntoBorrador;
+			$borrador->save();
+
+    		return 1;
+    	} catch (Exception $e) {
+    		return 0;
+    	}
+    }
     function ingresarLineaEmprendedor(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
@@ -211,6 +231,6 @@ class FinanciamientoController extends Controller
 	    	}
     	}
 
-		return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
+		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
     }
 }

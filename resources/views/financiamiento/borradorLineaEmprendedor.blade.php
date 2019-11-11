@@ -109,27 +109,53 @@
 			<script>
 
 			$(document).ready(function(){
-
 			    $("#guardarBorrador").click(function(){
+			    	document.getElementById('modalBorrador').style.display='block';
+			    });
+			    $("#enviarBorrador").click(function() {
+			    	var formBorrador = new FormData();
+			    	var asuntoBorrador = $('#asuntoBorrador').val();
 			    	var params = [
 		               {
 		                 name: "estado",
 		                 value: 'borrador'
+		               },
+		               {
+		               	 name: "asuntoBorrador",
+		               	 value: asuntoBorrador
 		               }
 		             ];
-			        $('#formLineaEmprendedor').submit(function(){ //listen for submit event
-					    $.each(params, function(i,param){
-					        $('<input />').attr('type', 'hidden')
-					            .attr('name', param.name)
-					            .attr('value', param.value)
-					            .appendTo('#formLineaEmprendedor');
+					$.each(params, function(i,param){
+					    $('<input />').attr('type', 'hidden')
+					        .attr('name', param.name)
+					        .attr('value', param.value)
+					        .appendTo('#formLineaEmprendedor');
 					    });
-					    return true;
-					});
-					$("#formLineaEmprendedor").submit();
+					$('input, select, textarea').each(
+					    function(index){  
+					        var input = $(this);
+					        formBorrador.append(input.attr('name') , input.val());
+					    }
+					);
+					$.ajax({
+			            type: 'POST',
+			            url: "{{route('guardarBorrador')}}",
+			            contentType: false,
+						data: formBorrador,  // mandamos el objeto formdata que se igualo a la variable data
+						processData: false,
+						cache: false,
+			            success: function(data) {
+			            	if (data == 1) {
+			            		console.log('Borrador Guardatisss');
+			            	}
+			            }
+				        }).fail( function( jqXHR, textStatus, errorThrown ) {
+				        	if (jqXHR.status == 404) {
+							    alert('No se encuentran resultados. [404]');
+							}
+				        });			    
+				    });
 			    });
-
-			});
 			</script>
 	            <div id="wizard">
 	                <h2>INFORMACIÓN</h2>
