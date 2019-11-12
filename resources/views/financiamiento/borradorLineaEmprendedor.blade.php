@@ -102,17 +102,22 @@
 			  </div>
 			</div>
 		@endif
-
+		<div id="modalBorrador" class="w3-modal">
+			<div class="w3-modal-content">
+				<div class="w3-container">
+					<span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
+					<br>
+					<label style="color: black;">Guardar borrador <i style="color: gray;">({{date("d-m-Y")}})</i></label>
+					<input placeholder="Escribir asunto del formulario..." type="text" name="asuntoBorrador" id="asuntoBorrador" class="w3-input"><br>
+					<a href="#" id="enviarBorrador" class="w3-button w3-cyan" style="color: white !important;">Enviar</a>
+				</div>
+			</div>
+		</div>
 		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
 			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
 			<br><br>
 			<script>
-
-			$(document).ready(function(){
-			    $("#guardarBorrador").click(function(){
-			    	document.getElementById('modalBorrador').style.display='block';
-			    });
-			    $("#enviarBorrador").click(function() {
+			    $("#guardarBorrador").click(function() {
 			    	var formBorrador = new FormData();
 			    	var asuntoBorrador = $('#asuntoBorrador').val();
 			    	var params = [
@@ -155,8 +160,8 @@
 							}
 				        });			    
 				    });
-			    });
 			</script>
+			<input type="hidden" name="borrador_id" value="{{$datosBorrador->id}}">
 	            <div id="wizard">
 	                <h2>INFORMACIÓN</h2>
 	                <section>

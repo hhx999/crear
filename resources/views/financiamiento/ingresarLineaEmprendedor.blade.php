@@ -113,12 +113,11 @@
 				</div>
 			</div>
 		</div>
-
+ 
 		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
 			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
 			<br><br>
 			<script>
-
 			$(document).ready(function(){
 			    $("#guardarBorrador").click(function(){
 			    	document.getElementById('modalBorrador').style.display='block';
