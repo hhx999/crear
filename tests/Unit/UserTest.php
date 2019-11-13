@@ -17,10 +17,4 @@ class UserTest extends TestCase
     {
         $this->assertTrue(true);
     }
-    public function testBasicHttp()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
 }
