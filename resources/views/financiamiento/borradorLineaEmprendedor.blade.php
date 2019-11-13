@@ -36,54 +36,6 @@
 		  user-select: none;
 		}
 
-		/* Hide the browser's default radio button */
-		.container input {
-		  position: absolute;
-		  opacity: 0;
-		  cursor: pointer;
-		}
-
-		/* Create a custom radio button */
-		.checkmark {
-		  position: absolute;
-		  top: 0;
-		  left: 0;
-		  height: 25px;
-		  width: 25px;
-		  background-color: #eee;
-		  border-radius: 50%;
-		}
-
-		/* On mouse-over, add a grey background color */
-		.container:hover input ~ .checkmark {
-		  background-color: #ccc;
-		}
-
-		/* When the radio button is checked, add a blue background */
-		.container input:checked ~ .checkmark {
-		  background-color: #2196F3;
-		}
-
-		/* Create the indicator (the dot/circle - hidden when not checked) */
-		.checkmark:after {
-		  content: "";
-		  position: absolute;
-		  display: none;
-		}
-
-		/* Show the indicator (dot/circle) when checked */
-		.container input:checked ~ .checkmark:after {
-		  display: block;
-		}
-
-		/* Style the indicator (dot/circle) */
-		.container .checkmark:after {
-		 	top: 9px;
-			left: 9px;
-			width: 8px;
-			height: 8px;
-			border-radius: 50%;
-			background: white;
 		}
 	</style>
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
@@ -105,7 +57,7 @@
 		<div id="modalBorrador" class="w3-modal">
 			<div class="w3-modal-content">
 				<div class="w3-container">
-					<span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
+					<span onclick="document.getElementById('modalBorrador').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
 					<br>
 					<label style="color: black;">Guardar borrador <i style="color: gray;">({{date("d-m-Y")}})</i></label>
 					<input placeholder="Escribir asunto del formulario..." type="text" name="asuntoBorrador" id="asuntoBorrador" class="w3-input"><br>
@@ -139,7 +91,14 @@
 					$('input, select, textarea').each(
 					    function(index){  
 					        var input = $(this);
-					        formBorrador.append(input.attr('name') , input.val());
+					        if(input.attr('type') == 'checkbox' && input.prop('checked'))
+					        {
+					        	formBorrador.append(input.attr('name') , input.val());
+					        }
+					        if (input.attr('type') != 'checkbox') {
+					        	formBorrador.append(input.attr('name') , input.val());
+					        }
+
 					    }
 					);
 					$.ajax({
@@ -265,26 +224,40 @@
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
-							    <div style="display: inline-block;">
-							    	@if(!empty($datosBorrador->gradoInstruccion))
-							    		<?php
-							    		$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
-							    		foreach ($gradosInstruccion as $grado) {
-							    			if ($grado == $datosBorrador->gradoInstruccion) {
-							    				$checked = 'checked="checked"';
-							    			} else {
-							    				$checked = '';
-							    			}
-							    			print '<label class="container">'.$grado.'
-												    		<input type="radio" '.$checked.' name="gradoInstruccion" value="'.$grado.'">
-												    		<span class="checkmark"></span>
-												    	</label>';
-							    		}
-							    		?>
-							    	@endif
-							    </div>
+							    <div style="display: inline-block;" id="divGrados">
+							    	<label>Ninguno
+								    	<input type="radio" name="grado"  value="Ninguno" 
+	                          			{{ $datosBorrador->gradoInstruccion == 'Ninguno' ? 'checked' : '' }} >	
+							    	</label>
+							    	<label>Primario
+										<input type="radio" name="grado"  value="Primario" 
+	                          			{{ $datosBorrador->gradoInstruccion == 'Primario' ? 'checked' : '' }} >
+							    	</label>
+							    	<label>Secundario
+										<input type="radio" name="grado"  value="Secundario" 
+	                          			{{ $datosBorrador->gradoInstruccion == 'Secundario' ? 'checked' : '' }} >
+							    	</label>
+							    	<label>Terceario
+	                          			<input type="radio" name="grado"  value="Terceario" 
+	                          			{{ $datosBorrador->gradoInstruccion == 'Terceario' ? 'checked' : '' }} >
+							    	</label>
+							    	<label>Universitario
+	                          			<input type="radio" name="grado"  value="Universitario" 
+	                          			{{ $datosBorrador->gradoInstruccion == 'Universitario' ? 'checked' : '' }} >
+							    	</label>
+                          			<input type="hidden" name="gradoInstruccion" id="gradoInstruccion">
+								</div>
 							</div>
 						</div>
+						<script type="text/javascript">
+							$(document).ready(function(){
+							        $("#divGrados").change(function(){
+							            selected_value = $("input[name='grado']:checked").val();
+							            $("#gradoInstruccion").val(selected_value);
+							            console.log(selected_value);
+							        });
+							    });
+						</script>
 						<div class="w3-col m12">
 							<label>Otra ocupación que desarrolle en la actualidad<br><i style="color: lightgrey;">(Si no realiza ninguna deje la casilla en blanco)</i></label>
 						</div>
@@ -319,18 +292,6 @@
 							<br>
 							<p id="datosEmprendimiento"><b>Datos generales del emprendimiento</b></p>
 						</div>
-						<!-- Inicio del modal para el ingreso de datos del emprendedor -->
-						<div id="id02" class="w3-modal">
-						    <div class="w3-modal-content">
-						      <div class="w3-container">
-						        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
-						        <br>
-						        <p style="color: black;"> Los cambios generados en este formulario quedarán registrados en la base de datos del sistema, desea continuar?</p>
-						        <a href="#datosEmprendimiento" class="w3-button w3-green" id="aceptaCambiosDatosEmprendimiento">Si</a><a id="noAceptaCambiosDatosEmprendimiento" href="#datosEmprendimiento" class="w3-button w3-red">No</a>
-						      </div>
-						    </div>
-						  </div>
-						<!-- Fin del modal datos de emprendedor -->
 
 						<div class="w3-col m12" style="border: 2px white solid;">
 						@if($emprendimientosUsuario)
@@ -405,16 +366,12 @@
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
 								<label>Fecha de inicio(dd-mm-AAAA)</label>
-	      						<input class="w3-input datosEmprendimiento" data-placeholder="Ingrese la fecha de inicio del emprendimiento" name="fecInicioEmprendimiento" id="inicio_emprendimiento">
+	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento" value="{{$datosBorrador->fecInicioEmprendimiento}}">
 							</div>
 						</div>
 						<script type="text/javascript">
 							$(document).ready(function(){
 								$('#inicio_emprendimiento').mask('00-00-0000');
-								$('.datosEmprendimiento').each(function (index, value) {
-									$(this).prop('readonly', true);
-									$(this).prop('hidden', false);
-								});
 							});
 							$('#idEmprendimiento').change(function () {
 								var datos = {};
@@ -460,44 +417,25 @@
 									});
 							    }
 							});
-							var readEmprendimiento = "on";
-							$('.datosEmprendimiento').click(function(){
-								if (readEmprendimiento != "off") {
-									document.getElementById('id02').style.display='block';
-								}
-							});
-							$('#aceptaCambiosDatosEmprendimiento').click(function() {
-								console.log('Aceptó los cambios en los datos del emprendedor!');
-								$('.datosEmprendimiento').each(function (index, value) {
-									$(this).prop('readonly', false);
-								});
-								document.getElementById('id02').style.display='none';
-								readEmprendimiento = "off";
-							});
-							$('#noAceptaCambiosDatosEmprendimiento').click(function() {
-								console.log('No aceptó los cambios en los datos del emprendedor');
-								$('#actPrincipalEmprendimiento').attr("disabled", true); 
-								document.getElementById('id02').style.display='none';
-							});
 						</script>
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
 								<label>Antigüedad</label>
-								<input class="w3-input datosEmprendimiento" type="text" name="antiguedadEmprendimiento" placeholder="Ingrese la antigüedad del emprendimiento...">
+								<input class="w3-input datosEmprendimiento" type="text" name="antiguedadEmprendimiento" placeholder="Ingrese la antigüedad del emprendimiento..." value="{{$datosBorrador->antiguedadEmprendimiento}}">
 							</div>
 						</div>
 						<div class="w3-half">
 							<label>Número de CUIL o CUIT</label>
-							<input class="w3-input datosEmprendimiento" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento...">
+							<input class="w3-input datosEmprendimiento" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento..." value="{{$datosBorrador->cuitEmprendimiento}}">
 						</div>
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
 								<div style="padding: 20px;">
 								    <select class="w3-select" id="cargoEmprendimiento" name="cargo">
-									    <option value="" disabled selected>Elegí el cargo del solicitante...</option>
-									    <option value="1">Propietario</option>
-									    <option value="2">Representante legal</option>
-									    <option value="3">Socio de sociedad de hecho</option>
+								    	<?php
+									    $cargos = ['Propietario','Representante legal','Socio de sociedad de hecho'];
+									    App\Helpers::crearOptionLE($cargos,$datosBorrador->cargo);
+										 ?>
 									 </select>
 								</div>
 							</div>
@@ -508,20 +446,20 @@
 							<div class="w3-half">
 		                    	<div style="margin-right: 10px;margin-left: 10px;">
 								    <label>E-mail</label>
-								    <input class="w3-input w3-border" type="text" name="emailEmprendimiento" placeholder="Ingrese el email vinculado al emprendimiento...">
+								    <input class="w3-input w3-border" type="text" name="emailEmprendimiento" placeholder="Ingrese el email vinculado al emprendimiento..." value="{{$datosBorrador->emailEmprendimiento}}">
 								</div>
 							</div>
 							<div class="w3-half">
 								<div style="margin-right: 10px;margin-left: 10px;">
 								    <label>Teléfono</label>
-								    <input class="w3-input w3-border" type="text" name="telefonoEmprendimiento" placeholder="Ingrese el telefono de contacto con el emprendimiento...">
+								    <input class="w3-input w3-border" type="text" name="telefonoEmprendimiento" placeholder="Ingrese el telefono de contacto con el emprendimiento..." value="{{$datosBorrador->telefonoEmprendimiento}}">
 								</div>
 							</div>
 						</div>
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
 								<label>Número de ingresos brutos</label>
-								<input class="w3-input datosEmprendimiento" type="text" name="ingresosBrutosEmprendimiento" placeholder="Ingrese los ingresos brutos del emprendimiento...">
+								<input class="w3-input datosEmprendimiento" type="text" name="ingresosBrutosEmprendimiento" placeholder="Ingrese los ingresos brutos del emprendimiento..." value="{{$datosBorrador->ingresosBrutosEmprendimiento}}">
 							</div>
 							<div class="w3-col m12">
 								<br>
@@ -529,11 +467,11 @@
 							</div>
 							<div class="w3-half">
 								<label>Domicilio comercial</label>
-								<input class="w3-input datosEmprendimiento" type="text" name="domicilioEmprendimiento" placeholder="Ingrese el domicilio del emprendimiento...">
+								<input class="w3-input datosEmprendimiento" type="text" name="domicilioEmprendimiento" placeholder="Ingrese el domicilio del emprendimiento..." value="{{$datosBorrador->domicilioEmprendimiento}}">
 							</div>
 							<div class="w3-half">
 								<label>Localidad</label>
-								<input class="w3-input datosEmprendimiento" type="text" name="localidadEmprendimiento" placeholder="Ingrese la localidad del emprendimiento...">
+								<input class="w3-input datosEmprendimiento" type="text" name="localidadEmprendimiento" placeholder="Ingrese la localidad del emprendimiento..." value="{{$datosBorrador->localidadEmprendimiento}}">
 							</div>
 							<div class="w3-col m12">
 								<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">

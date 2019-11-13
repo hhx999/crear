@@ -34,7 +34,7 @@ class CreateBorradoresLE extends Migration
             $table->string('denominacion',255)->nullable();
             $table->string('tipoSociedad',155)->nullable();
             $table->string('actPrincipalEmprendimiento', 255)->nullable();
-            $table->date('fecInicioEmprendimiento')->nullable();
+            $table->date('fecInicioEmprendimiento')->nullable()->format('d-m-Y');
             $table->string('antiguedadEmprendimiento', 45)->nullable();
             $table->string('cuitEmprendimiento', 20)->nullable();
             $table->string('cargo',45)->nullable();

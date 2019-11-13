@@ -201,6 +201,7 @@ class FinanciamientoController extends Controller
 
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
+    	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
     	$emprendimientos = NULL;
     	$localidades = Localidad::all();
 
@@ -211,7 +212,7 @@ class FinanciamientoController extends Controller
 	    	}
     	}
 
-		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
+		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos,'gradosInstruccion' => $gradosInstruccion]);
     }
     function guardarBorrador(Request $request)
     {
@@ -225,7 +226,23 @@ class FinanciamientoController extends Controller
 	    	if($request->borrador_id) 
 	    	{
 				$borrador = Borrador::find($request->borrador_id);
+				$gradoInstruccion = $borrador->gradoInstruccion;
+	    		$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]); 
+	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
 				$borrador->fill($request->all())->save();
+				$borrador->instagramEmprendedor = $request->instagramEmprendedor;
+				$borrador->estadoEmprendimiento = $request->estadoEmprendimiento;
+				$borrador->denominacion = $request->denominacion;
+				$borrador->tipoSociedad = $request->tipoSociedad;
+				$borrador->cargo = $request->cargo;
+				$borrador->emailEmprendimiento = $request->emailEmprendimiento;
+				$borrador->telefonoEmprendimiento = $request->telefonoEmprendimiento;
+				$borrador->gradoInstruccion = $borrador->gradoInstruccion ?? $gradoInstruccion;
+				$borrador->puntoVentaLocal = $request->puntoVentaLocal;
+				$borrador->puntoVentaProvincial = $request->puntoVentaProvincial;
+				$borrador->puntoVentaNacional = $request->puntoVentaNacional;
+				$borrador->save();
+				var_dump($request->all());
 	    	} else {
 		    	$borrador = Borrador::create($request->all());
 		    	$ultimoBorrador = $borrador->id;
@@ -233,7 +250,6 @@ class FinanciamientoController extends Controller
 				$borrador->asuntoBorrador = $request->asuntoBorrador;
 				$borrador->save();
 	    	}
-
     		return 1;
     	} catch (Exception $e) {
     		return 0;
