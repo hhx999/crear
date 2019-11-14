@@ -502,25 +502,25 @@
 							<p><b>DETALLE EL-LOS PRODUCTOS O SERVICIOS QUE OFRECE /RÁ</b></p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descProdServicios" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descProdServicios" maxlength="254" style="resize:none">{{$datosBorrador->descProdServicios}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<p><b>EXPERIENCIA O FORMACIÓN DE EL/LOS EMPRENDEDORES PARA EL DESARROLLO DEL EMPRENDIMIENTO</b></p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="experienciaEmprendedores" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="experienciaEmprendedores" maxlength="254" style="resize:none">{{$datosBorrador->experienciaEmprendedores}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<p><b>OPORTUNIDAD DE MERCADO O  PROBLEMA QUE  RESUELVE</b></p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="oportunidadMercado" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="oportunidadMercado" maxlength="254" style="resize:none">{{$datosBorrador->oportunidadMercado}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<p><b>DESCRIPCIÓN DEL DESTINO DEL FINANCIAMIENTO</b></p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descFinanciamiento" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descFinanciamiento" maxlength="254" style="resize:none">{{$datosBorrador->descFinanciamiento}}</textarea></p>
 						</div>
 	                </section>
 	                <h2>MERCADO</h2>
@@ -536,17 +536,18 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionClientes" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionClientes" maxlength="254" style="resize:none">{{$datosBorrador->descripcionClientes}}</textarea></p>
 						</div>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Ubicación de los principales clientes</label>
 							    <select class="w3-select" name="ubicacionClientes">
-								    <option value="" disabled selected>Elegí la ubicación de tus clientes...</option>
-								    <option value="Local">Local</option>
-								    <option value="Provincial">Provincial</option>
-								    <option value="Nacional">Nacional</option>
+							    	<?php
+									    $puntosVenta = ['Local','Provincial','Nacional'];
+
+									    App\Helpers::crearOptionLE($puntosVenta,$datosBorrador->ubicacionClientes);
+									?>
 								 </select>
 							</div>
 						</div>
@@ -557,17 +558,18 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionProveedores" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionProveedores" maxlength="254" style="resize:none">{{$datosBorrador->descripcionProveedores}}</textarea></p>
 						</div>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Ubicación de los principales proveedores</label>
 							    <select class="w3-select" name="ubicacionProveedores">
-								    <option value="" disabled selected>Elegí la ubicación de tus proveedores...</option>
-								    <option value="Local">Local</option>
-								    <option value="Provincial">Provincial</option>
-								    <option value="Nacional">Nacional</option>
+								   <?php
+									    $puntosVenta = ['Local','Provincial','Nacional'];
+
+									    App\Helpers::crearOptionLE($puntosVenta,$datosBorrador->ubicacionProveedores);
+									?>
 								 </select>
 							</div>
 						</div>
@@ -578,17 +580,18 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionCompetencia" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descripcionCompetencia" maxlength="254" style="resize:none">{{$datosBorrador->descripcionCompetencia}}</textarea></p>
 						</div>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Ubicación de las principales competencias</label>
 							    <select class="w3-select" name="ubicacionCompetencia">
-								    <option value="" disabled selected>Elegí la ubicación tu competencia...</option>
-								    <option value="Local">Local</option>
-								    <option value="Provincial">Provincial</option>
-								    <option value="Nacional">Nacional</option>
+								    <?php
+									    $puntosVenta = ['Local','Provincial','Nacional'];
+
+									    App\Helpers::crearOptionLE($puntosVenta,$datosBorrador->ubicacionCompetencia);
+									?>
 								 </select>
 							</div>
 						</div>
@@ -599,7 +602,7 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="ventajaCompetidores" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="ventajaCompetidores" maxlength="254" style="resize:none">{{$datosBorrador->ventajaCompetidores}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<br>
@@ -608,7 +611,7 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="estrategiasPromocion" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="estrategiasPromocion" maxlength="254" style="resize:none">{{$datosBorrador->estrategiasPromocion}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<br>
