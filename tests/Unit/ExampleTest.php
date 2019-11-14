@@ -12,4 +12,8 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
+    public function testHelloWorld()
+    {
+        $this->assertTrue(true);
+    }
 }
