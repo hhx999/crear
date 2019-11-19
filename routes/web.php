@@ -83,6 +83,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('financiamiento/borradores','FinanciamientoController@borradores')->name('borradores');
 	Route::get('financiamiento/borradores/{id}','FinanciamientoController@cargarLineaEmprendedor');
 	Route::post('financiamiento/borradores/guardarBorrador','FinanciamientoController@guardarBorrador')->name('guardarBorrador');
+	Route::post('financiamiento/borradores/eliminarBorrador','FinanciamientoController@eliminarBorrador')->name('eliminarBorrador');
 	
 	//------Rutas de perfil
 	Route::get('perfil','PerfilController@index');

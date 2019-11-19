@@ -260,4 +260,12 @@ class FinanciamientoController extends Controller
     		return 0;
     	}
     }
+    function eliminarBorrador(Request $request)
+    {
+    	$idUsuario = $request->session()->get('id_usuario');
+    	var_dump($request->borrador_id);
+    	$borrador = Borrador::where('id',$request->borrador_id)->where('idUsuario',$idUsuario);
+    	$borrador->delete();
+    	return "Borrador eliminado.";
+    }
 }

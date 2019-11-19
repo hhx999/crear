@@ -45,7 +45,7 @@
 	  			</ul>
 	  		</div>
 	  		<div class="w3-third"><p></p></div>
-	  		<table class="w3-table">
+	  		<table class="w3-table" id="borradores">
 			    <tr style="background-color: #cdc05c;">
 			      <th>ID</th>
 			      <th>Fecha</th>
@@ -64,13 +64,47 @@
 	  				<td>{{$borrador->asuntoBorrador ?? 'Asunto vacío'}}</td>
 	  				<td align="center">
 	  					<a class="w3-button w3-teal" href="{{url('financiamiento/borradores/'.$borrador->id)}}">Abrir</a>
-	  					<a class="w3-button w3-red" href="#">Eliminar</a>
+	  					<a class="w3-button w3-red abrirEliminarBorrador" href="#" id="abrirEliminarBorrador">Eliminar</a>
 	  				</td>
 	  			</tr>
 	  		@endforeach
 	  		</table>
 	  	</div>
 	</div>
-
+	<div id="modalEliminarBorrador" class="w3-modal">
+			<div class="w3-modal-content">
+				<div class="w3-container">
+					<span onclick="document.getElementById('modalEliminarBorrador').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
+					<br>
+					<label style="color: black;">Eliminar borrador</label>
+					<hr><br>
+					<input type="hidden" name="" id="borrador_id">
+					<a href="#" id="eliminarBorrador" class="w3-button w3-red" style="color: white !important;">Eliminar</a>
+				</div>
+			</div>
+	</div>
+<script type="text/javascript">
+	var borrador_id = '';
+	$('.abrirEliminarBorrador').on('click', function() {
+		$('#modalEliminarBorrador').css('display','block');
+		borrador_id = $(this).closest("tr").find("td:eq(0)").text();
+		$('#borrador_id').val(borrador_id);
+	});
+	$('#eliminarBorrador').on('click', function() {
+		$.ajax({
+			type: 'POST',
+			url: "{{route('eliminarBorrador')}}",
+			data: {'borrador_id' : borrador_id},
+			success: function(data) {
+				console.log(data);
+				location.reload();
+			}
+		}).fail( function( jqXHR, textStatus, errorThrown ) {
+			if (jqXHR.status == 404) {
+				alert('No se encuentran resultados. [404]');
+			}
+		});	
+	});
+</script>
 	@endsection
 <!-- --> 
