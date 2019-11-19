@@ -241,6 +241,11 @@ class FinanciamientoController extends Controller
 				$borrador->puntoVentaLocal = $request->puntoVentaLocal;
 				$borrador->puntoVentaProvincial = $request->puntoVentaProvincial;
 				$borrador->puntoVentaNacional = $request->puntoVentaNacional;
+				$borrador->nombreMBG = $request->nombreMBG;
+				$borrador->dniMBG = $request->dniMBG;
+				$borrador->cuitMBG = $request->cuitMBG;
+				$borrador->localidadMBG = $request->localidadMBG;
+				$borrador->domicilioMBG = $request->domicilioMBG;
 				$borrador->save();
 				var_dump($request->all());
 	    	} else {

@@ -628,27 +628,59 @@
 							}
 						</style>
 						<div class="w3-col m12" style="border: 2px solid white;">
-							<div class="w3-third puntoVenta">
-								<input id="puntoVentaLocal" type="checkbox" name="puntoVentaLocal" value="seleccionado">
+							@if($datosBorrador->puntoVentaLocal == 'seleccionado')
+							<div class="w3-third puntoVenta activoPuntoVenta">
+								<input id="puntoVentaLocal" type="checkbox" name="puntoVentaLocal" value="seleccionado" checked>
 								<label>Local<i style="color: #b3b3b3;">(
-								@foreach($localidades as $localidad)
-											@if($localidad->id == $dataUsuario->localidad)
-											{{$localidad->nombre}}
-											@endif
-								@endforeach
+									@foreach($localidades as $localidad)
+												@if($localidad->id == $dataUsuario->localidad)
+												{{$localidad->nombre}}
+												@endif
+									@endforeach
 								)
 								</i></label>
 							</div>
+							@else
+							<div class="w3-third puntoVenta">
+								<input id="puntoVentaLocal" type="checkbox" name="puntoVentaLocal" value="seleccionado">
+								<label>Local<i style="color: #b3b3b3;">(
+									@foreach($localidades as $localidad)
+												@if($localidad->id == $dataUsuario->localidad)
+												{{$localidad->nombre}}
+												@endif
+									@endforeach
+								)
+								</i></label>
+							</div>
+							@endif
+
+							@if($datosBorrador->puntoVentaProvincial == 'seleccionado')
+							<div class="w3-third puntoVenta activoPuntoVenta">
+								<input id="puntoVentaProvincial" type="checkbox" name="puntoVentaProvincial" value="seleccionado" checked>
+								<label>Provincial
+									<i style="color: #b3b3b3;">(Río Negro)</i>
+								</label>
+							</div>
+							@else
 							<div class="w3-third puntoVenta">
 								<input id="puntoVentaProvincial" type="checkbox" name="puntoVentaProvincial" value="seleccionado">
 								<label>Provincial
 									<i style="color: #b3b3b3;">(Río Negro)</i>
 								</label>
 							</div>
+							@endif
+							
+							@if($datosBorrador->puntoVentaNacional == 'seleccionado')
+							<div class="w3-third puntoVenta activoPuntoVenta">
+								<input id="puntoVentaNacional" class="activoPuntoVenta" type="checkbox" name="puntoVentaNacional" value="seleccionado" checked>
+								<label>Nacional<i style="color: #b3b3b3;">(Argentina)</i></label>
+							</div>
+							@else
 							<div class="w3-third puntoVenta">
 								<input id="puntoVentaNacional" type="checkbox" name="puntoVentaNacional" value="seleccionado">
 								<label>Nacional<i style="color: #b3b3b3;">(Argentina)</i></label>
 							</div>
+							@endif
 						</div>
 						<script type="text/javascript">
 							$('#puntoVentaLocal').change(function() {
@@ -676,7 +708,7 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="materiasPrimas" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="materiasPrimas" maxlength="254" style="resize:none">{{$datosBorrador->materiasPrimas}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<br>
@@ -685,7 +717,7 @@
 							</p>
 						</div>
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
-							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descHerramientas" maxlength="254" style="resize:none"></textarea></p>
+							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descHerramientas" maxlength="254" style="resize:none">{{$datosBorrador->descHerramientas}}</textarea></p>
 						</div>
 						<div class="w3-col m12">
 							<br>
@@ -706,55 +738,55 @@
 							</div>
 					          <div class="w3-col m3">
 					            <p><label>Insumos y materias primas:</label></p>
-					            <input placeholder="Insumos y materias primas..." class="sumable" maxlength="10" name="insumosCostos" id="insumos_materias" value="0">
+					            <input placeholder="Insumos y materias primas..." class="sumable" maxlength="10" name="insumosCostos" id="insumos_materias" value="{{$datosBorrador->insumosCostos ?? 0}}">
 					          </div>
 
 					          <div class="w3-col m3">
 					            <p><label >Alquileres:</label></p>
-					            <input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="0">
+					            <input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="{{$datosBorrador->alquileresCostos ?? 0}}">
 					          </div>
 
 					          <div class="w3-col m3">
 					            <p><label>Servicios(luz-agua-gas-internet):</label></p>
-					            <input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="0">
+					            <input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="{{$datosBorrador->serviciosCostos ?? 0}}">
 					          </div>
 					          <div class="w3-col m3">
 					            <p><label>Monotributo:</label></p>
-					            <input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="0">
+					            <input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="{{$datosBorrador->monotributoCostos ?? 0}}">
 					          </div>
 					          <div class="w3-col m3">
 					            <p><label>Ingresos brutos:</label></p>
-					            <p><input placeholder="Ingresos brutos..." class="sumable" maxlength="10" name="ingresosBrutosCostos" id="ingresos_brutos" value="0"></p>
+					            <p><input placeholder="Ingresos brutos..." class="sumable" maxlength="10" name="ingresosBrutosCostos" id="ingresos_brutos" value="{{$datosBorrador->ingresosBrutosCostos ?? 0}}"></p>
 					          </div>
 					          <div class="w3-col m3">
 					            <p><label>Seguros:</label></p>
-					            <p><input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="0"></p>
+					            <p><input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="{{$datosBorrador->segurosCostos ?? 0}}"></p>
 					          </div>
 					          <div class="w3-col m3">
 					            <p><label>Combustible:</label></p>
-					            <p><input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="0"></p>
+					            <p><input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="{{$datosBorrador->combustibleCostos ?? 0}}"></p>
 					          </div>
 					          <div class="w3-col m3">
 					            <p><label>Sueldos:</label></p>
-					            <p><input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="0"></p>
+					            <p><input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="{{$datosBorrador->sueldosCostos ?? 0}}"></p>
 					          </div>
 					          <div class="w3-col m3" style="height: 90px;"></div>
 					          <div class="w3-col m3">
 					            <p><label>Comercialización:</label></p>
-					            <p><input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="0"></p>
+					            <p><input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="{{$datosBorrador->comercializacionCostos ?? 0}}"></p>
 					          </div>
 					          <div class="w3-col m3">
 					            <p><label>Otros:</label></p>
-					            <p><input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="0"></p>
+					            <p><input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="{{$datosBorrador->otrosCostos ?? 0}}"></p>
 					          </div>
 					          <div class="w3-col m12">
 					            <p><label>Cuota anual de amortización de crédito:</label></p>
-					            <p><input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="0"></p>
+					            <p><input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="{{$datosBorrador->cuotaMensualCostos ?? 0}}"></p>
 					          </div>
 					          <hr>
 					          <div class="w3-col m12">
 					            <p align="center">TOTAL</p>
-					            <p><input type="text" id="total_costos"></p>
+					            <p><input type="text" id="total_costos" value="{{$datosBorrador->insumosCostos + $datosBorrador->alquileresCostos + $datosBorrador->serviciosCostos + $datosBorrador->monotributoCostos + $datosBorrador->ingresosBrutosCostos + $datosBorrador->segurosCostos + $datosBorrador->combustibleCostos + $datosBorrador->sueldosCostos + $datosBorrador->comercializacionCostos + $datosBorrador->otrosCostos + $datosBorrador->cuotaMensualCostos ?? 0}}"></p>
 					          </div>
       					</div>
 						<style type="text/css">
@@ -946,25 +978,25 @@
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Efectivo</label>
-							    <input class="w3-input w3-border" type="text" name="efectivoMBE" placeholder="Ingrese el efectivo...">
+							    <input class="w3-input w3-border" type="text" name="efectivoMBE" placeholder="Ingrese el efectivo..." value="{{$datosBorrador->efectivoMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Cuentas bancarias</label>
-							    <input class="w3-input w3-border" type="text" name="cuentasBancariasMBE" placeholder="Ingrese el monto de cuentas bancarias...">
+							    <input class="w3-input w3-border" type="text" name="cuentasBancariasMBE" placeholder="Ingrese el monto de cuentas bancarias..." value="{{$datosBorrador->cuentasBancariasMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Créditos por ventas</label>
-							    <input class="w3-input w3-border" type="text" name="creditosVentasMBE" placeholder="Ingrese el monto de créditos por ventas...">
+							    <input class="w3-input w3-border" type="text" name="creditosVentasMBE" placeholder="Ingrese el monto de créditos por ventas..." value="{{$datosBorrador->creditosVentasMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Otros créditos</label>
-							    <input class="w3-input w3-border" type="text" name="otrosCreditosMBE" placeholder="Ingrese el monto de otros créditos...">
+							    <input class="w3-input w3-border" type="text" name="otrosCreditosMBE" placeholder="Ingrese el monto de otros créditos..." value="{{$datosBorrador->otrosCreditosMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12" align="center">
@@ -973,19 +1005,19 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Mercaderías</label>
-							    <input class="w3-input w3-border" type="text" name="mercaderiasMBE" placeholder="Ingrese el monto de las mercaderías...">
+							    <input class="w3-input w3-border" type="text" name="mercaderiasMBE" placeholder="Ingrese el monto de las mercaderías..." value="{{$datosBorrador->mercaderiasMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Materias primas</label>
-							    <input class="w3-input w3-border" type="text" name="materiasPrimasMBE" placeholder="Ingrese el monto de las materias primas...">
+							    <input class="w3-input w3-border" type="text" name="materiasPrimasMBE" placeholder="Ingrese el monto de las materias primas..." value="{{$datosBorrador->materiasPrimasMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Insumos</label>
-							    <input class="w3-input w3-border" type="text" name="insumosMBE" placeholder="Ingrese el monto de los insumos...">
+							    <input class="w3-input w3-border" type="text" name="insumosMBE" placeholder="Ingrese el monto de los insumos..." value="{{$datosBorrador->insumosMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12" align="center">
@@ -994,25 +1026,25 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Inmuebles</label>
-							    <input class="w3-input w3-border" type="text" name="inmueblesMBE" placeholder="Ingrese el monto de los inmuebles...">
+							    <input class="w3-input w3-border" type="text" name="inmueblesMBE" placeholder="Ingrese el monto de los inmuebles..." value="{{$datosBorrador->inmueblesMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Rodados</label>
-							    <input class="w3-input w3-border" type="text" name="rodadosMBE" placeholder="Ingrese el monto de los rodados...">
+							    <input class="w3-input w3-border" type="text" name="rodadosMBE" placeholder="Ingrese el monto de los rodados..." value="{{$datosBorrador->rodadosMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Maquinarias y equipos</label>
-							    <input class="w3-input w3-border" type="text" name="maquinariasEquiposMBE" placeholder="Ingrese el monto de las maquinarias y equipos...">
+							    <input class="w3-input w3-border" type="text" name="maquinariasEquiposMBE" placeholder="Ingrese el monto de las maquinarias y equipos..." value="{{$datosBorrador->maquinariasEquiposMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Instalaciones</label>
-							    <input class="w3-input w3-border" type="text" name="instalacionesMBE" placeholder="Ingrese el monto de las instalaciones...">
+							    <input class="w3-input w3-border" type="text" name="instalacionesMBE" placeholder="Ingrese el monto de las instalaciones..." value="{{$datosBorrador->instalacionesMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1021,25 +1053,25 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>En cuentas corrientes</label>
-							    <input class="w3-input w3-border" type="text" name="deudaCuentasCorrientesMBE" placeholder="Ingrese la deuda en cuentas corrientes...">
+							    <input class="w3-input w3-border" type="text" name="deudaCuentasCorrientesMBE" placeholder="Ingrese la deuda en cuentas corrientes..." value="{{$datosBorrador->deudaCuentasCorrientesMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Cheques de pago diferido</label>
-							    <input class="w3-input w3-border" type="text" name="deudaChequesPagoDiferidoMBE" placeholder="Ingrese la deuda de cheques de pago diferido...">
+							    <input class="w3-input w3-border" type="text" name="deudaChequesPagoDiferidoMBE" placeholder="Ingrese la deuda de cheques de pago diferido..." value="{{$datosBorrador->deudaChequesPagoDiferidoMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Documentadas</label>
-							    <input class="w3-input w3-border" type="text" name="documentadasMBE" placeholder="Ingrese las deudas documentadas...">
+							    <input class="w3-input w3-border" type="text" name="documentadasMBE" placeholder="Ingrese las deudas documentadas..." value="{{$datosBorrador->documentadasMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Otras</label>
-							    <input class="w3-input w3-border" type="text" name="otrasDeudasComercialesMBE" placeholder="Ingrese otras deudas comerciales...">
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasComercialesMBE" placeholder="Ingrese otras deudas comerciales..." value="{{$datosBorrador->otrasDeudasComercialesMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1048,19 +1080,19 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Tarjetas de crédito</label>
-							    <input class="w3-input w3-border" type="text" name="deudaTarjetasCreditoMBE" placeholder="Ingrese las deudas de tarjetas de crédito...">
+							    <input class="w3-input w3-border" type="text" name="deudaTarjetasCreditoMBE" placeholder="Ingrese las deudas de tarjetas de crédito..." value="{{$datosBorrador->deudaTarjetasCreditoMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Con garantía hipotecaria(Inmuebles)</label>
-							    <input class="w3-input w3-border" type="text" name="deudaGarantiaHipotecariaMBE" placeholder="Ingrese las deudas con garantía hipotecaria...">
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaHipotecariaMBE" placeholder="Ingrese las deudas con garantía hipotecaria..." value="{{$datosBorrador->deudaGarantiaHipotecariaMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Con garantía prendaria(Rodados)</label>
-							    <input class="w3-input w3-border" type="text" name="deudaGarantiaPrendariaMBE" placeholder="Ingrese las deudas con garantia prendaria...">
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaPrendariaMBE" placeholder="Ingrese las deudas con garantia prendaria..." value="{{$datosBorrador->deudaGarantiaPrendariaMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1069,34 +1101,35 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>AFIP</label>
-							    <input class="w3-input w3-border" type="text" name="deudaAfipMBE" placeholder="Ingrese la deuda con AFIP...">
+							    <input class="w3-input w3-border" type="text" name="deudaAfipMBE" placeholder="Ingrese la deuda con AFIP..." value="{{$datosBorrador->deudaAfipMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Rentas Río Negro</label>
-							    <input class="w3-input w3-border" type="text" name="deudaRentasRnMBE" placeholder="Ingrese la deuda con Rentas Río Negro...">
+							    <input class="w3-input w3-border" type="text" name="deudaRentasRnMBE" placeholder="Ingrese la deuda con Rentas Río Negro..." value="{{$datosBorrador->deudaRentasRnMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Tributos municipales</label>
-							    <input class="w3-input w3-border" type="text" name="deudaTributosMunicipalesMBE" placeholder="Ingrese la deuda con tributos municipales...">
+							    <input class="w3-input w3-border" type="text" name="deudaTributosMunicipalesMBE" placeholder="Ingrese la deuda con tributos municipales..." value="{{$datosBorrador->deudaTributosMunicipalesMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Deudas sociales</label>
-							    <input class="w3-input w3-border" type="text" name="deudasSocialesMBE" placeholder="Ingrese las deudas de aportes, contribuciones, salarios, etc...">
+							    <input class="w3-input w3-border" type="text" name="deudasSocialesMBE" placeholder="Ingrese las deudas de aportes, contribuciones, salarios, etc..." value="{{$datosBorrador->deudasSocialesMBE ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Otras Deudas</label>
-							    <input class="w3-input w3-border" type="text" name="otrasDeudasMBE" placeholder="Ingrese otras deudas...">
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasMBE" placeholder="Ingrese otras deudas..." value="{{$datosBorrador->otrasDeudasMBE ?? ''}}">
 							</div>
 						</div>
 	                </section>
+
 	                <h2>MANIFESTACIÓN DE LOS BIENES DEL GARANTE</h2>
 	                <section>
 	                	<div class="w3-col l12">
@@ -1110,32 +1143,32 @@
 	                	<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Nombre del garante</label>
-							    <input class="w3-input w3-border" type="text" name="nombreMBG" placeholder="Ingrese el nombre del garante...">
+							    <input class="w3-input w3-border" type="text" name="nombreMBG" placeholder="Ingrese el nombre del garante..." value="{{$datosBorrador->nombreMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>DNI</label>
-							    <input class="w3-input w3-border" type="text" name="dniMBG" placeholder="Ingrese el dni del garante...">
+							    <input class="w3-input w3-border" type="text" name="dniMBG" placeholder="Ingrese el dni del garante..." value="{{$datosBorrador->dniMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>CUIT</label>
-							    <input class="w3-input w3-border" type="text" name="cuitMBG" placeholder="Ingrese el cuit del garante...">
+							    <input class="w3-input w3-border" type="text" name="cuitMBG" placeholder="Ingrese el cuit del garante..." value="{{$datosBorrador->cuitMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Domicilio</label>
-							    <input class="w3-input w3-border" type="text" name="domicilioMBG" placeholder="Ingrese el domicilio del garante...">
+							    <input class="w3-input w3-border" type="text" name="domicilioMBG" placeholder="Ingrese el domicilio del garante..." value="{{$datosBorrador->domicilioMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-quarter"><p></p></div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Localidad</label>
-							    <input class="w3-input w3-border" type="text" name="localidadMBG" placeholder="Ingrese la localidad del garante...">
+							    <input class="w3-input w3-border" type="text" name="localidadMBG" placeholder="Ingrese la localidad del garante..." value="{{$datosBorrador->localidadMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12" style="border-top: 2px solid white;margin-top: 20px;margin-bottom: 20px;">
@@ -1147,25 +1180,25 @@
 	                    <div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Efectivo</label>
-							    <input class="w3-input w3-border" type="text" name="efectivoMBG" placeholder="Ingrese el efectivo...">
+							    <input class="w3-input w3-border" type="text" name="efectivoMBG" placeholder="Ingrese el efectivo..." value="{{$datosBorrador->efectivoMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Cuentas bancarias</label>
-							    <input class="w3-input w3-border" type="text" name="cuentasBancariasMBG" placeholder="Ingrese el monto de cuentas bancarias...">
+							    <input class="w3-input w3-border" type="text" name="cuentasBancariasMBG" placeholder="Ingrese el monto de cuentas bancarias..." value="{{$datosBorrador->cuentasBancariasMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Créditos por ventas</label>
-							    <input class="w3-input w3-border" type="text" name="creditosVentasMBG" placeholder="Ingrese el monto de créditos por ventas...">
+							    <input class="w3-input w3-border" type="text" name="creditosVentasMBG" placeholder="Ingrese el monto de créditos por ventas..." value="{{$datosBorrador->creditosVentasMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Otros créditos</label>
-							    <input class="w3-input w3-border" type="text" name="otrosCreditosMBG" placeholder="Ingrese el monto de otros créditos...">
+							    <input class="w3-input w3-border" type="text" name="otrosCreditosMBG" placeholder="Ingrese el monto de otros créditos..." value="{{$datosBorrador->otrosCreditosMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12" align="center">
@@ -1174,19 +1207,19 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Mercaderías</label>
-							    <input class="w3-input w3-border" type="text" name="mercaderiasMBG" placeholder="Ingrese el monto de las mercaderías...">
+							    <input class="w3-input w3-border" type="text" name="mercaderiasMBG" placeholder="Ingrese el monto de las mercaderías..." value="{{$datosBorrador->mercaderiasMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Materias primas</label>
-							    <input class="w3-input w3-border" type="text" name="materiasPrimasMBG" placeholder="Ingrese el monto de las materias primas...">
+							    <input class="w3-input w3-border" type="text" name="materiasPrimasMBG" placeholder="Ingrese el monto de las materias primas..." value="{{$datosBorrador->materiasPrimasMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Insumos</label>
-							    <input class="w3-input w3-border" type="text" name="insumosMBG" placeholder="Ingrese el monto de los insumos...">
+							    <input class="w3-input w3-border" type="text" name="insumosMBG" placeholder="Ingrese el monto de los insumos..." value="{{$datosBorrador->insumosMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12" align="center">
@@ -1195,25 +1228,25 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Inmuebles</label>
-							    <input class="w3-input w3-border" type="text" name="inmueblesMBG" placeholder="Ingrese el monto de los inmuebles...">
+							    <input class="w3-input w3-border" type="text" name="inmueblesMBG" placeholder="Ingrese el monto de los inmuebles..." value="{{$datosBorrador->inmueblesMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Rodados</label>
-							    <input class="w3-input w3-border" type="text" name="rodadosMBG" placeholder="Ingrese el monto de los rodados...">
+							    <input class="w3-input w3-border" type="text" name="rodadosMBG" placeholder="Ingrese el monto de los rodados..." value="{{$datosBorrador->rodadosMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Maquinarias y equipos</label>
-							    <input class="w3-input w3-border" type="text" name="maquinariasEquiposMBG" placeholder="Ingrese el monto de las maquinarias y equipos...">
+							    <input class="w3-input w3-border" type="text" name="maquinariasEquiposMBG" placeholder="Ingrese el monto de las maquinarias y equipos..." value="{{$datosBorrador->maquinariasEquiposMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Instalaciones</label>
-							    <input class="w3-input w3-border" type="text" name="instalacionesMBG" placeholder="Ingrese el monto de las instalaciones...">
+							    <input class="w3-input w3-border" type="text" name="instalacionesMBG" placeholder="Ingrese el monto de las instalaciones..." value="{{$datosBorrador->instalacionesMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1222,25 +1255,25 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>En cuentas corrientes</label>
-							    <input class="w3-input w3-border" type="text" name="deudaCuentasCorrientesMBG" placeholder="Ingrese la deuda en cuentas corrientes...">
+							    <input class="w3-input w3-border" type="text" name="deudaCuentasCorrientesMBG" placeholder="Ingrese la deuda en cuentas corrientes..." value="{{$datosBorrador->deudaCuentasCorrientesMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Cheques de pago diferido</label>
-							    <input class="w3-input w3-border" type="text" name="deudaChequesPagoDiferidoMBG" placeholder="Ingrese la deuda de cheques de pago diferido...">
+							    <input class="w3-input w3-border" type="text" name="deudaChequesPagoDiferidoMBG" placeholder="Ingrese la deuda de cheques de pago diferido..." value="{{$datosBorrador->deudaChequesPagoDiferidoMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Documentadas</label>
-							    <input class="w3-input w3-border" type="text" name="documentadasMBG" placeholder="Ingrese las deudas documentadas...">
+							    <input class="w3-input w3-border" type="text" name="documentadasMBG" placeholder="Ingrese las deudas documentadas..." value="{{$datosBorrador->documentadasMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Otras</label>
-							    <input class="w3-input w3-border" type="text" name="otrasDeudasComercialesMBG" placeholder="Ingrese otras deudas comerciales...">
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasComercialesMBG" placeholder="Ingrese otras deudas comerciales..." value="{{$datosBorrador->otrasDeudasComercialesMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1249,19 +1282,19 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Tarjetas de crédito</label>
-							    <input class="w3-input w3-border" type="text" name="deudaTarjetasCreditoMBG" placeholder="Ingrese las deudas de tarjetas de crédito...">
+							    <input class="w3-input w3-border" type="text" name="deudaTarjetasCreditoMBG" placeholder="Ingrese las deudas de tarjetas de crédito..." value="{{$datosBorrador->deudaTarjetasCreditoMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Con garantía hipotecaria(Inmuebles)</label>
-							    <input class="w3-input w3-border" type="text" name="deudaGarantiaHipotecariaMBG" placeholder="Ingrese las deudas con garantía hipotecaria...">
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaHipotecariaMBG" placeholder="Ingrese las deudas con garantía hipotecaria..." value="{{$datosBorrador->deudaGarantiaHipotecariaMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Con garantía prendaria(Rodados)</label>
-							    <input class="w3-input w3-border" type="text" name="deudaGarantiaPrendariaMBG" placeholder="Ingrese las deudas con garantia prendaria...">
+							    <input class="w3-input w3-border" type="text" name="deudaGarantiaPrendariaMBG" placeholder="Ingrese las deudas con garantia prendaria..." value="{{$datosBorrador->deudaGarantiaPrendariaMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -1270,31 +1303,31 @@
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>AFIP</label>
-							    <input class="w3-input w3-border" type="text" name="deudaAfipMBG" placeholder="Ingrese la deuda con AFIP...">
+							    <input class="w3-input w3-border" type="text" name="deudaAfipMBG" placeholder="Ingrese la deuda con AFIP..." value="{{$datosBorrador->deudaAfipMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Rentas Río Negro</label>
-							    <input class="w3-input w3-border" type="text" name="deudaRentasRnMBG" placeholder="Ingrese la deuda con Rentas Río Negro...">
+							    <input class="w3-input w3-border" type="text" name="deudaRentasRnMBG" placeholder="Ingrese la deuda con Rentas Río Negro..." value="{{$datosBorrador->deudaRentasRnMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Tributos municipales</label>
-							    <input class="w3-input w3-border" type="text" name="deudaTributosMunicipalesMBG" placeholder="Ingrese la deuda con tributos municipales...">
+							    <input class="w3-input w3-border" type="text" name="deudaTributosMunicipalesMBG" placeholder="Ingrese la deuda con tributos municipales..." value="{{$datosBorrador->deudaTributosMunicipalesMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Deudas sociales</label>
-							    <input class="w3-input w3-border" type="text" name="deudasSocialesMBG" placeholder="Ingrese las deudas de aportes, contribuciones, salarios, etc...">
+							    <input class="w3-input w3-border" type="text" name="deudasSocialesMBG" placeholder="Ingrese las deudas de aportes, contribuciones, salarios, etc..." value="{{$datosBorrador->deudasSocialesMBG ?? ''}}">
 							</div>
 						</div>
 						<div class="w3-col m12">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Otras Deudas</label>
-							    <input class="w3-input w3-border" type="text" name="otrasDeudasMBG" placeholder="Ingrese otras deudas...">
+							    <input class="w3-input w3-border" type="text" name="otrasDeudasMBG" placeholder="Ingrese otras deudas..." value="{{$datosBorrador->otrasDeudasMBG ?? ''}}">
 							</div>
 						</div>
 	                </section>
