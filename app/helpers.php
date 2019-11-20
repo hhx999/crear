@@ -31,7 +31,6 @@ class Helpers
                             $multimedia->nombre = $nombre;
                             $multimedia->extension = $ext;
                             $multimedia->save();
-                        var_dump($multimedia->id);
                         //path de destino
                             $destinationPath = '/var/www/html/crear/app/Assets/Images';
                         //Subimos el archivo al path de destino y le asignamos un nombre nuevo mediante el id que nos provee el registro de multimedia
@@ -45,7 +44,6 @@ class Helpers
                     } catch (\Illuminate\Database\QueryException $e) {
                         DB::rollback();
                         dd($e);
-                        return 'Error! En la base de datos :D';
                     }
         DB::commit();
     }

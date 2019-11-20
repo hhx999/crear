@@ -306,7 +306,14 @@
 					$('input, select, textarea').each(
 					    function(index){  
 					        var input = $(this);
-					        formBorrador.append(input.attr('name') , input.val());
+					        if(input.attr('type') == 'checkbox' && input.prop('checked'))
+					        {
+					        	formBorrador.append(input.attr('name') , input.val());
+					        }
+					        if (input.attr('type') != 'checkbox') {
+					        	formBorrador.append(input.attr('name') , input.val());
+					        }
+
 					    }
 					);
 					$.ajax({

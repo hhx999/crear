@@ -179,14 +179,6 @@ class FinanciamientoController extends Controller
 					//Testeando datos de envío
 					//return $request->all();
 					return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
-				} else {
-					$borrador = Borrador::create($request->all());
-					$ultimoBorrador = $borrador->id;
-					$borrador = Borrador::find($ultimoBorrador);
-					$borrador->asuntoBorrador = $request->asuntoBorrador;
-					$borrador->save();
-					//Retornamos valores
-					return view('financiamiento.formBorrador');
 				}
 			} else {
 				//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
@@ -255,6 +247,25 @@ class FinanciamientoController extends Controller
 		    	$ultimoBorrador = $borrador->id;
 				$borrador = Borrador::find($ultimoBorrador);
 				$borrador->asuntoBorrador = $request->asuntoBorrador;
+				$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]); 
+	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
+				$borrador->fill($request->all())->save();
+				$borrador->instagramEmprendedor = $request->instagramEmprendedor;
+				$borrador->estadoEmprendimiento = $request->estadoEmprendimiento;
+				$borrador->denominacion = $request->denominacion;
+				$borrador->tipoSociedad = $request->tipoSociedad;
+				$borrador->cargo = $request->cargo;
+				$borrador->emailEmprendimiento = $request->emailEmprendimiento;
+				$borrador->telefonoEmprendimiento = $request->telefonoEmprendimiento;
+				$borrador->gradoInstruccion = $borrador->gradoInstruccion ?? $gradoInstruccion;
+				$borrador->puntoVentaLocal = $request->puntoVentaLocal;
+				$borrador->puntoVentaProvincial = $request->puntoVentaProvincial;
+				$borrador->puntoVentaNacional = $request->puntoVentaNacional;
+				$borrador->nombreMBG = $request->nombreMBG;
+				$borrador->dniMBG = $request->dniMBG;
+				$borrador->cuitMBG = $request->cuitMBG;
+				$borrador->localidadMBG = $request->localidadMBG;
+				$borrador->domicilioMBG = $request->domicilioMBG;
 				$borrador->save();
 	    	}
     		return 1;
