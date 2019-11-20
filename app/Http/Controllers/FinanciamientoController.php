@@ -156,43 +156,7 @@ class FinanciamientoController extends Controller
 				$formulario = Formulario::create($request->all());
 				$lastID = $formulario->id;
 
-				DB::beginTransaction();
-				if ($request->file('documentacion_dni')) {
-			        try {
-			        //Asignamos las reglas de extensiones de archivos para subir
-			          $rules = array('jpg','png','jpeg');
-			        //El path desde donde se envia el archivo
-			          $path = storage_path().DIRECTORY_SEPARATOR.$request->file('documentacion_dni')->getClientOriginalName();
-			        //Nombre del archivo
-			          $nombre =  pathinfo($path, PATHINFO_FILENAME);
-			        //Extensión del archivo
-			          $ext = pathinfo($path, PATHINFO_EXTENSION);
-			          var_dump($path);
-			          var_dump($nombre);
-			          var_dump($ext);
-			        //Comprobamos que la extensión del archivo esté en las reglas
-			          if (in_array($ext, $rules)) {
-			          	//Agregamos un registro en la tabla multimedia con su nombre y extensión original
-				            $multimedia = new Multimedia;
-				            $multimedia->nombre = $nombre;
-				            $multimedia->extension = $ext;
-				            $multimedia->save();
-				        //path de destino
-				            $destinationPath = '/var/www/html/crear/app/Assets/Images';
-				        //Subimos el archivo al path de destino y le asignamos un nombre nuevo mediante el id que nos provee el registro de multimedia
-				            $request->file('documentacion_dni')->move($destinationPath, $multimedia->id);
-				        //asignamos el archivo a la tabla de documentación para finalizar la operación
-				            $documentacion = new Documentacion;
-				            $documentacion->formulario_id = $lastID;
-				            $documentacion->multimedia_id = $multimedia->id;
-				            $documentacion->save();
-			        	}
-			        } catch (\Illuminate\Database\QueryException $e) {
-				        DB::rollback();
-				        return 'Error! En la base de datos :D'; 
-				    }
-				   	DB::commit();
-				}
+				Helpers::subirMultimedia($request->file('documentacion_dni'),$lastID);
 				//Generamos el formulario para enviarlo a los técnicos
 				if ($request->estado == 'enviado') {
 					$numeroSeguimiento = $dataUsuario->id . $lastID;

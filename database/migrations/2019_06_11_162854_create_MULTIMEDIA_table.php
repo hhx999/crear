@@ -15,7 +15,7 @@ class CreateMULTIMEDIATable extends Migration {
 		Schema::create('MULTIMEDIA', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('nombre', 45);
+			$table->string('nombre', 255);
 			$table->string('extension', 5);
 			$table->date('updated_at');
 			$table->date('created_at');
