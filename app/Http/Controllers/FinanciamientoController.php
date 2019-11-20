@@ -191,6 +191,7 @@ class FinanciamientoController extends Controller
 				        DB::rollback();
 				        return 'Error! En la base de datos :D'; 
 				    }
+				   	DB::commit();
 				}
 				//Generamos el formulario para enviarlo a los técnicos
 				if ($request->estado == 'enviado') {
