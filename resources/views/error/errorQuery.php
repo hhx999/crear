@@ -2,7 +2,7 @@
 <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/c321da50288907.58cc4227d8dae.gif">
 <h3 style="color:red;">Error!</h3>
 <p>Ha ocurrido un error en el sistema al ingresar el registro a la base de datos. Por favor comuniquese con el administrador de la plataforma.</p>
-<a href="<?=$url?>">Volver</a><br>
+<a href="#">Volver</a><br>
 <br>
 <p style="color: darkred;"><b>Query:</b></p>
 <pre>

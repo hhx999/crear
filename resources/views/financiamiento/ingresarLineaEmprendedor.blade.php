@@ -275,7 +275,7 @@
 			</div>
 		</div>
  
-		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
+		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor" enctype="multipart/form-data">
 			<span id="notificacionBorrador" style="display:none;color: lightgreen;">¡Borrador Guardado!<br> <i style="color: lightgrey;"><a href="{{route('borradores')}}">Ir a borradores</a></i></span><br>
 			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
 			<br><br>
@@ -1543,6 +1543,8 @@
 						</div>
 	                    <div class="w3-half">
 	                    	<p>En construcción...</p>
+	                    	<label for="documentacion_dni">DNI</label>
+	                    	<input type="file" name="documentacion_dni">
 						</div>
 	                </section>
 	   </div>

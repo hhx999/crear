@@ -85,6 +85,9 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::post('financiamiento/borradores/guardarBorrador','FinanciamientoController@guardarBorrador')->name('guardarBorrador');
 	Route::post('financiamiento/borradores/eliminarBorrador','FinanciamientoController@eliminarBorrador')->name('eliminarBorrador');
 	
+	/*Multimedia*/
+	Route::get('/images/{file}','ImageController@getImage');
+
 	//------Rutas de perfil
 	Route::get('perfil','PerfilController@index');
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos'); //panel de control emprendimientos
