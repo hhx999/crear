@@ -220,8 +220,9 @@ class UsuarioController extends BaseController
       $estado = $formulario->estado;
       $pasosValidos = $formulario->pasosValidos;
       $observaciones = $pasosValidos->observaciones ?? NULL;
+      $formulario_id = $formulario->id;
 
-      $datosSeguimiento = ['numeroSeguimiento' => $formulario->numeroSeguimiento, 'nombreEmprendedor' => $formulario->nombreEmprendedor, 'estado' => $estado ,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones];
+      $datosSeguimiento = ['numeroSeguimiento' => $formulario->numeroSeguimiento, 'nombreEmprendedor' => $formulario->nombreEmprendedor, 'estado' => $estado ,'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones, 'formulario_id' => $formulario_id];
       $datosSeguimiento = json_encode($datosSeguimiento);
 
       return $datosSeguimiento;

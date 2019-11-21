@@ -136,18 +136,35 @@ use App\Helpers;
   <!-- FIN TAB PORTADA -->
   <!-- \\\\\\\\\\\\\\\\\\\\\\\ INFORMACION EMPRENDEDOR  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) { 
-          if ($observaciones[$i]->hoja == 'infoEmprendedor') {
-            print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>');
-              print_r('<div class="observacion"><p><b>Agregar observación para INFORMACIÓN DEL EMPRENDEDOR:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
+
+    @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+      <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+      <div class="observacion"><p><b>Agregar observación para INFORMACIÓN DEL EMPRENDEDOR:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+      <button type="button" style="background-color: red;" id="eliminarObservacionInfoEmprendedor">Eliminar</button>
+      @endfor
+    @endisset
+
     <?php Helpers::crearCheckValido('infoEmprendedor',$pasosValidos->infoEmprendedor) ?>
     <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservacionInfoEmprendedor').on('click',function() {
+        console.log('eliminar');
+        console.log($('#infoEmprendedor_id').val());
+        var datos = {};
+                      datos['id'] = $('#infoEmprendedor_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">infoEmprendedor</p>
     <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">INFORMACIÓN DEL EMPRENDEDOR</p>
  
@@ -912,7 +929,7 @@ th {
       $multimedia = Multimedia::find($documentacion[$i]->multimedia_id);
       print_r(' <tr>
             <td>
-                <img align="center" style="width:85px" src="'.$GLOBALS['raiz'].'storage'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$multimedia->id.'">
+                <img align="center" style="width:85px" src="/var/www/html/crear/public/images/'.$multimedia->id.'">
               </td>
               <td>
               '.$descripcion.'

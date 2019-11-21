@@ -371,6 +371,11 @@ class TecnicoController extends Controller
         }
         return $result;
      }
+     public function eliminarObservacion(Request $request)
+     {
+      $observacion = Observacion::find($request->id);
+      $observacion->delete();
+     }
     /*                        SECCIÓN DE FUNCIONALIDADES DEL USUARIO                   */
     public function userFormularios(Request $request)
     {

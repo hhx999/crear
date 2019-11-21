@@ -36,6 +36,7 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::post('/verificarUsuarios','TecnicoController@verificarUsuarios');
 	Route::post('/registroAjax','TecnicoController@comprobarUsuario');
 	Route::get('/generarPdf/{id}','TecnicoController@crearPDF');
+	Route::post('/eliminarObservacion','TecnicoController@eliminarObservacion')->name('eliminarObservacion');
 });
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/user','FormularioController@userindex');
@@ -75,13 +76,17 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 
 	//------Rutas de financiamiento
 	Route::get('financiamiento','UsuarioController@financiamiento');
-	Route::get('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
-	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor');
+	//Manejo de formularios
+	Route::get('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor'); //formulario le
+	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor'); //envio de formulario le
+	Route::get('financiamiento/editarLineaEmprendedor/{id}','FinanciamientoController@cargarLineaEmprendedor');
+	Route::post('financiamiento/editarLineaEmprendedor/','FinanciamientoController@editarLineaEmprendedor')->name('editarLineaEmprendedor');
+
 	Route::get('financiamiento/informacion_creditos','FinanciamientoController@informacionCreditos');
 	Route::post('financiamiento/cuestionario_creditos','FinanciamientoController@cuestionarioCreditos');
 	//borradores
 	Route::get('financiamiento/borradores','FinanciamientoController@borradores')->name('borradores');
-	Route::get('financiamiento/borradores/{id}','FinanciamientoController@cargarLineaEmprendedor');
+	Route::get('financiamiento/borradores/{id}','FinanciamientoController@cargarBorradorLineaEmprendedor');
 	Route::post('financiamiento/borradores/guardarBorrador','FinanciamientoController@guardarBorrador')->name('guardarBorrador');
 	Route::post('financiamiento/borradores/eliminarBorrador','FinanciamientoController@eliminarBorrador')->name('eliminarBorrador');
 	
