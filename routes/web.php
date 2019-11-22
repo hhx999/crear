@@ -37,6 +37,7 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::post('/registroAjax','TecnicoController@comprobarUsuario');
 	Route::get('/generarPdf/{id}','TecnicoController@crearPDF');
 	Route::post('/eliminarObservacion','TecnicoController@eliminarObservacion')->name('eliminarObservacion');
+	Route::get('/images/{file}','ImageController@getImage');
 });
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/user','FormularioController@userindex');

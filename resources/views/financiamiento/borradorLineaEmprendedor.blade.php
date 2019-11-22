@@ -110,7 +110,11 @@
 						cache: false,
 			            success: function(data) {
 			            	if (data == 1) {
+			            		$('#borradorGuardadoOk').css('display','block');
 			            		console.log('Borrador Guardatisss');
+							    setTimeout(function(){
+							        location.reload(true);
+							    }, 60000);
 			            	}
 			            }
 				        }).fail( function( jqXHR, textStatus, errorThrown ) {
@@ -120,6 +124,12 @@
 				        });			    
 				    });
 			</script>
+			<div id="borradorGuardadoOk" class="w3-panel w3-green w3-display-container" style="display: none;">
+			  <span onclick="this.parentElement.style.display='none'"
+			  class="w3-button w3-large w3-display-topright">&times;</span>
+			  <h3>Borrador guardado!</h3>
+			  <p>El borrador ha sido guardado con éxito.</p>
+			</div>
 			<input type="hidden" name="borrador_id" value="{{$datosBorrador->id}}">
 	            <div id="wizard">
 	                <h2>INFORMACIÓN</h2>

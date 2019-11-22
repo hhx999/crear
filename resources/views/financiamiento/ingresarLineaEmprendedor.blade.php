@@ -446,9 +446,9 @@
 						</div>
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
-							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
+							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por usted</i></h4>
 							    <div id="divGrados">
-							    <ul class="w3-ul w3-hoverable" style="width:30%">
+							    <ul class="w3-ul w3-hoverable">
 								    <li style="list-style: none;">
 								    	<span style="display: inline-flex;">
 								    		<label>Ninguno</label>
@@ -463,19 +463,22 @@
 								    </span>
 							    	</li>
 							    	<li style="list-style: none;">
-							    		<label>Secundario
-								    		<input type="radio" name="grado" value="Secundario">
-								    	</label>
+							    		<span style="display: inline-flex">
+								    		<label>Secundario</label>
+									    	<input type="radio" name="grado" value="Secundario">
+									    </span>
 							    	</li>
 							    	<li style="list-style: none;">
-							    		<label>Terceario
+							    		<span style="display: inline-flex">
+							    			<label>Terceario</label>
 								    		<input type="radio" name="grado" value="Terceario">
-								    	</label>
+								    	</span>
 							    	</li>
 							    	<li style="list-style: none;">
-							    		<label>Universitario
+							    		<span style="display: inline-flex">
+							    			<label>Universitario</label>
 								    		<input type="radio" name="grado" value="Universitario">
-								    	</label>
+								    	</span>
 							    	</li>
 							    </ul>
 								</div>

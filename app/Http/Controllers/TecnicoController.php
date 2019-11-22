@@ -244,7 +244,7 @@ class TecnicoController extends Controller
        $formulario->agenciaProyecto = $request->agenciaProyecto;
        $formulario->numeroProyecto = $request->numeroProyecto;
        $formulario->montoSolicitado = $request->montoSolicitado;
-       $formulario->fecPresentacionProyecto = $request->fecPresentacionProyecto;
+       $formulario->fecPresentacionProyecto = Helpers::cambioFormatoFecha($request->fecPresentacionProyecto);
        $formulario->descEmprendimiento = $request->descEmprendimiento;
        $formulario->tecnico_id = $datosTecnico->id;
        $formulario->save();

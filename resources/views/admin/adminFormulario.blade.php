@@ -127,7 +127,7 @@ use App\Helpers;
 
       <div class="float-container">
         <label>Monto a solicitar <span style="color:red;">&#10033;</span></label>
-        <input data-placeholder="Ingrese el monto solicitado..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ?>">
+        <input data-placeholder="Ingrese el monto solicitado por el emprendedor..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ?>">
       </div>
 
       <p align="center"><b>BREVE DESCRIPCIÓN DEL EMPRENDIMIENTO Y JUSTIFICACIÓN DE LA NECESIDAD DE FINANCIAMIENTO <span style="color:red;">&#10033;</span></b></p>

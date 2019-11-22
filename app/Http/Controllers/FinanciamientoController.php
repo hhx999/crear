@@ -300,6 +300,10 @@ class FinanciamientoController extends Controller
 				$estadosFormulario = config('constantes.estados');
         		$formulario->estado = $estadosFormulario['actualizado'];
 			$formulario->save();
+			if ($request->file('documentacion_dni')) {
+					#documentacion editar
+					Helpers::subirMultimedia($request->file('documentacion_dni'),$formulario->id);
+				}
 			//return $request->all();
 			return view('financiamiento.formEnviado', ['numeroSeguimiento' => $formulario->numeroSeguimiento]);
     }
@@ -337,7 +341,6 @@ class FinanciamientoController extends Controller
 				$borrador->localidadMBG = $request->localidadMBG;
 				$borrador->domicilioMBG = $request->domicilioMBG;
 				$borrador->save();
-				var_dump($request->all());
 	    	} else {
 		    	$borrador = Borrador::create($request->all());
 		    	$ultimoBorrador = $borrador->id;
