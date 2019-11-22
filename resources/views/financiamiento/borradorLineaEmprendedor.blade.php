@@ -65,7 +65,7 @@
 				</div>
 			</div>
 		</div>
-		<form method="post" action="" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
+		<form method="post" action="{{route('ingresarLineaEmprendedor')}}" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor">
 			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
 			<br><br>
 			<script>
@@ -1336,7 +1336,7 @@
 	                	<div class="w3-container w3-quarter">
 						</div>
 	                    <div class="w3-half">
-	                    	<p>En construcción...</p>
+	                    	<p>Para completar el último paso a enviar la documentación lo enviaremos a "ingresar línea emprendedor".</p>
 						</div>
 	                </section>
 	   </div>

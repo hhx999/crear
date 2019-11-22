@@ -78,8 +78,9 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('financiamiento','UsuarioController@financiamiento');
 	//Manejo de formularios
 	Route::get('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor'); //formulario le
-	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor'); //envio de formulario le
+	Route::post('financiamiento/lineaEmprendedor','FinanciamientoController@ingresarLineaEmprendedor')->name('ingresarLineaEmprendedor'); //envio de formulario le
 	Route::get('financiamiento/editarLineaEmprendedor/{id}','FinanciamientoController@cargarLineaEmprendedor');
+	Route::post('financiamiento/cargarLineaEmprendedor/','FinanciamientoController@cargarLineaEmprendedor')->name('cargarLineaEmprendedor');
 	Route::post('financiamiento/editarLineaEmprendedor/','FinanciamientoController@editarLineaEmprendedor')->name('editarLineaEmprendedor');
 
 	Route::get('financiamiento/informacion_creditos','FinanciamientoController@informacionCreditos');

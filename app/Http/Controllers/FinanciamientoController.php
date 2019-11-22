@@ -158,7 +158,7 @@ class FinanciamientoController extends Controller
 					$formulario = Formulario::create($request->all());
 					$lastID = $formulario->id;
 
-					Helpers::subirMultimedia($request->file('documentacion_dni'),$lastID);
+					//Helpers::subirMultimedia($request->file('documentacion_dni'),$lastID);
 					//Generamos el formulario para enviarlo a los técnicos
 					if ($request->estado == 'enviado') {
 						$numeroSeguimiento = $dataUsuario->id . $lastID;
@@ -180,6 +180,7 @@ class FinanciamientoController extends Controller
 
 						//Testeando datos de envío
 						//return $request->all();
+						DB::commit();
 						return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
 					}
 				} else {
@@ -191,8 +192,6 @@ class FinanciamientoController extends Controller
                 DB::rollback();
                 dd($e);
 		}
-		DB::commit();
-
     	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos, 'datosForm' => $datosForm]);
     }
     function cargarBorradorLineaEmprendedor(Request $request, $borrador_id = null)
@@ -204,6 +203,19 @@ class FinanciamientoController extends Controller
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+    	if ($datosBorrador->cargo) {
+    		switch ($datosBorrador->cargo) {
+    			case '1':
+    				$datosBorrador->cargo = 'Propietario';
+    				break;
+    			case '2':
+    				$datosBorrador->cargo = 'Representante legal';
+    				break;
+    			case '3':
+    				$datosBorrador->cargo = 'Socio de sociedad de hecho';
+    				break;
+    		}
+    	}
     	$emprendimientos = NULL;
     	$localidades = Localidad::all();
 
@@ -248,12 +260,14 @@ class FinanciamientoController extends Controller
     {
     		# Actualización...
 			  // Grab all the input passed in
+    		$idUsuario = $request->session()->get('id_usuario');
+    		$idTipoForm = FormTipo::where('nombre','Línea Emprendedor')->first()->id;
+
 			  $data = $request->all();
 
 			  // Use Eloquent to grab the gift record that we want to update,
 			  // referenced by the ID passed to the REST endpoint
 			  $formulario = Formulario::find($request->formulario_id);
-
 			  // Call fill on the gift and pass in the data
 			  $formulario->fill($data);
 	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
@@ -291,6 +305,7 @@ class FinanciamientoController extends Controller
     }
     function guardarBorrador(Request $request)
     {
+    	db::beginTransaction();
     	try {
     		$idForm = FormTipo::where('nombre','Línea Emprendedor')->first()->id;
 	    	$idUsuario = $request->session()->get('id_usuario');
@@ -300,7 +315,7 @@ class FinanciamientoController extends Controller
 
 	    	if($request->borrador_id) 
 	    	{
-				$borrador = Borrador::where('id',$request->borrador_id)->where('usuario_id',$idUsuario)->first();
+				$borrador = Borrador::where('id',$request->borrador_id)->where('idUsuario',$idUsuario)->first();
 				$gradoInstruccion = $borrador->gradoInstruccion;
 	    		$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]); 
 	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
@@ -326,11 +341,13 @@ class FinanciamientoController extends Controller
 	    	} else {
 		    	$borrador = Borrador::create($request->all());
 		    	$ultimoBorrador = $borrador->id;
-				$borrador = $borrador = Borrador::where('id',$ultimoBorrador)->where('usuario_id',$idUsuario)->first();
+				$borrador = Borrador::where('id',$ultimoBorrador)->where('idUsuario',$idUsuario)->first();
 				$borrador->asuntoBorrador = $request->asuntoBorrador;
 				$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]); 
 	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
 				$borrador->fill($request->all())->save();
+				$ultimoBorrador = $borrador->id;
+				$borrador = Borrador::where('id',$ultimoBorrador)->where('idUsuario',$idUsuario)->first();
 				$borrador->instagramEmprendedor = $request->instagramEmprendedor;
 				$borrador->estadoEmprendimiento = $request->estadoEmprendimiento;
 				$borrador->denominacion = $request->denominacion;
@@ -349,8 +366,11 @@ class FinanciamientoController extends Controller
 				$borrador->domicilioMBG = $request->domicilioMBG;
 				$borrador->save();
 	    	}
+	    	DB::commit();
     		return 1;
+
     	} catch (Exception $e) {
+    		DB::rollback();
     		return 0;
     	}
     }

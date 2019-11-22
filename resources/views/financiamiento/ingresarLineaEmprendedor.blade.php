@@ -447,28 +447,50 @@
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
-							    <div style="display: inline-block;">
-							    	<label class="container">Ninguno
-							    		<input type="radio" checked name="gradoInstruccion" value="Ninguno">
-							    		<span class="checkmark"></span>
-							    	</label>
-							    	<label class="container">Primario
-							    		<input type="radio" name="gradoInstruccion" value="Primario">
-							    		<span class="checkmark"></span>
-							    	</label>
-							    	<label class="container">Secundario
-							    		<input type="radio" name="gradoInstruccion" value="Secundario">
-							    		<span class="checkmark"></span>
-							    	</label>
-							    	<label class="container">Terceario
-							    		<input type="radio" name="gradoInstruccion" value="Terceario">
-							    		<span class="checkmark"></span>
-							    	</label>
-							    	<label class="container">Universitario
-							    		<input type="radio" name="gradoInstruccion" value="Universitario">
-							    		<span class="checkmark"></span>
-							    	</label>
-							    </div>
+							    <div id="divGrados">
+							    <ul class="w3-ul w3-hoverable" style="width:30%">
+								    <li style="list-style: none;">
+								    	<span style="display: inline-flex;">
+								    		<label>Ninguno</label>
+								    		<input class="w3-input" type="radio" checked name="grado" value="Ninguno">
+								    	</span>
+							    	</li>
+							    	<li style="list-style: none;">
+							    		<span style="display: inline-flex">
+							    			<label for="gradoInstruccion">Primario</label>
+							    			<input class="w3-input" type="radio" name="grado" value="Primario">
+							    		</span>
+								    </span>
+							    	</li>
+							    	<li style="list-style: none;">
+							    		<label>Secundario
+								    		<input type="radio" name="grado" value="Secundario">
+								    	</label>
+							    	</li>
+							    	<li style="list-style: none;">
+							    		<label>Terceario
+								    		<input type="radio" name="grado" value="Terceario">
+								    	</label>
+							    	</li>
+							    	<li style="list-style: none;">
+							    		<label>Universitario
+								    		<input type="radio" name="grado" value="Universitario">
+								    	</label>
+							    	</li>
+							    </ul>
+								</div>
+							    <input type="hidden" name="gradoInstruccion" id="gradoInstruccion">
+							    <script type="text/javascript">
+							    	$(document).ready(function(){
+							    	$("#gradoInstruccion").val($("input[name='grado']:checked").val());
+							    	console.log($("#gradoInstruccion").val());
+							        $("#divGrados").change(function(){
+								            selected_value = $("input[name='grado']:checked").val();
+								            $("#gradoInstruccion").val(selected_value);
+								            console.log(selected_value);
+								        });
+								    });
+							    </script>
 							</div>
 						</div>
 						<div class="w3-col m12">
