@@ -1343,10 +1343,72 @@
 	                </section>
 	                <h2>DOCUMENTACIÓN</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
-						</div>
+	                	<div class="w3-col m12">
+	                		<h3>Documentación del Solicitante</h3>
+	                	</div>
 	                    <div class="w3-half">
-	                    	<p>Para completar el último paso a enviar la documentación lo enviaremos a "ingresar línea emprendedor".</p>
+	                    	<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_dni_solicitante">DNI</label>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_dni_solicitante">
+	                    	</div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_cdomicilio_solicitante">Certificado de Domicilio</label>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_cdomicilio_solicitante">
+		                    </div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_recibosueldo_solicitante">Recibo de sueldo del Solicitante</label>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_recibosueldo_solicitante">
+		                    </div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_libredeuda_solicitante">Certificado de libre de deuda</label>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_libredeuda_solicitante">
+							</div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_afip_solicitante">Constancia de Inscripción en AFIP</label><br>
+		                    	<a class="w3-button w3-cyan" href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaConstanciaAction.do" target="_blank" style="color: white !important;">Generar Constancia</a>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_afip_solicitante">
+		                    </div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_iibb_solicitante">Constancia de Inscripción en IIBB - ART Río Negro</label><br>
+		                    	<a class="w3-button w3-cyan" href="http://www.agencia.rionegro.gov.ar/InscripcionesContribuyente/index.jsp" target="_blank" style="color: white !important;">Generar Constancia</a>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_iibb_solicitante">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
+	                		<h3>Documentación del Garante</h3>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_dni_garante">Fotocopia DNI Garante</label>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_dni_garante">
+							</div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_recibosueldo_garante">Recibo de Sueldo - DDJJ IIBB S/corresponda</label>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_recibosueldo_garante">
+							</div>
+						</div>
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_cdomicilio_garante">Certificado de Domicilio del Garante</label><br>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_cdomicilio_garante">
+							</div>
+						</div>
+						<div class="w3-col m12">
+							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
+	                		<h3>Presupuestos</h3>
 						</div>
 	                </section>
 	   </div>
