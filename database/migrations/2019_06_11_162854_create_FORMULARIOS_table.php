@@ -66,6 +66,23 @@ class CreateFORMULARIOSTable extends Migration {
             $table->string('puntoVentaProvincial')->nullable();
             $table->string('puntoVentaNacional')->nullable();
 			//Producción costos y resultados
+			$table->string('producto1')->nullable();
+			$table->string('udMedida1')->nullable();
+			$table->float('cantidad1', 10, 0)->nullable()->default(0);
+			$table->float('valor1', 10, 0)->nullable()->default(0);
+			$table->string('producto2')->nullable();
+			$table->string('udMedida2')->nullable();
+			$table->float('cantidad2', 10, 0)->nullable()->default(0);
+			$table->float('valor2', 10, 0)->nullable()->default(0);
+			$table->string('producto3')->nullable();
+			$table->string('udMedida3')->nullable();
+			$table->float('cantidad3', 10, 0)->nullable()->default(0);
+			$table->float('valor3', 10, 0)->nullable()->default(0);
+			$table->string('producto4')->nullable();
+			$table->string('udMedida4')->nullable();
+			$table->float('cantidad4', 10, 0)->nullable()->default(0);
+			$table->float('valor4', 10, 0)->nullable()->default(0);
+			$table->float('otrosProductosVenta', 10, 0)->nullable()->default(0);
 			$table->string('materiasPrimas')->nullable();
 			$table->string('descHerramientas')->nullable();
 			$table->float('insumosCostos', 10, 0)->nullable()->default(0);

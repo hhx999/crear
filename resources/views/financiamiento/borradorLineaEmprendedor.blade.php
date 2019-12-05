@@ -3,6 +3,7 @@
 	@section('title') Inicio @endsection
 
 	@section('content')
+	<?php use app\Helpers; ?>
 	<style type="text/css">
 		.w3-half {
 			padding: 10px !important;
@@ -72,6 +73,7 @@
 			    $("#guardarBorrador").click(function() {
 			    	var formBorrador = new FormData();
 			    	var asuntoBorrador = $('#asuntoBorrador').val();
+			    	console.log()
 			    	var params = [
 		               {
 		                 name: "estado",
@@ -98,7 +100,6 @@
 					        if (input.attr('type') != 'checkbox') {
 					        	formBorrador.append(input.attr('name') , input.val());
 					        }
-
 					    }
 					);
 					$.ajax({
@@ -234,28 +235,23 @@
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
-							    <div style="display: inline-block;" id="divGrados">
-							    	<label>Ninguno
-								    	<input type="radio" name="grado"  value="Ninguno" 
-	                          			{{ $datosBorrador->gradoInstruccion == 'Ninguno' ? 'checked' : '' }} >	
-							    	</label>
-							    	<label>Primario
-										<input type="radio" name="grado"  value="Primario" 
-	                          			{{ $datosBorrador->gradoInstruccion == 'Primario' ? 'checked' : '' }} >
-							    	</label>
-							    	<label>Secundario
-										<input type="radio" name="grado"  value="Secundario" 
-	                          			{{ $datosBorrador->gradoInstruccion == 'Secundario' ? 'checked' : '' }} >
-							    	</label>
-							    	<label>Terceario
-	                          			<input type="radio" name="grado"  value="Terceario" 
-	                          			{{ $datosBorrador->gradoInstruccion == 'Terceario' ? 'checked' : '' }} >
-							    	</label>
-							    	<label>Universitario
-	                          			<input type="radio" name="grado"  value="Universitario" 
-	                          			{{ $datosBorrador->gradoInstruccion == 'Universitario' ? 'checked' : '' }} >
-							    	</label>
-                          			<input type="hidden" name="gradoInstruccion" id="gradoInstruccion">
+							    <div style="margin-right: 10px;margin-left: 10px;height: 60px;">
+									<select class="w3-select datosEmprendimiento" name="gradoInstruccion">
+										@if(!empty($datosBorrador->gradoInstruccion))
+											@foreach($grados as $grado)
+												@if($datosBorrador->gradoInstruccion == $grado)
+												<option selected value="{{$grado}}">{{$grado}}</option>
+												@else
+									    		<option value="{{$grado}}">{{$grado}}</option>
+									    		@endif
+									    	@endforeach
+									   	@else
+									   	<option selected disabled value="">Seleccioná tu grado de instrucción...</option>
+									   	@foreach($grados as $grado)
+									    		<option value="{{$grado}}">{{$grado}}</option>
+									    @endforeach
+								    	@endif
+									</select>
 								</div>
 							</div>
 						</div>
@@ -376,7 +372,7 @@
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
 								<label>Fecha de inicio(dd-mm-AAAA)</label>
-	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento" value="{{$datosBorrador->fecInicioEmprendimiento}}">
+	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento" value="{{Helpers::cambioFormatoFecha($datosBorrador->fecInicioEmprendimiento)}}">
 							</div>
 						</div>
 						<script type="text/javascript">
@@ -735,10 +731,58 @@
 							<p><b>VENTAS</b><br>
 								<i style="color: lightgrey;">VOLUMEN ESTIMADO DE VENTAS FUTURAS</i>
 							</p>
-							<p id="crearVenta" style="color: #3ae93a;cursor: pointer;">Agregar nueva venta</p>
 							</div>
 						</div>
 						<div class="w3-col m12" id="ventas_financiamiento">
+							<table class="w3-table">
+								<thead>
+									<th>Producto</th>
+									<th>Unidad de medida</th>
+									<th>Cantidad por año</th>
+									<th>Valor por unidad</th>
+									<th>Total</th>
+								</thead>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input" style="background-color: #00f0;border:0px;color: white;" value="{{$datosBorrador->producto1}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input" style="color: white;background-color: #00f0;border:0px;" value="{{$datosBorrador->udMedida1}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input" style="color: white;background-color: #00f0;border:0px;" value="{{$datosBorrador->cantidad1}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;" value="{{$datosBorrador->valor1}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total1" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;" value="{{$datosBorrador->cantidad1 * $datosBorrador->valor1}}"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td colspan="2" style="text-align: center">Otros</td>
+									<td colspan="2"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td colspan="2" style="text-align: center">Total</td>
+									<td colspan="2"></td>
+									<td><span style="position: absolute;">$</span><input id="#totalVentas" type="text" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;" readonly>
+									<a href="#ventas_financiamiento" id="calcularTotalVentas" class="w3-button">Calcular totales</a>
+									</td>
+								</tbody>
+							</table>
 						</div>
 						<div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
 	          				<div class="w3-col m12">
@@ -837,6 +881,16 @@
 							<input type="text" class="operacionVenta" id="totalVenta" style="border: 2px solid black;width: -moz-available;">\
 						</div>\
 					</div>');
+			});
+			$('.eliminarVenta').click(function(){
+				var producto_id = $(this).parent('div').parent('div').find('input').attr('name','producto_id').val();
+				console.log(producto_id);
+				$('<input>', {
+				    type: 'hidden',
+				    name: 'ventasEliminadas[]',
+				    value: producto_id
+				}).appendTo('form#formLineaEmprendedor');
+				remove(this);
 			});
 		</script>
 		<script type="text/javascript">

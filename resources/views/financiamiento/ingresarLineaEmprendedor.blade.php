@@ -447,53 +447,16 @@
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por usted</i></h4>
-							    <div id="divGrados">
-							    <ul class="w3-ul w3-hoverable">
-								    <li style="list-style: none;">
-								    	<span style="display: inline-flex;">
-								    		<label>Ninguno</label>
-								    		<input class="w3-input" type="radio" checked name="grado" value="Ninguno">
-								    	</span>
-							    	</li>
-							    	<li style="list-style: none;">
-							    		<span style="display: inline-flex">
-							    			<label for="gradoInstruccion">Primario</label>
-							    			<input class="w3-input" type="radio" name="grado" value="Primario">
-							    		</span>
-								    </span>
-							    	</li>
-							    	<li style="list-style: none;">
-							    		<span style="display: inline-flex">
-								    		<label>Secundario</label>
-									    	<input type="radio" name="grado" value="Secundario">
-									    </span>
-							    	</li>
-							    	<li style="list-style: none;">
-							    		<span style="display: inline-flex">
-							    			<label>Terceario</label>
-								    		<input type="radio" name="grado" value="Terceario">
-								    	</span>
-							    	</li>
-							    	<li style="list-style: none;">
-							    		<span style="display: inline-flex">
-							    			<label>Universitario</label>
-								    		<input type="radio" name="grado" value="Universitario">
-								    	</span>
-							    	</li>
-							    </ul>
+							    <div style="margin-right: 10px;margin-left: 10px;">
+								    <label>Grado de Instrucción</label>
+								    
+								    <select id="gradoInstruccion" class="w3-select" name="gradoInstruccion">
+									    <?php
+									    $grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+									    App\Helpers::crearOptionLE($grados,NULL);
+										 ?>
+									 </select>
 								</div>
-							    <input type="hidden" name="gradoInstruccion" id="gradoInstruccion">
-							    <script type="text/javascript">
-							    	$(document).ready(function(){
-							    	$("#gradoInstruccion").val($("input[name='grado']:checked").val());
-							    	console.log($("#gradoInstruccion").val());
-							        $("#divGrados").change(function(){
-								            selected_value = $("input[name='grado']:checked").val();
-								            $("#gradoInstruccion").val(selected_value);
-								            console.log(selected_value);
-								        });
-								    });
-							    </script>
 							</div>
 						</div>
 						<div class="w3-col m12">
@@ -964,10 +927,56 @@
 							<p><b>VENTAS</b><br>
 								<i style="color: lightgrey;">VOLUMEN ESTIMADO DE VENTAS FUTURAS</i>
 							</p>
-							<p id="crearVenta" style="color: #3ae93a;cursor: pointer;">Agregar nueva venta</p>
 							</div>
 						</div>
 						<div class="w3-col m12" id="ventas_financiamiento">
+							<table class="w3-table">
+								<thead>
+									<th>Producto</th>
+									<th>Unidad de medida</th>
+									<th>Cantidad por año</th>
+									<th>Valor por unidad</th>
+									<th>Total</th>
+								</thead>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total1" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td colspan="2" style="text-align: center">Otros</td>
+									<td colspan="2"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+								</tbody>
+								<tbody>
+									<td colspan="2" style="text-align: center">Total</td>
+									<td colspan="2"></td>
+									<td><span style="position: absolute;">$</span><input id="#totalVentas" type="text" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;" readonly></td>
+								</tbody>
+							</table>
 						</div>
 						<div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
 	          				<div class="w3-col m12">

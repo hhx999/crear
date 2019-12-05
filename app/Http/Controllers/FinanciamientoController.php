@@ -18,6 +18,7 @@ use App\Localidad;
 use App\Borrador;
 use App\Multimedia;
 use App\Documentacion;
+use App\BorradorVenta;
 
 class FinanciamientoController extends Controller
 {
@@ -218,6 +219,7 @@ class FinanciamientoController extends Controller
     	}
     	$emprendimientos = NULL;
     	$localidades = Localidad::all();
+    	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
 
     	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
     	if ($dataUsuario->emprendimientos) {
@@ -226,7 +228,7 @@ class FinanciamientoController extends Controller
 	    	}
     	}
 
-		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos,'gradosInstruccion' => $gradosInstruccion]);
+		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos,'gradosInstruccion' => $gradosInstruccion, 'grados' => $grados]);
     }
     function cargarLineaEmprendedor(Request $request, $formulario_id = null)
     {
@@ -320,7 +322,6 @@ class FinanciamientoController extends Controller
 	    	if($request->borrador_id) 
 	    	{
 				$borrador = Borrador::where('id',$request->borrador_id)->where('idUsuario',$idUsuario)->first();
-				$gradoInstruccion = $borrador->gradoInstruccion;
 	    		$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]); 
 	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
 				$borrador->fill($request->all())->save();
@@ -331,7 +332,7 @@ class FinanciamientoController extends Controller
 				$borrador->cargo = $request->cargo;
 				$borrador->emailEmprendimiento = $request->emailEmprendimiento;
 				$borrador->telefonoEmprendimiento = $request->telefonoEmprendimiento;
-				$borrador->gradoInstruccion = $borrador->gradoInstruccion ?? $gradoInstruccion;
+				$borrador->gradoInstruccion = $borrador->gradoInstruccion;
 				$borrador->puntoVentaLocal = $request->puntoVentaLocal;
 				$borrador->puntoVentaProvincial = $request->puntoVentaProvincial;
 				$borrador->puntoVentaNacional = $request->puntoVentaNacional;
@@ -341,6 +342,7 @@ class FinanciamientoController extends Controller
 				$borrador->localidadMBG = $request->localidadMBG;
 				$borrador->domicilioMBG = $request->domicilioMBG;
 				$borrador->save();
+				
 	    	} else {
 		    	$borrador = Borrador::create($request->all());
 		    	$ultimoBorrador = $borrador->id;
