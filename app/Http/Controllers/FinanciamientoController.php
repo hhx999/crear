@@ -238,7 +238,7 @@ class FinanciamientoController extends Controller
 
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+    	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
     	if ($datosFormulario->emprendimiento_id) {
     		$emprendimiento = Emprendimiento::find($datosFormulario->emprendimiento_id);
     		$cargoEmprendimiento = $emprendimiento->trabajaEn->cargo;
@@ -256,7 +256,7 @@ class FinanciamientoController extends Controller
     	}
     	$localidades = Localidad::all();
 
-		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimiento' => $emprendimiento,'gradosInstruccion' => $gradosInstruccion,'cargoEmprendimiento' => $cargoEmprendimiento]);
+		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimiento' => $emprendimiento,'grados' => $grados,'cargoEmprendimiento' => $cargoEmprendimiento]);
     }
     function editarLineaEmprendedor(Request $request)
     {

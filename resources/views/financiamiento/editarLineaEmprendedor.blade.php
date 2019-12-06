@@ -250,98 +250,9 @@
 }
 
 		</style>
-		<div id="modalBorrador" class="w3-modal">
-			<div class="w3-modal-content">
-				<div class="w3-container">
-					<span onclick="document.getElementById('modalBorrador').style.display='none'" class="w3-button w3-display-topright" style="color: black;">&times;</span>
-					<br>
-					<label style="color: black;">Guardar borrador <i style="color: gray;">({{date("d-m-Y")}})</i></label>
-					<div class="success-checkmark">
-					  <div class="check-icon">
-					    <span class="icon-line line-tip"></span>
-					    <span class="icon-line line-long"></span>
-					    <div class="icon-circle"></div>
-					    <div class="icon-fix"></div>
-					  </div>
-					</div>
-					<input placeholder="Escribir asunto del formulario..." type="text" name="asuntoBorrador" id="asuntoBorrador" class="w3-input"><br>
-					<a href="#" id="enviarBorrador" class="w3-button w3-cyan" style="color: white !important;">Enviar</a>
-					<br>
-					<br>
-				</div>
-			</div>
-		</div>
  
 		<form method="post" action="{{route('editarLineaEmprendedor')}}" name="formLineaEmprendedor" class="formLineaEmprendedor" id="formLineaEmprendedor" enctype="multipart/form-data">
 			<input type="hidden" name="formulario_id" value="{{$datosFormulario->id}}">
-			<span id="notificacionBorrador" style="display:none;color: lightgreen;">¡Borrador Guardado!<br> <i style="color: lightgrey;"><a href="{{route('borradores')}}">Ir a borradores</a></i></span><br>
-			<a id="guardarBorrador" class="w3-button w3-cyan" href="#" style="border-radius: 6px;color: white !important;">Guardar borrador</a>
-			<br><br>
-			<script>
-			$(document).ready(function(){
-			    $("#guardarBorrador").click(function(){
-			    	document.getElementById('modalBorrador').style.display='block';
-			    });
-			    $("#enviarBorrador").click(function() {
-			    	var formBorrador = new FormData();
-			    	var asuntoBorrador = $('#asuntoBorrador').val();
-			    	var params = [
-		               {
-		                 name: "estado",
-		                 value: 'borrador'
-		               },
-		               {
-		               	 name: "asuntoBorrador",
-		               	 value: asuntoBorrador
-		               }
-		             ];
-					$.each(params, function(i,param){
-					    $('<input />').attr('type', 'hidden')
-					        .attr('name', param.name)
-					        .attr('value', param.value)
-					        .appendTo('#formLineaEmprendedor');
-					    });
-					$('input, select, textarea').each(
-					    function(index){  
-					        var input = $(this);
-					        if(input.attr('type') == 'checkbox' && input.prop('checked'))
-					        {
-					        	formBorrador.append(input.attr('name') , input.val());
-					        }
-					        if (input.attr('type') != 'checkbox') {
-					        	formBorrador.append(input.attr('name') , input.val());
-					        }
-
-					    }
-					);
-					$.ajax({
-			            type: 'POST',
-			            url: "{{route('guardarBorrador')}}",
-			            contentType: false,
-						data: formBorrador,  // mandamos el objeto formdata que se igualo a la variable data
-						processData: false,
-						cache: false,
-			            success: function(data) {
-			            	if (data == 1) {
-			            		$('#notificacionBorrador').css('display','block');
-			            		$('.success-checkmark').css('display','block');
-			            		$(".check-icon").hide();
-								setTimeout(function () {
-								    $(".check-icon").show();
-								  }, 10);
-								setTimeout(function(){
-				                $('#modalBorrador').hide();    
-				                }, 1000);
-			            	}
-			            }
-				        }).fail( function( jqXHR, textStatus, errorThrown ) {
-				        	if (jqXHR.status == 404) {
-							    alert('No se encuentran resultados. [404]');
-							}
-				        });			    
-				    });
-			    });
-			</script>
 	            <div id="wizard">
 	                <h2>INFORMACIÓN</h2>
 	                <section>
@@ -445,28 +356,23 @@
 						<div class="w3-col m12">
 							<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 							    <h4>Grado de instrucción<br><i style="color: lightgrey;">(Ingrese el último grado de instrucción finalizado por el/la emprendedor/ra)</i></h4>
-							    <div style="display: inline-block;" id="divGrados">
-							    	<label>Ninguno
-								    	<input type="radio" name="grado"  value="Ninguno" 
-	                          			{{ $datosFormulario->gradoInstruccion == 'Ninguno' ? 'checked' : '' }} >	
-							    	</label>
-							    	<label>Primario
-										<input type="radio" name="grado"  value="Primario" 
-	                          			{{ $datosFormulario->gradoInstruccion == 'Primario' ? 'checked' : '' }} >
-							    	</label>
-							    	<label>Secundario
-										<input type="radio" name="grado"  value="Secundario" 
-	                          			{{ $datosFormulario->gradoInstruccion == 'Secundario' ? 'checked' : '' }} >
-							    	</label>
-							    	<label>Terceario
-	                          			<input type="radio" name="grado"  value="Terceario" 
-	                          			{{ $datosFormulario->gradoInstruccion == 'Terceario' ? 'checked' : '' }} >
-							    	</label>
-							    	<label>Universitario
-	                          			<input type="radio" name="grado"  value="Universitario" 
-	                          			{{ $datosFormulario->gradoInstruccion == 'Universitario' ? 'checked' : '' }} >
-							    	</label>
-                          			<input type="hidden" name="gradoInstruccion" id="gradoInstruccion" value="{{$datosFormulario->gradoInstruccion}}">
+							    <div style="margin-right: 10px;margin-left: 10px;height: 60px;">
+									<select class="w3-select datosEmprendimiento" name="gradoInstruccion">
+										@if(!empty($datosFormulario->gradoInstruccion))
+											@foreach($grados as $grado)
+												@if($datosFormulario->gradoInstruccion == $grado)
+												<option selected value="{{$grado}}">{{$grado}}</option>
+												@else
+									    		<option value="{{$grado}}">{{$grado}}</option>
+									    		@endif
+									    	@endforeach
+									   	@else
+									   	<option selected disabled value="">Seleccioná tu grado de instrucción...</option>
+									   	@foreach($grados as $grado)
+									    		<option value="{{$grado}}">{{$grado}}</option>
+									    @endforeach
+								    	@endif
+									</select>
 								</div>
 							</div>
 						</div>
@@ -937,158 +843,241 @@
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descHerramientas" maxlength="254" style="resize:none">{{$datosFormulario->descHerramientas}}</textarea></p>
 						</div>
+						<!-- Ventas -->
+						<div class="w3-col m12">
+							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
+						</div>
+						<style type="text/css">
+							.inputventas {
+								background-color: #00f0;
+								color: white;
+							}
+							.inputvalores_ventas{
+								color: white;
+								background-color: #00f0;
+								border:0px !important;
+								margin-left: 5px;
+								padding-top: 5px;
+							}
+							.ventas th {
+								text-align: center;
+							}
+						</style>
 						<div class="w3-col m12">
 							<br>
 							<div>
 							<p><b>VENTAS</b><br>
 								<i style="color: lightgrey;">VOLUMEN ESTIMADO DE VENTAS FUTURAS</i>
 							</p>
-							<p id="crearVenta" style="color: #3ae93a;cursor: pointer;">Agregar nueva venta</p>
 							</div>
 						</div>
 						<div class="w3-col m12" id="ventas_financiamiento">
+							<table class="w3-table ventas">
+								<thead>
+									<th>Producto</th>
+									<th>Unidad de medida</th>
+									<th>Cantidad por año</th>
+									<th>Valor por unidad</th>
+									<th>Total</th>
+								</thead>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input inputventas" value="{{$datosFormulario->producto1}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input inputventas" value="{{$datosFormulario->udMedida1}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input inputventas"  value="{{$datosFormulario->cantidad1}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input inputvalores_ventas"  value="{{$datosFormulario->valor1}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total1" class = "w3-input inputvalores_ventas" value="{{$datosFormulario->cantidad1 * $datosFormulario->valor1}}"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input inputventas" value="{{$datosFormulario->producto2}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input inputventas"  value="{{$datosFormulario->udMedida2}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input inputventas"  value="{{$datosFormulario->cantidad2}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input inputvalores_ventas" value="{{$datosFormulario->valor2}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input inputvalores_ventas" value="{{$datosFormulario->cantidad2 * $datosFormulario->valor2}}"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input inputventas" value="{{$datosFormulario->producto3}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input inputventas" value="{{$datosFormulario->udMedida3}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input inputventas" value="{{$datosFormulario->cantidad3}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input inputvalores_ventas" value="{{$datosFormulario->valor3}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input inputvalores_ventas" value="{{$datosFormulario->cantidad3 * $datosFormulario->valor3}}"></td>
+								</tbody>
+								<tbody>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input inputventas" value="{{$datosFormulario->producto4}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input inputventas" value="{{$datosFormulario->udMedida4}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input inputventas" value="{{$datosFormulario->cantidad4}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input inputvalores_ventas" value="{{$datosFormulario->valor4}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input inputvalores_ventas" value="{{$datosFormulario->cantidad4 * $datosFormulario->valor4}}"></td>
+								</tbody>
+								<tbody>
+									<td colspan="2" style="text-align: center">Otros</td>
+									<td colspan="2"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input inputvalores_ventas" value="{{$datosFormulario->otrosProductosVenta}}"></td>
+								</tbody>
+								<tbody>
+									<td colspan="2" style="text-align: center">Total</td>
+									<td colspan="1"></td>
+									<td align="center"><a href="#ventas_financiamiento" id="calcularTotalVentas" class="w3-button w3-blue-gray">Calcular totales</a></td>
+									<td style="border: 1px solid white;"><span style="position: absolute;">$</span><input name="totalVentas" class="inputvalores_ventas" type="text" readonly>
+									</td>
+								</tbody>
+							</table>
+						</div>
+						<script type="text/javascript">
+							$('#calcularTotalVentas').on('click', function() {
+								var totales = [];
+								var totalVentas = parseFloat('0');
+
+								totales.push(parseFloat($("input[name=cantidad1]").val()) * parseFloat($("input[name=valor1]").val()));
+								totales.push(parseFloat($("input[name=cantidad2]").val()) * parseFloat($("input[name=valor2]").val()));
+								totales.push(parseFloat($("input[name=cantidad3]").val()) * parseFloat($("input[name=valor3]").val()));
+								totales.push(parseFloat($("input[name=cantidad4]").val()) * parseFloat($("input[name=valor4]").val()));
+								totales.push(parseFloat($("input[name=otrosProductosVenta").val()));
+
+								for(var i=0;i < totales.length; i++) {
+									if (isNaN(totales[i])) {
+										totales[i] = parseFloat('0');
+									}
+									totalVentas += totales[i];
+								}
+
+								$("input[name=total1]").val(totales[0]);
+								$("input[name=total2]").val(totales[1]);
+								$("input[name=total3]").val(totales[2]);
+								$("input[name=total4]").val(totales[3]);
+								$("input[name=totalVentas]").val(totalVentas);
+							})
+						</script>
+						<!-- FIN VENTAS -->
+						<!-- Otros costos emprendimiento -->
+						<style type="text/css">
+							.otrosCostos th{
+								text-align: center;
+								align-content: center;
+							}
+							.otrosCostos input{
+								background-color: #00f0;
+								color: white;
+								border: 0px !important;
+								margin-left: 20px;
+								margin-top: 3px;
+							}
+							.otrosCostos td{
+								padding: 10px;
+							}
+							.sumable {
+								width: 100px;
+							}
+						</style>
+						<div class="w3-col m12">
+							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
 						</div>
 						<div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
-	          				<div class="w3-col m12">
-								<br>
-								<p><b>OTROS COSTOS DEL EMPRENDIMIENTO ANUALES</b><br>
-								</p>
-							</div>
-					          <div class="w3-col m3">
-					            <p><label>Insumos y materias primas:</label></p>
-					            <input placeholder="Insumos y materias primas..." class="sumable" maxlength="10" name="insumosCostos" id="insumos_materias" value="{{$datosFormulario->insumosCostos ?? 0}}">
-					          </div>
-
-					          <div class="w3-col m3">
-					            <p><label >Alquileres:</label></p>
-					            <input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="{{$datosFormulario->alquileresCostos ?? 0}}">
-					          </div>
-
-					          <div class="w3-col m3">
-					            <p><label>Servicios(luz-agua-gas-internet):</label></p>
-					            <input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="{{$datosFormulario->serviciosCostos ?? 0}}">
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Monotributo:</label></p>
-					            <input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="{{$datosFormulario->monotributoCostos ?? 0}}">
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Ingresos brutos:</label></p>
-					            <p><input placeholder="Ingresos brutos..." class="sumable" maxlength="10" name="ingresosBrutosCostos" id="ingresos_brutos" value="{{$datosFormulario->ingresosBrutosCostos ?? 0}}"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Seguros:</label></p>
-					            <p><input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="{{$datosFormulario->segurosCostos ?? 0}}"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Combustible:</label></p>
-					            <p><input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="{{$datosFormulario->combustibleCostos ?? 0}}"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Sueldos:</label></p>
-					            <p><input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="{{$datosFormulario->sueldosCostos ?? 0}}"></p>
-					          </div>
-					          <div class="w3-col m3" style="height: 90px;"></div>
-					          <div class="w3-col m3">
-					            <p><label>Comercialización:</label></p>
-					            <p><input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="{{$datosFormulario->comercializacionCostos ?? 0}}"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Otros:</label></p>
-					            <p><input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="{{$datosFormulario->otrosCostos ?? 0}}"></p>
-					          </div>
-					          <div class="w3-col m12">
-					            <p><label>Cuota anual de amortización de crédito:</label></p>
-					            <p><input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="{{$datosFormulario->cuotaMensualCostos ?? 0}}"></p>
-					          </div>
-					          <hr>
+							<div class="w3-col m12">
+								<table class="w3-table otrosCostos" style="width: 100%;">
+									<thead>
+										<tr>
+											<th colspan="2">OTROS COSTOS DEL EMPRENDIMIENTO ANUALES</th>
+										</tr>
+										<tr>
+											<th>TIPO</th>
+											<th>AL AÑO</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center">Insumos y materias primas</td>
+											<td><span style="position: absolute;">$</span><input placeholder="Insumos y materias primas..." maxlength="10" name="insumosCostos" class="sumable" id="insumos_materias" value="{{$datosFormulario->insumosCostos ?? 0}}"></td>
+										</tr>
+										<tr>
+											<td align="center">
+												Alquileres
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="{{$datosFormulario->alquileresCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Servicios(luz-agua-gas-internet)
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="{{$datosFormulario->serviciosCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Monotributo
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="{{$datosFormulario->monotributoCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Seguros
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="{{$datosFormulario->segurosCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Combustible
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="{{$datosFormulario->combustibleCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Sueldos
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="{{$datosFormulario->sueldosCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Comercialización
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="{{$datosFormulario->comercializacionCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Otros
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="{{$datosFormulario->otrosCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Cuota anual de amortización de crédito
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="{{$datosFormulario->cuotaMensualCostos ?? 0}}">
+											</td>
+										</tr>
+									</tbody>
+								</table>
 					          <div class="w3-col m12">
 					            <p align="center">TOTAL</p>
 					            <p><input type="text" id="total_costos" value="{{$datosFormulario->insumosCostos + $datosFormulario->alquileresCostos + $datosFormulario->serviciosCostos + $datosFormulario->monotributoCostos + $datosFormulario->ingresosBrutosCostos + $datosFormulario->segurosCostos + $datosFormulario->combustibleCostos + $datosFormulario->sueldosCostos + $datosFormulario->comercializacionCostos + $datosFormulario->otrosCostos + $datosFormulario->cuotaMensualCostos ?? 0}}"></p>
 					          </div>
       					</div>
-						<style type="text/css">
-							#eliminarVenta {
-								float: right;
-								border: 1px solid;
-								padding: 1px 7px;
-								cursor: pointer;
-								float:right;
-							}
-						</style>
-						<script type="text/javascript">
-			$('#crearVenta').click(function(){
-					$('#ventas_financiamiento').append('<div class="w3-half" align="center" style="padding: 10px;border: 2px solid;">\
-						<div class="w3-col m12" >\
-							<div onClick="remove(this);">\
-								<span style="float:right;cursor:pointer;">x</span>\
-							</div>\
-						</div>\
-						<div class="w3-col m6">\
-							<label>Producto o Servicio</label>\
-							<input type="text" name="producto[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m6" style="height: 65px;">\
-							<label>Unidad de medida</label>\
-							<input type="text" name="udMedida[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m4" align="center">\
-							<label>Cant. Año</label>\
-							<input type="text" class="operacionVenta" id="cantAnio" name="cantAnio[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m4" align="center">\
-							<label>Precio</label>\
-							<input type="text" class="operacionVenta" id="precio" name="precio[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m4">\
-							<label>Total</label>\
-							<input type="text" class="operacionVenta" id="totalVenta" style="border: 2px solid black;width: -moz-available;">\
-						</div>\
-					</div>');
-			});
-		</script>
-		<script type="text/javascript">
-			function remove(e)
-			{
-				$(e).parent('div').parent('div').remove();
-			}
-			(function() {
-			      var cant_anio = 0;
-			      var precio = 0;
-			      var total = 0;
-			      var total_final = 0;
-
-			      $("#ventas_financiamiento").on("blur", 'input', function(event){
-			        
-			        if ($(this).attr('id') == 'cantAnio') {
-			          cant_anio = $(this).val();
-			          console.log(cant_anio);
-			          total = calculo(cant_anio,precio);
-			        }
-			        if ($(this).attr('id') == 'precio') {
-			          precio = $(this).val();
-			          console.log(precio);
-			          total = calculo(cant_anio,precio);
-			        }
-			        total = calculo(cant_anio,precio);
-			        if ($(this).attr('id') == 'totalVenta') {
-			          $(this).val(total);
-			        }
-			        }).trigger('blur');
-
-			        function calculo(x,y) {
-			          if (isNaN(x)) {
-			            x = 0;
-			          }
-			          if (isNaN(y)) {
-			            y = 0;
-			          }
-			          total = parseFloat(x) * parseFloat(y);
-			          return total;
-			        }
-			})();
-		</script>
-		<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+					<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+      				<!-- FIN COSTOS EMPRENDIMIENTO -->
 	                </section>
 	                <h2>INVERSIÓN</h2>
 	                <section>
