@@ -96,6 +96,49 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->float('comercializacionCostos', 10, 0)->nullable()->default(0);
 			$table->float('otrosCostos', 10, 0)->nullable()->default(0);
 			$table->float('cuotaMensualCostos', 10, 0)->nullable()->default(0);
+
+			//Bienes a financiar
+
+			$table->string('item1_descripcion')->nullable();
+			$table->integer('item1_cantidad')->nullable()->default(0);
+			$table->float('item1_precio',10,0)->nullable()->default(0);
+
+			$table->string('item2_descripcion')->nullable();
+			$table->integer('item2_cantidad')->nullable()->default(0);
+			$table->float('item2_precio',10,0)->nullable()->default(0);
+
+			$table->string('item3_descripcion')->nullable();
+			$table->integer('item3_cantidad')->nullable()->default(0);
+			$table->float('item3_precio',10,0)->nullable()->default(0);
+
+			$table->string('item4_descripcion')->nullable();
+			$table->integer('item4_cantidad')->nullable()->default(0);
+			$table->float('item4_precio',10,0)->nullable()->default(0);
+
+			$table->string('item5_descripcion')->nullable();
+			$table->integer('item5_cantidad')->nullable()->default(0);
+			$table->float('item5_precio',10,0)->nullable()->default(0);
+
+			$table->string('item6_descripcion')->nullable();
+			$table->integer('item6_cantidad')->nullable()->default(0);
+			$table->float('item6_precio',10,0)->nullable()->default(0);
+
+			$table->string('item7_descripcion')->nullable();
+			$table->integer('item7_cantidad')->nullable()->default(0);
+			$table->float('item7_precio',10,0)->nullable()->default(0);
+
+			$table->string('item8_descripcion')->nullable();
+			$table->integer('item8_cantidad')->nullable()->default(0);
+			$table->float('item8_precio',10,0)->nullable()->default(0);
+
+			$table->string('item9_descripcion')->nullable();
+			$table->integer('item9_cantidad')->nullable()->default(0);
+			$table->float('item9_precio',10,0)->nullable()->default(0);
+
+			$table->string('item10_descripcion')->nullable();
+			$table->integer('item10_cantidad')->nullable()->default(0);
+			$table->float('item10_precio',10,0)->nullable()->default(0);
+
 			//Manifestación de los bienes del emprendedor
 			$table->string('nombreMBE', 45)->nullable();
 			$table->string('dniMBE', 11)->nullable();

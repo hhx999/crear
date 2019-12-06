@@ -959,37 +959,37 @@
 									<th>Total</th>
 								</thead>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input inputventas" value="{{$datosBorrador->producto1}}"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input inputventas" value="{{$datosBorrador->udMedida1}}"></td>
-									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input inputventas"  value="{{$datosBorrador->cantidad1}}"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input inputvalores_ventas"  value="{{$datosBorrador->valor1}}"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total1" class = "w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad1 * $datosBorrador->valor1}}"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input inputventas"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input inputventas"></td>
+									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input inputventas"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input inputvalores_ventas"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total1" class = "w3-input inputvalores_ventas"></td>
 								</tbody>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input inputventas" value="{{$datosBorrador->producto2}}"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input inputventas"  value="{{$datosBorrador->udMedida2}}"></td>
-									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input inputventas"  value="{{$datosBorrador->cantidad2}}"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input inputvalores_ventas" value="{{$datosBorrador->valor2}}"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad2 * $datosBorrador->valor2}}"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input inputventas"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input inputventas"></td>
+									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input inputventas"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input inputvalores_ventas"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input inputvalores_ventas"></td>
 								</tbody>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input inputventas" value="{{$datosBorrador->producto3}}"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input inputventas" value="{{$datosBorrador->udMedida3}}"></td>
-									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input inputventas" value="{{$datosBorrador->cantidad3}}"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input inputvalores_ventas" value="{{$datosBorrador->valor3}}"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad3 * $datosBorrador->valor3}}"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input inputventas"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input inputventas"></td>
+									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input inputventas" ></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input inputvalores_ventas"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input inputvalores_ventas" ></td>
 								</tbody>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input inputventas" value="{{$datosBorrador->producto4}}"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input inputventas" value="{{$datosBorrador->udMedida4}}"></td>
-									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input inputventas" value="{{$datosBorrador->cantidad4}}"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input inputvalores_ventas" value="{{$datosBorrador->valor4}}"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad4 * $datosBorrador->valor4}}"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input inputventas" ></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input inputventas""></td>
+									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input inputventas"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input inputvalores_ventas"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input inputvalores_ventas"></td>
 								</tbody>
 								<tbody>
 									<td colspan="2" style="text-align: center">Otros</td>
 									<td colspan="2"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input inputvalores_ventas" value="{{$datosBorrador->otrosProductosVenta}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input inputvalores_ventas"></td>
 								</tbody>
 								<tbody>
 									<td colspan="2" style="text-align: center">Total</td>
@@ -1064,7 +1064,7 @@
 									<tbody>
 										<tr>
 											<td align="center">Insumos y materias primas</td>
-											<td><span style="position: absolute;">$</span><input placeholder="Insumos y materias primas..." maxlength="10" name="insumosCostos" class="sumable" id="insumos_materias" value="{{$datosBorrador->insumosCostos ?? 0}}"></td>
+											<td><span style="position: absolute;">$</span><input placeholder="Insumos y materias primas..." maxlength="10" name="insumosCostos" class="sumable" id="insumos_materias"></td>
 										</tr>
 										<tr>
 											<td align="center">
@@ -1072,7 +1072,7 @@
 											</td>
 											<td>
 												<span style="position: absolute;">$</span>
-												<input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="{{$datosBorrador->alquileresCostos ?? 0}}">
+												<input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres">
 											</td>
 										</tr>
 										<tr>
