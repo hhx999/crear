@@ -921,6 +921,26 @@
 						<div class="w3-col m12" style="padding: 0px 20px 20px 20px;">
 							<p><textarea class="w3-input w3-border"  placeholder="Ingrese texto aquí..." name="descHerramientas" maxlength="254" style="resize:none"></textarea></p>
 						</div>
+						<!-- Ventas -->
+						<div class="w3-col m12">
+							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
+						</div>
+						<style type="text/css">
+							.inputventas {
+								background-color: #00f0;
+								color: white;
+							}
+							.inputvalores_ventas{
+								color: white;
+								background-color: #00f0;
+								border:0px !important;
+								margin-left: 5px;
+								padding-top: 5px;
+							}
+							.ventas th {
+								text-align: center;
+							}
+						</style>
 						<div class="w3-col m12">
 							<br>
 							<div>
@@ -930,7 +950,7 @@
 							</div>
 						</div>
 						<div class="w3-col m12" id="ventas_financiamiento">
-							<table class="w3-table">
+							<table class="w3-table ventas">
 								<thead>
 									<th>Producto</th>
 									<th>Unidad de medida</th>
@@ -939,186 +959,203 @@
 									<th>Total</th>
 								</thead>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total1" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto1" class="w3-input inputventas" value="{{$datosBorrador->producto1}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida1" class="w3-input inputventas" value="{{$datosBorrador->udMedida1}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad1" class="w3-input inputventas"  value="{{$datosBorrador->cantidad1}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor1" class="w3-input inputvalores_ventas"  value="{{$datosBorrador->valor1}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total1" class = "w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad1 * $datosBorrador->valor1}}"></td>
 								</tbody>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto2" class="w3-input inputventas" value="{{$datosBorrador->producto2}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida2" class="w3-input inputventas"  value="{{$datosBorrador->udMedida2}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad2" class="w3-input inputventas"  value="{{$datosBorrador->cantidad2}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor2" class="w3-input inputvalores_ventas" value="{{$datosBorrador->valor2}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total2" class="w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad2 * $datosBorrador->valor2}}"></td>
 								</tbody>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto3" class="w3-input inputventas" value="{{$datosBorrador->producto3}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida3" class="w3-input inputventas" value="{{$datosBorrador->udMedida3}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad3" class="w3-input inputventas" value="{{$datosBorrador->cantidad3}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor3" class="w3-input inputvalores_ventas" value="{{$datosBorrador->valor3}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total3" class="w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad3 * $datosBorrador->valor3}}"></td>
 								</tbody>
 								<tbody>
-									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input" style="background-color: #00f0;border:0px;color: white;"></td>
-									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input" style="color: white;background-color: #00f0;border:0px;"></td>
-									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><input placeholder="Ej:empanadas" type="text" name="producto4" class="w3-input inputventas" value="{{$datosBorrador->producto4}}"></td>
+									<td><input placeholder="Ej:docenas" type="text" name="udMedida4" class="w3-input inputventas" value="{{$datosBorrador->udMedida4}}"></td>
+									<td><input placeholder="xx" type="text" name="cantidad4" class="w3-input inputventas" value="{{$datosBorrador->cantidad4}}"></td>
+									<td><span style="position: absolute;">$</span><input placeholder="xxx.xx"  type="text" name="valor4" class="w3-input inputvalores_ventas" value="{{$datosBorrador->valor4}}"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="total4" class="w3-input inputvalores_ventas" value="{{$datosBorrador->cantidad4 * $datosBorrador->valor4}}"></td>
 								</tbody>
 								<tbody>
 									<td colspan="2" style="text-align: center">Otros</td>
 									<td colspan="2"></td>
-									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;"></td>
+									<td><span style="position: absolute;">$</span><input type="text" name="otrosProductosVenta" class="w3-input inputvalores_ventas" value="{{$datosBorrador->otrosProductosVenta}}"></td>
 								</tbody>
 								<tbody>
 									<td colspan="2" style="text-align: center">Total</td>
-									<td colspan="2"></td>
-									<td><span style="position: absolute;">$</span><input id="#totalVentas" type="text" class="w3-input" style="color: white;background-color: #00f0;border:0px;margin-left: 5px;padding-top: 5px;" readonly></td>
+									<td colspan="1"></td>
+									<td align="center"><a href="#ventas_financiamiento" id="calcularTotalVentas" class="w3-button w3-blue-gray">Calcular totales</a></td>
+									<td style="border: 1px solid white;"><span style="position: absolute;">$</span><input name="totalVentas" class="inputvalores_ventas" type="text" readonly>
+									</td>
 								</tbody>
 							</table>
 						</div>
+						<script type="text/javascript">
+							$('#calcularTotalVentas').on('click', function() {
+								var totales = [];
+								var totalVentas = parseFloat('0');
+
+								totales.push(parseFloat($("input[name=cantidad1]").val()) * parseFloat($("input[name=valor1]").val()));
+								totales.push(parseFloat($("input[name=cantidad2]").val()) * parseFloat($("input[name=valor2]").val()));
+								totales.push(parseFloat($("input[name=cantidad3]").val()) * parseFloat($("input[name=valor3]").val()));
+								totales.push(parseFloat($("input[name=cantidad4]").val()) * parseFloat($("input[name=valor4]").val()));
+								totales.push(parseFloat($("input[name=otrosProductosVenta").val()));
+
+								for(var i=0;i < totales.length; i++) {
+									if (isNaN(totales[i])) {
+										totales[i] = parseFloat('0');
+									}
+									totalVentas += totales[i];
+								}
+
+								$("input[name=total1]").val(totales[0]);
+								$("input[name=total2]").val(totales[1]);
+								$("input[name=total3]").val(totales[2]);
+								$("input[name=total4]").val(totales[3]);
+								$("input[name=totalVentas]").val(totalVentas);
+							})
+						</script>
+						<!-- FIN VENTAS -->
+						<!-- Otros costos emprendimiento -->
+						<style type="text/css">
+							.otrosCostos th{
+								text-align: center;
+								align-content: center;
+							}
+							.otrosCostos input{
+								background-color: #00f0;
+								color: white;
+								border: 0px !important;
+								margin-left: 20px;
+								margin-top: 3px;
+							}
+							.otrosCostos td{
+								padding: 10px;
+							}
+							.sumable {
+								width: 100px;
+							}
+						</style>
+						<div class="w3-col m12">
+							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
+						</div>
 						<div id="costos_emprendimiento" class="costosEmprendimiento" align="center">
-	          				<div class="w3-col m12">
-								<br>
-								<p><b>OTROS COSTOS DEL EMPRENDIMIENTO ANUALES</b><br>
-								</p>
-							</div>
-					          <div class="w3-col m3">
-					            <p><label>Insumos y materias primas:</label></p>
-					            <input placeholder="Insumos y materias primas..." class="sumable" maxlength="10" name="insumosCostos" id="insumos_materias" value="0">
-					          </div>
-
-					          <div class="w3-col m3">
-					            <p><label >Alquileres:</label></p>
-					            <input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="0">
-					          </div>
-
-					          <div class="w3-col m3">
-					            <p><label>Servicios(luz-agua-gas-internet):</label></p>
-					            <input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros" value="0">
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Monotributo:</label></p>
-					            <input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros" value="0">
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Ingresos brutos:</label></p>
-					            <p><input placeholder="Ingresos brutos..." class="sumable" maxlength="10" name="ingresosBrutosCostos" id="ingresos_brutos" value="0"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Seguros:</label></p>
-					            <p><input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros" value="0"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Combustible:</label></p>
-					            <p><input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros" value="0"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Sueldos:</label></p>
-					            <p><input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros" value="0"></p>
-					          </div>
-					          <div class="w3-col m3" style="height: 90px;"></div>
-					          <div class="w3-col m3">
-					            <p><label>Comercialización:</label></p>
-					            <p><input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion" value="0"></p>
-					          </div>
-					          <div class="w3-col m3">
-					            <p><label>Otros:</label></p>
-					            <p><input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros" value="0"></p>
-					          </div>
-					          <div class="w3-col m12">
-					            <p><label>Cuota anual de amortización de crédito:</label></p>
-					            <p><input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros" value="0"></p>
-					          </div>
-					          <hr>
+							<div class="w3-col m12">
+								<table class="w3-table otrosCostos" style="width: 100%;">
+									<thead>
+										<tr>
+											<th colspan="2">OTROS COSTOS DEL EMPRENDIMIENTO ANUALES</th>
+										</tr>
+										<tr>
+											<th>TIPO</th>
+											<th>AL AÑO</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center">Insumos y materias primas</td>
+											<td><span style="position: absolute;">$</span><input placeholder="Insumos y materias primas..." maxlength="10" name="insumosCostos" class="sumable" id="insumos_materias" value="{{$datosBorrador->insumosCostos ?? 0}}"></td>
+										</tr>
+										<tr>
+											<td align="center">
+												Alquileres
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Alquileres..." class="sumable" maxlength="10" name="alquileresCostos" id="alquileres" value="{{$datosBorrador->alquileresCostos ?? 0}}">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Servicios(luz-agua-gas-internet)
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Servicios(luz-agua-gas-internet)..." class="sumable" maxlength="10" name="serviciosCostos" id="servicios_otros">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Monotributo
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Monotributo..." class="sumable" maxlength="10" name="monotributoCostos" id="monotributo_otros">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Seguros
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Seguros..." class="sumable" maxlength="10" name="segurosCostos" id="seguros_otros">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Combustible
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Combustible..." class="sumable" maxlength="10" name="combustibleCostos" id="combustible_otros">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Sueldos
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Sueldos..." class="sumable" maxlength="10" name="sueldosCostos" id="sueldos_otros">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Comercialización
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Comercializacion..." class="sumable" maxlength="10" name="comercializacionCostos" id="comercializacion">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Otros
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Otros..." class="sumable" maxlength="10" name="otrosCostos" id="otros">
+											</td>
+										</tr>
+										<tr>
+											<td align="center">
+												Cuota anual de amortización de crédito
+											</td>
+											<td>
+												<span style="position: absolute;">$</span>
+												<input placeholder="Cuota mensual..." class="sumable" maxlength="10" name="cuotaMensualCostos" id="cuotamensual_otros">
+											</td>
+										</tr>
+									</tbody>
+								</table>
 					          <div class="w3-col m12">
 					            <p align="center">TOTAL</p>
 					            <p><input type="text" id="total_costos"></p>
 					          </div>
       					</div>
-						<style type="text/css">
-							#eliminarVenta {
-								float: right;
-								border: 1px solid;
-								padding: 1px 7px;
-								cursor: pointer;
-								float:right;
-							}
-						</style>
-						<script type="text/javascript">
-			$('#crearVenta').click(function(){
-					$('#ventas_financiamiento').append('<div class="w3-half" align="center" style="padding: 10px;border: 2px solid;">\
-						<div class="w3-col m12" >\
-							<div onClick="remove(this);">\
-								<span style="float:right;cursor:pointer;">x</span>\
-							</div>\
-						</div>\
-						<div class="w3-col m6">\
-							<label>Producto o Servicio</label>\
-							<input type="text" name="producto[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m6" style="height: 65px;">\
-							<label>Unidad de medida</label>\
-							<input type="text" name="udMedida[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m4" align="center">\
-							<label>Cant. Año</label>\
-							<input type="text" class="operacionVenta" id="cantAnio" name="cantAnio[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m4" align="center">\
-							<label>Precio</label>\
-							<input type="text" class="operacionVenta" id="precio" name="precio[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m4">\
-							<label>Total</label>\
-							<input type="text" class="operacionVenta" id="totalVenta" style="border: 2px solid black;width: -moz-available;">\
-						</div>\
-					</div>');
-			});
-		</script>
-		<script type="text/javascript">
-			function remove(e)
-			{
-				$(e).parent('div').parent('div').remove();
-			}
-			(function() {
-			      var cant_anio = 0;
-			      var precio = 0;
-			      var total = 0;
-			      var total_final = 0;
-
-			      $("#ventas_financiamiento").on("blur", 'input', function(event){
-			        
-			        if ($(this).attr('id') == 'cantAnio') {
-			          cant_anio = $(this).val();
-			          console.log(cant_anio);
-			          total = calculo(cant_anio,precio);
-			        }
-			        if ($(this).attr('id') == 'precio') {
-			          precio = $(this).val();
-			          console.log(precio);
-			          total = calculo(cant_anio,precio);
-			        }
-			        total = calculo(cant_anio,precio);
-			        if ($(this).attr('id') == 'totalVenta') {
-			          $(this).val(total);
-			        }
-			        }).trigger('blur');
-
-			        function calculo(x,y) {
-			          if (isNaN(x)) {
-			            x = 0;
-			          }
-			          if (isNaN(y)) {
-			            y = 0;
-			          }
-			          total = parseFloat(x) * parseFloat(y);
-			          return total;
-			        }
-			})();
-		</script>
-		<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+					<script type="text/javascript" src="{{ asset('js/calculo_servicios.js') }}"></script>
+      				<!-- FIN COSTOS EMPRENDIMIENTO -->
 	                </section>
 	                <h2>INVERSIÓN</h2>
 	                <section>
