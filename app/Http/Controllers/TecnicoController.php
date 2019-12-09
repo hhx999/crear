@@ -241,6 +241,7 @@ class TecnicoController extends Controller
       $datosTecnico = Usuario::find($idUsuario);
 
         $formulario = Formulario::find($id);
+        $localidadSolicitante = Localidad::find($formulario->localidadEmprendedor)->first();
 
         $pasosValidos = $formulario->pasosValidos;
 
@@ -249,7 +250,7 @@ class TecnicoController extends Controller
 
         $documentacion = $formulario->documentacion;
 
-        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones, 'datosTecnico' => $datosTecnico]);
+        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones, 'datosTecnico' => $datosTecnico, 'localidadSolicitante' => $localidadSolicitante]);
      }
      public function agregarPortada(Request $request)
      {
@@ -443,25 +444,18 @@ class TecnicoController extends Controller
     /*                        IMPRIMIR EN PDF LOS DATOS                */
     public function crearPDF($id)
     {
+        $datosFormulario = Formulario::find($id);
+
+        $pdf = \PDF::loadView('vistaImprimir', ['id'=> $id, 'datosFormulario' => $datosFormulario]);
+     
+        return $pdf->download('formularioLineaEmprendedor_'.$datosFormulario->numeroSeguimiento.'.pdf');
+    }
+    /*
+    public function crearPDF($id)
+    {
       $datosFormulario = Formulario::find($id);
 
-        $referentes = $datosFormulario->referentes;
-        $clientes = $datosFormulario->clientes;
-        $proveedores = $datosFormulario->proveedores;
-        $competencias = $datosFormulario->competencias;
-        $ventas = $datosFormulario->ventas;
-        $items = $datosFormulario->items;
-
-        $disponibilidades = $datosFormulario->disponibilidades;
-        $bienes_cambio = $datosFormulario->bienescambio;
-        $bienes_uso = $datosFormulario->bienesuso;
-        $deudas_comerciales = $datosFormulario->deudascomerciales;
-        $deudas_bancarias = $datosFormulario->deudasbancarias;
-        $deudas_fiscales = $datosFormulario->deudasfiscales;
-
-        $observaciones = $datosFormulario->pasosValidos->observaciones;
-
-      $html = View::make('vistaImprimir',['id' => $id, 'datosFormulario' => $datosFormulario, 'referentes' => $referentes, 'clientes' => $clientes, 'proveedores' => $proveedores, 'competencias' => $competencias, 'ventas' => $ventas,'items' => $items, 'disponibilidades' => $disponibilidades, 'bienes_cambio' => $bienes_cambio,'bienes_uso' => $bienes_uso, 'deudas_comerciales' => $deudas_comerciales,'deudas_bancarias' => $deudas_bancarias, 'deudas_fiscales' => $deudas_fiscales, 'observaciones' => $observaciones]);
+      $html = View::make('vistaImprimir',['id' => $id, 'datosFormulario' => $datosFormulario]);
         //Pasamos esa vista a PDF
          
         //Le indicamos el tipo de hoja y la codificación de caracteres
@@ -471,6 +465,6 @@ class TecnicoController extends Controller
         $mipdf->writeHTML($html);
      
         //Generamos el PDF
-        $mipdf->Output('Form_LineaEmprendedor'.$datosFormulario->numeroProyecto.'.pdf');
-    }
+        $mipdf->Output('Form_LineaEmprendedor'.$datosFormulario->numeroSeguimiento.'.pdf');
+    }*/
  }

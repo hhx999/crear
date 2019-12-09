@@ -160,7 +160,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-khaki">En trámite</div>
               </a>
               <a href="javascript:void(0)" id="completos" class="tabLinks">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Completos</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Aprobados</div>
               </a>
               <a href="javascript:void(0)" id="eliminados" class="tabLinks">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Eliminados</div>

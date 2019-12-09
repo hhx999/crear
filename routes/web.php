@@ -42,6 +42,7 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::get('/images/{file}','ImageController@getImage');
 	Route::get('/infoCreditos/{file}','InfoCreditosController@getInfo');
 });
+/*
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/user','FormularioController@userindex');
 	Route::get('/ingresarForm','FormularioController@userFormularios');
@@ -57,7 +58,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/documentacion/{id}','FormularioController@documentacion');
 	Route::post('/agregarDocumentacion/{id}','FormularioController@agregarDocumentacion');
 	Route::post('/eliminarDocumentacion','FormularioController@eliminarDocumentacion');
-});
+});*/
 //LOGOUT Usuario
 $router->get('/logout','FormularioController@logoutUser');
 

@@ -185,7 +185,7 @@ use App\Helpers;
     </tr>
     <tr>
       <th>Localidad</th>
-      <td><?= $formularioEnviado->localidadEmprendedor; ?></td>
+      <td><?= $localidadSolicitante->nombre; ?></td>
     </tr>
     <tr>
       <th>Domicilio</th>
@@ -423,7 +423,16 @@ use App\Helpers;
         <th style="text-align: center;">PUNTOS DE VENTA ¿Dónde vas a vender?</th>
       </tr>
       <tr>
-          <td><?= $formularioEnviado->puntoVentaLocal ?? $formularioEnviado->puntoVentaProvincial ?? $formularioEnviado->puntoVentaNacional ?? 'No hay registro.'; ?></td>
+          <td><?php 
+          if ($formularioEnviado->puntoVentaLocal) {
+            echo "Local<br>";
+          } elseif ($formularioEnviado->puntoVentaProvincial) {
+            echo "Provincial<br>";
+          } elseif ($formularioEnviado->puntoVentaNacional) {
+            echo "Nacional<br>";
+          } else {
+            echo "No hay registros";
+          }?></td>
       </tr>
     </table>
     <br> 

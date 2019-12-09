@@ -31,8 +31,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
         <tbody>
           <tr>
-            <th style="width: 368px;">TÍTULO DEL PROYECTO:</th>
-            <td style="width: 368px;"><?php isset($datosFormulario->tituloProyecto) ? print $datosFormulario->tituloProyecto : print "-" ; ?></td>
+            <th>TÍTULO DEL PROYECTO:</th>
+            <td><?php isset($datosFormulario->tituloProyecto) ? print $datosFormulario->tituloProyecto : print "-" ; ?></td>
           </tr>
           <tr>
             <th>Nombre y apellido solicitante:</th>
@@ -74,6 +74,7 @@
         margin:10px;
     }
 </style>
+<!--
     <div style="margin-top: 40px; font-size: 22px;">CHECKLIST DOCUMENTACIÓN</div>
     <div class="documentacion">
         <input type="checkbox" name="vehicle1" value="Bike"> Fotocopia DNI Solicitante<br>
@@ -88,6 +89,7 @@
         <input type="checkbox" name="vehicle1" value="Bike"> Presupuestos <br>
         <input type="checkbox" name="vehicle1" value="Bike"> Fotos <br>
     </div>
+-->
     <div style="page-break-after: always;clear:both;"></div>
     <div class="cabecera"> <b style="font-size:24px;">DATOS PERSONALES</b> </div>
     <div class="cabecera_azul">
@@ -98,8 +100,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th style="width: 368px;">NOMBRE Y APELLIDO:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->nombreEmprendedor) ? print $datosFormulario->nombreEmprendedor : print "-" ; ?></td>
+                <th>NOMBRE Y APELLIDO:</th>
+                <td><?php isset($datosFormulario->nombreEmprendedor) ? print $datosFormulario->nombreEmprendedor : print "-" ; ?></td>
               </tr>
               <tr>
                 <th>DNI</th>
@@ -121,8 +123,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                  <th style="width: 368px;">TELÉFONO:</th>
-                  <td style="width: 368px;"><?php isset($datosFormulario->telefonoEmprendedor) ? print $datosFormulario->telefonoEmprendedor : print "-" ; ?></td>
+                  <th>TELÉFONO:</th>
+                  <td><?php isset($datosFormulario->telefonoEmprendedor) ? print $datosFormulario->telefonoEmprendedor : print "-" ; ?></td>
               </tr>
               <tr>
                   <th>EMAIL:</th>
@@ -132,22 +134,27 @@
                   <th>FACEBOOK:</th>
                   <td><?php isset($datosFormulario->facebookEmprendedor) ? print $datosFormulario->facebookEmprendedor : print "-" ; ?></td>
               </tr>
+              <tr>
+                  <th>INSTAGRAM:</th>
+                  <td><?php isset($datosFormulario->instagramEmprendedor) ? print $datosFormulario->instagramEmprendedor : print "-" ; ?></td>
+              </tr>
             </tbody>
         </table>
     </div>
+    <div style="page-break-after: always;clear:both;"></div>
     <div style="margin-top: 40px;">
         <div align="center" style="margin-bottom: 20px;"><b>FORMACIÓN Y OCUPACIÓN:</b></div>
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                  <th style="width: 368px;">GRADO DE INSTRUCCIÓN</th>
-                  <td style="width: 368px;">
+                  <th>GRADO DE INSTRUCCIÓN</th>
+                  <td>
                     <?php isset($datosFormulario->gradoInstruccion) ? print $datosFormulario->gradoInstruccion : print "-" ; ?>
                     </td>
               </tr>
               <tr>
-                  <th style="width: 368px;">OTRA APLICACIÓN QUE DESARROLLE EN LA ACTUALIDAD</th>
-                  <td style="width: 368px;"><?php isset($datosFormulario->otraOcupacion) ? print $datosFormulario->otraOcupacion : print "-" ; ?></td>
+                  <th>OTRA APLICACIÓN QUE DESARROLLE EN LA ACTUALIDAD</th>
+                  <td><?php isset($datosFormulario->otraOcupacion) ? print $datosFormulario->otraOcupacion : print "-" ; ?></td>
               </tr>
                 <tr>
                   <th>INGRESO MENSUAL:</th>
@@ -155,7 +162,7 @@
               </tr>
               <tr>
                   <th>DESEO DE CAPACITACIÓN:</th>
-                  <td style="width: 368px;"><?php isset($datosFormulario->deseoCapacitacion) ? print $datosFormulario->deseoCapacitacion : print "-" ; ?></td>
+                  <td><?php isset($datosFormulario->deseoCapacitacion) ? print $datosFormulario->deseoCapacitacion : print "-" ; ?></td>
               </tr>
             </tbody>
         </table>
@@ -165,12 +172,12 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th style="width: 368px;">TÍTULO DEL PROYECTO:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->tituloProyecto) ? print $datosFormulario->tituloProyecto : print "-" ; ?></td>
+                <th>TÍTULO DEL PROYECTO:</th>
+                <td><?php isset($datosFormulario->tituloProyecto) ? print $datosFormulario->tituloProyecto : print "-" ; ?></td>
               </tr>
               <tr>
                 <th>ACTIVIDAD PRINCIPAL:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->actPrincipalEmprendimiento) ? print $datosFormulario->actPrincipalEmprendimiento : print "-" ; ?></td>
+                <td><?php isset($datosFormulario->actPrincipalEmprendimiento) ? print $datosFormulario->actPrincipalEmprendimiento : print "-" ; ?></td>
               </tr>
               <tr>
                 <th>FECHA DE INICIO A LA ACTIVIDAD:</th>
@@ -195,8 +202,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th style="width: 368px;">DOMICILIO REAL:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->domicilioEmprendimiento) ? print $datosFormulario->domicilioEmprendimiento : print "-" ; ?></td>
+                <th>DOMICILIO REAL:</th>
+                <td><?php isset($datosFormulario->domicilioEmprendimiento) ? print $datosFormulario->domicilioEmprendimiento : print "-" ; ?></td>
               </tr>
               <tr>
                 <th>LOCALIDAD:</th>
@@ -215,33 +222,7 @@
                   <?php isset($datosFormulario->descProdServicios) ? print $datosFormulario->descProdServicios : print "-" ; ?>
                 </p>
             </div>
-        </div>
-        <div class="cabecera_azul" style="margin-top: 10px;"><b>¿HA RECIBIDO APORTES O CRÉDITOS DE ORGANISMOS PÚBLICOS 
-PARA EL DESARROLLO DEL PROYECTO?</b></div>
-        <table style="width:100%" align="center" border="1"  cellpadding="24">
-            <tbody>
-              <tr>
-                <th style="width: 368px;">INSTITUCIÓN:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->institucionAporte) ? print $datosFormulario->institucionAporte : print "-" ; ?></td>
-              </tr>
-              <tr>
-                <th>FECHA:</th>
-                <td><?php isset($datosFormulario->fecAporte) ? print $datosFormulario->fecAporte : print "-" ; ?></td>
-              </tr>
-              <tr>
-                <th>MONTO:</th>
-                <td><?php isset($datosFormulario->montoAporte) ? print $datosFormulario->montoAporte : print "-" ; ?></td>
-              </tr>
-              <tr>
-                  <th>TIPO DE APORTE:</th>
-                  <td><?php isset($datosFormulario->tipoAporte) ? print $datosFormulario->tipoAporte : print "-" ; ?></td>
-              </tr>
-              <tr>
-                  <th>ESTADO DE DEVOLUCIÓN/RENDICIÓN:</th>
-                  <td><?php isset($datosFormulario->estadoAporte) ? print $datosFormulario->estadoAporte : print "-" ; ?></td>
-              </tr>
-            </tbody>
-        </table>
+        
         <div class="cabecera_azul"><b>EXPERIENCIA O FORMACIÓN DE EL/LOS EMPRENDEDORES PARA EL DESARROLLO DEL EMPRENDIMIENTO</b></div>
                 <p><?php isset($datosFormulario->experienciaEmprendedores) ? print $datosFormulario->experienciaEmprendedores : print "-" ; ?>
                 </p>
@@ -252,77 +233,20 @@ PARA EL DESARROLLO DEL PROYECTO?</b></div>
                 <p><?php isset($datosFormulario->descFinanciamiento) ? print $datosFormulario->descFinanciamiento : print "-" ; ?>
                 </p>
         <div style="page-break-after: always;clear:both;"></div>
-        <div class="cabecera_azul"><b>ASPECTOS SOCIALES</b></div>
-        <table style="width:100%" align="center" border="1"  cellpadding="24">
-            <tbody>
-              <tr>
-                <th style="width: 368px;">SITUACIÓN LABORAL ACTUAL:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->situacionLaboral) ? print $datosFormulario->situacionLaboral : print "-" ; ?></td>
-              </tr>
-              <tr>
-                <th>ACLARACIONES:</th>
-                <td style="width: 368px;"><?php isset($datosFormulario->aclaracionesGenerales) ? print $datosFormulario->aclaracionesGenerales : print "-" ; ?></td>
-              </tr>
-              <tr>
-                <th>INGRESO:</th>
-                <td><?php isset($datosFormulario->ingresoGenerales) ? print $datosFormulario->ingresoGenerales : print "-" ; ?></td>
-              </tr>
-              <tr>
-                  <th>PERCEPCIONES SOCIALES:</th>
-                  <td><?php isset($datosFormulario->percepcionesSociales) ? print $datosFormulario->percepcionesSociales : print "-" ; ?></td>
-              </tr>
-              <tr>
-                  <th>MONTO TOTAL AL MES PERCEPCIONES SOCIALES:</th>
-                  <td><?php isset($datosFormulario->montoMesPercepciones) ? print $datosFormulario->montoMesPercepciones : print "-" ; ?></td>
-              </tr>
-            </tbody>
-        </table>
-        <div class="cabecera_azul"><b>CANTIDAD DE PERSONAS QUE TIENE A CARGO</b></div>
-        <p align="center"> <?php isset($datosFormulario->cantPersonasCargo) ? print $datosFormulario->cantPersonasCargo : print "x" ; ?> </p>
-        <p align="center"><b>LUGAR DONDE VIVO ES:</b> <?php isset($datosFormulario->lugarHabita) ? print $datosFormulario->lugarHabita : print "<br> -"; ?></p>
-        <div class="cabecera_azul">
-          <b>
-          PERSONAS O INSTITUCIONES QUE PUEDEN DAR REFERENCIAS SOBRE EL EMPRENDEDOR          
-          </b>
-        </div>
-        <table style="width:100%" align="center" border="1"  cellpadding="24">
-            <tbody>
-              <tr>
-                <th style="width: 242px;">NOMBRE Y APELLIDO/INSTITUCIÓN</th>
-                <th style="width: 242px;">LOCALIDAD</th>
-                <th style="width: 242px;">TELEFONO</th>
-              </tr>
-                <?php
-              if (!isset($referentes)) {
-                echo "<tr><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td></tr>";
-              } else {
-                for ($i=0; $i < count($referentes) ; $i++) { 
-                  echo "<tr><td>".$referentes[$i]->nombre."</td><td>".$referentes[$i]->localidad."</td><td>".$referentes[$i]->telefono."</td></tr>";
-                }
-              }
-                ?>
-            </tbody>
-        </table>
-        <div style="page-break-after: always;clear:both;"></div>
         <div class="cabecera_azul"><b>MERCADO</b></div>
         <div class="cabecera"> <b> PRINCIPALES CLIENTES - ¿Quién te compra?<br> (Describir perfil de cliente actual: edad, ubicación, nivel socio-económico - intereses)</b> </div>
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th style="width: 147px;">NOMBRE Y APELLIDO</th>
-                <th style="width: 107px;">EDAD</th>
-                <th style="width: 147px;">UBICACIÓN</th>
-                <th style="width: 147px;">NIVEL SOCIO-ECONÓMICO</th>
-                <th style="width: 167px;">INTERESES</th>
+                <th style="width: 147px;">Clientes</th>
+                <th style="width: 107px;">Ubicación</th>
               </tr>
                 <?php
-                if (!isset($clientes)) {
-                  echo "<tr><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td></tr>";
+                if (!isset($datosFormulario->descripcionClientes)) {
+                  echo "<tr><td align='center'>-</td><td align='center'>-</td></tr>";
                 } else {
-                  for ($i=0; $i < count($clientes) ; $i++) { 
-                    echo "<tr><td style='width: 147px;'>".$clientes[$i]->nombre."</td><td style='width: 107px;'>".$clientes[$i]->edad."</td><td style='width: 147px;'>".$clientes[$i]->ubicacion."</td><td style='width: 147px;'>".$clientes[$i]->nivelSocEconomico."</td><td style='width: 147px;'>".$clientes[$i]->intereses."</td></tr>";
+                  echo "<tr><td>".$datosFormulario->descripcionClientes."</td><td>".$datosFormulario->ubicacionClientes."</td></tr>";
                   }
-                }
                 ?>
             </tbody>
         </table>
@@ -332,16 +256,13 @@ PARA EL DESARROLLO DEL PROYECTO?</b></div>
             <tr>
               <th style="width: 242px;">NOMBRE O RAZÓN SOCIAL</th>
               <th style="width: 242px;">UBICACIÓN</th>
-              <th style="width: 242px;">COMPRA</th>
             </tr>
              <?php
-              if (!isset($proveedores)) {
-                echo "<tr><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td></tr>";
-              } else {
-                for ($i=0; $i < count($proveedores) ; $i++) { 
-                  echo "<tr><td>".$proveedores[$i]->nombre."</td><td>".$proveedores[$i]->ubicacion."</td><td>".$proveedores[$i]->compra."</td></tr>";
-                }
-              }
+                if (!isset($datosFormulario->descripcionProveedores)) {
+                  echo "<tr><td align='center'>-</td><td align='center'>-</td></tr>";
+                } else {
+                  echo "<tr><td>".$datosFormulario->descripcionProveedores."</td><td>".$datosFormulario->ubicacionProveedores."</td></tr>";
+                  }
                 ?>
           </tbody>
         </table>
@@ -351,17 +272,14 @@ PARA EL DESARROLLO DEL PROYECTO?</b></div>
             <tr>
               <th style="width: 242px;">NOMBRE O RAZÓN SOCIAL</th>
               <th style="width: 242px;">UBICACIÓN</th>
-              <th style="width: 242px;">QUE OFRECE</th>
             </tr>
             <?php
-            if (!isset($competencias)) {
-                echo "<tr><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td></tr>";
-              } else {
-                for ($i=0; $i < count($competencias) ; $i++) { 
-                  echo "<tr><td>".$competencias[$i]->nombre."</td><td>".$competencias[$i]->ubicacion."</td><td>".$competencias[$i]->ofrece."</td></tr>";
-                }
-              }
-                ?>          
+                if (!isset($datosFormulario->descripcionCompetencia)) {
+                  echo "<tr><td align='center'>-</td><td align='center'>-</td></tr>";
+                } else {
+                  echo "<tr><td>".$datosFormulario->descripcionCompetencia."</td><td>".$datosFormulario->ubicacionCompetencia."</td></tr>";
+                  }
+                ?>         
           </tbody>
         </table>
         <div class="cabecera"> <b>¿CUÁL SERÍA TU VENTAJA EN COMPARACIÓN CON LOS COMPETIDORES? ¿Cómo te diferencias? </b></div>

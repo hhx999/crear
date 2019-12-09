@@ -323,16 +323,9 @@ class Helpers
     {
         if ($rol == 'admin') {
             $acciones = "<td><a href='adminFormulario/".$idForm."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>
-            <div style='margin-top:4px;background-color:#00b7c1;border-radius:5px;padding:4px;' align='center'><a href='documentacion/".$idForm."' style='text-decoration:none;font-size:10px;color:white;'><i class='far fa-file-alt'></i>  Documentación</a></div>
             <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
             <a href='generarPdf/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>GENERAR PDF</a></div>
             </td>";
-        }
-        if ($rol == 'user') {
-            $acciones = "<td width='130px'><a href='editarFormulario/".$idForm."'><img src=".asset('img/icons/edit.svg')." style='width:30px;margin-left:18px;margin-right:15px;'></a><a href='seguimiento/".$idForm."'><img src=".asset('img/icons/activity.svg')." width='30px'></a>
-            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
-            <a href='generarPdf/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>GENERAR PDF</a></div>
-            <div style='margin-top:4px;background-color:#00b7c1;border-radius:5px;padding:4px;' align='center'><a href='documentacion/".$idForm."' style='text-decoration:none;font-size:10px;color:white;'><i class='far fa-file-alt'></i>  Documentación</a></div></td>";
         }
         return $acciones;
     }
