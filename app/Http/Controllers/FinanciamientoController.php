@@ -22,7 +22,7 @@ use App\BorradorVenta;
 
 class FinanciamientoController extends Controller
 {
-    //
+    //Cuestionario de creditos - se accede mediante el boton "pedi tu credito"
     function informacionCreditos(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
@@ -31,6 +31,11 @@ class FinanciamientoController extends Controller
     	$situacionImpositiva = config('constantes.situacionImpositiva');
 
     	return view('userTest.credito', ['situacionImpositiva' => $situacionImpositiva, 'usuario' => $usuario]);
+    }
+    function lineasCreditos(Request $request)
+    {
+    	$lineas = FormTipo::all();
+    	return view('financiamiento.lineasCreditos' , ['lineas' => $lineas]);
     }
     function cuestionarioCreditos(Request $request)
     {
