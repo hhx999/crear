@@ -37,7 +37,7 @@
 				<h3>Líneas accesibles</h3>
 					<div>
 						@foreach ($lineas as $linea)
-							<div class="w3-half">
+							<div class="w3-half" style="padding: 20px;">
 								<div class="w3-card-4" style="background-color: #077187;">
 										<header class="w3-container">
 										  <h3><i style="color: lightgrey;">{{$linea->nombre}}</i></h3>
@@ -50,6 +50,7 @@
 											<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
 										</a>
 								</div>
+								<br>
 							</div>
 						@endforeach
 					</div>

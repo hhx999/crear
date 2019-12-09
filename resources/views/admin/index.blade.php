@@ -113,22 +113,11 @@ box-shadow: 0px 0px 5px 5px #4caf50;
       <legend style="color:green;">Opciones de administración</legend>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
           <a href="{{ url('/logout') }}" class="w3-btn w3-red">Cerrar sesión(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
-          <a class="w3-btn w3-green" href="{{ url('/') }}">Ver sitio</a>
+          <a class="w3-btn w3-green" href="{{ url('/crearLineaCredito') }}">Crear linea de crédito</a>
           <a class="w3-btn w3-light-green" href="{{ url('/registro') }}" style="color: #fff !important;">Registrar usuario</a>
           <a class="w3-btn w3-blue-gray" href="{{ url('/adminUsuarios') }}" style="color: #fff !important;">Ver usuarios</a>
         </div>
       </fieldset>
-        <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS 
-        <div class="w3-col m12 l12" style="margin-bottom: 20px;">
-          ELIMINADO <span style="width: 15px;height: 15px;display: inline-block;" class="w3-red"></span>
-          ENVIADO <span style="width: 15px;height: 15px;display: inline-block;border: 1px solid black;" class="w3-white"></span>
-          OBSERVACIÓN <span style="width: 15px;height: 15px;display: inline-block;" class="w3-orange"></span>
-          ACTUALIZADO <span style="width: 15px;height: 15px;display: inline-block;" class="w3-khaki"></span>
-          ARCHIVADO <span style="width: 15px;height: 15px;display: inline-block;" class="w3-grey"></span>
-          COMPLETO <span style="width: 15px;height: 15px;display: inline-block;" class="w3-light-green"></span>
-          <br>
-        </div>
-        -->
         <!-- FORMULARIO DE BUSQUEDA -->
         <div class="w3-col w3-container m4 l3 w3-white">
             <div class="w3-card-4">

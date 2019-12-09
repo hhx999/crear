@@ -76,6 +76,9 @@
 	  		</div>
 	  		<div class="w3-third"><p></p></div>
         </div>
+        <div class="w3-col m12">
+        	<h3><a href="{{url('financiamiento/informacion_creditos/lineas_creditos')}}">Ver todas las líneas de créditos</a></h3>
+        </div>
 		<div class="contenedorCuestionario">
 			<div class="w3-col m12">
 				@isset($lineas_principales)
