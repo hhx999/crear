@@ -1629,6 +1629,7 @@
 		                    	<input class="w3-input" style="color: white;" type="file" name="{{$documento->descripcion}}">
 		                    </div>
 						</div>
+						@endforeach
 	                </section>
 	   </div>
 	</form>

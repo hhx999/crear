@@ -204,6 +204,10 @@ use App\Helpers;
       <td><?= $formularioEnviado->facebookEmprendedor; ?></td>
     </tr>
     <tr>
+      <th>Instagram</th>
+      <td><?= $formularioEnviado->instagramEmprendedor; ?></td>
+    </tr>
+    <tr>
       <th>Grado de instrucción</th>
       <td><?= $formularioEnviado->gradoInstruccion; ?></td>
     </tr>

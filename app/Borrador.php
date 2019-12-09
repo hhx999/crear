@@ -17,6 +17,7 @@ class Borrador extends Model {
 	"telefonoEmprendedor",
 	"emailEmprendedor",
 	"facebookEmprendedor",
+	"instagramEmprendedor",
 	"gradoInstruccion",
 	"otraOcupacion", 
 	"ingresoMensual",
