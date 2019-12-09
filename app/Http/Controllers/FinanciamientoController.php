@@ -164,6 +164,22 @@ class FinanciamientoController extends Controller
 					$formulario = Formulario::create($request->all());
 					$lastID = $formulario->id;
 
+					if ($request->hasFile('documentacion_dni_solicitante')) {
+						# Agregando DNI
+						Helpers::subirMultimedia('documentacion_dni_solicitante',$request->file('documentacion_dni_solicitante'),$lastID);
+					}
+					if($request->hasFile('documentacion_cdomicilio_solicitante')) {
+						Helpers::subirMultimedia('documentacion_cdomicilio_solicitante',$request->file('documentacion_cdomicilio_solicitante'),$lastID);
+					}
+
+					if($request->hasFile('documentacion_recibosueldo_solicitante')) {
+						Helpers::subirMultimedia('documentacion_recibosueldo_solicitante',$request->file('documentacion_recibosueldo_solicitante'),$lastID);
+					}
+
+					if($request->hasFile('documentacion_afip_solicitante')) {
+						Helpers::subirMultimedia('documentacion_afip_solicitante',$request->file('documentacion_afip_solicitante'),$lastID);
+					}
+
 					//Helpers::subirMultimedia($request->file('documentacion_dni'),$lastID);
 					//Generamos el formulario para enviarlo a los técnicos
 					if ($request->estado == 'enviado') {

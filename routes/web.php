@@ -99,7 +99,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::post('financiamiento/borradores/eliminarBorrador','FinanciamientoController@eliminarBorrador')->name('eliminarBorrador');
 	
 	/*Multimedia*/
-	Route::get('/images/{file}','ImageController@getImage');
+	//Route::get('/images/{file}','ImageController@getImage');
 
 	//------Rutas de perfil
 	Route::get('perfil','PerfilController@index');

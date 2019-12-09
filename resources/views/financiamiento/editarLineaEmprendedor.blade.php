@@ -1619,12 +1619,15 @@
 	                </section>
 	                <h2>DOCUMENTACIÓN</h2>
 	                <section>
-	                	<div class="w3-container w3-quarter">
-						</div>
-	                    <div class="w3-half">
-	                    	<p>En construcción...</p>
-	                    	<label for="documentacion_dni">DNI</label>
-	                    	<input type="file" name="documentacion_dni">
+	                		<div class="w3-col m12">
+	                		<h3>Documentación del Solicitante</h3>
+	                	</div>
+						@foreach($datosFormulario->documentacion as $documento)
+						<div class="w3-half">
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="{{$documento->descripcion}}">{{$documento->descripcion}}</label><br>
+		                    	<input class="w3-input" style="color: white;" type="file" name="{{$documento->descripcion}}">
+		                    </div>
 						</div>
 	                </section>
 	   </div>

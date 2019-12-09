@@ -29,8 +29,8 @@ class AddForeignKeyInfoLineasTable extends Migration
     {
         Schema::table('info_lineas', function (Blueprint $table) {
             //
-            $table->dropForeign('info_lineas_ibfk_1');
-            $table->dropForeign('info_lineas_ibfk_2');
+            $table->dropForeign('infolineas_ibfk_1');
+            $table->dropForeign('infolineas_ibfk_2');
         });
     }
 }

@@ -71,7 +71,7 @@ class Helpers
             }
         }
     }
-    public static function subirMultimedia($archivoMultimedia, $lastID)
+    public static function subirMultimedia($descripcion,$archivoMultimedia, $lastID)
     {
         DB::beginTransaction();
                     try {
@@ -96,6 +96,7 @@ class Helpers
                             $archivoMultimedia->move($destinationPath, $multimedia->id);
                         //asignamos el archivo a la tabla de documentación para finalizar la operación
                             $documentacion = new Documentacion;
+                            $documentacion->descripcion = $descripcion;
                             $documentacion->formulario_id = $lastID;
                             $documentacion->multimedia_id = $multimedia->id;
                             $documentacion->save();

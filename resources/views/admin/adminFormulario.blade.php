@@ -466,6 +466,61 @@ use App\Helpers;
     </table>
     <br>
       <?php //Helpers::crearDatosVentas($ventas); ?>
+      <table class="w3-table">
+        <thead>
+          <tr>
+            <th colspan="5" style="text-align: center;">
+              VENTAS ESTIMADAS
+            </th>
+          </tr>
+          <tr>
+            <th>Producto</th>
+            <th>Unidad de medida</th>
+            <th>Cantidad</th>
+            <th>Valor por unidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{$formularioEnviado->producto1}}</td>
+            <td>{{$formularioEnviado->udMedida1}}</td>
+            <td>{{$formularioEnviado->cantidad1}}</td>
+            <td>{{$formularioEnviado->valor1}}</td>
+            <td>{{$formularioEnviado->cantidad1 * $formularioEnviado->valor1}}</td>
+          </tr>
+          <tr>
+            <td>{{$formularioEnviado->producto2}}</td>
+            <td>{{$formularioEnviado->udMedida2}}</td>
+            <td>{{$formularioEnviado->cantidad2}}</td>
+            <td>{{$formularioEnviado->valor2}}</td>
+            <td>{{$formularioEnviado->cantidad2 * $formularioEnviado->valor2}}</td>
+          </tr>
+          <tr>
+            <td>{{$formularioEnviado->producto3}}</td>
+            <td>{{$formularioEnviado->udMedida3}}</td>
+            <td>{{$formularioEnviado->cantidad3}}</td>
+            <td>{{$formularioEnviado->valor3}}</td>
+            <td>{{$formularioEnviado->cantidad3 * $formularioEnviado->valor3}}</td>
+          </tr>
+          <tr>
+            <td>{{$formularioEnviado->producto4}}</td>
+            <td>{{$formularioEnviado->udMedida4}}</td>
+            <td>{{$formularioEnviado->cantidad4}}</td>
+            <td>{{$formularioEnviado->valor4}}</td>
+            <td>{{$formularioEnviado->cantidad4 * $formularioEnviado->valor4}}</td>
+          </tr>
+          <tr>
+            <td colspan="4">Otras ventas</td>
+            <td>{{$formularioEnviado->otrosProductosVenta}}</td>
+          </tr>
+          <tr>
+            <td colspan="4">Total</td>
+            <td>{{($formularioEnviado->cantidad1 * $formularioEnviado->valor1) + ($formularioEnviado->cantidad2  * $formularioEnviado->valor2) + ($formularioEnviado->cantidad3 * $formularioEnviado->valor3) + ($formularioEnviado->cantidad4 * $formularioEnviado->valor4) + $formularioEnviado->otrosProductosVenta}}</td>
+          </tr>
+        </tbody>
+        
+      </table>
     <br>
     <table class="w3-table-all">
         <thead>
@@ -526,7 +581,6 @@ use App\Helpers;
           <td style="text-align: center;"><?= Helpers::calcularTotalCostos($formularioEnviado); ?></td>
         </tr>
     </table>
-
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
         <div class="tab">
@@ -900,46 +954,17 @@ th {
         <table>
     <thead>
     <tr>
-        <th>Vista previa</th>
+        <th>Archivo</th>
         <th>Descripción</th>
     </tr>
   </thead>
-  <tbody> 
-  <?php 
-  use App\Multimedia;
-  if (!$documentacion->isEmpty()) {
-      for ($i=0; $i < count($documentacion); $i++) {
-      switch ($documentacion[$i]->descripcion) {
-        case 'DNI':
-          $descripcion = "Documento Nacional de Identidad";
-          break;
-        case 'DOMICILIO':
-          $descripcion = "Certificado de domicilio";
-          break;
-        case 'RECIBO_SUELDO':
-          $descripcion = "Recibo de sueldo";
-          break;
-        default:
-          $descripcion = "Descripción no válida";
-          break;
-      }
-      if ($documentacion[$i]->descripcion == 'DNI') {
-        $descripcion = "Documento Nacional de Identidad";
-      } 
-      $multimedia = Multimedia::find($documentacion[$i]->multimedia_id);
-      print_r(' <tr>
-            <td>
-                <img align="center" style="width:85px" src="/var/www/html/crear/public/images/'.$multimedia->id.'">
-              </td>
-              <td>
-              '.$descripcion.'
-            </td>
-              </tr>');
-    }
-  } else {
-    echo '<tr><td rowspan="2">El usuario aún no ha cargado documentación.</td><tr>';
-  } 
-?>
+  <tbody>
+      @foreach($formularioEnviado->documentacion as $documentacion)
+      <tr>
+        <td><a href="{{url('/images/'.$documentacion->multimedia_id)}}">Ver archivo</a></td>
+        <td>{{$documentacion->descripcion}}</td>
+      </tr>
+      @endforeach
   </tbody>
 </table>
 <br><br>
