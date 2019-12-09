@@ -1164,91 +1164,38 @@
 								    <p>INVERSIÓN</p>
 								</div>
 						</div>
+						<style type="text/css">
+							.bienes_financiamiento input {
+								background-color: #00f0;
+								color: white;
+								border: 0px !important;
+							}
+						</style>
 	                	<div class="w3-col m12">
 							<br>
 							<div>
 							<p><b>BIENES A FINANCIAR</b><br>
 								<i style="color: lightgrey;">DESCRIPCIÓN DE LOS BIENES A FINANCIAR</i>
 							</p>
-							<p id="crearItemFinanciamiento" style="color: #3ae93a;cursor: pointer;">Agregar bien a financiar</p>
 							</div>
+							<table class="w3-table bienes_financiamiento">
+								<thead>
+									<tr>
+										<th>Descripción</th>
+										<th>Cantidad</th>
+										<th>Precio Unitario</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php App\Helpers::crearItemBienFinanciamiento('ingresarLineaEmprendedor'); ?>
+									<tr>
+										<th colspan="2" style="text-align: center;">Total solicitado al crear</th>
+										<td colspan="2"><input style="text-align: center;" type="text" id="totalsolicitado_crear" readonly placeholder="xxx.xx"></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div class="w3-col m12" id="bienes_financiamiento">
-						</div>
-							<script type="text/javascript">
-			$('#crearItemFinanciamiento').click(function(){
-					$('#bienes_financiamiento').append('<div class="w3-half" align="center" style="padding: 10px;border: 2px solid;">\
-						<div class="w3-col m12" >\
-							<div onClick="remove(this);">\
-								<span style="float:right;cursor:pointer;">x</span>\
-							</div>\
-						</div>\
-						<div class="w3-col m6">\
-							<label>Item</label><br>\
-							<select class="w3-select" name="nombreItem[]">\
-								    <option value="" disabled selected>Elegí el item a financiar...</option>\
-								    <option value="Bien de capital">Bien de capital</option>\
-								    <option value="Capital de trabajo">Capital de trabajo</option>\
-								    <option value="Instalaciones">Instalaciones</option>\
-								    <option value="Obra Civil">Obra Civil</option>\
-								 </select>\
-						</div>\
-						<div class="w3-col m6" style="height: 65px;">\
-							<label>Descripción</label>\
-							<input class="w3-input" type="text" name="descripcion[]" style="border: 2px solid black;">\
-						</div>\
-						<div class="w3-col m12>">\
-						<div class="w3-col m4" align="center">\
-							<label>Cantidad</label>\
-							<input type="text" id="cantAnio" name="cantidad[]" style="border: 2px solid black;width:100%;">\
-						</div>\
-						<div class="w3-col m4" align="center">\
-							<label>Precio</label>\
-							<input type="text" id="precio" name="precioUnitario[]" style="border: 2px solid black;width:100%;">\
-						</div>\
-						<div class="w3-col m4">\
-							<label>Total</label>\
-							<input type="text" id="totalVenta" style="border: 2px solid black;width:100%;">\
-						</div>\
-						</div>\
-					</div>');
-			});
-			(function() {
-			      var cant_anio = 0;
-			      var precio = 0;
-			      var total = 0;
-			      var total_final = 0;
-
-			      $("#bienes_financiamiento").on("blur", 'input', function(event){
-			        
-			        if ($(this).attr('id') == 'cantAnio') {
-			          cant_anio = $(this).val();
-			          console.log(cant_anio);
-			          total = calculo(cant_anio,precio);
-			        }
-			        if ($(this).attr('id') == 'precio') {
-			          precio = $(this).val();
-			          console.log(precio);
-			          total = calculo(cant_anio,precio);
-			        }
-			        total = calculo(cant_anio,precio);
-			        if ($(this).attr('id') == 'totalVenta') {
-			          $(this).val(total);
-			        }
-			        }).trigger('blur');
-
-			        function calculo(x,y) {
-			          if (isNaN(x)) {
-			            x = 0;
-			          }
-			          if (isNaN(y)) {
-			            y = 0;
-			          }
-			          total = parseFloat(x) * parseFloat(y);
-			          return total;
-			        }
-			})();
-		</script>
 	                </section>
 	                <h2>MANIFESTACIÓN DE BIENES DEL EMPRENDEDOR</h2>
 	                <section>

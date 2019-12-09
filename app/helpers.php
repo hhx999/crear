@@ -12,6 +12,65 @@ use App\Multimedia;
 class Helpers 
 {
     /*Subir archivos multimedia*/
+    public static function crearItemBienFinanciamiento($nombre_view)
+    {
+        if ($nombre_view == 'ingresarLineaEmprendedor') {
+            # imprimimos los inputs para la vista de ingreso de linea emprendedor
+            for ($i=1; $i < 10; $i++) { 
+                print_r('<tr>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_cantidad" placeholder="xxx.xx">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_precio" placeholder="xxx.xx">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx">
+                                            </td>
+                                        </tr>');
+            }
+        } else if ($nombre_view == 'borradorLineaEmprendedor')
+        {
+            # imprimimos los inputs para la vista de borrador de linea emprendedor
+            for ($i=1; $i <= 10; $i++) { 
+                print_r('<tr>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_descripcion}}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_cantidad" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_cantidad}}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_precio" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_precio}}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_total}}">
+                                            </td>
+                                        </tr>');
+            }
+        } else if ($nombre_view == 'editarLineaEmprendedor') {
+            # imprimimos los inputs para la vista de edicion de linea emprendedor
+            for ($i=1; $i < 10; $i++) { 
+                print_r('<tr>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_descripcion}}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_cantidad" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_cantidad}}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_precio" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_precio}}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_total}}">
+                                            </td>
+                                        </tr>');
+            }
+        }
+    }
     public static function subirMultimedia($archivoMultimedia, $lastID)
     {
         DB::beginTransaction();
