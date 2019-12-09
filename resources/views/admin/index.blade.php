@@ -109,6 +109,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
 
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
+    <h3>ADMINISTRACIÓN</h3>
     <fieldset style="margin-bottom: 20px;">
       <legend style="color:green;">Opciones de administración</legend>
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">

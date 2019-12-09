@@ -185,7 +185,7 @@ use App\Helpers;
     </tr>
     <tr>
       <th>Localidad</th>
-      <td><?= $localidadSolicitante->nombre; ?></td>
+      <td><?= $localidadSolicitante->nombre ?? ''; ?></td>
     </tr>
     <tr>
       <th>Domicilio</th>

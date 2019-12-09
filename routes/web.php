@@ -41,6 +41,8 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::post('/eliminarObservacion','TecnicoController@eliminarObservacion')->name('eliminarObservacion');
 	Route::get('/images/{file}','ImageController@getImage');
 	Route::get('/infoCreditos/{file}','InfoCreditosController@getInfo');
+	Route::get('/cambiarEstado/{id}','TecnicoController@cambiarEstado');
+	Route::post('/cambiarEstado/{id}','TecnicoController@cambiarEstado');
 });
 /*
 Route::group(['middleware' => ['comprobarrole:user']], function () {

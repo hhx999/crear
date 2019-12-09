@@ -241,7 +241,12 @@ class Helpers
                         echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
+                        echo "<td><a href='adminFormulario/".$formularios[$i]->id."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>
+                            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                            <a href='generarPdf/".$formularios[$i]->id."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>GENERAR PDF</a></div>
+                            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                            <a href='cambiarEstado/".$formularios[$i]->id."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Cambiar estado</a></div>
+                            </td>";
                         echo "</tr>";
                 }
                 else if ($rol == 'admin' && $filtro == 'tramite') {
@@ -296,7 +301,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
+                        echo "<td></td>";
                         echo "</tr>";
                      }
                 }
@@ -311,7 +316,13 @@ class Helpers
                         echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
-                        echo Helpers::acciones($rol,$formularios[$i]->id);
+                        echo "<td><a href='adminFormulario/".$idForm."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>
+                            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                            <a href='generarPdf/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>GENERAR PDF</a></div>
+                            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                            <a href='cambiarEstado/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Cambiar estado</a></div>
+                            </td>";
+                        //echo Helpers::acciones($rol,$formularios[$i]->id);
                         echo "</tr>";
                      }
                 }

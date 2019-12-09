@@ -27,6 +27,7 @@ use App\FormTipo;
 use App\CredTipo;
 use App\Localidad;
 use App\Agencia;
+use App\EstadoCredito;
 
 use App\Helpers;
 
@@ -241,7 +242,11 @@ class TecnicoController extends Controller
       $datosTecnico = Usuario::find($idUsuario);
 
         $formulario = Formulario::find($id);
-        $localidadSolicitante = Localidad::find($formulario->localidadEmprendedor)->first();
+        if ($formulario->localidadSolicitante) {
+          $localidadSolicitante = Localidad::find($formulario->localidadEmprendedor)->first();
+        } else {
+          $localidadSolicitante = NULL;
+        }
 
         $pasosValidos = $formulario->pasosValidos;
 
@@ -449,6 +454,20 @@ class TecnicoController extends Controller
         $pdf = \PDF::loadView('vistaImprimir', ['id'=> $id, 'datosFormulario' => $datosFormulario]);
      
         return $pdf->download('formularioLineaEmprendedor_'.$datosFormulario->numeroSeguimiento.'.pdf');
+    }
+    public function cambiarEstado($id, Request $request)
+    {
+      $session = $request->session();
+      $datosFormulario = Formulario::find($id);
+      $estadosCreditos = EstadoCredito::all();
+      if ($request->isMethod('post')) {
+        # code...
+        $formulario = Formulario::find($request->formulario_id);
+        $formulario->estado = $request->estado_id;
+        $formulario->save();
+        echo "<div class='w3-col m12'><p>Estado cambiado</p></div>";
+      }
+      return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'estadosCreditos' => $estadosCreditos]);
     }
     /*
     public function crearPDF($id)

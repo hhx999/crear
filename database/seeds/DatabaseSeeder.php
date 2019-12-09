@@ -41,6 +41,9 @@ class DatabaseSeeder extends Seeder
         //Actividades principales
         $this->call(ActividadesPrincipalesSeeder::class);
 
+        //Estados creditos
+        $this->call(EstadoCreditosSeeder::class);
+
 
 
     }
