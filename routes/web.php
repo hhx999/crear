@@ -36,8 +36,11 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::post('/verificarUsuarios','TecnicoController@verificarUsuarios');
 	Route::post('/registroAjax','TecnicoController@comprobarUsuario');
 	Route::get('/generarPdf/{id}','TecnicoController@crearPDF');
+	Route::get('/crearLineaCredito','TecnicoController@crearLineaCredito');
+	Route::post('/crearLineaCredito','TecnicoController@crearLineaCredito');
 	Route::post('/eliminarObservacion','TecnicoController@eliminarObservacion')->name('eliminarObservacion');
 	Route::get('/images/{file}','ImageController@getImage');
+	Route::get('/infoCreditos/{file}','InfoCreditosController@getInfo');
 });
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('/user','FormularioController@userindex');
@@ -86,6 +89,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 
 	Route::get('financiamiento/informacion_creditos','FinanciamientoController@informacionCreditos');
 	Route::post('financiamiento/cuestionario_creditos','FinanciamientoController@cuestionarioCreditos');
+	Route::get('/infoCreditos/{file}','InfoCreditosController@getInfo');
 
 	Route::get('financiamiento/informacion_creditos/lineas_creditos','FinanciamientoController@lineasCreditos');
 	//borradores

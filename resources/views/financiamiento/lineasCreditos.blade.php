@@ -37,18 +37,29 @@
 				<h3>Líneas accesibles</h3>
 					<div>
 						@foreach ($lineas as $linea)
-							<div class="w3-half" style="padding: 20px;">
+							<div class="w3-half" style="padding: 10px;height: 280px;">
 								<div class="w3-card-4" style="background-color: #077187;">
 										<header class="w3-container">
 										  <h3><i style="color: lightgrey;">{{$linea->nombre}}</i></h3>
 										</header>
 										<div class="w3-container">
-										  <p>Ver bases y condiciones</p>
-										  <p>Descargar formulario de inscripción</p>
+											@foreach($linea->info as $informacion)
+												@if($informacion->descripcion == 'basesCondiciones')
+											  		<p><a href="{{url('infoCreditos/'.$informacion->multimedia_id)}}">Ver bases y condiciones</a></p>
+												@elseif($informacion->descripcion == 'formulario')
+													<p><a href="{{url('infoCreditos/'.$informacion->multimedia_id)}}">Descargar formulario de inscripción</a></p>
+												@else 
+											  	 <p>No hay info cargada</p>
+												@endif
+											@endforeach
 										</div>
+										@if($linea->habilitada == 1)
 										<a style="text-decoration: none;" href="{{ url('financiamiento/lineaEmprendedor') }}">
 											<button class="w3-button w3-block w3-light-grey">+ Ingresar formulario</button>
 										</a>
+										@else 
+												<button class="w3-button w3-block w3-light-grey">- No disponible</button>
+										@endif
 								</div>
 								<br>
 							</div>

@@ -20,4 +20,8 @@ class FormTipo extends Model {
     {
         return $this->hasMany('App\CredTipo');
     }
+    public function info()
+    {
+        return $this->hasMany('App\InfoLinea');
+    }
 }

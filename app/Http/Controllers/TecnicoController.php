@@ -128,6 +128,26 @@ class TecnicoController extends Controller
         }
         return $result;
     }
+    public function crearLineaCredito(Request $request)
+    {
+      $lineas = FormTipo::all();
+      $session = $request->session();
+      if ($request->isMethod('post')) {
+        DB::beginTransaction();
+            try {
+              $id = $request->form_tipo_id;
+              Helpers::subirInfoLineaCreditos('basesCondiciones',$request->basesCondiciones,$id);
+              Helpers::subirInfoLineaCreditos('formulario',$request->formulario,$id);
+              echo "Agregada info";
+              }
+              catch (\Illuminate\Database\QueryException $e) {
+                  DB::rollback();
+                  echo "Error";
+              }
+              DB::commit();
+      }
+      return view('admin.crearLineaCreditos', ['lineas' => $lineas ,'nombreUsuario' => $session->get('nombreUsuario')]);
+    }
      public function documentacion($id, Request $request)
      {
       $msg = '';
