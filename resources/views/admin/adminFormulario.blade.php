@@ -130,6 +130,20 @@ use App\Helpers;
         <input data-placeholder="Ingrese el monto solicitado por el emprendedor..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ?>">
       </div>
 
+      <div class="float-container" style="padding: 20px;">
+        <p>Proyecto con posible vinculación a:</p>
+        <select style="width: 100%;" name="organismoPublico">
+          <option selected disabled>Ingrese el organismo público...</option>
+          @foreach($organismosPublicos as $organismo)
+            @if($organismo->id == $formularioEnviado->organismoPublico)
+              <option value="{{$formularioEnviado->organismoPublico}}" selected>{{$organismo->nombre}}</option>
+            @else
+              <option value="{{$organismo->id}}">{{$organismo->nombre}}</option>
+            @endif
+          @endforeach
+        </select>
+      </div>
+
       <p align="center"><b>BREVE DESCRIPCIÓN DEL EMPRENDIMIENTO Y JUSTIFICACIÓN DE LA NECESIDAD DE FINANCIAMIENTO <span style="color:red;">&#10033;</span></b></p>
       <p><textarea placeholder="Ingrese texto aquí..." name="descEmprendimiento" maxlength="254"> <?= $formularioEnviado->descEmprendimiento ?> </textarea></p>
     </div>

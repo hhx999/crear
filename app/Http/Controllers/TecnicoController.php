@@ -29,6 +29,7 @@ use App\Localidad;
 use App\Agencia;
 use App\EstadoCredito;
 use App\HistorialEstado;
+use App\OrganismoPublico;
 
 use App\Helpers;
 
@@ -150,97 +151,12 @@ class TecnicoController extends Controller
       }
       return view('admin.crearLineaCreditos', ['lineas' => $lineas ,'nombreUsuario' => $session->get('nombreUsuario')]);
     }
-     public function documentacion($id, Request $request)
-     {
-      $msg = '';
-      $session = $request->session();
-
-        if ($session->has('msg')) {
-          $msg = $session->get('msg');
-        }
-      $formulario = Formulario::find($id);
-      $observacion = $formulario->pasosValidos->observaciones;
-      $documentacion = $formulario->documentacion;
-      foreach ($observacion as $key => $value) {
-      $observacion = $value->observacion;
-      }
-      return view('user.documentacion', ['id' => $id , 'msg' => $msg, 'documentacion' => $documentacion, 'observacion' => $observacion]);
-     }
-     public function agregarDocumentacion($id, Request $request)
-     {
-      $session = $request->session();
-      
-      if ($request->has('dni')) {
-        DB::beginTransaction();
-        try {
-          $rules = array('jpg','png','jpeg');
-          $path = storage_path().DIRECTORY_SEPARATOR.$request->file('dni')->getClientOriginalName();
-          $nombre =  pathinfo($path, PATHINFO_FILENAME);
-          $ext = pathinfo($path, PATHINFO_EXTENSION);
-          if (in_array($ext, $rules)) {
-            $multimedia = new Multimedia;
-            $multimedia->nombre = $nombre;
-            $multimedia->extension = $ext;
-            $multimedia->save();
-
-            $destinationPath = '.'.DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'img';
-            $request->file('dni')->move($destinationPath, $multimedia->id);
-
-            $documentacion = new Documentacion;
-            $documentacion->descripcion = $request->input('descripcion');
-            $documentacion->formulario_id = $id;
-            $documentacion->multimedia_id = $multimedia->id;
-            $documentacion->save();
-
-            $formulario = Formulario::find($id);
-            $observacion = $formulario->pasosValidos->observaciones->first();
-            $documentacion = $formulario->documentacion;
-
-            if (!empty($observacion)) {
-              $formulario = Formulario::find($id);
-              $formulario->estado = 3;
-              $formulario->save();
-              $observacion->delete();
-            }
-
-            $request->session()->flash('msg', '1');
-          } else {
-            $request->session()->flash('msg', '0');
-          }
-        } catch (\Illuminate\Database\QueryException $e) {
-          DB::rollback();
-          return view('error.errorQuery', ['url' => $GLOBALS['urlRaiz'],'msg'=> $e->getMessage(), 'bind' => $e->getBindings(), 'sql' => $e->getSql()]); 
-      }
-        DB::commit();
-      }
-      return redirect('/documentacion/'.$id);
-     }
-     public function eliminarDocumentacion(Request $request)
-      {
-        if ($request->has('id')) {
-        DB::beginTransaction();
-            try {
-            $id = intval($request->id);
-            $multimedia = Multimedia::find($id);
-            $multimedia->documentacion->delete();
-            $multimedia->delete();
-            unlink(storage_path('img'.DIRECTORY_SEPARATOR.$id));
-            echo 1;
-            } catch (\Illuminate\Database\QueryException $e) {
-                  DB::rollback();
-                  return view('error.errorQuery', ['url' => $GLOBALS['urlRaiz'],'msg'=> $e->getMessage(), 'bind' => $e->getBindings(), 'sql' => $e->getSql()]); 
-              }
-              DB::commit();
-        } 
-        else {
-          echo 0;
-        }
-      }
      public function adminFormulario($id, Request $request)
      {
       $session = $request->session();
       $idUsuario = $request->session()->get('id_usuario');
       $datosTecnico = Usuario::find($idUsuario);
+      $organismosPublicos = OrganismoPublico::all();
 
         $formulario = Formulario::find($id);
         if ($formulario->localidadEmprendedor) {
@@ -256,7 +172,7 @@ class TecnicoController extends Controller
 
         $documentacion = $formulario->documentacion;
 
-        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones, 'datosTecnico' => $datosTecnico, 'localidadSolicitante' => $localidadSolicitante]);
+        return view('admin.adminFormulario', ['id' => $id, 'formularioEnviado' => $formulario,'documentacion' => $documentacion, 'pasosValidos' => $pasosValidos, 'observaciones' => $observaciones, 'datosTecnico' => $datosTecnico, 'localidadSolicitante' => $localidadSolicitante, 'organismosPublicos' => $organismosPublicos]);
      }
      public function agregarPortada(Request $request)
      {
@@ -271,6 +187,7 @@ class TecnicoController extends Controller
        $formulario->agenciaProyecto = $request->agenciaProyecto;
        $formulario->numeroProyecto = $request->numeroProyecto;
        $formulario->montoSolicitado = $request->montoSolicitado;
+       $formulario->organismoPublico = $request->organismoPublico;
        $formulario->fecPresentacionProyecto = Helpers::cambioFormatoFecha($request->fecPresentacionProyecto);
        $formulario->descEmprendimiento = $request->descEmprendimiento;
        $formulario->tecnico_id = $datosTecnico->id;

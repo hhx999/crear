@@ -24,6 +24,7 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->string('agenciaProyecto', 45)->nullable();
 			$table->string('numeroProyecto', 45)->nullable();
 			$table->float('montoSolicitado', 10, 0)->nullable();
+			$table->integer('organismoPublico')->nullable();
 			$table->dateTime('fecPresentacionProyecto')->nullable();
 			$table->string('descEmprendimiento', 300)->nullable();
 			//Información del emprendedor, la primera hoja del formulario para el usuario
