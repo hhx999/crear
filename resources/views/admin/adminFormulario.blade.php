@@ -66,21 +66,36 @@ use App\Helpers;
 <!-- FIN DE Modal de REVISIÓN -->
   <div class="tab">
     <input type="input" name="idValidacion" id="idValidacion" value="<?=$pasosValidos->id?>" hidden>
-    
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'portada') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para PORTADA:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
+    @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'portada')
+          <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+          <div class="observacion"><p><b>Agregar observación para PORTADA:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+          <button type="button" style="background-color: red;" id="eliminarObservacionPortada">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
-
-      <?php Helpers::crearCheckValido('portada',$pasosValidos->portada) ?>
+    <?php Helpers::crearCheckValido('portada',$pasosValidos->infoEmprendedor) ?>
     <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservacionPortada').on('click',function() {
+        console.log('eliminar');
+        console.log($('#portada_id').val());
+        var datos = {};
+                      datos['id'] = $('#portada_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">portada</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">PORTADA</p>
     <!-- ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª-->
@@ -153,9 +168,11 @@ use App\Helpers;
 
     @isset($observaciones[0])
       @for($i=0; $i < count($observaciones); $i++)
-      <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
-      <div class="observacion"><p><b>Agregar observación para INFORMACIÓN DEL EMPRENDEDOR:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
-      <button type="button" style="background-color: red;" id="eliminarObservacionInfoEmprendedor">Eliminar</button>
+        @if($observaciones[$i]->hoja == 'infoEmprendedor')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para INFORMACIÓN DEL EMPRENDEDOR:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservacionInfoEmprendedor">Eliminar</button>
+        @endif
       @endfor
     @endisset
 
@@ -242,19 +259,36 @@ use App\Helpers;
 </div>
   <!-- \\\\\\\\\\\\\\\\\\\\\\\ DATOS GENERALES EMPRENDIMIENTO  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
   <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) { 
-          if ($observaciones[$i]->hoja == 'datosEmprendimiento') {
-            print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>');
-              print_r('<div class="observacion"><p><b>Agregar observación para DATOS DEL EMPRENDIMIENTO:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
-    <?php Helpers::crearCheckValido('datosEmprendimiento',$pasosValidos->datosEmprendimiento) ?>
+    @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'datosEmprendimiento')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para DATOS DEL EMPRENDIMIENTO:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservaciondatosEmprendimiento">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
+    <?php Helpers::crearCheckValido('datosEmprendimiento',$pasosValidos->datosEmprendimiento) ?>
     <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservaciondatosEmprendimiento').on('click',function() {
+        console.log('eliminar');
+        console.log($('#datosEmprendimiento_id').val());
+        var datos = {};
+                      datos['id'] = $('#datosEmprendimiento_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">datosEmprendimiento</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">DATOS GENERALES EMPRENDIMIENTO</p>
                               <!--EMPRENDIMIENTO-->
@@ -339,20 +373,36 @@ use App\Helpers;
   </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MERCADO  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'mercado') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para MERCADO:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
+    @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'mercado')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para MERCADO:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservacionmercado">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
-
-      <?php Helpers::crearCheckValido('mercado',$pasosValidos->mercado) ?>
-      <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="mercado">OBSERVACIÓN</button>
+    <?php Helpers::crearCheckValido('mercado',$pasosValidos->mercado) ?>
+    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservacionmercado').on('click',function() {
+        console.log('eliminar');
+        console.log($('#mercado_id').val());
+        var datos = {};
+                      datos['id'] = $('#mercado_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">mercado</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">MERCADO</p>
 
@@ -453,21 +503,36 @@ use App\Helpers;
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ PRODUCCIÓN - COSTOS - RESULTADOS  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'prodCostResultados') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para PRODUCCIÓN - COSTOS - RESULTADOS:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
-
-
+    @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'prodCostResultados')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para prodCostResultados:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservacionprodCostResultados">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
     <?php Helpers::crearCheckValido('prodCostResultados',$pasosValidos->prodCostResultados) ?>
-      <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="prodCostResultados">OBSERVACIÓN</button>
+    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservacionprodCostResultados').on('click',function() {
+        console.log('eliminar');
+        console.log($('#prodCostResultados_id').val());
+        var datos = {};
+                      datos['id'] = $('#prodCostResultados_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">prodCostResultados</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">PRODUCCIÓN - COSTOS - RESULTADOS</p>
 
@@ -611,22 +676,36 @@ use App\Helpers;
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
         <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'mbe') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
-
-
+     @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'mbe')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para mbe:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservacionmbe">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
     <?php Helpers::crearCheckValido('mbe',$pasosValidos->mbe) ?>
-
-    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="mbe">OBSERVACIÓN</button>
+    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservacionmbe').on('click',function() {
+        console.log('eliminar');
+        console.log($('#mbe_id').val());
+        var datos = {};
+                      datos['id'] = $('#mbe_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">mbe</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR</p>
 
@@ -776,22 +855,36 @@ use App\Helpers;
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MANIFESTACIÓN DE LOS BIENES DEL GARANTE  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'mbg') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para MANIFESTACIÓN DE LOS BIENES DEL GARANTE:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
-
-
+     @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'mbg')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para mbg:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservacionmbg">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
     <?php Helpers::crearCheckValido('mbg',$pasosValidos->mbg) ?>
-
-      <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="mbg">OBSERVACIÓN</button>
+    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservacionmbg').on('click',function() {
+        console.log('eliminar');
+        console.log($('#mbg_id').val());
+        var datos = {};
+                      datos['id'] = $('#mbg_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">mbg</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">MANIFESTACIÓN DE LOS BIENES DEL GARANTE</p>
 
@@ -943,16 +1036,6 @@ use App\Helpers;
     </div>
         <!-- \\\\\\\\\\\\\\\\\\\\\\\ DOCUMENTACIÓN  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div class="tab">
-    <?php
-      if (isset($observaciones[0])) {
-        for ($i=0; $i < count($observaciones); $i++) {
-          if ($observaciones[$i]->hoja == 'documentacion') {
-          print_r('<input type="input" id="'.$observaciones[$i]->hoja.'_id" value="'.$observaciones[$i]->id.'" hidden>'); 
-              print_r('<div class="observacion"><p><b>Agregar observación para DOCUMENTACIÓN:</b></p><textarea name=observaciones["'.$observaciones[$i]->hoja.'"]>'.$observaciones[$i]->observacion.' </textarea></div>');
-          }
-        }
-      }
-    ?>
 <style>
 table {
   border-collapse: collapse;
@@ -972,9 +1055,36 @@ th {
   color: white;
 }
 </style>
+     @isset($observaciones[0])
+      @for($i=0; $i < count($observaciones); $i++)
+        @if($observaciones[$i]->hoja == 'documentacion')
+        <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+        <div class="observacion"><p><b>Agregar observación para documentacion:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+        <button type="button" style="background-color: red;" id="eliminarObservaciondocumentacion">Eliminar</button>
+        @endif
+      @endfor
+    @endisset
 
-      <?php Helpers::crearCheckValido('documentacion',$pasosValidos->documentacion) ?>
-      <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="mercado">OBSERVACIÓN</button>
+    <?php Helpers::crearCheckValido('documentacion',$pasosValidos->documentacion) ?>
+    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
+    <script type="text/javascript">
+      $('#eliminarObservaciondocumentacion').on('click',function() {
+        console.log('eliminar');
+        console.log($('#documentacion_id').val());
+        var datos = {};
+                      datos['id'] = $('#documentacion_id').val();
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('eliminarObservacion') }}",
+                      data : datos
+                  }).done(function (data) {
+                    alert('Observacion eliminada!');
+                    console.log('OK 202!');
+                  }).fail(function () {
+                      console.log('Error contacte con el administrador de la aplicación.');
+                  });
+      });
+    </script>
       <p class="hoja" style="display: none;">documentacion</p>
       <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">DOCUMENTACIÓN</p>
       <div align="center">
