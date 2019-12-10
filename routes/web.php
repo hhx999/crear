@@ -73,6 +73,10 @@ $router->get('/usuarioRegistro','UsuarioController@registro');
 $router->post('/usuarioRegistro','UsuarioController@registro'); //registra usuario
 $router->post('/comprobarDNI','UsuarioController@comprobarDNI'); //comprueba si el dni existe dentro de los registros
 
+//obtener datos de la situación impositiva
+
+$router->get('/obtenerSituacionImpositiva','FinanciamientoController@obtenerSituacionImpositiva');
+
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	//------Rutas del inicio
 	Route::get('usuarioIndex','UsuarioController@indexUser');

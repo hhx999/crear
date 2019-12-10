@@ -26,11 +26,17 @@ class FinanciamientoController extends Controller
     function informacionCreditos(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
-    	$usuario = Usuario::find($idUsuario);
+    	$usuario = Usuario::find($idUsuario); 
 
     	$situacionImpositiva = config('constantes.situacionImpositiva');
 
     	return view('userTest.credito', ['situacionImpositiva' => $situacionImpositiva, 'usuario' => $usuario]);
+    }
+    function obtenerSituacionImpositiva(Request $request)
+    {
+    	$situacionImpositiva = config('constantes.situacionImpositiva');
+
+    	return response()->json($situacionImpositiva);
     }
     function lineasCreditos(Request $request)
     {

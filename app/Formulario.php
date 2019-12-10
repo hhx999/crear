@@ -226,4 +226,8 @@ class Formulario extends Model {
     {
         return $this->hasMany('App\Documentacion');
     }
+    public function historialEstado()
+    {
+        return $this->hasMany('App\HistorialEstado');
+    }
 }

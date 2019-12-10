@@ -1626,7 +1626,7 @@
 						<div class="w3-half">
 							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
 		                    	<label for="{{$documento->descripcion}}">{{$documento->descripcion}}</label><br>
-		                    	<input class="w3-input" style="color: white;" type="file" name="{{$documento->descripcion}}">
+		                    	<p>DOCUMENTO CARGADO</p>
 		                    </div>
 						</div>
 						@endforeach

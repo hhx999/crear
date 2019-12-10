@@ -28,6 +28,7 @@ use App\CredTipo;
 use App\Localidad;
 use App\Agencia;
 use App\EstadoCredito;
+use App\HistorialEstado;
 
 use App\Helpers;
 
@@ -242,8 +243,8 @@ class TecnicoController extends Controller
       $datosTecnico = Usuario::find($idUsuario);
 
         $formulario = Formulario::find($id);
-        if ($formulario->localidadSolicitante) {
-          $localidadSolicitante = Localidad::find($formulario->localidadEmprendedor)->first();
+        if ($formulario->localidadEmprendedor) {
+          $localidadSolicitante = Localidad::where('id',$formulario->localidadEmprendedor)->first();
         } else {
           $localidadSolicitante = NULL;
         }
@@ -302,11 +303,32 @@ class TecnicoController extends Controller
             if ($formV == 1) {
               $formulario = Formulario::find($data['id']);
               // Si el formulario no tiene observaciones está completo
+              $historialEstado = new HistorialEstado();
+              $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
+              $historialEstado->estado_anterior = $formulario->estado;
+              $historialEstado->formulario_id = $formulario->id;
+              $historialEstado->save();
+
               $formulario->estado = $estados['completo'];
+
+              $hEstado = HistorialEstado::find($historialEstado->id);
+              $hEstado->estado_actual = $estados['completo'];
+              $hEstado->save();
+
               $formulario->save();
             } else {
               $formulario = Formulario::find($data['id']);
+              $historialEstado = new HistorialEstado();
+              $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
+              $historialEstado->estado_anterior = $formulario->estado;
+              $historialEstado->formulario_id = $formulario->id;
+              $historialEstado->save();
+
               $formulario->estado = $estados['observacion']; //formulario en observación
+              $hEstado = HistorialEstado::find($historialEstado->id);
+              $hEstado->estado_actual = $estados['observacion'];
+              $hEstado->save();
+
               $formulario->save();
             }
 
@@ -463,8 +485,20 @@ class TecnicoController extends Controller
       if ($request->isMethod('post')) {
         # code...
         $formulario = Formulario::find($request->formulario_id);
+
+        $historialEstado = new HistorialEstado();
+        $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
+        $historialEstado->estado_anterior = $formulario->estado;
+        $historialEstado->formulario_id = $formulario->id;
+        $historialEstado->save();
+
         $formulario->estado = $request->estado_id;
         $formulario->save();
+
+        $hEstado = HistorialEstado::find($historialEstado->id);
+        $hEstado->estado_actual = $request->estado_id;
+        $hEstado->save();
+
         echo "<div class='w3-col m12'><p>Estado cambiado</p></div>";
       }
       return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'estadosCreditos' => $estadosCreditos]);

@@ -44,8 +44,28 @@ $(document).ready(function() {
             	} else if (estadoForm == 4) {
             		var estado = '<span style="color:#f0e68c;">Actualizado</span>';
             	} else if (estadoForm == 5) {
-            		var estado = '<span style="color:#8bc34a;">Completo</span>'
-            	}
+            		var estado = '<span style="color:#8bc34a;">Completo</span>';
+            	} else if (estadoForm == 6) {
+                    var estado = '<span style="color:red;">Rechazado desde administración</span>';
+                }
+                else if (estadoForm == 7) {
+                    var estado = '<span style="color:red;">Rechazado desde administración</span>';
+                }
+                else if (estadoForm == 8) {
+                    var estado = '<span style="color:#8bc34a;">Envío de para firma</span>';
+                }
+                else if (estadoForm == 9) {
+                    var estado = '<span style="color:#8bc34a;">Para orden de pago</span>';
+                }
+                else if (estadoForm == 10) {
+                    var estado = '<span style="color:#8bc34a;">Desembolsado</span>';
+                }
+                else if (estadoForm == 11) {
+                    var estado = '<span style="color:#8bc34a;">Auditado</span>';
+                }
+                else if (estadoForm == 12) {
+                    var estado = '<span style="color:#8bc34a;">Pago en termino</span>';
+                }
 				trProyectos.append($('<td>'+data.numeroSeguimiento+'</td>'));
 				trProyectos.append($('<td>'+data.nombreEmprendedor+'</td>'));
                 if(observaciones && observaciones.length && estadoForm != 0)

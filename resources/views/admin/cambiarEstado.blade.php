@@ -152,6 +152,22 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
         <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 30px;"></div>
   <div style="border-top: 2px solid #0174b6;display: inline-block;width: 25px;"></div>
   <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 92%;"></div>
+  <h3>Historial</h3>
+          @foreach ($datosFormulario->historialEstado as $historial)
+          <p>El estado cambió el {{$historial->fecha_cambio}} de
+            @foreach($estadosCreditos as $estado)
+              @if($estado->id == $historial->estado_anterior)
+               "{{$estado->nombre}}"
+               @endif
+            @endforeach
+            a
+            @foreach($estadosCreditos as $estado)
+              @if($estado->id == $historial->estado_actual)
+               "{{$estado->nombre}}"
+               @endif
+            @endforeach
+          </p>
+          @endforeach
     <form action="" method="post" name="crearLineaCreditos" enctype="multipart/form-data">
       <label>Estado del formulario:</label>
       <input type="hidden" name="formulario_id" value="{{$datosFormulario->id}}">
