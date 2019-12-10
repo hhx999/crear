@@ -110,6 +110,7 @@ class Helpers
     //Subir multimedia lineaCreditos
     public static function subirInfoLineaCreditos($descripcion,$archivoMultimedia, $lastID)
     {
+        $form_tipo = FormTipo::where('id',$lastID)->first();
         DB::beginTransaction();
                     try {
                     //Asignamos las reglas de extensiones de archivos para subir
@@ -128,9 +129,9 @@ class Helpers
                             $multimedia->extension = $ext;
                             $multimedia->save();
                         //path de destino
-                            $destinationPath = '/var/www/html/crear/public/infoLineas';
+                            $destinationPath = public_path('infoLineas/');
                         //Subimos el archivo al path de destino y le asignamos un nombre nuevo mediante el id que nos provee el registro de multimedia
-                            $archivoMultimedia->move($destinationPath, $multimedia->id);
+                            $archivoMultimedia->move($destinationPath, $multimedia->id.'.'.$ext);
                         //asignamos el archivo a la tabla de documentación para finalizar la operación
                             $infoLinea = new InfoLinea;
                             $infoLinea->descripcion = $descripcion;

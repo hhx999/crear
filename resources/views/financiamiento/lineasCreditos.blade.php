@@ -28,7 +28,7 @@
 	  		<div class="w3-half">
 	  			<ul class="nav">
 	  				<li><a href="{{url('financiamiento')}}">Financiamiento</a>/</li>
-	  				<li><a href="{{url('financiamiento/informacion_creditos')}}">Pedí tu credito</a></li>
+	  				<li><a href="{{url('financiamiento/informacion_creditos')}}">Pedí tu credito</a>/</li>
 	  				<li>Líneas de creditos</li>
 	  			</ul>
 	  		</div>
@@ -45,9 +45,9 @@
 										<div class="w3-container">
 											@foreach($linea->info as $informacion)
 												@if($informacion->descripcion == 'basesCondiciones')
-											  		<p><a href="{{url('infoCreditos/'.$informacion->multimedia_id)}}">Ver bases y condiciones</a></p>
+											  		<p><a href="{{url('infoCreditos/'.$informacion->archivoMultimedia->id.'.'.$informacion->archivoMultimedia->extension)}}">Ver bases y condiciones</a></p>
 												@elseif($informacion->descripcion == 'formulario')
-													<p><a href="{{url('infoCreditos/'.$informacion->multimedia_id)}}">Descargar formulario de inscripción</a></p>
+													<p><a href="{{url('infoCreditos/'.$informacion->archivoMultimedia->id.'.'.$informacion->archivoMultimedia->extension)}}">Descargar formulario de inscripción</a></p>
 												@else 
 											  	 <p>No hay info cargada</p>
 												@endif

@@ -11,12 +11,8 @@ use Auth;
 
 class InfoCreditosController extends Controller { 
 
-    public function getInfo($filename) { 
-     $path = '/var/www/html/crear/public/infoLineas/'.$filename; 
-     $type = "pdf"; 
-     header('Content-Type:'.$type); 
-     header('Content-Length: ' . filesize($path)); 
-     readfile($path); 
+    public function getInfo($filename) {
+     return response()->download(public_path("infoLineas/{$filename}"));
     } 
 
 } 
