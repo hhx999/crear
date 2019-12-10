@@ -14,7 +14,7 @@ class CreateOrganismoPublicosTable extends Migration
     public function up()
     {
         Schema::create('organismo_publicos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id', true);
             $table->string('nombre');
             $table->timestamps();
         });

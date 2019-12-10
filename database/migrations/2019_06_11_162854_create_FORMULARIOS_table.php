@@ -24,7 +24,6 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->string('agenciaProyecto', 45)->nullable();
 			$table->string('numeroProyecto', 45)->nullable();
 			$table->float('montoSolicitado', 10, 0)->nullable();
-			$table->integer('organismoPublico')->nullable();
 			$table->dateTime('fecPresentacionProyecto')->nullable();
 			$table->string('descEmprendimiento', 300)->nullable();
 			//Información del emprendedor, la primera hoja del formulario para el usuario
@@ -206,6 +205,7 @@ class CreateFORMULARIOSTable extends Migration {
 			$table->integer('form_tipo_id')->index('FK_TipoFormulario');
 			$table->integer('emprendimiento_id')->index('FK_EmprendimientoFormulario');
 			$table->integer('tecnico_id')->index('FK_TecnicoFormulario')->nullable();
+			$table->integer('organismoPublico')->index('FK_OrganismoFormulario')->nullable();
 			
 			$table->timestamps();
 		});
