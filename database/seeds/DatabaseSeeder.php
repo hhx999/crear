@@ -44,6 +44,9 @@ class DatabaseSeeder extends Seeder
         //Estados creditos
         $this->call(EstadoCreditosSeeder::class);
 
+        //Organismos publicos
+        $this->call(OrganismoPublicosSeeder::class);
+
 
 
     }
