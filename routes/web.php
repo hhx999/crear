@@ -26,6 +26,7 @@ $router->get('/logout','FormularioController@logoutUser');
 
 
 //
+$router->get('/','UsuarioController@login');
 $router->get('/usuarioLogin','UsuarioController@login');
 $router->post('/usuarioLogin','UsuarioController@login'); //inicia session
 $router->get('/usuarioLogout','UsuarioController@logout'); //cierre de session
