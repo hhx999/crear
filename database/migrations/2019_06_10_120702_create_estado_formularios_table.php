@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstadoCreditosTable extends Migration
+class CreateEstadoFormulariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEstadoCreditosTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_creditos', function (Blueprint $table) {
+        Schema::create('estado_formularios', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateEstadoCreditosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_creditos');
+        Schema::dropIfExists('estado_formularios');
     }
 }

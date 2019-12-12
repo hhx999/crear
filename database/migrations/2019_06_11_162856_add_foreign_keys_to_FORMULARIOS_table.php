@@ -19,6 +19,7 @@ class AddForeignKeysToFORMULARIOSTable extends Migration {
 			$table->foreign('emprendimiento_id', 'FK_EmprendimientoFormulario')->references('id')->on('emprendimientos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 			$table->foreign('tecnico_id', 'FK_TecnicoFormulario')->references('id')->on('USUARIOS')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 			$table->foreign('organismoPublico', 'FK_OrganismoFormulario')->references('id')->on('organismo_publicos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('estado', 'FK_EstadoFormulario')->references('id')->on('estado_formularios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 		});
 	}
 
@@ -36,7 +37,7 @@ class AddForeignKeysToFORMULARIOSTable extends Migration {
 			$table->dropForeign('FK_TipoFormulario');
 			$table->dropForeign('FK_EmprendimientoFormulario');
 			$table->dropForeign('FK_TecnicoFormulario');
-			$table->dropForeign('FK_OrganismoFormulario');
+			$table->dropForeign('FK_EstadoFormulario');
 		});
 	}
 
