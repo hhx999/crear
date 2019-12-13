@@ -155,11 +155,11 @@
 						</div>
 						<div class="w3-half">
 	                    	<label>Nombre y apellido</label>
-							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor..." value="{{$dataUsuario->nombreApellido}}" readonly="on">
+							<input class="w3-input" type="text" name="nombreEmprendedor" placeholder="Ingresar el nombre y apellido del emprendedor..." value="{{$datosBorrador->nombreEmprendedor}}" readonly="on">
 						</div>
 						<div class="w3-half">
 	                    	<label>DNI</label>
-							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$dataUsuario->dni}}" readonly="on">
+							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$datosBorrador->dniEmprendedor}}" readonly="on">
 						</div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;height: 60px;">
@@ -185,7 +185,7 @@
 
 						<div class="w3-half">
 	                    	<label>Domicilio real</label>
-							<input class="w3-input datosEmprendedor" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor..." value="{{$dataUsuario->domicilio}}">
+							<input class="w3-input datosEmprendedor" type="text" name="domicilioEmprendedor" placeholder="Ingresar el domicilio del emprendedor..." value="{{$datosBorrador->domicilioEmprendedor}}">
 						</div>
 						<div class="w3-col m12">
 							<br>
@@ -193,11 +193,11 @@
 						</div>
 						<div class="w3-half">
 	                    	<label>Teléfono</label>
-							<input class="w3-input datosEmprendedor" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor..." value="{{$dataUsuario->telefono}}">
+							<input class="w3-input datosEmprendedor" type="text" name="telefonoEmprendedor" placeholder="Ingresar el telefono del emprendedor..." value="{{$datosBorrador->telefonoEmprendedor}}">
 						</div>
 						<div class="w3-half">
 	                    	<label>Email</label>
-							<input class="w3-input datosEmprendedor" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor..." value="{{$dataUsuario->email}}">
+							<input class="w3-input datosEmprendedor" type="text" name="emailEmprendedor" placeholder="Ingresar el email del emprendedor..." value="{{$datosBorrador->emailEmprendedor}}">
 						</div>
 						<script type="text/javascript">
 							var read = "on";
