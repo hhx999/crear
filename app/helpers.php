@@ -16,7 +16,7 @@ class Helpers
     {
         if ($nombre_view == 'ingresarLineaEmprendedor') {
             # imprimimos los inputs para la vista de ingreso de linea emprendedor
-            for ($i=1; $i < 10; $i++) { 
+            for ($i=1; $i <= 10; $i++) { 
                 print_r('<tr>
                                             <td>
                                                 <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx">

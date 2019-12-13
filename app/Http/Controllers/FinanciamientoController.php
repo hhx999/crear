@@ -19,6 +19,7 @@ use App\Borrador;
 use App\Multimedia;
 use App\Documentacion;
 use App\BorradorVenta;
+use App\HistorialEstado;
 
 class FinanciamientoController extends Controller
 {
@@ -103,159 +104,90 @@ class FinanciamientoController extends Controller
     	$idUsuario = $request->session()->get('id_usuario');
 
     	$dataUsuario = Usuario::find($idUsuario);
-    	$datosForm = NULL;
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	$emprendimientos = NULL;
     	$localidades = Localidad::all();
+
+    	$emprendimientos = NULL;
     	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
     	for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
     		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
     	}
 
     	//Obtenemos los datos mediante POST
+	    if ($request->isMethod('post'))
+		{
     	DB::beginTransaction();
-        try {
-	    	if ($request->isMethod('post'))
-			{
-				//id de usuario
-				$idUsuario = $request->session()->get('id_usuario');
-				//el tipo de formulario es 1(linea emprendedor)
-				$idForm = 1;
-				$estadosValidos = config('constantes.estadosIngresoForm');
-				//El estado cuando es nulo es 'enviado'
-				if ($request->estado == NULL) {
-						$request->estado = 'enviado';
-					}
-				$fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
-				$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]);
-				//Los formularios en estado enviado serán los que el administrador podrá ver y corregir
-				//Los formularios en estado borrador serán para ir guardando datos hasta estar seguros de enviar el formulario
-				//Los estados en esta parte son solo guías que ayudarán al usuario
-				if (!$request->idEmprendimiento) {
-							//Si no existe un emprendimiento cargado en la bd creamos uno...
-							$emprendimiento = new Emprendimiento;
-							$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
-				            $emprendimiento->denominacion = $request->denominacion;
-				            $emprendimiento->tipoSociedad = $request->tipoSociedad;
-				            $emprendimiento->cuit = $request->cuitEmprendimiento;
-				            $emprendimiento->domicilio = $request->domicilioEmprendimiento;
-				            $emprendimiento->localidad = $request->localidadEmprendimiento;
-				            $emprendimiento->email = $request->emailEmprendimiento;
-				            $emprendimiento->telefono = $request->telefonoEmprendimiento;
-				            $emprendimiento->save();
-
-				            $trabaja = new Trabaja;
-				            $trabaja->usuario_id = $idUsuario;
-				            $trabaja->emprendimiento_id = $emprendimiento->id;
-				            $trabaja->cargo = $request->cargo;
-				            $trabaja->save();
-
-				            $request->request->add(['emprendimiento_id' => $emprendimiento->id]);
-						} else {
-							//Sino se actualiza el emprendimiento
-							$emprendimiento = Emprendimiento::find($request->idEmprendimiento);
-							$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
-							$emprendimiento->cuit = $request->cuitEmprendimiento;
-							$emprendimiento->domicilio = $request->domicilioEmprendimiento;
-							$emprendimiento->localidad = $request->localidadEmprendimiento;
-							$emprendimiento->email = $request->emailEmprendimiento;
-							$emprendimiento->telefono = $request->telefonoEmprendimiento;
-							$emprendimiento->save();
+	        try {
+					//el tipo de formulario es 1(linea emprendedor)
+					$idForm = FormTipo::where('nombre','Línea Emprendedor')->first()->id;
+					$estadosValidos = config('constantes.estadosIngresoForm');
+					//El estado cuando es nulo es 'enviado'
+					if ($request->estado == NULL) {
+							$request->estado = 'enviado';
 						}
-				if (array_key_exists($request->estado, $estadosValidos)) {
-					//Agregamos los parametros faltantes al request
-					$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm, 'estado' => $estadosValidos[$request->estado]]);
+					$fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
+					$request->merge(['fecInicioEmprendimiento' => $fecInicioEmprendimiento]);
+					//Los formularios en estado enviado serán los que el administrador podrá ver y corregir
+					//Los formularios en estado borrador serán para ir guardando datos hasta estar seguros de enviar el formulario
+					//Los estados en esta parte son solo guías que ayudarán al usuario
+					if (array_key_exists($request->estado, $estadosValidos)) {
+						//Agregamos los parametros faltantes al request
+						$request->request->add(['idUsuario' => $idUsuario, 'form_tipo_id' => $idForm, 'estado' => $estadosValidos[$request->estado]]);
 
-					//Creamos formulario
-					$formulario = Formulario::create($request->all());
-					$lastID = $formulario->id;
+						//Creamos formulario
+						$formulario = Formulario::create($request->all());
+						$lastID = $formulario->id;
 
-					if ($request->hasFile('documentacion_dni_solicitante')) {
-						# Agregando DNI
-						Helpers::subirMultimedia('documentacion_dni_solicitante',$request->file('documentacion_dni_solicitante'),$lastID);
-					}
-					if($request->hasFile('documentacion_cdomicilio_solicitante')) {
-						Helpers::subirMultimedia('documentacion_cdomicilio_solicitante',$request->file('documentacion_cdomicilio_solicitante'),$lastID);
-					}
+						if ($request->hasFile('documentacion_dni_solicitante')) {
+							# Agregando DNI
+							Helpers::subirMultimedia('documentacion_dni_solicitante',$request->file('documentacion_dni_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_cdomicilio_solicitante')) {
+							Helpers::subirMultimedia('documentacion_cdomicilio_solicitante',$request->file('documentacion_cdomicilio_solicitante'),$lastID);
+						}
 
-					if($request->hasFile('documentacion_recibosueldo_solicitante')) {
-						Helpers::subirMultimedia('documentacion_recibosueldo_solicitante',$request->file('documentacion_recibosueldo_solicitante'),$lastID);
-					}
+						if($request->hasFile('documentacion_recibosueldo_solicitante')) {
+							Helpers::subirMultimedia('documentacion_recibosueldo_solicitante',$request->file('documentacion_recibosueldo_solicitante'),$lastID);
+						}
 
-					if($request->hasFile('documentacion_afip_solicitante')) {
-						Helpers::subirMultimedia('documentacion_afip_solicitante',$request->file('documentacion_afip_solicitante'),$lastID);
-					}
+						if($request->hasFile('documentacion_afip_solicitante')) {
+							Helpers::subirMultimedia('documentacion_afip_solicitante',$request->file('documentacion_afip_solicitante'),$lastID);
+						}
 
-					//Helpers::subirMultimedia($request->file('documentacion_dni'),$lastID);
-					//Generamos el formulario para enviarlo a los técnicos
-					if ($request->estado == 'enviado') {
-						$numeroSeguimiento = $dataUsuario->id . $lastID;
-						$addFormNumeroSeguimiento = Formulario::find($lastID);
-						$addFormNumeroSeguimiento->numeroSeguimiento = $numeroSeguimiento;
-						$addFormNumeroSeguimiento->save();
-						//Crear registro para posteriormente validar el formulario
-						$formValido = new FormValido;
-						$formValido->formulario_id = $lastID;
-						$formValido->save();
-						//Actualizamos el usuario
-						$usuario = Usuario::find($idUsuario);
-						$usuario->localidad = $request->localidadEmprendedor;
-						$usuario->domicilio = $request->domicilioEmprendedor;
-						$usuario->email = $request->emailEmprendedor;
-						$usuario->telefono = $request->telefonoEmprendedor;
-						$usuario->actividadPrincipal = $request->actPrincipalEmprendimiento;
-						$usuario->save();
+						//Generamos el formulario para enviarlo a los técnicos
+						if ($request->estado == 'enviado') {
+							$numeroSeguimiento = $dataUsuario->id . $lastID;
+							$addFormNumeroSeguimiento = Formulario::find($lastID);
+							$addFormNumeroSeguimiento->numeroSeguimiento = $numeroSeguimiento;
+							$addFormNumeroSeguimiento->save();
+							//Crear registro para posteriormente validar el formulario
+							$formValido = new FormValido;
+							$formValido->formulario_id = $lastID;
+							$formValido->save();
+							//Actualizamos el usuario
+							$usuario = Usuario::find($idUsuario);
+							$usuario->localidad = $request->localidadEmprendedor;
+							$usuario->domicilio = $request->domicilioEmprendedor;
+							$usuario->email = $request->emailEmprendedor;
+							$usuario->telefono = $request->telefonoEmprendedor;
+							$usuario->actividadPrincipal = $request->actPrincipalEmprendimiento;
+							$usuario->save();
 
-						//Testeando datos de envío
-						//return $request->all();
-						DB::commit();
-						return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
-					}
-				} else {
-					//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
-					return "Estado desconocido por sistema.";
-				} 
+							//Testeando datos de envío
+							//return $request->all();
+							DB::commit();
+							return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
+						}
+					} else {
+						//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
+						return "Estado desconocido por sistema.";
+					} 
+			} catch (\Illuminate\Database\QueryException $e) {
+	                DB::rollback();
+	                dd($e);
 			}
-		} catch (\Illuminate\Database\QueryException $e) {
-                DB::rollback();
-                dd($e);
 		}
-    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos, 'datosForm' => $datosForm]);
-    }
-    function cargarBorradorLineaEmprendedor(Request $request, $borrador_id = null)
-    {
-    	//id de usuario
-		$idUsuario = $request->session()->get('id_usuario');
-		$datosBorrador = Borrador::find($borrador_id) ?? null;
-
-		$dataUsuario = Usuario::find($idUsuario);
-    	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
-    	if ($datosBorrador->cargo) {
-    		switch ($datosBorrador->cargo) {
-    			case '1':
-    				$datosBorrador->cargo = 'Propietario';
-    				break;
-    			case '2':
-    				$datosBorrador->cargo = 'Representante legal';
-    				break;
-    			case '3':
-    				$datosBorrador->cargo = 'Socio de sociedad de hecho';
-    				break;
-    		}
-    	}
-    	$emprendimientos = NULL;
-    	$localidades = Localidad::all();
-    	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
-
-    	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
-    	if ($dataUsuario->emprendimientos) {
-    		for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
-	    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
-	    	}
-    	}
-
-		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos,'gradosInstruccion' => $gradosInstruccion, 'grados' => $grados]);
+    	return view('financiamiento.ingresarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos]);
     }
     function cargarLineaEmprendedor(Request $request, $formulario_id = null)
     {
@@ -335,6 +267,41 @@ class FinanciamientoController extends Controller
 				}
 			//return $request->all();
 			return view('financiamiento.formEnviado', ['numeroSeguimiento' => $formulario->numeroSeguimiento]);
+    }
+    function cargarBorradorLineaEmprendedor(Request $request, $borrador_id = null)
+    {
+    	//id de usuario
+		$idUsuario = $request->session()->get('id_usuario');
+		$datosBorrador = Borrador::find($borrador_id) ?? null;
+
+		$dataUsuario = Usuario::find($idUsuario);
+    	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
+    	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+    	if ($datosBorrador->cargo) {
+    		switch ($datosBorrador->cargo) {
+    			case '1':
+    				$datosBorrador->cargo = 'Propietario';
+    				break;
+    			case '2':
+    				$datosBorrador->cargo = 'Representante legal';
+    				break;
+    			case '3':
+    				$datosBorrador->cargo = 'Socio de sociedad de hecho';
+    				break;
+    		}
+    	}
+    	$emprendimientos = NULL;
+    	$localidades = Localidad::all();
+    	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+
+    	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
+    	if ($dataUsuario->emprendimientos) {
+    		for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
+	    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
+	    	}
+    	}
+
+		return view('financiamiento.borradorLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosBorrador' => $datosBorrador, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimientosUsuario' => $emprendimientos,'gradosInstruccion' => $gradosInstruccion, 'grados' => $grados]);
     }
     function guardarBorrador(Request $request)
     {

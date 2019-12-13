@@ -898,6 +898,10 @@
 											</td>
 										</tr>
 										<tr>
+											<td align="center">Ingresos brutos</td>
+											<td><span style="position: absolute;">$</span><input placeholder="Ingresos brutos..." maxlength="10" name="ingresosBrutosCostos" class="sumable" value="{{$datosBorrador->ingresosBrutosCostos ?? 0}}"></td>
+										</tr>
+										<tr>
 											<td align="center">
 												Seguros
 											</td>

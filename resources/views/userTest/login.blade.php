@@ -55,7 +55,7 @@
 			@if ($msgError)
 				<strong>Whoops!</strong> <span>{{ $msgError }}</span>
 			@endif
-				<form method="post" action="" name="login" >
+				<form method="post" action="{{url('/usuarioLogin')}}" name="login" >
 					<ul>
 						<li>
 							<input type="text" name="dni" placeholder="DNI">
