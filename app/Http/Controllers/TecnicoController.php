@@ -233,6 +233,14 @@ class TecnicoController extends Controller
               $hEstado->save();
 
               $formulario->save();
+
+              //creamos pendiente de creación de credito
+              $pendienteCredito = new PendienteCredito();
+              $pendienteCredito->fecha = = date('m/d/Y h:i:s a', time());
+              $pendienteCredito->confirmado = 0; //pendiente no confirmado
+              $pendienteCredito->formulario_id = $formulario->id;
+              $pendienteCredito->save();
+
             } else {
               $formulario = Formulario::find($data['id']);
               $historialEstado = new HistorialEstado();
@@ -315,6 +323,23 @@ class TecnicoController extends Controller
           }
       }
       return $result;
+    }
+    public function crearCredito(Request $request)
+    {
+      $session = $request->session();
+      $usuario_id = $session->get('id_usuario');
+
+      $credito = new Credito();
+      $credito->usuario_id = $usuario_id;
+      $credito->formulario_id = $request->formulario_id;
+      $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
+      $credito->activo = 1;
+      $credito->estado = 1;
+      $credito->save();
+
+      $pendiente = PendienteCredito::where('id',$request->pendiente_id);
+      $pendiente->delete();
+
     }
      public function eliminarFormulario(Request $request)
      {

@@ -15,7 +15,8 @@ class AddForeignKeyHistorialEstadosTable extends Migration
     {
         Schema::table('historial_estados', function (Blueprint $table) {
             //
-            $table->foreign('formulario_id', 'formulario_ibfk_1')->references('id')->on('FORMULARIOS')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('formulario_id', 'FK_FormularioHistorialEstado')->references('id')->on('FORMULARIOS')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('credito_id', 'FK_CreditoEstadoHistorial')->references('id')->on('creditos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -28,7 +29,8 @@ class AddForeignKeyHistorialEstadosTable extends Migration
     {
         Schema::table('historial_estados', function (Blueprint $table) {
             //
-            $table->dropForeign('formulario_ibfk_1');
+            $table->dropForeign('FK_FormularioHistorialEstado');
+            $table->dropForeign('FK_CreditoEstadoHistorial');
         });
     }
 }

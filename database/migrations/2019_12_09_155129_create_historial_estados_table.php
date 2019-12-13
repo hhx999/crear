@@ -19,6 +19,7 @@ class CreateHistorialEstadosTable extends Migration
             $table->string('estado_anterior')->nullable();
             $table->string('estado_actual')->nullable();
             $table->integer('formulario_id')->nullable()->index('formulario_id');
+            $table->integer('credito_id')->nullable()->index('credito_id');
             $table->timestamps();
         });
     }

@@ -172,9 +172,14 @@ class FinanciamientoController extends Controller
 							$usuario->telefono = $request->telefonoEmprendedor;
 							$usuario->actividadPrincipal = $request->actPrincipalEmprendimiento;
 							$usuario->save();
+							//Agregamos al historial el formulario enviado
+							$historialEstado = new HistorialEstado();
+					        $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
+					        $historialEstado->estado_anterior = $formulario->estado;
+					        $historialEstado->estado_actual = $formulario->estado;
+					        $historialEstado->formulario_id = $lastID;
+					        $historialEstado->save();
 
-							//Testeando datos de envío
-							//return $request->all();
 							DB::commit();
 							return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
 						}
