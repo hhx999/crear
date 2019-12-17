@@ -39,13 +39,5 @@ class EstadoFormularioSeeder extends Seeder
         $estado = new EstadoFormulario();
         $estado->nombre = 'eliminado';
         $estado->save();
-
-        $estado = new EstadoFormulario();
-        $estado->nombre = 'envio de contrato para la firma';
-        $estado->save();
-
-        $estado = new EstadoFormulario();
-        $estado->nombre = 'para orden de pago/transferencia/cheque';
-        $estado->save();
     }
 }

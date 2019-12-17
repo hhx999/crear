@@ -27,6 +27,7 @@ use App\FormTipo;
 use App\CredTipo;
 use App\Localidad;
 use App\Agencia;
+use App\EstadoFormulario;
 use App\EstadoCredito;
 use App\HistorialEstado;
 use App\OrganismoPublico;
@@ -236,7 +237,7 @@ class TecnicoController extends Controller
 
               //creamos pendiente de creación de credito
               $pendienteCredito = new PendienteCredito();
-              $pendienteCredito->fecha = = date('m/d/Y h:i:s a', time());
+              $pendienteCredito->fecha = date('m/d/Y h:i:s a', time());
               $pendienteCredito->confirmado = 0; //pendiente no confirmado
               $pendienteCredito->formulario_id = $formulario->id;
               $pendienteCredito->save();
@@ -326,20 +327,27 @@ class TecnicoController extends Controller
     }
     public function crearCredito(Request $request)
     {
-      $session = $request->session();
-      $usuario_id = $session->get('id_usuario');
+      DB:beginTransaction();
+      try {
+          $session = $request->session();
+          $usuario_id = $session->get('id_usuario');
 
-      $credito = new Credito();
-      $credito->usuario_id = $usuario_id;
-      $credito->formulario_id = $request->formulario_id;
-      $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
-      $credito->activo = 1;
-      $credito->estado = 1;
-      $credito->save();
+          $credito = new Credito();
+          $credito->usuario_id = $usuario_id;
+          $credito->formulario_id = $request->formulario_id;
+          $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
+          $credito->activo = 1;
+          $credito->estado = 1; // se crea con el paso a estado desembolsado 
+          $credito->save();
 
-      $pendiente = PendienteCredito::where('id',$request->pendiente_id);
-      $pendiente->delete();
-
+          $pendiente = PendienteCredito::where('id',$request->pendiente_id);
+          $pendiente->delete();
+          DB::commit();
+      } catch (Exception $e) {
+        DB::rollback();
+        dd($e);
+      }
+      return 1;
     }
      public function eliminarFormulario(Request $request)
      {
@@ -423,6 +431,7 @@ class TecnicoController extends Controller
     {
       $session = $request->session();
       $datosFormulario = Formulario::find($id);
+      $estadosFormularios = EstadoFormulario::all();
       $estadosCreditos = EstadoCredito::all();
       if ($request->isMethod('post')) {
         # code...
@@ -443,23 +452,6 @@ class TecnicoController extends Controller
 
         echo "<div class='w3-col m12'><p>Estado cambiado</p></div>";
       }
-      return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'estadosCreditos' => $estadosCreditos]);
+      return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'estadosCreditos' => $estadosCreditos, 'estadosFormularios' => $estadosFormularios]);
     }
-    /*
-    public function crearPDF($id)
-    {
-      $datosFormulario = Formulario::find($id);
-
-      $html = View::make('vistaImprimir',['id' => $id, 'datosFormulario' => $datosFormulario]);
-        //Pasamos esa vista a PDF
-         
-        //Le indicamos el tipo de hoja y la codificación de caracteres
-        $mipdf=new HTML2PDF('P','A4','es','true','UTF-8');
-     
-        //Escribimos el contenido en el PDF
-        $mipdf->writeHTML($html);
-     
-        //Generamos el PDF
-        $mipdf->Output('Form_LineaEmprendedor'.$datosFormulario->numeroSeguimiento.'.pdf');
-    }*/
  }

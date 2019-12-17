@@ -90,12 +90,12 @@ button:hover {
 
 /* Make circles that indicate the steps of the form: */
 .step {
-  height: 15px;
-  width: 15px;
+  height: 30px;
+  width: 10%;
   margin: 0 2px;
   background-color: #bbbbbb;
   border: none;  
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   display: inline-block;
   opacity: 0.5;
 }

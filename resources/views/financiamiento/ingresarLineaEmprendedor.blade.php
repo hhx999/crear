@@ -579,7 +579,7 @@
 						</div>
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
-								<label>Fecha de inicio(dd-mm-AAAA)</label>
+								<label>Fecha de inicio(según inscripción en AFIP)</label>
 	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento">
 							</div>
 						</div>

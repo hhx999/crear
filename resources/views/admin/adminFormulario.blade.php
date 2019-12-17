@@ -300,15 +300,15 @@ use App\Helpers;
     </thead>
     <tr>
       <th>Denominación del emprendimiento</th>
-      <td><?= $formularioEnviado->emprendimiento->denominacion; ?></td>
+      <td><?= $formularioEnviado->denominacion; ?></td>
     </tr>
     <tr>
       <th>Estado</th>
-      <td><?= $formularioEnviado->emprendimiento->estadoEmprendimiento; ?></td>
+      <td><?= $formularioEnviado->estadoEmprendimiento; ?></td>
     </tr>
     <tr>
       <th>Actividad principal</th>
-      <td><?= $formularioEnviado->actividadPrincipal->nombre; ?></td>
+      <td><?= $formularioEnviado->actPrincipalEmprendimiento ?></td>
     </tr>
     @isset($formularioEnviado->fecInicioEmprendimiento)
     <tr>
