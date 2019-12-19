@@ -184,6 +184,7 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
         <div class="w3-col w3-container m8 l9">
              <table class="w3-table w3-bordered">
                 <tr class="w3-light-green">
+                  <th style="color: white;">Operaciones</th>
                   <th style="color:white;">NOMBRE</th>
                   <th style="color:white;">DNI</th>
                   <th style="color:white;">EMAIL</th>
@@ -196,7 +197,8 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
              $verificado = 'checked';
            } 
             echo '<tr>
-                  <td class="nombreUsuario">'.$usuarios[$i]->nombre.'</td>
+                  <td><a href="verUsuario/'.$usuarios[$i]->id.'">Ver info usuario</a></td>
+                  <td class="nombreUsuario">'.$usuarios[$i]->nombreApellido.'</td>
                   <td>'.$usuarios[$i]->dni.'</td>
                   <td>'.$usuarios[$i]->email.'</td>
                   <td align="center">

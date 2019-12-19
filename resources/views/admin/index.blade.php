@@ -115,7 +115,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
         <div class="w3-col m12 l12" style="margin-bottom: 20px;">
           <a href="{{ url('/logout') }}" class="w3-btn w3-red">Cerrar sesión(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
           <a class="w3-btn w3-green" href="{{ url('/crearLineaCredito') }}">Crear linea de crédito</a>
-          <a class="w3-btn w3-light-green" href="{{ url('/registro') }}" style="color: #fff !important;">Registrar usuario</a>
+          <a class="w3-btn w3-light-green" href="{{ url('/verPendientesCreditos') }}" style="color: #fff !important;">Ver pendientes</a>
           <a class="w3-btn w3-blue-gray" href="{{ url('/adminUsuarios') }}" style="color: #fff !important;">Ver usuarios</a>
         </div>
       </fieldset>
@@ -135,7 +135,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
             <div class="w3-container">
               <ul>
                 <li style="display: table;">
-                  <span style="width: 15px;height: 15px;display: inline-block;" class="w3-red"></span> Eliminado
+                  <span style="width: 15px;height: 15px;display: inline-block;" class="w3-red"></span> Rechazado
                 </li>
                 <li style="display: table;">
                   <span style="width: 15px;height: 15px;display: inline-block;border: 1px solid black;" class="w3-white"></span> Enviado
@@ -164,7 +164,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Aprobados</div>
               </a>
               <a href="javascript:void(0)" id="eliminados" class="tabLinks">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Eliminados</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Rechazados</div>
               </a>
               <a href="javascript:void(0)" id="verTodos" class="tabLinks" style="text-decoration: none;">
                 <div class="w3-rest tablink w3-bottombar w3-hover-light-grey w3-padding">VER TODOS</div>

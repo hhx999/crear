@@ -489,13 +489,19 @@ use App\Helpers;
       <tr>
           <td><?php 
           if ($formularioEnviado->puntoVentaLocal) {
-            echo "Local<br>";
-          } elseif ($formularioEnviado->puntoVentaProvincial) {
-            echo "Provincial<br>";
-          } elseif ($formularioEnviado->puntoVentaNacional) {
-            echo "Nacional<br>";
+            echo "-Local<br>";
           } else {
-            echo "No hay registros";
+            echo "";
+          }
+          if ($formularioEnviado->puntoVentaProvincial) {
+            echo "-Provincial<br>";
+          } else {
+            echo "";
+          }
+          if ($formularioEnviado->puntoVentaNacional) {
+            echo "-Nacional<br>";
+          } else {
+            echo "";
           }?></td>
       </tr>
     </table>

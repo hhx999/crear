@@ -52,6 +52,9 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::get('/infoCreditos/{file}','InfoCreditosController@getInfo');
 	Route::get('/cambiarEstado/{id}','TecnicoController@cambiarEstado');
 	Route::post('/cambiarEstado/{id}','TecnicoController@cambiarEstado');
+
+	Route::get('/verPendientesCreditos','TecnicoController@cargarPendientesCreditos');
+	Route::post('/crearCredito','TecnicoController@crearCredito');
 });
 
 //USUARIO

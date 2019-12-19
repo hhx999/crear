@@ -152,7 +152,8 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
         <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 30px;"></div>
   <div style="border-top: 2px solid #0174b6;display: inline-block;width: 25px;"></div>
   <div style="border-top: 2px solid #4CAF50;display: inline-block;width: 92%;"></div>
-  <h3>Historial</h3>
+  <hr>
+  <h3>Historial etapa formulario</h3>
           @foreach ($datosFormulario->historialEstado as $historial)
             @if($historial->credito_id == NULL)
               <p>El estado cambió el {{$historial->fecha_cambio}} de
@@ -169,6 +170,7 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
                 @endforeach
               </p>
             @else
+            <hr>
               <p>El estado cambió el {{$historial->fecha_cambio}} de
                 @foreach($estadosCreditos as $estado)
                   @if($estado->id == $historial->estado_anterior)
@@ -184,12 +186,13 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
               </p>
             @endif
           @endforeach
+    @if($datosCredito != NULL)
     <form action="" method="post" name="crearLineaCreditos" enctype="multipart/form-data">
-      <label>Estado del formulario:</label>
-      <input type="hidden" name="formulario_id" value="{{$datosFormulario->id}}">
+      <label>Estado del Crédito:</label>
+      <input type="hidden" name="credito_id" value="{{$datosCredito->id}}">
       <select class="w3-select" name="estado_id">
         @foreach($estadosCreditos as $estado)
-        	@if($datosFormulario->estado == $estado->id)
+        	@if($datosCredito->estado == $estado->id)
         		<option value="{{$estado->id}}" selected>{{$estado->nombre}}</option>
         	@else
         		<option value="{{$estado->id}}">{{$estado->nombre}}</option>
@@ -198,6 +201,9 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
       </select>
     	<button type="submit" class="w3-button w3-green">Enviar</button>
     </form>
+    @else
+    <p>No existen acciones.</p>
+    @endif
   </div>
         <!-- TABS DE FORMULARIOS SEGÚN ESTADOS -->
     <div class="w3-col m1 w3-center"><p></p></div>

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\F_CuestionarioLinea;
 use App\Formulario;
 use App\FormTipo;
-use App\Helpers;
 use App\Usuario;
 use App\FormValido;
 use App\ActividadesPrincipales;
@@ -20,6 +19,8 @@ use App\Multimedia;
 use App\Documentacion;
 use App\BorradorVenta;
 use App\HistorialEstado;
+
+use App\Helpers;
 
 class FinanciamientoController extends Controller
 {
@@ -199,10 +200,16 @@ class FinanciamientoController extends Controller
     	//id de usuario
 		$idUsuario = $request->session()->get('id_usuario');
 		$datosFormulario = Formulario::find($formulario_id) ?? null;
-
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+		
+		$emprendimientos = NULL;
+		if ($dataUsuario->emprendimientos) {
+		    		for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
+			    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
+			    	}
+		}
     	if ($datosFormulario->emprendimiento_id) {
     		$emprendimiento = Emprendimiento::find($datosFormulario->emprendimiento_id);
     		$cargoEmprendimiento = $emprendimiento->trabajaEn->cargo;
@@ -220,7 +227,7 @@ class FinanciamientoController extends Controller
     	}
     	$localidades = Localidad::all();
 
-		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades, 'emprendimiento' => $emprendimiento,'grados' => $grados,'cargoEmprendimiento' => $cargoEmprendimiento]);
+		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades,'grados' => $grados, 'emprendimientosUsuario' => $emprendimientos]);
     }
     function editarLineaEmprendedor(Request $request)
     {

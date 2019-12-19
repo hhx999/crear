@@ -12,11 +12,11 @@ class EstadoCreditosSeeder extends Seeder
      */
     public function run()
     {
-        $estado = new EstadoFormulario();
+        $estado = new EstadoCredito();
         $estado->nombre = 'envio de contrato para la firma';
         $estado->save();
 
-        $estado = new EstadoFormulario();
+        $estado = new EstadoCredito();
         $estado->nombre = 'para orden de pago/transferencia/cheque';
         $estado->save();
         

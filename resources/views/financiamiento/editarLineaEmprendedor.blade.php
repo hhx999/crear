@@ -280,7 +280,7 @@
 						</div>
 						<div class="w3-half">
 	                    	<label>DNI</label>
-							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$datosFormulario>dniEmprendedor}}" readonly="on">
+							<input class="w3-input" type="text" name="dniEmprendedor" placeholder="Ingresar el dni del emprendedor..." value="{{$datosFormulario->dniEmprendedor}}" readonly="on">
 						</div>
 						<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;height: 60px;">
@@ -407,8 +407,8 @@
 	                <!--
 															DATOS EMPRENDIMIENTO
 	
-	                -->
-	                <h2>DATOS GENERALES</h2>
+	                --> 
+	                 <h2>DATOS GENERALES</h2>
 	                <section>
 		                <div class="w3-col l12">
 		                    	<div class="w3-panel w3-bottombar w3-border-blue w3-border" style="background-color: #2184be;">
@@ -421,22 +421,25 @@
 						</div>
 
 						<div class="w3-col m12" style="border: 2px white solid;">
-						@if($emprendimiento)
+						@if($emprendimientosUsuario)
 							<div class="w3-half">
 								<select class="w3-select" id="idEmprendimiento" name="emprendimiento_id">
+									<option selected disabled value="">Seleccioná tú emprendimiento...</option>
+									@foreach($emprendimientosUsuario as $emprendimiento)
 										<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
+									@endforeach
 								</select>
 							</div>
 							@endif
 							<div class="w3-half">
-								<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento" value="{{$emprendimiento->estadoEmprendimiento}}">
+								<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
 									<?php
 									$estadosEmprendimiento = ['nuevo','en funcionamiento'];
-									if (!isset($emprendimiento->estadoEmprendimiento)) {
+									if (!isset($datosFormulario->estadoEmprendimiento)) {
 										print '<option value="" disabled selected>Elegí el estado del emprendimiento...</option>';
 									}
 									foreach ($estadosEmprendimiento as $estado) {
-										if ($estado == $emprendimiento->estadoEmprendimiento) {
+										if ($estado == $datosFormulario->estadoEmprendimiento) {
 											$selected = 'selected';
 										} else {
 											$selected = '';
@@ -450,7 +453,7 @@
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
 								<label>Denominación de la Sociedad</label>
-								<input class="w3-input w3-border w3-round-large" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento..." value="{{$emprendimiento->denominacion ?? ''}}">
+								<input class="w3-input w3-border w3-round-large" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento..." value="{{$datosFormulario->denominacion ?? ''}}">
 							</div>
 							<div class="w3-half">
 							<div style="margin-right: 10px;margin-left: 10px;">
@@ -460,7 +463,7 @@
 									    <?php
 									    $tiposSociedad = ['Sociedad Anónima (S.A.)','Sociedad de Responsabilidad Limitada (S.R.L.)','Sociedad por Acciones Simplificada (S.A.S.)'];
 
-									    App\Helpers::crearOptionLE($tiposSociedad,$emprendimiento->tipoSociedad);
+									    App\Helpers::crearOptionLE($tiposSociedad,$datosFormulario->tipoSociedad);
 										 ?>
 									 </select>
 								</div>
@@ -470,7 +473,7 @@
 							<div style="margin-right: 10px;margin-left: 10px;height: 60px;" class="datosEmprendimiento">
 								<label>Actividad principal</label>
 								<select id="actPrincipalEmprendimiento" class="w3-select" name="actPrincipalEmprendimiento">
-									@if(!empty($datosFormulario->actPrincipalEmprendimiento))
+									@if(!empty($dataUsuario->get_actividadPrincipal))
 										@foreach($actPrincipales as $actividad)
 											@if($actividad->id == $dataUsuario->get_actividadPrincipal->id)
 											<option selected value="{{$actividad->id}}">{{$actividad->nombre}}</option>
@@ -490,7 +493,7 @@
 						<div class="enfuncionamientoEmprendimiento">
 							<div class="w3-half">
 								<label>Fecha de inicio(dd-mm-AAAA)</label>
-	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento" value="{{$datosFormulario->fecInicioEmprendimiento}}">
+	      						<input class="w3-input datosEmprendimiento" placeholder="dd-mm-AAAA" name="fecInicioEmprendimiento" id="inicio_emprendimiento" value="{{App\Helpers::cambioFormatoFecha($datosFormulario->fecInicioEmprendimiento)}}">
 							</div>
 						</div>
 						<script type="text/javascript">
@@ -550,7 +553,7 @@
 						</div>
 						<div class="w3-half">
 							<label>Número de CUIL o CUIT</label>
-							<input class="w3-input datosEmprendimiento" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento..." value="{{$emprendimiento->cuit}}">
+							<input class="w3-input datosEmprendimiento" type="text" name="cuitEmprendimiento" placeholder="Ingrese el numero de cuit o cuil vinculado al emprendimiento..." value="{{$datosFormulario->cuitEmprendimiento}}">
 						</div>
 						<div class="nuevoEmprendimiento">
 							<div class="w3-half">
@@ -558,7 +561,7 @@
 								    <select class="w3-select" id="cargoEmprendimiento" name="cargo">
 								    	<?php
 									    $cargos = ['Propietario','Representante legal','Socio de sociedad de hecho'];
-									    App\Helpers::crearOptionLE($cargos,$cargoEmprendimiento);
+									    App\Helpers::crearOptionLE($cargos,$datosFormulario->cargo);
 										 ?>
 									 </select>
 								</div>
@@ -570,13 +573,13 @@
 							<div class="w3-half">
 		                    	<div style="margin-right: 10px;margin-left: 10px;">
 								    <label>E-mail</label>
-								    <input class="w3-input w3-border" type="text" name="emailEmprendimiento" placeholder="Ingrese el email vinculado al emprendimiento..." value="{{$emprendimiento->email}}">
+								    <input class="w3-input w3-border" type="text" name="emailEmprendimiento" placeholder="Ingrese el email vinculado al emprendimiento..." value="{{$datosFormulario->emailEmprendimiento}}">
 								</div>
 							</div>
 							<div class="w3-half">
 								<div style="margin-right: 10px;margin-left: 10px;">
 								    <label>Teléfono</label>
-								    <input class="w3-input w3-border" type="text" name="telefonoEmprendimiento" placeholder="Ingrese el telefono de contacto con el emprendimiento..." value="{{$emprendimiento->telefono}}">
+								    <input class="w3-input w3-border" type="text" name="telefonoEmprendimiento" placeholder="Ingrese el telefono de contacto con el emprendimiento..." value="{{$datosFormulario->telefonoEmprendimiento}}">
 								</div>
 							</div>
 						</div>

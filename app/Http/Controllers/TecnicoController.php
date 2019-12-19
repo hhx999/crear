@@ -31,6 +31,8 @@ use App\EstadoFormulario;
 use App\EstadoCredito;
 use App\HistorialEstado;
 use App\OrganismoPublico;
+use App\PendienteCredito;
+use App\Credito;
 
 use App\Helpers;
 
@@ -207,56 +209,8 @@ class TecnicoController extends Controller
           try {
             $formV = 1;
             $idValidacion = $data['idValidacion'];
+            $formulario_id = $data['id'];
             unset($data['idValidacion']);
-            foreach ($data as $hoja => $valor) {
-              if ($hoja == 'observaciones') {
-                    foreach ($valor as $key) {
-                      if ($key != NULL) {
-                        $formV = 0;
-                      }
-                    }
-              }
-            }
-
-            if ($formV == 1) {
-              $formulario = Formulario::find($data['id']);
-              // Si el formulario no tiene observaciones está completo
-              $historialEstado = new HistorialEstado();
-              $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
-              $historialEstado->estado_anterior = $formulario->estado;
-              $historialEstado->formulario_id = $formulario->id;
-              $historialEstado->save();
-
-              $formulario->estado = $estados['completo'];
-
-              $hEstado = HistorialEstado::find($historialEstado->id);
-              $hEstado->estado_actual = $estados['completo'];
-              $hEstado->save();
-
-              $formulario->save();
-
-              //creamos pendiente de creación de credito
-              $pendienteCredito = new PendienteCredito();
-              $pendienteCredito->fecha = date('m/d/Y h:i:s a', time());
-              $pendienteCredito->confirmado = 0; //pendiente no confirmado
-              $pendienteCredito->formulario_id = $formulario->id;
-              $pendienteCredito->save();
-
-            } else {
-              $formulario = Formulario::find($data['id']);
-              $historialEstado = new HistorialEstado();
-              $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
-              $historialEstado->estado_anterior = $formulario->estado;
-              $historialEstado->formulario_id = $formulario->id;
-              $historialEstado->save();
-
-              $formulario->estado = $estados['observacion']; //formulario en observación
-              $hEstado = HistorialEstado::find($historialEstado->id);
-              $hEstado->estado_actual = $estados['observacion'];
-              $hEstado->save();
-
-              $formulario->save();
-            }
 
             $validacion = FormValido::find($idValidacion);
             $validacion->portada = $data['portada'];
@@ -270,53 +224,43 @@ class TecnicoController extends Controller
             $validacion->formulario_id = $data['id'];
             $validacion->save();
 
-            $objValid = FormValido::find($idValidacion);
-            $observaciones = $objValid->observaciones()->get();
-            //creamos un array de observaciones para poder operar con ellas
-            for ($i=0; $i < count($observaciones); $i++) {
-              $arrayObs[$i][$observaciones[$i]->hoja] = $observaciones[$i]->observacion;
-              $arrayObs[$i]['id'] = $observaciones[$i]->id;
-            }
-            // si no existen observaciones en la bd agregamos una nueva
-            if ($observaciones->isEmpty() && isset($data['observaciones'])) {
+            if (isset($data['observaciones'])) {
               foreach ($data['observaciones'] as $hoja => $texto) {
-                  $observacion = new Observacion;
-                  $observacion->hoja = $hoja;
-                  $observacion->observacion = $texto;
-                  $observacion->form_valido_id = $idValidacion;
-                  $observacion->save();
-                }
-            } elseif (isset($data['observaciones'])) {
-              //si existen en la base de datos actualizamos las que esten en la bd
-                $vacio = false;
-                foreach ($data['observaciones'] as $hoja => $texto) {
-                  for ($i=0; $i < count($arrayObs); $i++) {
-                      if (array_key_exists($hoja, $arrayObs[$i]))
-                      {
-                        $observacion = Observacion::find($arrayObs[$i]['id']);
-                        if (empty($texto)) {
-                          $vacio = true;
-                        }
-                          if ($vacio == false) {
-                            $observacion->hoja = $hoja;
-                            $observacion->observacion = $texto;
-                            $observacion->form_valido_id = $idValidacion;
-                            $observacion->save();
-                          } 
-                        $vacio = false;
-                        unset($data['observaciones'][$hoja]);
-                      }
-                    }
+                  if ($texto != NULL) {
+                    # code...
+                    $observacion = new Observacion;
+                    $observacion->hoja = $hoja;
+                    $observacion->observacion = $texto;
+                    $observacion->form_valido_id = $idValidacion;
+                    $observacion->save();
                   }
-                //y agregamos las que no esten en la bd
-                foreach ($data['observaciones'] as $hoja => $texto) {
-                  $observacion = new Observacion;
-                  $observacion->hoja = $hoja;
-                  $observacion->observacion = $texto;
-                  $observacion->form_valido_id = $idValidacion;
-                  $observacion->save();
                 }
+            }
+
+            unset($data['observaciones']);
+            unset($data['id']);
+
+            foreach ($data as $hojaValida => $valor) {
+              var_dump($hojaValida);
+              if ($valor == 0) {
+                $formV = 0;
               }
+            }
+
+            if ($formV == 0) {
+              $formulario = Formulario::where('id',$formulario_id)->first();
+              $formulario->estado = 3;
+              $formulario->save();
+            } else {
+              $formulario = Formulario::where('id',$formulario_id)->first();
+              $formulario->estado = 5;
+              $formulario->save();
+              $pendienteCredito = new PendienteCredito();
+              $pendienteCredito->fecha = date('m/d/Y h:i:s a', time());
+              $pendienteCredito->confirmado = 0;
+              $pendienteCredito->formulario_id = $formulario_id;
+              $pendienteCredito->save();
+            }
 
           } catch (Exception $e) {
             $result = 0;
@@ -325,29 +269,39 @@ class TecnicoController extends Controller
       }
       return $result;
     }
+    public function cargarPendientesCreditos(Request $request) {
+      $session = $request->session();
+      $pendientesCreditos = PendienteCredito::all();
+      return view('admin.adminPendienteCreditos', ['nombreUsuario' => $session->get('nombreUsuario'), 'pendientesCreditos' => $pendientesCreditos]);
+    }
     public function crearCredito(Request $request)
     {
-      DB:beginTransaction();
-      try {
-          $session = $request->session();
-          $usuario_id = $session->get('id_usuario');
+      for ($i=0; $i < count($request->pendiente_id); $i++) {
+        if ($request->confirmado[$i] != 0) {
+           #si están confirmados creamos los creditos
+              try {
+                $session = $request->session();
+                $usuario_id = $session->get('id_usuario');
 
-          $credito = new Credito();
-          $credito->usuario_id = $usuario_id;
-          $credito->formulario_id = $request->formulario_id;
-          $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
-          $credito->activo = 1;
-          $credito->estado = 1; // se crea con el paso a estado desembolsado 
-          $credito->save();
+                $credito = new Credito();
+                //$credito->usuario_id = $usuario_id;
+                $credito->formulario_id = $request->formulario_id[$i];
+                $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
+                $credito->activo = 1;
+                $credito->estado = 1; // se crea con el paso a estado desembolsado 
+                $credito->save();
 
-          $pendiente = PendienteCredito::where('id',$request->pendiente_id);
-          $pendiente->delete();
-          DB::commit();
-      } catch (Exception $e) {
-        DB::rollback();
-        dd($e);
+                $pendiente = PendienteCredito::where('id',$request->pendiente_id[$i]);
+                $pendiente->delete();
+                DB::commit();
+            } catch (Exception $e) {
+              DB::rollback();
+              dd($e);
+            }
+
+         } 
       }
-      return 1;
+      return redirect('/verPendientesCreditos');
     }
      public function eliminarFormulario(Request $request)
      {
@@ -431,20 +385,23 @@ class TecnicoController extends Controller
     {
       $session = $request->session();
       $datosFormulario = Formulario::find($id);
+      $datosCredito = Credito::where('formulario_id',$id)->first();
       $estadosFormularios = EstadoFormulario::all();
       $estadosCreditos = EstadoCredito::all();
+      
       if ($request->isMethod('post')) {
         # code...
-        $formulario = Formulario::find($request->formulario_id);
+        $credito = Credito::find($request->credito_id);
 
         $historialEstado = new HistorialEstado();
         $historialEstado->fecha_cambio = date('m/d/Y h:i:s a', time());
-        $historialEstado->estado_anterior = $formulario->estado;
-        $historialEstado->formulario_id = $formulario->id;
+        $historialEstado->estado_anterior = $datosCredito->estado;
+        $historialEstado->formulario_id = $id;
+        $historialEstado->credito_id = $datosCredito->id;
         $historialEstado->save();
 
-        $formulario->estado = $request->estado_id;
-        $formulario->save();
+        $credito->estado = $request->estado_id;
+        $credito->save();
 
         $hEstado = HistorialEstado::find($historialEstado->id);
         $hEstado->estado_actual = $request->estado_id;
@@ -452,6 +409,6 @@ class TecnicoController extends Controller
 
         echo "<div class='w3-col m12'><p>Estado cambiado</p></div>";
       }
-      return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'estadosCreditos' => $estadosCreditos, 'estadosFormularios' => $estadosFormularios]);
+      return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'datosCredito' => $datosCredito, 'estadosCreditos' => $estadosCreditos, 'estadosFormularios' => $estadosFormularios]);
     }
  }
