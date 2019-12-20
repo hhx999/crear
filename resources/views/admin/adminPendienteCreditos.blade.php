@@ -177,7 +177,10 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
                           <input type="text" name="formulario_id[]" value="{{$pendiente->formulario_id}}">
                       </td>
                       <td>
-                          <input type="text" name="confirmado[]" value="{{$pendiente->confirmado}}">
+                          <select name="confirmado[]">
+                            <option value="{{$pendiente->confirmado}}">No</option>
+                            <option value="1">Si</option>
+                          </select>
                       </td>
                     @endforeach
                   @else

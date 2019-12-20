@@ -33,6 +33,7 @@ use App\HistorialEstado;
 use App\OrganismoPublico;
 use App\PendienteCredito;
 use App\Credito;
+use App\EliminarMotivo;
 
 use App\Helpers;
 
@@ -315,11 +316,20 @@ class TecnicoController extends Controller
         } else {
 
             $data = $request->all();
-            $id = $data['id'];
-            $formulario = Formulario::find($id);
-            $formulario->estado = $estados['eliminado'];
-            $formulario->save();
-            $result = 1;
+            if ($data['motivoEliminar']) {
+              # Si hay un motivo elimina el formulario...
+              $id = $data['id'];
+              $formulario = Formulario::find($id);
+              $formulario->estado = $estados['eliminado'];
+              $formulario->save();
+              $result = 1;
+
+              $motivo = new EliminarMotivo();
+              $motivo->descripcion = $data['motivoEliminar'];
+              $motivo->fecha =  date('m/d/Y h:i:s a', time());
+              $motivo->formulario_id = $id;
+              $motivo->save();
+            }
         }
         return $result;
      }

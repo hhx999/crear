@@ -5,6 +5,21 @@
 	@section('content')
 	<?php use app\Helpers; ?>
 	<style type="text/css">
+	#wizard {
+			background-color: #435f95;
+			border-radius: 1%;
+			padding: 30px;
+		}
+input, textarea, select {
+			display: block;
+			border: 0px !important;
+			background-color: #384e77;
+			color: white;
+			border-radius: 10px 10px 10px 10px;
+		}
+		.w3-border {
+			border: 0px !important;
+		}
 		.w3-half {
 			padding: 10px !important;
 		}

@@ -7,6 +7,11 @@
 		.w3-half {
 			padding: 10px !important;
 		}
+		#wizard {
+			background-color: #435f95;
+			border-radius: 1%;
+			padding: 30px;
+		}
 		.wizard .content {
 		    min-height: 100px;
 		}
@@ -19,6 +24,16 @@
 		label.error 
 		{
 			color: #ff9183 !important;
+		}
+		input, textarea, select {
+			display: block;
+			border: 0px !important;
+			background-color: #384e77;
+			color: white;
+			border-radius: 10px 10px 10px 10px;
+		}
+		.w3-border {
+			border: 0px !important;
 		}
 		/* The container */
 		.container {

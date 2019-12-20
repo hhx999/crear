@@ -245,7 +245,10 @@ box-shadow: 0px 0px 5px 5px #4caf50;
                     <div class="modal-header">\
                       <span class="close">&times;</span>\
                       <h2>Desea eliminar el formulario con ID '+id+' ?</h2>\
+                      <form action="" name="motivo">\
+                      <input type="text" id="motivoEliminar" name="motivoEliminar">\
                       <p id="idEliminar" style="display:none;">'+id+'</p>\
+                      </form>\
                     </div>\
                     <div class="modal-footer">\
                         <button id="siModal" class="w3-button w3-teal" type="button">SI</button>\
@@ -265,7 +268,9 @@ box-shadow: 0px 0px 5px 5px #4caf50;
   });
   $(document).on('click','#siModal',function() {
     var datos = {};
+    console.log(document.getElementById("motivoEliminar").value);
         datos['id'] = $('#idEliminar').text();
+        datos['motivoEliminar'] = document.getElementById("motivoEliminar").value;
     var url = window.location.pathname.split('/');
     url = '/'+url[1]+'/'+url[2]+'/';
     $.ajax({
@@ -276,8 +281,12 @@ box-shadow: 0px 0px 5px 5px #4caf50;
     }).done(function (data) {
         $(".modal").css('display','none');
         $(".modal").remove();
-        alert('Formulario ELIMINADO correctamente!');
-        location.reload();
+        if (data == 1) {
+          alert('Formulario ELIMINADO correctamente!');
+        } else {
+          alert('No existe un motivo para eliminar el formulario!');
+        }
+        //location.reload();
     }).fail(function () {
         alert('Ocurrio un error. Por favor, pongase en contacto con el administrador.');
         console.log('Error');
