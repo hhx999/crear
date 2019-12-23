@@ -68,9 +68,15 @@
   	<div class="w3-col m1 w3-center"><p></p></div>
     	<div class="w3-col m10 w3-white w3-center contenedor">
           @section('menu')
+          @if(date("n") == '12')
+          <a href="{{ url('/usuarioIndex') }}">
+            <img src="{{ asset('img/logos/CREARlogo-navidad.png') }}" class="logoCrear">
+          </a>
+          @else
           <a href="{{ url('/usuarioIndex') }}">
           	<img src="{{ asset('img/logos/CREARlogo-blanco.png') }}" class="logoCrear">
           </a>
+          @endif
           @show
           @if(null !== Session::get('usuario'))
           <div class="w3-col m12" style="margin-top: 20px;margin-bottom: 20px;">
