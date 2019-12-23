@@ -32,4 +32,8 @@ class Usuario extends Model {
 	{
 		return $this->hasMany('App\Trabaja');
 	}
+	public function creditos()
+	{
+		return $this->hasMany('App\Credito');
+	}
 }

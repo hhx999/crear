@@ -11,6 +11,9 @@
 	<!-- Primera fila de cuadros de opciones -->
 	<div class="w3-col m12">
 		<p><b>Financiamiento</b></p>
+		@if (\Session::has('error'))
+	        <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('error') !!}</p>
+	    @endif
 	</div>
 	 	<div class="w3-row itemsMenuUsuario">
 		  <div class="w3-container w3-quarter">

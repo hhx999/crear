@@ -28,7 +28,20 @@ class FinanciamientoController extends Controller
     function informacionCreditos(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
-    	$usuario = Usuario::find($idUsuario); 
+    	$usuario = Usuario::find($idUsuario);
+    	/*Verificación de créditos*/
+    	$creditoActivo = 0;
+    	foreach ($usuario->creditos as $credito) {
+    		if ($credito->activo == 1) {
+    			# comprobamos si hay algun credito activo...
+    			$creditoActivo = $credito->activo;
+    		}
+    	}
+    	#si existe credito activo no existe la posibilidad de sacar credito
+    	if ($creditoActivo != 0) {
+    		return redirect('financiamiento')->with(['error' => 'Usted ya tiene un crédito activo.']);
+    	}
+    	/*fin verificación*/
 
     	$situacionImpositiva = config('constantes.situacionImpositiva');
 
@@ -105,6 +118,21 @@ class FinanciamientoController extends Controller
     	$idUsuario = $request->session()->get('id_usuario');
 
     	$dataUsuario = Usuario::find($idUsuario);
+
+    	/*Verificación de créditos*/
+    	$creditoActivo = 0;
+    	foreach ($usuario->creditos as $credito) {
+    		if ($credito->activo == 1) {
+    			# comprobamos si hay algun credito activo...
+    			$creditoActivo = $credito->activo;
+    		}
+    	}
+    	#si existe credito activo no existe la posibilidad de sacar credito
+    	if ($creditoActivo != 0) {
+    		return redirect('financiamiento')->with(['error' => 'Usted ya tiene un crédito activo.']);
+    	}
+    	/*fin verificación*/
+    	
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$localidades = Localidad::all();
 
