@@ -215,10 +215,6 @@ class Helpers
                 $usuario = Usuario::find($idUsuario);
                 $formTipo = FormTipo::find($formularios[$i]->form_tipo_id);
                 if ($rol == 'admin' && $filtro == 'verTodos') {
-                    if ($formularios[$i]->estado == $estados['eliminado']) {
-                        $idForm = $formularios[$i]->id;
-                        echo "<tr class='w3-red'>";
-                     }
                     if ($formularios[$i]->estado == $estados['enviado']) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr>";
@@ -249,6 +245,24 @@ class Helpers
                             <a href='cambiarEstado/".$formularios[$i]->id."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Cambiar estado</a></div>
                             </td>";
                         echo "</tr>";
+                        if ($formularios[$i]->estado == $estados['eliminado']) {
+                            $idForm = $formularios[$i]->id;
+                            echo "<tr class='w3-red'>";
+                            echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
+                            echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                            echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                            echo "<td>".$formularios[$i]->updated_at."</td>";
+                            echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                            echo "<td>".$formularios[$i]->montoSolicitado."</td>";
+                            echo "<td>".$formTipo->nombre."</td>";
+                            echo "<td>";
+                            foreach ($formularios[$i]->motivos as $motivo) {
+                                # Motivos de rechazo
+                                echo "-".$motivo->descripcion."<br>";
+                            }
+                            echo "</td>";
+                            echo "</tr>";
+                         }
                 }
                 else if ($rol == 'admin' && $filtro == 'tramite') {
                     if ($formularios[$i]->estado == $estados['enviado']) {
@@ -302,7 +316,12 @@ class Helpers
                         echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
-                        echo "<td></td>";
+                        echo "<td>";
+                            foreach ($formularios[$i]->motivos as $motivo) {
+                                # Motivos de rechazo
+                                echo "-".$motivo->descripcion."<br>";
+                            }
+                        echo "</td>";
                         echo "</tr>";
                      }
                 }

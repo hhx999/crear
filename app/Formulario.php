@@ -238,4 +238,8 @@ class Formulario extends Model {
     {
         return $this->hasMany('App\HistorialEstado');
     }
+    public function motivos()
+    {
+        return $this->hasMany('App\EliminarMotivo');
+    }
 }

@@ -10,35 +10,6 @@ use App\Helpers;
   <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
   <style type="text/css">
     /* The Modal (background) */
-.modal {
-  display: block; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
 /* Add Animation */
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 
@@ -66,19 +37,6 @@ The Close Button */
   cursor: pointer;
 }
 
-.modal-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
 @keyframes blink {  
   0% { color: red; }
   50% { color: black; }
@@ -105,8 +63,11 @@ box-shadow: 0px 0px 5px 5px #4caf50;
 }
   </style>
 </head>
+<div id="formulario_eliminar" class="w3-modal">
+  <div class="w3-modal-content">
+  </div>
+</div>
 <body>
-
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white w3-center">
     <h3>ADMINISTRACIÓN</h3>
@@ -238,37 +199,30 @@ box-shadow: 0px 0px 5px 5px #4caf50;
         </script>
 <script type="text/javascript">
   $("a#eliminar").click(function(){
-    div = $(this).parents('div');
+    console.log('grewoak');
+    div = $('#formulario_eliminar');
     id = $(this).parents('tr').find('td')[0].textContent;
-    div.prepend('<div class="modal">\
-                  <div class="modal-content">\
-                    <div class="modal-header">\
+    div.prepend('<div id="contenidoeliminar" class="w3-container w3-green" align="center" style="padding:20px;">\
                       <span class="close">&times;</span>\
                       <h2>Desea eliminar el formulario con ID '+id+' ?</h2>\
-                      <form action="" name="motivo">\
                       <input type="text" id="motivoEliminar" name="motivoEliminar">\
                       <p id="idEliminar" style="display:none;">'+id+'</p>\
-                      </form>\
-                    </div>\
-                    <div class="modal-footer">\
                         <button id="siModal" class="w3-button w3-teal" type="button">SI</button>\
                         <button id="noModal" class="w3-button w3-red" type="button">NO</button>\
-                    </div>\
-                  </div>\
-                </div>');
+                  </div>');
+    $('#formulario_eliminar').show();
   });
   $(document).on('click','.close',function() {
-    console.log('Este click cierra la ventana');
-    $(".modal").css('display','none');
-    $(".modal").remove();
+    $('#formulario_eliminar').hide();
+    $("#contenidoeliminar").remove();
   });
   $(document).on('click','#noModal',function() {
-    $(".modal").css('display','none');
-    $(".modal").remove();
+    $('#formulario_eliminar').hide();
+    $("#contenidoeliminar").remove();
   });
   $(document).on('click','#siModal',function() {
     var datos = {};
-    console.log(document.getElementById("motivoEliminar").value);
+    console.log($('#motivoEliminar'));
         datos['id'] = $('#idEliminar').text();
         datos['motivoEliminar'] = document.getElementById("motivoEliminar").value;
     var url = window.location.pathname.split('/');
