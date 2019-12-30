@@ -69,6 +69,11 @@
     	<div class="w3-col m10 w3-white w3-center contenedor">
           @section('menu')
           @if(date("n") == '12')
+          <span><img src="{{asset('img/navidad/gorronavidad_crear.png')}}" style="width: 47px;
+z-index: 2;
+position: absolute;
+margin-top: 10px;
+margin-left: 225px;"></span>
           <a href="{{ url('/usuarioIndex') }}">
             <img src="{{ asset('img/logos/CREARlogo-navidad.png') }}" class="logoCrear">
           </a>
