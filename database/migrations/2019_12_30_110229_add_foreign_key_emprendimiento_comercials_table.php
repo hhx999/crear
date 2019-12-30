@@ -16,6 +16,9 @@ class AddForeignKeyEmprendimientoComercialsTable extends Migration
         Schema::table('emprendimiento_comerciales', function (Blueprint $table) {
             //
             $table->foreign('categoria_id', 'EmprendimientoCategoria')->references('id')->on('emprendimiento_categorias')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_id', 'EmprendimientoComercialUsuario')->references('id')->on('USUARIOS')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('emprendimiento_id', 'EmprendimientoComercialEmprendimiento')->references('id')->on('emprendimientos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('localidad_id', 'EmprendimientoComercialLocalidad')->references('id')->on('LOCALIDADES')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -29,6 +32,9 @@ class AddForeignKeyEmprendimientoComercialsTable extends Migration
         Schema::table('emprendimiento_comerciales', function (Blueprint $table) {
             //
             $table->dropForeign('EmprendimientoCategoria');
+            $table->dropForeign('EmprendimientoComercialUsuario');
+            $table->dropForeign('EmprendimientoComercialEmprendimiento');
+            $table->dropForeign('EmprendimientoComercialLocalidad');
         });
     }
 }

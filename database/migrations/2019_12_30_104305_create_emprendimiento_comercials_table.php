@@ -13,7 +13,7 @@ class CreateEmprendimientoComercialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emprendimiento_comerciales', function (Blueprint $table) {
+        Schema::create('emprendimiento_comercials', function (Blueprint $table) {
             $table->integer('id',true);
             $table->string('facebook_nombre')->nullable();
             $table->string('facebook_enlace')->nullable();
@@ -27,11 +27,14 @@ class CreateEmprendimientoComercialsTable extends Migration
             $table->string('web_enlace')->nullable();
             $table->string('telefono')->nullable();
             $table->string('domicilio')->nullable();
-            $table->string('mail')->nullable();
-            $table->string('denominacion')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->string('mail');
+            $table->string('denominacion');
+            $table->string('descripcion');
             $table->boolean('publicado')->default(0);
             $table->integer('categoria_id')->index('categoria_id');
+            $table->integer('usuario_id')->index('usuario_id');
+            $table->integer('emprendimiento_id')->index('emprendimiento_id');
+            $table->integer('localidad_id')->index('localidad_id');
             $table->timestamps();
         });
     }
@@ -43,6 +46,6 @@ class CreateEmprendimientoComercialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emprendimiento_comerciales');
+        Schema::dropIfExists('emprendimiento_comercials');
     }
 }

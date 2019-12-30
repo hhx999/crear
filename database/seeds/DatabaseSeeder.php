@@ -50,6 +50,9 @@ class DatabaseSeeder extends Seeder
         //Organismos publicos
         $this->call(OrganismoPublicosSeeder::class);
 
+        //Categorias de los emprendimientos
+        $this->call(EmprendimientosCategoriasSeeder::class);
+
 
 
     }

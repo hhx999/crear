@@ -4,48 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Emprendimiento;
-use App\Trabaja;
+use App\EmprendimientoComercial;
+use App\ImagenesEmprendimiento;
+use App\Localidad;
+use App\EmprendimientoCategoria;
+use App\Usuario;
 
 class EmprendimientoController extends Controller
 {
     public function create(Request $request)
     {
-    	if ($request->isMethod('post'))
+        $usuario_id = $request->session()->get('id_usuario');
+        $usuario = Usuario::find($usuario_id);
+    	$localidades = Localidad::all();
+        $emprendimientos = NULL;
+        //Agregamos los emprendimientos del usuario para luego tratarlos en la vista
+        for ($i=0; $i < count($usuario->emprendimientos); $i++) { 
+            $emprendimientos[$i] = Emprendimiento::find($usuario->emprendimientos[$i]->emprendimiento_id);
+        }
+        $categorias = EmprendimientoCategoria::all();
+
+        if ($request->isMethod('post'))
     	{
     		$validatedData = $request->validate([
+                'emprendimiento_id' => 'required',
 		        'denominacion' => 'required',
-		        'tipoSociedad' => 'required',
-		        'cuit' => 'required',
-                'cargo' => 'required',
-		        'domicilio' => 'required',
-		        'localidad' => 'required',
-		        'provincia' => 'required',
-		        'provincia' => 'required',
-		        'codPostal' => 'required',
-		        'email' => 'required',
-		        'telefono' => 'required'
+		        'descripcion' => 'required',
+		        'mail' => 'required'
 		    ]);
-    		$usuario_id = $request->session()->get('id_usuario');
-            $emprendimiento = new Emprendimiento;
-            $emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
-            $emprendimiento->denominacion = $request->denominacion;
-            $emprendimiento->tipoSociedad = $request->tipoSociedad;
-            $emprendimiento->cuit = $request->cuit;
-            $emprendimiento->domicilio = $request->domicilio;
-            $emprendimiento->localidad = $request->localidad;
-            $emprendimiento->provincia = $request->provincia;
-            $emprendimiento->codPostal = $request->codPostal;
-            $emprendimiento->email = $request->email;
-            $emprendimiento->telefono = $request->telefono;
-            $emprendimiento->save();
+            $request->request->add(['usuario_id' => $usuario_id]);
+            $emprendimientoComercial = EmprendimientoComercial::create($request->all());
 
-            $trabaja = new Trabaja;
-            $trabaja->usuario_id = $usuario_id;
-            $trabaja->emprendimiento_id = $emprendimiento->id;
-            $trabaja->cargo = $request->cargo;
-            $trabaja->save();
     	}
-    	return view('emprendimientos.create');
+    	return view('emprendimientos.create', [ 'localidades' => $localidades, 'emprendimientos' => $emprendimientos, 'categorias' => $categorias ]);
     }
     public function update()
     {

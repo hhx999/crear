@@ -23,7 +23,7 @@
         </script>
         <style type="text/css">
         	.wizard > .steps {
-        		width: 130% !important;
+        		height: 130% !important;
         	}
         	.errores {
         		display: table; 
@@ -33,6 +33,9 @@
         	}
         	.errores li {
         		color: black;
+        	}
+        	.wizard > .content {
+        		min-height: 27em !important;
         	}
         </style>
         @if ($errors->any())
@@ -53,85 +56,106 @@
             <div id="wizard">
                 <h2>Datos principales</h2>
                 <section>
-                	<select class="w3-select" id="estadoEmprendimiento" name="estadoEmprendimiento">
-							<option selected disabled value="">Seleccioná el estado de tu emprendimiento</option>
-							<option value="nuevo">Nuevo</option>
-							<option value="en funcionamiento">En funcionamiento</option>
+                	<select class="w3-select" id="emprendimiento_id" name="emprendimiento_id">
+							<option selected disabled value="">Seleccioná tú emprendimiento vinculado</option>
+							@if($emprendimientos)
+							@foreach($emprendimientos as $emprendimiento)
+							<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
+							@endforeach
+							@endif
 					</select>
-                    <div class="w3-half">
-                    	<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Denominación de la Sociedad</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento...">
+					<div style="padding: 20px;">
+	                    <div class="w3-third">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Denominación de la Sociedad</label>
+							    <input class="w3-input" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento...">
+							</div>
+						</div>
+						<div class="w3-third">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Localidad</label>
+							    <select class="w3-select" id="localidad_id" name="localidad_id">
+										<option selected disabled value="">Seleccioná la localidad de tu emprendimiento</option>
+										@foreach($localidades as $localidad)
+										<option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+										@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="w3-third">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Direccion</label>
+							    <input class="w3-input" type="text" name="domicilio" placeholder="Ingrese la direccion del emprendimiento...">
+							</div>
 						</div>
 					</div>
-					<div class="w3-half">
+					<div style="padding: 21px;">
+						<div class="w3-third">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Teléfono</label>
+							    <input class="w3-input" type="text" name="telefono" placeholder="Ingrese un teléfono para contactar con el emprendimiento...">
+							</div>
+						</div>
+						<div class="w3-third">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Email</label>
+							    <input class="w3-input" type="text" name="mail" placeholder="Ingrese el correo electrónico...">
+							</div>
+						</div>
+						<div class="w3-third">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Descripción</label>
+							    <input class="w3-input" type="text" name="descripcion" placeholder="Ingrese una breve descripción de su emprendimiento...">
+							</div>
+						</div>
+					</div>
+					<div class="w3-col m12">
 						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Tipo de sociedad</label>
-						    <select class="w3-select" name="tipoSociedad">
-							    <option value="" disabled selected>Elegí el tipo de sociedad...</option>
-							    <option value="Sociedad Anónima (S.A.)">Sociedad Anónima (S.A.)</option>
-							    <option value="Sociedad de Responsabilidad Limitada (S.R.L.)">Sociedad de Responsabilidad Limitada (S.R.L.)</option>
-							    <option value="Sociedad por Acciones Simplificada (S.A.S.)">Sociedad por Acciones Simplificada (S.A.S.)</option>
-							 </select>
+						    <label>Categoría</label>
+						    <select class="w3-select" name="categoria_id">
+									<option selected disabled value="">Seleccioná la categoría a la que pertenece tu emprendimiento</option>
+									@foreach($categorias as $categoria)
+									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+									@endforeach
+							</select>
 						</div>
-					</div>
-					<div class="w3-half">
-						<div style="padding: 20px;">
-						    <label>Cargo</label>
-						    <select class="w3-select" name="cargo">
-							    <option value="" disabled selected>Elegí el cargo...</option>
-							    <option value="1">Propietario</option>
-								<option value="2">Representante legal</option>
-								<option value="3">Socio de sociedad de hecho</option>
-							 </select>
-						</div>
-					</div>
-					<div class="w3-half">
-					    <div style="padding: 20px;">
-					    	<label>C.U.I.T.</label>
-		    				<input class="w3-input w3-border w3-round-large" type="text" name="cuit" placeholder="Ingrese el cuit asociado al emprendimiento...">
-					    </div>
 					</div>
                 </section>
                 <h2>Datos de localización</h2>
                 <section>
                     <div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Domicilio</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="domicilio" placeholder="Ingrese el domicilio fiscal del emprendimiento...">
+						    <label>Facebook</label>
+						    <input class="w3-input" type="text" name="facebook_nombre" placeholder="Ingrese el nombre con el que se visualiza su facebook..."><br>
+						    <input class="w3-input" type="text" name="facebook_enlace" placeholder="Ingrese el enlace a su facebook...">
 						</div>
 					</div>
 					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Cod. Postal</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="codPostal" placeholder="Ingrese el código postal del emprendimiento...">
-						</div>
-					  </div>
-					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Localidad</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="localidad" placeholder="Ingrese la localidad registrada del emprendimiento...">
-						</div>
-					  </div>
-					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Provincia</label>
-						    <input class="w3-input w3-border w3-round-large" type="text" name="provincia" placeholder="Ingrese la provincia del emprendimiento...">
-						</div>
-					</div>
-                </section>
-                <h2>Datos de contacto</h2>
-                <section>
-                    <div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>E-mail</label>
-						    <input class="w3-input w3-border" type="text" name="email" placeholder="Ingrese el email vinculado al emprendimiento...">
+						    <label>Instagram</label>
+						    <input class="w3-input" type="text" name="instagram_nombre" placeholder="Ingrese el nombre con el que se visualiza su instagram..."><br>
+						    <input class="w3-input" type="text" name="instagram_enlace" placeholder="Ingrese el enlace a su instagram...">
 						</div>
 					</div>
 					<div class="w3-half">
-						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Telefono</label>
-						    <input class="w3-input w3-border" type="text" name="telefono" placeholder="Ingrese el telefono de contacto con el emprendimiento...">
+                    	<div style="margin-right: 10px;margin-left: 10px;">
+						    <label>Twitter</label>
+						    <input class="w3-input" type="text" name="twitter_nombre" placeholder="Ingrese el nombre con el que se visualiza su twitter..."><br>
+						    <input class="w3-input" type="text" name="twitter_enlace" placeholder="Ingrese el enlace a su twitter...">
+						</div>
+					</div>
+					<div class="w3-half">
+                    	<div style="margin-right: 10px;margin-left: 10px;">
+						    <label>Youtube</label>
+						    <input class="w3-input" type="text" name="youtube_nombre" placeholder="Ingrese el nombre con el que se visualiza su canal de youtube..."><br>
+						    <input class="w3-input" type="text" name="youtube_enlace" placeholder="Ingrese el enlace a su youtube...">
+						</div>
+					</div>
+					<div class="w3-half">
+                    	<div style="margin-right: 10px;margin-left: 10px;">
+						    <label>Sitio WEB</label>
+						    <input class="w3-input" type="text" name="web_nombre" placeholder="Ingrese el nombre con el que se visualiza su web..."><br>
+						    <input class="w3-input" type="text" name="web_enlace" placeholder="Ingrese el enlace a su web...">
 						</div>
 					</div>
                 </section>
