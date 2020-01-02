@@ -3,22 +3,7 @@ namespace App\Http\Controllers;
 use DB;
 use Exception;
 use App\Formulario;
-use App\Referencia;
-use App\Cliente;
-use App\Proveedor;
-use App\Competencia;
-use App\Venta;
-use App\ItemFinanciamiento;
-use App\Patrimonio;
-use App\PatrimonioEmprendedor;
-use App\PatrimonioGarante;
 use App\FormValido;
-use App\Disponibilidad;
-use App\BienCambio;
-use App\BienUso;
-use App\DeudaComercial;
-use App\DeudaBancaria;
-use App\DeudaFiscal;
 use App\Observacion;
 use App\Usuario;
 use App\Multimedia;
@@ -34,6 +19,8 @@ use App\OrganismoPublico;
 use App\PendienteCredito;
 use App\Credito;
 use App\EliminarMotivo;
+use App\Emprendimiento;
+use App\Trabaja;
 
 use App\Helpers;
 
@@ -242,7 +229,6 @@ class TecnicoController extends Controller
             unset($data['id']);
 
             foreach ($data as $hojaValida => $valor) {
-              var_dump($hojaValida);
               if ($valor == 0) {
                 $formV = 0;
               }
@@ -284,13 +270,33 @@ class TecnicoController extends Controller
                 $session = $request->session();
                 $usuario_id = $session->get('id_usuario');
 
+                $formulario = Formulario::where('id', $request->formulario_id[$i])->first();
+                $emprendimiento = new Emprendimiento;
+
+                $emprendimiento->estadoEmprendimiento = $formulario->estadoEmprendimiento;
+                $emprendimiento->denominacion = $formulario->denominacion;
+                $emprendimiento->tipoSociedad = $formulario->tipoSociedad;
+                $emprendimiento->cuit = $formulario->cuitEmprendimiento;
+                $emprendimiento->domicilio = $formulario->domicilioEmprendimiento ?? '';
+                $emprendimiento->localidad = $formulario->localidadEmprendimiento ?? '';
+
+                $emprendimiento->save();
+
+                $trabajaEn = new Trabaja();
+                $trabajaEn->usuario_id = $formulario->idUsuario;
+                $trabajaEn->emprendimiento_id = $emprendimiento->id;
+                $trabajaEn->cargo = $formulario->cargo;
+                $trabajaEn->save();
+
                 $credito = new Credito();
-                $credito->usuario_id = $usuario_id;
+                $credito->usuario_id = $formulario->idUsuario;
                 $credito->formulario_id = $request->formulario_id[$i];
                 $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
                 $credito->activo = 1;
                 $credito->estado = 1; // se crea con el paso a estado desembolsado 
                 $credito->save();
+
+
 
                 $pendiente = PendienteCredito::where('id',$request->pendiente_id[$i]);
                 $pendiente->delete();

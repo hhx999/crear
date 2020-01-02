@@ -121,7 +121,7 @@ class FinanciamientoController extends Controller
 
     	/*Verificación de créditos*/
     	$creditoActivo = 0;
-    	foreach ($usuario->creditos as $credito) {
+    	foreach ($dataUsuario->creditos as $credito) {
     		if ($credito->activo == 1) {
     			# comprobamos si hay algun credito activo...
     			$creditoActivo = $credito->activo;
