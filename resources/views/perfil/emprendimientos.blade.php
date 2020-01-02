@@ -32,6 +32,7 @@
 				    	echo "<td>".$emprendimientos[$i]->denominacion."</td>";
 				    	echo "<td>".$cargo[$i]."</td>";
 				    	print_r("<td>
+				    		<a href='emprendimientos_crear'>Ver en sitio</a>
 						      	<select style='color: black;'>
 						      		<option disabled selected>-</option>
 						      		<option>Editar</option>

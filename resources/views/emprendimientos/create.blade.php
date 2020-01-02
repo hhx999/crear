@@ -1,6 +1,6 @@
 @extends('userTest.layout')
 	
-	@section('title') Perfil - Emprendimientos @endsection
+	@section('title') Registro - Emprendimientos @endsection
 
 	@section('content')
 	
@@ -38,6 +38,11 @@
         		min-height: 27em !important;
         	}
         </style>
+        @if($success)
+        	<div class="w3-col m12">
+        		<p style="color: lightgreen;">{{$success}}</p>
+        	</div>
+        @endif
         @if ($errors->any())
 			<div class="w3-panel w3-amber w3-display-container">
 			  <span onclick="this.parentElement.style.display='none'"
@@ -52,7 +57,7 @@
 			  </div>
 			</div>
 		@endif
-        <form method="post" action="" name="formRegistroEmprendimiento" class="formRegistroEmprendimiento" id="formRegistroEmprendimiento">
+        <form method="post" action="" name="formRegistroEmprendimiento" class="formRegistroEmprendimiento" id="formRegistroEmprendimiento" enctype="multipart/form-data">
             <div id="wizard">
                 <h2>Datos principales</h2>
                 <section>
@@ -100,12 +105,6 @@
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Email</label>
 							    <input class="w3-input" type="text" name="mail" placeholder="Ingrese el correo electrónico...">
-							</div>
-						</div>
-						<div class="w3-third">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Descripción</label>
-							    <input class="w3-input" type="text" name="descripcion" placeholder="Ingrese una breve descripción de su emprendimiento...">
 							</div>
 						</div>
 					</div>
@@ -158,6 +157,34 @@
 						    <input class="w3-input" type="text" name="web_enlace" placeholder="Ingrese el enlace a su web...">
 						</div>
 					</div>
+                </section>
+                <style type="text/css">
+                	.barraCol1 {
+					  border-top: 2px solid #4CAF50;display: inline-block;width: 30px;
+					}
+					.barraCol2 {
+					  border-top: 2px solid #0174b6;display: inline-block;width: 25px;
+					}
+					.barraCol3 {
+					  border-top: 2px solid #4CAF50;display: inline-block;width: 92%;
+					}
+                </style>
+                <h2>Imagen del emprendimiento</h2>
+                <section>
+                		<div class="w3-col m12">
+                			<label>Ingrese una imagen representativa del emprendimiento</label><br>
+                			<input type="file" name="imagen_emprendimiento" style="color: white;width: 100%;">
+                		</div>
+                		<div class="barraCol1"></div>
+						<div class="barraCol2"></div>
+						<div class="barraCol3"></div>
+						<div class="w3-col m12">
+	                    	<div style="margin-right: 10px;margin-left: 10px;">
+							    <label>Descripción:</label><br>
+							    <textarea style="width: 100%;" name="descripcion" placeholder="Ingrese una breve descripción de su emprendimiento...">
+							    </textarea>
+							</div>
+						</div>
                 </section>
             </div>
         </form>

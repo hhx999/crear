@@ -33,6 +33,7 @@ $router->get('/usuarioLogout','UsuarioController@logout'); //cierre de session
 $router->get('/usuarioRegistro','UsuarioController@registro');
 $router->post('/usuarioRegistro','UsuarioController@registro'); //registra usuario
 $router->post('/comprobarDNI','UsuarioController@comprobarDNI'); //comprueba si el dni existe dentro de los registros
+$router->get('/perfil/emprendimientos_crear','EmprendimientoController@verEmprendimientos');
 
 // ADMINISTRACIÓN
 Route::group(['middleware' => ['comprobarrole:admin']], function () {

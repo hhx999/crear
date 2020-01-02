@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Emprendimiento;
 use App\EmprendimientoComercial;
 use App\ImagenesEmprendimiento;
 use App\Localidad;
 use App\EmprendimientoCategoria;
 use App\Usuario;
+use App\Helpers;
 
 class EmprendimientoController extends Controller
 {
@@ -31,15 +34,25 @@ class EmprendimientoController extends Controller
                 'emprendimiento_id' => 'required',
 		        'denominacion' => 'required',
 		        'descripcion' => 'required',
-		        'mail' => 'required'
+		        'mail' => 'required',
+                'imagen_emprendimiento' => 'required'
 		    ]);
             $emprendimiento = EmprendimientoComercial::where('emprendimiento_id',$request->emprendimiento_id)->get();
             if ($emprendimiento->isNotEmpty()) {
                 echo "El emprendimiento ya está vinculado a otro.";
                 exit();
             } else {
-                $request->request->add(['usuario_id' => $usuario_id]);
-                $emprendimientoComercial = EmprendimientoComercial::create($request->all());
+                DB::beginTransaction();
+                try {
+                    $request->request->add(['usuario_id' => $usuario_id]);
+                    $emprendimientoComercial = EmprendimientoComercial::create($request->all());
+                    Helpers::subirImagenEmprendimiento($request->denominacion,$request->imagen_emprendimiento,$emprendimientoComercial->id);
+                    DB::commit();
+                    $success = "Emprendimiento registrado correctamente!";
+                    } catch (\Illuminate\Database\QueryException $e) {
+                        DB::rollback();
+                        dd($e);
+                }
             }
     	}
     	return view('emprendimientos.create', [ 'localidades' => $localidades, 'emprendimientos' => $emprendimientos, 'categorias' => $categorias, 'success' => $success ]);
@@ -50,5 +63,10 @@ class EmprendimientoController extends Controller
     }
     public function delete()
     {
+    }
+    public function verEmprendimientos() {
+        $emprendimientos = EmprendimientoComercial::all();
+        
+        return view('emprendimientos.emprendimientos', ['emprendimientos' => $emprendimientos]);
     }
 }

@@ -28,4 +28,14 @@ class EmprendimientoComercial extends Model
 		"emprendimiento_id",
 		"localidad_id",
 	];
+
+	public function imagen()
+    {
+        return $this->hasOne('App\ImagenesEmprendimiento','emprendimiento_comercial_id');
+    }
+    public function categoria()
+    {
+        return $this->belongsTo('App\EmprendimientoCategoria','categoria_id');
+    }
+
 }
