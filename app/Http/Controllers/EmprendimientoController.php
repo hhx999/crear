@@ -18,6 +18,7 @@ class EmprendimientoController extends Controller
         $usuario = Usuario::find($usuario_id);
     	$localidades = Localidad::all();
         $emprendimientos = NULL;
+        $success = NULL;
         //Agregamos los emprendimientos del usuario para luego tratarlos en la vista
         for ($i=0; $i < count($usuario->emprendimientos); $i++) { 
             $emprendimientos[$i] = Emprendimiento::find($usuario->emprendimientos[$i]->emprendimiento_id);
@@ -32,11 +33,16 @@ class EmprendimientoController extends Controller
 		        'descripcion' => 'required',
 		        'mail' => 'required'
 		    ]);
-            $request->request->add(['usuario_id' => $usuario_id]);
-            $emprendimientoComercial = EmprendimientoComercial::create($request->all());
-
+            $emprendimiento = EmprendimientoComercial::where('emprendimiento_id',$request->emprendimiento_id)->get();
+            if ($emprendimiento->isNotEmpty()) {
+                echo "El emprendimiento ya está vinculado a otro.";
+                exit();
+            } else {
+                $request->request->add(['usuario_id' => $usuario_id]);
+                $emprendimientoComercial = EmprendimientoComercial::create($request->all());
+            }
     	}
-    	return view('emprendimientos.create', [ 'localidades' => $localidades, 'emprendimientos' => $emprendimientos, 'categorias' => $categorias ]);
+    	return view('emprendimientos.create', [ 'localidades' => $localidades, 'emprendimientos' => $emprendimientos, 'categorias' => $categorias, 'success' => $success ]);
     }
     public function update()
     {
