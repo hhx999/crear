@@ -19,11 +19,22 @@ use App\Multimedia;
 use App\Documentacion;
 use App\BorradorVenta;
 use App\HistorialEstado;
+use App\Credito;
 
 use App\Helpers;
 
 class FinanciamientoController extends Controller
 {
+	//ver créditos
+	function verCreditos(Request $request)
+	{
+		$idUsuario = $request->session()->get('id_usuario');
+		$creditos = Credito::where('usuario_id', $idUsuario)->get();
+		if ($creditos->isEmpty()) {
+			return redirect('financiamiento')->with(['error' => 'Usted por ahora no tiene tiene créditos.']);
+		}
+		return view('financiamiento.creditos', ['creditos' => $creditos]);
+	}
     //Cuestionario de creditos - se accede mediante el boton "pedi tu credito"
     function informacionCreditos(Request $request)
     {

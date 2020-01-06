@@ -52,11 +52,13 @@
 			</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
-		    <div class="opcionMenuUsuario documentacion">
-		    	<p class="textIndexItems">
-			    		DOCUMENTACIÓN
-			    </p>
-		    </div>
+		  	<a href="{{ url('financiamiento/creditos') }}">
+			    <div class="opcionMenuUsuario miscreditos">
+			    	<p class="textIndexItems">
+				    		Mirá tus créditos
+				    </p>
+			    </div>
+			</a>
 		  </div>
 		  <div class="w3-container w3-quarter">
 		  </div>

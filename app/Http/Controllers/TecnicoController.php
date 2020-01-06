@@ -290,6 +290,7 @@ class TecnicoController extends Controller
 
                 $credito = new Credito();
                 $credito->usuario_id = $formulario->idUsuario;
+                $credito->emprendimiento_id = $emprendimiento->id;
                 $credito->formulario_id = $request->formulario_id[$i];
                 $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
                 $credito->activo = 1;

@@ -11,4 +11,16 @@ class Credito extends Model
     {
         return $this->hasMany('App\HistorialEstado');
     }
+    public function verEstado()
+    {
+    	return $this->belongsTo('App\EstadoCredito','estado');
+    }
+    public function verUsuario()
+    {
+    	return $this->belongsTo('App\EstadoCredito','estado');
+    }
+    public function verEmprendimiento()
+    {
+    	return $this->belongsTo('App\Emprendimiento','estado');
+    }
 }

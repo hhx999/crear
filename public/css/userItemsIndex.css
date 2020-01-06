@@ -71,6 +71,10 @@
 		background-color: #ffe754;
 		background-image: url("../img/opcionesMenuUsuario/documentacion.png");
 	}
+	.miscreditos {
+		background-color: #ffe754;
+		background-image: url("../img/opcionesMenuUsuario/creditos.png");
+	}
 	.textIndexItems {
 		color: #2f4550;
 		text-align: center;
