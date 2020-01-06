@@ -13,7 +13,7 @@ class AddForeignKeyEmprendimientoComercialsTable extends Migration
      */
     public function up()
     {
-        Schema::table('emprendimiento_comerciales', function (Blueprint $table) {
+        Schema::table('emprendimiento_comercials', function (Blueprint $table) {
             //
             $table->foreign('categoria_id', 'EmprendimientoCategoria')->references('id')->on('emprendimiento_categorias')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('usuario_id', 'EmprendimientoComercialUsuario')->references('id')->on('USUARIOS')->onUpdate('RESTRICT')->onDelete('RESTRICT');
@@ -29,7 +29,7 @@ class AddForeignKeyEmprendimientoComercialsTable extends Migration
      */
     public function down()
     {
-        Schema::table('emprendimiento_comerciales', function (Blueprint $table) {
+        Schema::table('emprendimiento_comercials', function (Blueprint $table) {
             //
             $table->dropForeign('EmprendimientoCategoria');
             $table->dropForeign('EmprendimientoComercialUsuario');
