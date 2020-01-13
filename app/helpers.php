@@ -19,7 +19,7 @@ class Helpers
             for ($i=1; $i <= 10; $i++) { 
                 print_r('<tr>
                                             <td>
-                                                <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx">
+                                                <input type="text" name="item'.$i.'_descripcion" placeholder="descripción del bien">
                                             </td>
                                             <td>
                                                 <input type="text" name="item'.$i.'_cantidad" placeholder="xxx.xx">
@@ -38,7 +38,7 @@ class Helpers
             for ($i=1; $i <= 10; $i++) { 
                 print_r('<tr>
                                             <td>
-                                                <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_descripcion}}">
+                                                <input type="text" name="item'.$i.'_descripcion" placeholder="descripción del bien" value="{{$datosBorrador->item'.$i.'_descripcion}}">
                                             </td>
                                             <td>
                                                 <input type="text" name="item'.$i.'_cantidad" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_cantidad}}">
@@ -56,7 +56,7 @@ class Helpers
             for ($i=1; $i < 10; $i++) { 
                 print_r('<tr>
                                             <td>
-                                                <input type="text" name="item'.$i.'_descripcion" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_descripcion}}">
+                                                <input type="text" name="item'.$i.'_descripcion" placeholder="descripción del bien" value="{{$datosForm->item'.$i.'_descripcion}}">
                                             </td>
                                             <td>
                                                 <input type="text" name="item'.$i.'_cantidad" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_cantidad}}">
