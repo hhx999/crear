@@ -28,7 +28,7 @@ class Helpers
                                                 <input type="text" name="item'.$i.'_precio" placeholder="xxx.xx">
                                             </td>
                                             <td>
-                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx">
+                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" readonly>
                                             </td>
                                         </tr>');
             }
@@ -47,7 +47,7 @@ class Helpers
                                                 <input type="text" name="item'.$i.'_precio" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_precio}}">
                                             </td>
                                             <td>
-                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_total}}">
+                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" value="{{$datosBorrador->item'.$i.'_total}}" readonly>
                                             </td>
                                         </tr>');
             }
@@ -65,7 +65,7 @@ class Helpers
                                                 <input type="text" name="item'.$i.'_precio" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_precio}}">
                                             </td>
                                             <td>
-                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_total}}">
+                                                <input type="text" name="item'.$i.'_total" placeholder="xxx.xx" value="{{$datosForm->item'.$i.'_total}}" readonly>
                                             </td>
                                         </tr>');
             }

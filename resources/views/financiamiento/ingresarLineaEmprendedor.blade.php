@@ -1209,11 +1209,50 @@
 								<tbody>
 									<?php App\Helpers::crearItemBienFinanciamiento('ingresarLineaEmprendedor'); ?>
 									<tr>
-										<th colspan="2" style="text-align: center;">Total solicitado al crear</th>
-										<td colspan="2"><input style="text-align: center;" type="text" id="totalsolicitado_crear" readonly placeholder="xxx.xx"></td>
+										<th>
+											<a href="#" id="calcularTotalBienes" class="w3-button w3-blue-gray">Calcular totales</a>
+										</th>
+										<th style="text-align: center;">Total solicitado al crear</th>
+										<td colspan="2"><input style="text-align: center;" type="text" id="totalsolicitado_crear" name="totalsolicitado_crear" readonly placeholder="xxx.xx"></td>
 									</tr>
 								</tbody>
 							</table>
+							<script type="text/javascript">
+							$('#calcularTotalBienes').on('click', function() {
+								var totales = [];
+								var totalItem = parseFloat('0');
+
+								totales.push(parseFloat($("input[name=item1_cantidad]").val()) * parseFloat($("input[name=item1_precio]").val()));
+								totales.push(parseFloat($("input[name=item2_cantidad]").val()) * parseFloat($("input[name=item2_precio]").val()));
+								totales.push(parseFloat($("input[name=item3_cantidad]").val()) * parseFloat($("input[name=item3_precio]").val()));
+								totales.push(parseFloat($("input[name=item4_cantidad]").val()) * parseFloat($("input[name=item4_precio]").val()));
+								totales.push(parseFloat($("input[name=item5_cantidad]").val()) * parseFloat($("input[name=item5_precio]").val()));
+								totales.push(parseFloat($("input[name=item6_cantidad]").val()) * parseFloat($("input[name=item6_precio]").val()));
+								totales.push(parseFloat($("input[name=item7_cantidad]").val()) * parseFloat($("input[name=item7_precio]").val()));
+								totales.push(parseFloat($("input[name=item8_cantidad]").val()) * parseFloat($("input[name=item8_precio]").val()));
+								totales.push(parseFloat($("input[name=item9_cantidad]").val()) * parseFloat($("input[name=item9_precio]").val()));
+								totales.push(parseFloat($("input[name=item10_cantidad]").val()) * parseFloat($("input[name=item10_precio]").val()));
+
+								for(var i=0;i < totales.length; i++) {
+									if (isNaN(totales[i])) {
+										totales[i] = parseFloat('0');
+									}
+									totalItem += totales[i];
+								}
+
+								$("input[name=item1_total]").val(totales[0]);
+								$("input[name=item2_total]").val(totales[1]);
+								$("input[name=item3_total]").val(totales[2]);
+								$("input[name=item4_total]").val(totales[3]);
+								$("input[name=item5_total]").val(totales[4]);
+								$("input[name=item6_total]").val(totales[5]);
+								$("input[name=item7_total]").val(totales[6]);
+								$("input[name=item8_total]").val(totales[7]);
+								$("input[name=item9_total]").val(totales[8]);
+								$("input[name=item10_total]").val(totales[9]);
+								$("input[name=totalsolicitado_crear]").val(totalItem);
+							})
+						</script>
 						</div>
 	                </section>
 	                <h2>MANIFESTACIÓN DE BIENES DEL EMPRENDEDOR</h2>
