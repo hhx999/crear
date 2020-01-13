@@ -308,7 +308,7 @@ use App\Helpers;
     </tr>
     <tr>
       <th>Actividad principal</th>
-      <td><?= $formularioEnviado->actividadPrincipal->nombre ?></td>
+      <td><?= $formularioEnviado->actividadPrincipal->nombre ?? '' ?></td>
     </tr>
     @isset($formularioEnviado->fecInicioEmprendimiento)
     <tr>
@@ -735,7 +735,7 @@ use App\Helpers;
         </tr>
         <tr>
           <th>Localidad</th>
-          <td style="text-align: center;"><?= $formularioEnviado->usuario->get_localidad->nombre ?></td>
+          <td style="text-align: center;"><?= $formularioEnviado->usuario->get_localidad->nombre ?? '' ?></td>
         </tr>
         <tr>
           <th>Domicilio</th>
