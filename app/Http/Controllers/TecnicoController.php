@@ -88,6 +88,14 @@ class TecnicoController extends Controller
 
       return view('admin.adminUsuarios', ['usuarios' => $usuarios,'nombreUsuario' => $session->get('nombreUsuario')]);
     }
+    public function verUsuario (Request $request, $id)
+    {
+      $session = $request->session();
+
+      $usuario = Usuario::where('id',$id)->first();
+
+      return view('admin.adminVerUsuarios', ['usuario' => $usuario, 'nombreUsuario' => $session->get('nombreUsuario')]);
+    }
     public function verificarUsuarios(Request $request) {
        if ($request->has('dniVerificados')) {
           $data = $request->dniVerificados;

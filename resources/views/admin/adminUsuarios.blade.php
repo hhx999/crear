@@ -146,7 +146,6 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
           <h3>ADMINISTRACIÓN DE USUARIOS</h3>
           <a href="{{ url('/logout') }}" class="w3-btn w3-red">LOGOUT(<?=$nombreUsuario?> <span class="blink">&#9673;</span>)</a>
           <a class="w3-btn w3-green" href="{{ url('/admin') }}">Volver a formularios</a>
-          <a class="w3-btn w3-light-green" href="{{ url('/registro') }}" style="color: #fff !important;">Registrar usuario</a>
         <!-- GUÍAS PARA EL ADMINISTRADOR DE ESTADOS -->
         <div class="w3-col m12 l12" style="margin-bottom: 20px;margin-top: 20px;">
           NO VERIFICADO <span style="width: 15px;height: 15px;display: inline-block;background: #b4b4b4;"></span>
@@ -182,6 +181,7 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
         </div>
         <!-- TABS DE FORMULARIOS SEGÚN ESTADOS -->
         <div class="w3-col w3-container m8 l9">
+          <div style="overflow-x:auto; height: 500px;">
              <table class="w3-table w3-bordered">
                 <tr class="w3-light-green">
                   <th style="color: white;">Operaciones</th>
@@ -213,6 +213,7 @@ Code by https://codepen.io/AliRanjbar/pen/axomoY?page=2
           }
           ?>
               </table>
+              </div>
             </div>
             <p><small>Versión <b>TEST</b> del sistema de formularios para la agencia de desarrollo CREAR.</small></p>
     <script type="text/javascript">

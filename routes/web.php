@@ -42,9 +42,14 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::post('/agregarRevision', 'TecnicoController@agregarRevision');
 	Route::post('/agregarPortada', 'TecnicoController@agregarPortada')->name('agregarPortada');
 	Route::post('/eliminarFormulario/', 'TecnicoController@eliminarFormulario');
+
+  /*Usuarios*/
 	Route::get('/adminUsuarios','TecnicoController@adminUsuarios');
+	Route::get('/verUsuario/{id}','TecnicoController@verUsuario');
 	Route::post('/verificarUsuarios','TecnicoController@verificarUsuarios');
 	Route::post('/registroAjax','TecnicoController@comprobarUsuario');
+ /********/
+
 	Route::get('/generarPdf/{id}','TecnicoController@crearPDF');
 	Route::get('/crearLineaCredito','TecnicoController@crearLineaCredito');
 	Route::post('/crearLineaCredito','TecnicoController@crearLineaCredito');
