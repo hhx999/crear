@@ -137,7 +137,7 @@ use App\Helpers;
 
       <div class="float-container">
         <label>Agencia <span style="color:red;">&#10033;</span></label>
-        <input data-placeholder="Ingrese agencia..." name="agenciaProyecto" maxlength="43" value="<?= $formularioEnviado->agenciaProyecto ?>" id="agenciaPortada">
+        <input data-placeholder="Ingrese agencia..." name="agenciaProyecto" maxlength="43" value="<?= $formularioEnviado->agenciaProyecto ?? $datosTecnico->get_agencia->nombre ?>" id="agenciaPortada">
       </div>
 
       <div class="float-container">

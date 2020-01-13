@@ -22,7 +22,7 @@ class Usuario extends Model {
 	}
 	public function get_agencia()
 	{
-	    return $this->hasOne('App\Agencia', 'agencia');
+	    return $this->belongsTo('App\Agencia', 'agencia');
 	}
 	public function get_actividadPrincipal()
 	{
