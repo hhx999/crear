@@ -308,7 +308,7 @@ use App\Helpers;
     </tr>
     <tr>
       <th>Actividad principal</th>
-      <td><?= $formularioEnviado->actPrincipalEmprendimiento ?></td>
+      <td><?= $formularioEnviado->actividadPrincipal->nombre ?></td>
     </tr>
     @isset($formularioEnviado->fecInicioEmprendimiento)
     <tr>
