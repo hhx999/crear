@@ -795,7 +795,7 @@ use App\Helpers;
         </tr>
         <tr>
           <th>TOTAL ACTIVO</th>
-          <td style="text-align: center;"> </td>
+          <td style="text-align: center;"><?= $formularioEnviado->efectivoMBE + $formularioEnviado->cuentasBancariasMBE + $formularioEnviado->creditosVentasMBE + $formularioEnviado->otrosCreditosMBE + $formularioEnviado->mercaderiasMBE + $formularioEnviado->materiasPrimasMBE + $formularioEnviado->insumosMBE + $formularioEnviado->rodadosMBE + $formularioEnviado->maquinariasEquiposMBE + $formularioEnviado->instalacionesMBE ?> </td>
         </tr>
     </table>
     <br>
@@ -855,7 +855,7 @@ use App\Helpers;
         </tr>
         <tr>
           <th>TOTAL PASIVO</th>
-          <td style="text-align: center;"> </td>
+          <td style="text-align: center;"> <?= $formularioEnviado->deudaCuentasCorrientesMBE + $formularioEnviado->deudaChequesPagoDiferidoMBE + $formularioEnviado->documentadasMBE  + $formularioEnviado->otrasDeudasComercialesMBE + $formularioEnviado->deudaTarjetasCreditoMB + $formularioEnviado->deudaGarantiaPrendariaMBE + $formularioEnviado->deudaAfipMBE + $formularioEnviado->deudaRentasRnMBE + $formularioEnviado->deudaTributosMunicipalesMBE + $formularioEnviado->deudasSocialesMBE + $formularioEnviado->otrasDeudasMBE ?> </td>
         </tr>
     </table>
     </div>
@@ -974,7 +974,7 @@ use App\Helpers;
         </tr>
         <tr>
           <th>TOTAL ACTIVO</th>
-          <td style="text-align: center;"> </td>
+          <td style="text-align: center;"> <?= $formularioEnviado->efectivoMBG + $formularioEnviado->cuentasBancariasMBG + $formularioEnviado->creditosVentasMBG + $formularioEnviado->otrosCreditosMBG + $formularioEnviado->mercaderiasMBG + $formularioEnviado->materiasPrimasMBG + $formularioEnviado->insumosMBG + $formularioEnviado->rodadosMBG + $formularioEnviado->maquinariasEquiposMBG + $formularioEnviado->instalacionesMBG ?> </td>
         </tr>
     </table>
     <br>
@@ -1034,7 +1034,7 @@ use App\Helpers;
         </tr>
         <tr>
           <th>TOTAL PASIVO</th>
-          <td style="text-align: center;"> </td>
+          <td style="text-align: center;"> <?= $formularioEnviado->deudaCuentasCorrientesMBG + $formularioEnviado->deudaChequesPagoDiferidoMBG + $formularioEnviado->documentadasMBG  + $formularioEnviado->otrasDeudasComercialesMBG + $formularioEnviado->deudaTarjetasCreditoMB + $formularioEnviado->deudaGarantiaPrendariaMBG + $formularioEnviado->deudaAfipMBG + $formularioEnviado->deudaRentasRnMBG + $formularioEnviado->deudaTributosMunicipalesMBG + $formularioEnviado->deudasSocialesMBG + $formularioEnviado->otrasDeudasMBG ?>  </td>
         </tr>
     </table>
     </div>
