@@ -241,7 +241,7 @@ class FinanciamientoController extends Controller
 		$datosFormulario = Formulario::find($formulario_id) ?? null;
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+    	$grados = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
 		
 		$emprendimientos = NULL;
 		if ($dataUsuario->emprendimientos) {
@@ -327,7 +327,7 @@ class FinanciamientoController extends Controller
 
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
-    	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+    	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
     	if ($datosBorrador->cargo) {
     		switch ($datosBorrador->cargo) {
     			case '1':
@@ -343,7 +343,7 @@ class FinanciamientoController extends Controller
     	}
     	$emprendimientos = NULL;
     	$localidades = Localidad::all();
-    	$grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+    	$grados = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
 
     	//Agregamos los emprendimientos del usuario para luego tratarlos en la vista
     	if ($dataUsuario->emprendimientos) {

@@ -467,7 +467,7 @@
 								    
 								    <select id="gradoInstruccion" class="w3-select" name="gradoInstruccion">
 									    <?php
-									    $grados = ['Ninguno','Primario','Secundario','Terceario','Universitario'];
+									    $grados = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
 									    App\Helpers::crearOptionLE($grados,NULL);
 										 ?>
 									 </select>
@@ -729,8 +729,12 @@
 								<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 								    <h4>El lugar donde se desarrolla el emprendimiento es:</h4>
 								    <div style="display: inline-block;">
+								    	<label class="container">Ninguno
+										  <input type="radio" name="lugarEmprendimiento" value="Ninguno" checked="checked">
+										  <span class="checkmark"></span>
+										</label>
 								    	<label class="container">Otro
-										  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
+										  <input type="radio" name="lugarEmprendimiento" value="Otro">
 										  <span class="checkmark"></span>
 										</label>
 								    	<label class="container">Propio

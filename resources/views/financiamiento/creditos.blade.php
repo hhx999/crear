@@ -69,7 +69,7 @@
 		@foreach($creditos as $credito)
 
 				<tr>
-					<td>{{$credito->verEmprendimiento->denominacion}}</td>
+					<td>{{ $credito->verEmprendimiento->denominacion }}</td>
 					<td>{{$credito->fechaOtorgado}}</td>
 					<td>{{$credito->verEstado->nombre}}</td>
 					<td>

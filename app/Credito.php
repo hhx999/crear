@@ -17,10 +17,10 @@ class Credito extends Model
     }
     public function verUsuario()
     {
-    	return $this->belongsTo('App\EstadoCredito','estado');
+    	return $this->belongsTo('App\EstadoCredito','usuario_id');
     }
     public function verEmprendimiento()
     {
-    	return $this->belongsTo('App\Emprendimiento','estado');
+    	return $this->belongsTo('App\Emprendimiento','emprendimiento_id');
     }
 }
