@@ -122,7 +122,7 @@ use App\Helpers;
 
       <div class="float-container">
         <label>Fecha de presentación del proyecto<span style="color:red;">&#10033;</span></label>
-        <input data-placeholder="Ingrese la fecha en la que fue presentado el proyecto..." name="fecPresentacionProyecto" maxlength="43" id="fecPresentacionProyecto" value="<?= $formularioEnviado->fecPresentacionProyecto ?>">
+        <input data-placeholder="Ingrese la fecha en la que fue presentado el proyecto..." name="fecPresentacionProyecto" maxlength="43" id="fecPresentacionProyecto" value="<?= Helpers::cambioFormatoFecha($formularioEnviado->fecPresentacionProyecto) ?>">
       </div>
 
       <div class="float-container">
@@ -1157,6 +1157,7 @@ th {
 <script type="text/javascript">
   $(document).ready(function(){
         //FORMATO DE MASCARAS
+        $('#fecPresentacionProyecto').mask('00-00-0000');
         $('#cuit_emprendimiento').mask('00-00000000-0');
         $('#dni_emprendedor').mask('00000000'); //placeholder
         $('#inicio_emprendimiento').mask('00-00-0000');
