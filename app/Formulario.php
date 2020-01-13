@@ -173,6 +173,10 @@ class Formulario extends Model {
     ];
 
     // Relationships
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class,'idUsuario');
+    }
     public function emprendimiento()
     {
         return $this->belongsTo(Emprendimiento::class,'emprendimiento_id');

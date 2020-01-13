@@ -735,7 +735,7 @@ use App\Helpers;
         </tr>
         <tr>
           <th>Localidad</th>
-          <td style="text-align: center;"><?= $formularioEnviado->localidadEmprendedor ?></td>
+          <td style="text-align: center;"><?= $formularioEnviado->usuario->get_localidad->nombre ?></td>
         </tr>
         <tr>
           <th>Domicilio</th>
