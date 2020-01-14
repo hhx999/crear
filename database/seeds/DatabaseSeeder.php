@@ -53,7 +53,8 @@ class DatabaseSeeder extends Seeder
         //Categorias de los emprendimientos
         $this->call(EmprendimientosCategoriasSeeder::class);
 
-
+        //Tipos de sociedades
+        $this->call(TipoSociedadSeeder::class);
 
     }
 }
