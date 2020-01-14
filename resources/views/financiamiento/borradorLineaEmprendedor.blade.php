@@ -354,10 +354,10 @@ input, textarea, select {
 								    <label>Tipo de sociedad</label>
 								    
 								    <select id="tipoSociedad" class="w3-select" name="tipoSociedad">
-									    <?php
-									    $tiposSociedad = ['Sociedad Anónima (S.A.)','Sociedad de Responsabilidad Limitada (S.R.L.)','Sociedad por Acciones Simplificada (S.A.S.)'];
+								    	<?php
+									    $tiposSociedad = App\TipoSociedad::get()->all();
 
-									    App\Helpers::crearOptionLE($tiposSociedad,$datosBorrador->tipoSociedad);
+									    App\Helpers::crearOptionLEObjetos($tiposSociedad,$datosBorrador->tipoSociedad);
 										 ?>
 									 </select>
 								</div>

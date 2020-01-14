@@ -563,9 +563,9 @@
 								    
 								    <select id="tipoSociedad" class="w3-select" name="tipoSociedad">
 									    <?php
-									    $tiposSociedad = ['Sociedad Anónima (S.A.)','Sociedad de Responsabilidad Limitada (S.R.L.)','Sociedad por Acciones Simplificada (S.A.S.)'];
+									    $tiposSociedad = App\TipoSociedad::get()->all();
 
-									    App\Helpers::crearOptionLE($tiposSociedad,NULL);
+									    App\Helpers::crearOptionLEObjetos($tiposSociedad,NULL);
 										 ?>
 									 </select>
 								</div>

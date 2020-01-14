@@ -196,6 +196,19 @@ class Helpers
             print '<option '.$selected.' value="'.$seleccion.'">'.$seleccion.'</option>';
         }
     }
+    public static function crearOptionLEObjetos($elementosSeleccionables,$datoSeleccionado) {
+        if(!isset($dato)) {
+            print '<option value="" disabled selected>Elegí la opción...</option>';
+        }
+        foreach ($elementosSeleccionables as $seleccion) {
+            if ($seleccion->nombre == $datoSeleccionado) {
+                $selected = 'selected';
+            } else {
+                $selected = '';
+            }
+            print '<option '.$selected.' value="'.$seleccion->nombre.'">'.$seleccion->nombre.'</option>';
+        }
+    }
     public static function unique_multidim_array($array, $key) {
         $temp_array = array();
         $i = 0;
