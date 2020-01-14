@@ -209,11 +209,11 @@ class TecnicoController extends Controller
             unset($data['idValidacion']);
 
             $validacion = FormValido::find($idValidacion);
-            $validacion->portada = $data['portada'];
             $validacion->infoEmprendedor = $data['infoEmprendedor'];
             $validacion->datosEmprendimiento = $data['datosEmprendimiento'];
             $validacion->mercado = $data['mercado'];
             $validacion->prodCostResultados = $data['prodCostResultados'];
+            $validacion->inversion = $data['inversion'];
             $validacion->mbe = $data['mbe'];
             $validacion->mbg = $data['mbg'];
             $validacion->documentacion = $data['documentacion'];

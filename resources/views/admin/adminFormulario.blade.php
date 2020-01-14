@@ -39,6 +39,7 @@ use App\Helpers;
     <span class="step" onclick="irTab(5)"></span>
     <span class="step" onclick="irTab(6)"></span>
     <span class="step" onclick="irTab(7)"></span>
+    <span class="step" onclick="irTab(8)"></span>
   </div>
 
 <!-- Modal de REVISIÓN -->
@@ -65,45 +66,6 @@ use App\Helpers;
 </div>
 <!-- FIN DE Modal de REVISIÓN -->
   <div class="tab">
-    <input type="input" name="idValidacion" id="idValidacion" value="<?=$pasosValidos->id?>" hidden>
-    @isset($observaciones[0])
-      @for($i=0; $i < count($observaciones); $i++)
-        @if($observaciones[$i]->hoja == 'portada')
-          <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
-          <div class="observacion"><p><b>Agregar observación para PORTADA:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
-          <button type="button" style="background-color: red;" id="eliminarObservacionPortada">Eliminar</button>
-        @endif
-      @endfor
-    @endisset
-
-    <?php Helpers::crearCheckValido('portada',$pasosValidos->infoEmprendedor) ?>
-    <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="portada">OBSERVACIÓN</button>
-    <script type="text/javascript">
-      $('#eliminarObservacionPortada').on('click',function() {
-        console.log('eliminar');
-        console.log($('#portada_id').val());
-        var datos = {};
-                      datos['id'] = $('#portada_id').val();
-                  $.ajax({
-                      type: 'POST',
-                      url: "{{ route('eliminarObservacion') }}",
-                      data : datos
-                  }).done(function (data) {
-                    alert('Observacion eliminada!');
-                    console.log('OK 202!');
-                  }).fail(function () {
-                      console.log('Error contacte con el administrador de la aplicación.');
-                  });
-      });
-    </script>
-      <p class="hoja" style="display: none;">portada</p>
-      <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">PORTADA</p>
-    <!-- ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª-->
-    @if (\Session::has('success'))
-    <div style="padding: 10px;background-color: #8bc34a;color: white;" align="center">
-        <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('success') !!}</p>
-    </div>
-    @endif
       <input type="submit" name="agregarPortada" value="Agregar portada">
       <!-- hidden inputs -->
       <p><input type="hidden" name="idFormulario" id="idFormulario" value="<?=$id ?>"></p>
@@ -142,7 +104,17 @@ use App\Helpers;
 
       <div class="float-container">
         <label>Monto a solicitar <span style="color:red;">&#10033;</span></label>
-        <input data-placeholder="Ingrese el monto solicitado por el emprendedor..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ?>">
+        <input data-placeholder="Ingrese el monto solicitado por el emprendedor..." id="montoSolicitado"  name="montoSolicitado" maxlength="6" value="<?= $formularioEnviado->montoSolicitado ??
+                  ($formularioEnviado->item1_cantidad * $formularioEnviado->item1_precio) +
+                  ($formularioEnviado->item2_cantidad * $formularioEnviado->item2_precio) +
+                  ($formularioEnviado->item3_cantidad * $formularioEnviado->item3_precio) +
+                  ($formularioEnviado->item4_cantidad * $formularioEnviado->item4_precio) +
+                  ($formularioEnviado->item5_cantidad * $formularioEnviado->item5_precio) +
+                  ($formularioEnviado->item6_cantidad * $formularioEnviado->item6_precio) +
+                  ($formularioEnviado->item7_cantidad * $formularioEnviado->item7_precio) +
+                  ($formularioEnviado->item8_cantidad * $formularioEnviado->item8_precio) +
+                  ($formularioEnviado->item9_cantidad * $formularioEnviado->item9_precio) +
+                  ($formularioEnviado->item10_cantidad * $formularioEnviado->item10_precio) ?>">
       </div>
 
       <div class="float-container" style="padding: 20px;">
@@ -679,6 +651,140 @@ use App\Helpers;
           <td style="text-align: center;"><?= Helpers::calcularTotalCostos($formularioEnviado); ?></td>
         </tr>
     </table>
+    </div>
+    <!-- INVERSION -->
+    <div class="tab">
+          <input type="input" name="idValidacion" id="idValidacion" value="<?=$pasosValidos->id?>" hidden>
+      @isset($observaciones[0])
+        @for($i=0; $i < count($observaciones); $i++)
+          @if($observaciones[$i]->hoja == 'inversion')
+            <input type="input" id="{{$observaciones[$i]->hoja}}_id" value="{{$observaciones[$i]->id}}" hidden>
+            <div class="observacion"><p><b>Agregar observación para Inversión:</b></p><textarea name=observaciones["{{$observaciones[$i]->hoja}}"]>{{$observaciones[$i]->observacion}}</textarea></div>
+            <button type="button" style="background-color: red;" id="eliminarObservacioninversion">Eliminar</button>
+          @endif
+        @endfor
+      @endisset
+
+      <?php Helpers::crearCheckValido('inversion',$pasosValidos->infoEmprendedor) ?>
+      <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="inversion">OBSERVACIÓN</button>
+      <script type="text/javascript">
+        $('#eliminarObservacioninversion').on('click',function() {
+          console.log('eliminar');
+          console.log($('#inversion_id').val());
+          var datos = {};
+                        datos['id'] = $('#inversion_id').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('eliminarObservacion') }}",
+                        data : datos
+                    }).done(function (data) {
+                      alert('Observacion eliminada!');
+                      console.log('OK 202!');
+                    }).fail(function () {
+                        console.log('Error contacte con el administrador de la aplicación.');
+                    });
+        });
+      </script>
+        <p class="hoja" style="display: none;">inversion</p>
+        <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">inversion</p>
+      <!-- ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª-->
+      @if (\Session::has('success'))
+      <div style="padding: 10px;background-color: #8bc34a;color: white;" align="center">
+          <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('success') !!}</p>
+      </div>
+      @endif
+
+      <table class="w3-table-all">
+            <thead>
+            <tr class="w3-green">
+              <th colspan="4" style="text-align: center;font-size: 18px;">Inversión</th>
+            </tr>
+            <tr>
+              <th>Descripción</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{$formularioEnviado->item1_descripcion}}</td>
+              <td>{{$formularioEnviado->item1_cantidad}}</td>
+              <td>{{$formularioEnviado->item1_precio}}</td>
+              <td>{{$formularioEnviado->item1_cantidad * $formularioEnviado->item1_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item2_descripcion}}</td>
+              <td>{{$formularioEnviado->item2_cantidad}}</td>
+              <td>{{$formularioEnviado->item2_precio}}</td>
+              <td>{{$formularioEnviado->item2_cantidad * $formularioEnviado->item2_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item3_descripcion}}</td>
+              <td>{{$formularioEnviado->item3_cantidad}}</td>
+              <td>{{$formularioEnviado->item3_precio}}</td>
+              <td>{{$formularioEnviado->item3_cantidad * $formularioEnviado->item3_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item4_descripcion}}</td>
+              <td>{{$formularioEnviado->item4_cantidad}}</td>
+              <td>{{$formularioEnviado->item4_precio}}</td>
+              <td>{{$formularioEnviado->item4_cantidad * $formularioEnviado->item4_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item5_descripcion}}</td>
+              <td>{{$formularioEnviado->item5_cantidad}}</td>
+              <td>{{$formularioEnviado->item5_precio}}</td>
+              <td>{{$formularioEnviado->item5_cantidad * $formularioEnviado->item5_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item6_descripcion}}</td>
+              <td>{{$formularioEnviado->item6_cantidad}}</td>
+              <td>{{$formularioEnviado->item6_precio}}</td>
+              <td>{{$formularioEnviado->item6_cantidad * $formularioEnviado->item6_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item7_descripcion}}</td>
+              <td>{{$formularioEnviado->item7_cantidad}}</td>
+              <td>{{$formularioEnviado->item7_precio}}</td>
+              <td>{{$formularioEnviado->item7_cantidad * $formularioEnviado->item7_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item8_descripcion}}</td>
+              <td>{{$formularioEnviado->item8_cantidad}}</td>
+              <td>{{$formularioEnviado->item8_precio}}</td>
+              <td>{{$formularioEnviado->item8_cantidad * $formularioEnviado->item8_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item9_descripcion}}</td>
+              <td>{{$formularioEnviado->item9_cantidad}}</td>
+              <td>{{$formularioEnviado->item9_precio}}</td>
+              <td>{{$formularioEnviado->item9_cantidad * $formularioEnviado->item9_precio}}</td>
+            </tr>
+            <tr>
+              <td>{{$formularioEnviado->item10_descripcion}}</td>
+              <td>{{$formularioEnviado->item10_cantidad}}</td>
+              <td>{{$formularioEnviado->item10_precio}}</td>
+              <td>{{$formularioEnviado->item10_cantidad * $formularioEnviado->item10_precio}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">Total solicitado al crear</th>
+                <th colspan="2">{{
+                  ($formularioEnviado->item1_cantidad * $formularioEnviado->item1_precio) +
+                  ($formularioEnviado->item2_cantidad * $formularioEnviado->item2_precio) +
+                  ($formularioEnviado->item3_cantidad * $formularioEnviado->item3_precio) +
+                  ($formularioEnviado->item4_cantidad * $formularioEnviado->item4_precio) +
+                  ($formularioEnviado->item5_cantidad * $formularioEnviado->item5_precio) +
+                  ($formularioEnviado->item6_cantidad * $formularioEnviado->item6_precio) +
+                  ($formularioEnviado->item7_cantidad * $formularioEnviado->item7_precio) +
+                  ($formularioEnviado->item8_cantidad * $formularioEnviado->item8_precio) +
+                  ($formularioEnviado->item9_cantidad * $formularioEnviado->item9_precio) +
+                  ($formularioEnviado->item10_cantidad * $formularioEnviado->item10_precio) }}
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
     </div>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\ MANIFESTACIÓN DE LOS BIENES DEL EMPRENDEDOR  \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
         <div class="tab">

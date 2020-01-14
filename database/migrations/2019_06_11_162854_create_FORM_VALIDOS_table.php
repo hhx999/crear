@@ -15,12 +15,12 @@ class CreateFORMVALIDOSTable extends Migration {
 		Schema::create('FORM_VALIDOS', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->boolean('portada')->default(0);
 			$table->boolean('infoEmprendedor')->default(0);
 			$table->boolean('datosEmprendimiento')->default(0);
 			$table->boolean('aspectosSociales')->default(0);
 			$table->boolean('mercado')->default(0);
 			$table->boolean('prodCostResultados')->default(0);
+			$table->boolean('inversion')->default(0);
 			$table->boolean('mbe')->default(0);
 			$table->boolean('mbg')->default(0);
 			$table->boolean('documentacion')->default(0);
