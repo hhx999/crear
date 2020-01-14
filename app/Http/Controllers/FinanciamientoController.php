@@ -238,7 +238,7 @@ class FinanciamientoController extends Controller
     {
     	//id de usuario
 		$idUsuario = $request->session()->get('id_usuario');
-		$datosFormulario = Formulario::find($formulario_id) ?? null;
+		$datosFormulario = Formulario::where("id", $formulario_id)->where("idUsuario", $idUsuario)->first() ?? null;
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$grados = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
@@ -249,21 +249,6 @@ class FinanciamientoController extends Controller
 			    		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
 			    	}
 		}
-    	if ($datosFormulario->emprendimiento_id) {
-    		$emprendimiento = Emprendimiento::find($datosFormulario->emprendimiento_id);
-    		$cargoEmprendimiento = $emprendimiento->trabajaEn->cargo;
-    		switch ($cargoEmprendimiento) {
-    			case '1':
-    				$cargoEmprendimiento = 'Propietario';
-    				break;
-    			case '2':
-    				$cargoEmprendimiento = 'Representante legal';
-    				break;
-    			case '3':
-    				$cargoEmprendimiento = 'Socio de sociedad de hecho';
-    				break;
-    		}
-    	}
     	$localidades = Localidad::all();
 
 		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades,'grados' => $grados, 'emprendimientosUsuario' => $emprendimientos]);
@@ -279,25 +264,13 @@ class FinanciamientoController extends Controller
 
 			  // Use Eloquent to grab the gift record that we want to update,
 			  // referenced by the ID passed to the REST endpoint
-			  $formulario = Formulario::find($request->formulario_id);
+			  $formulario = Formulario::where("id", $request->formulario_id)->where("idUsuario",$idUsuario)->first();
 			  // Call fill on the gift and pass in the data
 			  $formulario->fill($data);
 	    		$request->fecInicioEmprendimiento = Helpers::cambioFormatoFecha($request->fecInicioEmprendimiento);
 				$formulario->fill($request->all())->save();
 				$formulario->instagramEmprendedor = $request->instagramEmprendedor;
 				
-				if ($request->emprendimiento_id) {
-					$emprendimiento = Emprendimiento::find($request->emprendimiento_id);
-					$emprendimiento->denominacion = $request->denominacion;
-					$emprendimiento->tipoSociedad = $request->tipoSociedad;
-					$emprendimiento->estadoEmprendimiento = $request->estadoEmprendimiento;
-					$emprendimiento->cuit = $request->cuitEmprendimiento;
-					$emprendimiento->domicilio = $request->domicilioEmprendimiento;
-					$emprendimiento->localidad = $request->localidadEmprendimiento;
-					$emprendimiento->email = $request->emailEmprendimiento;
-					$emprendimiento->telefono = $request->telefonoEmprendimiento;
-					$emprendimiento->save();
-				}
 
 				$formulario->gradoInstruccion = $request->gradoInstruccion;
 				$formulario->puntoVentaLocal = $request->puntoVentaLocal;
@@ -323,7 +296,7 @@ class FinanciamientoController extends Controller
     {
     	//id de usuario
 		$idUsuario = $request->session()->get('id_usuario');
-		$datosBorrador = Borrador::find($borrador_id) ?? null;
+		$datosBorrador = Borrador::where('id',$borrador_id)->where('idUsuario',$idUsuario)->first() ?? null;
 
 		$dataUsuario = Usuario::find($idUsuario);
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
