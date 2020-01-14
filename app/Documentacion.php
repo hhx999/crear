@@ -16,5 +16,8 @@ class Documentacion extends Model {
     ];
 
     // Relationships
-    
+    public function multimedia()
+    {
+        return $this->belongsTo('App\Multimedia','multimedia_id');
+    }
 }

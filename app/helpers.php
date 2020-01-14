@@ -76,7 +76,7 @@ class Helpers
         DB::beginTransaction();
                     try {
                     //Asignamos las reglas de extensiones de archivos para subir
-                      $rules = array('jpg','png','jpeg');
+                      $rules = array('jpg','png','jpeg','pdf','xlsx','xls','odt');
                     //El path desde donde se envia el archivo
                       $path = storage_path().DIRECTORY_SEPARATOR.$archivoMultimedia->getClientOriginalName();
                     //Nombre del archivo
