@@ -35,7 +35,7 @@ input, textarea, select {
 		label.error 
 		{
 			color: #ff9183 !important;
-		}
+		} 
 		/* The container */
 		.container {
 		  display: table-cell !important;
@@ -52,6 +52,51 @@ input, textarea, select {
 		  user-select: none;
 		}
 
+		/* Hide the browser's default radio button */
+		.container input {
+		  position: absolute;
+		  opacity: 0;
+		  cursor: pointer;
+		}
+
+		/* Create a custom radio button */
+		.checkmark {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  height: 25px;
+		  width: 25px;
+		  background-color: #eee;
+		  border-radius: 50%;
+		}
+
+		/* On mouse-over, add a grey background color */
+		.container:hover input ~ .checkmark {
+		  background-color: #ccc;
+		}
+
+		/* When the radio button is checked, add a blue background */
+		.container input:checked ~ .checkmark {
+		  background-color: #2196F3;
+		}
+		/* Create the indicator (the dot/circle - hidden when not checked) */
+		.checkmark:after {
+		  content: "";
+		  position: absolute;
+		  display: none;
+		}
+		/* Show the indicator (dot/circle) when checked */
+		.container input:checked ~ .checkmark:after {
+		  display: block;
+		}
+		/* Style the indicator (dot/circle) */
+		.container .checkmark:after {
+		 	top: 9px;
+			left: 9px;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: white;
 		}
 	</style>
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
@@ -498,26 +543,23 @@ input, textarea, select {
 								<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 								    <h4>El lugar donde se desarrolla el emprendimiento es:</h4>
 								    <div style="display: inline-block;">
-								    	<label class="container">Ninguno
-										  <input type="radio" name="lugarEmprendimiento" value="Ninguno" checked="checked">
-										  <span class="checkmark"></span>
-										</label>
-								    	<label class="container">Otro
-										  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
-										  <span class="checkmark"></span>
-										</label>
-								    	<label class="container">Propio
-								    		<input type="radio" name="lugarEmprendimiento" value="Propio">
-								    		<span class="checkmark"></span>
-								    	</label>
-									    <label class="container">Prestado
-										  <input type="radio" name="lugarEmprendimiento" value="Prestado">
-										  <span class="checkmark"></span>
-										</label>
-										<label class="container">Alquilado
-										  <input type="radio" name="lugarEmprendimiento" value="Alquilado">
-										  <span class="checkmark"></span>
-										</label>
+								    	<label class="container">
+								    	<select class="w3-select" name="lugarEmprendimiento">
+								   		<?php 
+								   			$lugarDesarrolla = ["Ninguno", "Otro", "Propio", "Prestado", "Alquilado"];
+
+								   			for($i = 0; $i < count($lugarDesarrolla);$i++)
+								   			{
+								   				if($datosBorrador->lugarEmprendimiento == $lugarDesarrolla[$i])
+								   				{
+								   					print_r('<option selected value="'.$lugarDesarrolla[$i].'">'.$lugarDesarrolla[$i].'</option>');
+								   				} else {
+								   					print_r('<option value="'.$lugarDesarrolla[$i].'">'.$lugarDesarrolla[$i].'</option>');
+								   				}
+								   			}
+								   		 ?>
+								    	</select>
+								    </label>
 								    </div>
 								</div>
 							</div>

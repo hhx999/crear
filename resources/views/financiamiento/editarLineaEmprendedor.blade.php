@@ -619,26 +619,26 @@ input, textarea, select {
 								<div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
 								    <h4>El lugar donde se desarrolla el emprendimiento es:</h4>
 								    <div style="display: inline-block;">
-								    	<label class="container">Ninguno
-										  <input type="radio" name="lugarEmprendimiento" value="Ninguno" checked="checked">
-										  <span class="checkmark"></span>
-										</label>
-								    	<label class="container">Otro
-										  <input type="radio" name="lugarEmprendimiento" value="Otro" checked="checked">
-										  <span class="checkmark"></span>
-										</label>
-								    	<label class="container">Propio
-								    		<input type="radio" name="lugarEmprendimiento" value="Propio">
-								    		<span class="checkmark"></span>
-								    	</label>
-									    <label class="container">Prestado
-										  <input type="radio" name="lugarEmprendimiento" value="Prestado">
-										  <span class="checkmark"></span>
-										</label>
-										<label class="container">Alquilado
-										  <input type="radio" name="lugarEmprendimiento" value="Alquilado">
-										  <span class="checkmark"></span>
-										</label>
+
+								   		<?php 
+								   			$lugarDesarrolla = ["Ninguno", "Otro", "Propio", "Prestado", "Alquilado"];
+
+								   			for($i = 0; $i < count($lugarDesarrolla);$i++)
+								   			{
+								   				if($datosFormulario->lugarEmprendimiento == $lugarDesarrolla[$i])
+								   				{
+								   					print_r('<label class="container">'.$lugarDesarrolla[$i].'
+														  <input type="radio" name="lugarEmprendimiento" value="'.$lugarDesarrolla[$i].'" checked="checked">
+														  <span class="checkmark"></span>
+														</label>');
+								   				} else {
+								   					print_r('<label class="container">'.$lugarDesarrolla[$i].'
+														  <input type="radio" name="lugarEmprendimiento" value="'.$lugarDesarrolla[$i].'">
+														  <span class="checkmark"></span>
+														</label>');
+								   				}
+								   			}
+								   		 ?>
 								    </div>
 								</div>
 							</div>
