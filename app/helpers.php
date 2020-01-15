@@ -246,7 +246,7 @@ class Helpers
                   </tr>
                   <tr>
                     <th style="display:none;">ID</th>
-                    <th>Nº PROYECTO</th>
+                    <th>ID</th>
                     <th>SOLICITANTE</th>
                     <th>FECHA</th>
                     <th>LOCALIDAD</th>
@@ -284,7 +284,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                         echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->updated_at."</td>";
-                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo "<td><a href='adminFormulario/".$formularios[$i]->id."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>
@@ -301,7 +301,7 @@ class Helpers
                             echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                             echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                             echo "<td>".$formularios[$i]->updated_at."</td>";
-                            echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                            echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                             echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                             echo "<td>".$formTipo->nombre."</td>";
                             echo "<td>";
@@ -321,7 +321,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                         echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->updated_at."</td>";
-                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
@@ -334,7 +334,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                         echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->updated_at."</td>";
-                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
@@ -347,7 +347,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                         echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->updated_at."</td>";
-                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo Helpers::acciones($rol,$formularios[$i]->id);
@@ -362,7 +362,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                         echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->updated_at."</td>";
-                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo "<td>";
@@ -382,7 +382,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
                         echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
                         echo "<td>".$formularios[$i]->updated_at."</td>";
-                        echo "<td>".$formularios[$i]->localidadEmprendedor."</td>";
+                        echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo "<td><a href='adminFormulario/".$idForm."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>

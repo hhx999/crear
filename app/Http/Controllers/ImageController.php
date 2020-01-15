@@ -12,7 +12,7 @@ use Auth;
 
 class ImageController extends Controller { 
 
-    public function getImage($id) {
+    public function getImage(int $id) {
     $documentacion = Documentacion::find($id);
     $filename = $documentacion->multimedia_id;
     $ext = $documentacion->multimedia->extension;

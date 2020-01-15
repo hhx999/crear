@@ -4,6 +4,9 @@
         <meta charset="UTF-8"/>
         <title>LINEA EMPRENDEDOR</title>
         <style type="text/css">
+        * {
+          font-family: sans-serif;
+        }
         .cabecera{
             text-align: center;
             padding:20px;
@@ -19,6 +22,9 @@
         }
         #proyecto p {
             display: inline-block;
+        }
+        th,td {
+          padding: 6px;
         }
         </style>
     <title>FORMULARIO Nº <?=$datosFormulario->numeroProyecto?> - $datosFormulario->tituloProyecto</title>
@@ -63,7 +69,7 @@
     <div class="cabecera_azul" style="margin-top: 30px;">
         <b>BREVE DESCRIPCIÓN DEL EMPRENDIMIENTO Y JUSTIFICACIÓN DE LA NECESIDAD DE FINANCIAMIENTO </b>
     </div>
-    <div style="border: 1px solid black;width: 700px;margin-top: 10px;margin-left: 15px;padding-bottom: 10px;padding-left: 10px;padding-right: 10px;">
+    <div style="border: 1px solid black;width: 100%;margin-top: 10px;margin-left: 15px;margin-right: 15px;padding-bottom: 10px;padding-left: 10px;padding-right: 10px;">
         <p> <?php isset($datosFormulario->descEmprendimiento) ? print $datosFormulario->descEmprendimiento : print "-" ; ?>
         </p>
     </div>
@@ -97,7 +103,7 @@
     </div>
     <div style="margin-top: 40px;">
     <div align="center" style="margin-bottom: 20px;"><b>DATOS GENERALES:</b></div>
-        <table style="width:100%" align="center" border="1"  cellpadding="24">
+        <table style="width:100%;" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
                 <th>NOMBRE Y APELLIDO:</th>
@@ -109,7 +115,7 @@
               </tr>
               <tr>
                 <th>LOCALIDAD:</th>
-                <td><?php isset($datosFormulario->localidadEmprendedor) ? print $datosFormulario->localidadEmprendedor : print "-" ; ?></td>
+                <td><?php isset($datosFormulario->localidadEmprendedor) ? print $datosFormulario->get_localidad->nombre : print "-" ; ?></td>
               </tr>
               <tr>
                   <th>DOMICILIO:</th>
@@ -141,7 +147,6 @@
             </tbody>
         </table>
     </div>
-    <div style="page-break-after: always;clear:both;"></div>
     <div style="margin-top: 40px;">
         <div align="center" style="margin-bottom: 20px;"><b>FORMACIÓN Y OCUPACIÓN:</b></div>
         <table style="width:100%" align="center" border="1"  cellpadding="24">
@@ -177,7 +182,7 @@
               </tr>
               <tr>
                 <th>ACTIVIDAD PRINCIPAL:</th>
-                <td><?php isset($datosFormulario->actPrincipalEmprendimiento) ? print $datosFormulario->actPrincipalEmprendimiento : print "-" ; ?></td>
+                <td><?php isset($datosFormulario->actPrincipalEmprendimiento) ? print $datosFormulario->actividadPrincipal->nombre : print "-" ; ?></td>
               </tr>
               <tr>
                 <th>FECHA DE INICIO A LA ACTIVIDAD:</th>
@@ -202,27 +207,24 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th>DOMICILIO REAL:</th>
+                <th style="width: 240px;">DOMICILIO REAL:</th>
                 <td><?php isset($datosFormulario->domicilioEmprendimiento) ? print $datosFormulario->domicilioEmprendimiento : print "-" ; ?></td>
               </tr>
               <tr>
-                <th>LOCALIDAD:</th>
+                <th style="width: 240px;">LOCALIDAD:</th>
                 <td><?php isset($datosFormulario->localidadEmprendimiento) ? print $datosFormulario->localidadEmprendimiento : print "-" ; ?></td>
               </tr>
               <tr>
-                  <th>LUGAR DONDE SE DESARROLLA ES:</th>
+                  <th style="width: 240px;">LUGAR DONDE SE DESARROLLA ES:</th>
                   <td><?php isset($datosFormulario->lugarEmprendimiento) ? print $datosFormulario->lugarEmprendimiento : print "-" ; ?></td>
               </tr>
             </tbody>
         </table>
         <div class="cabecera_azul"><b>DETALLE EL-LOS PRODUCTOS O SERVICIOS QUE OFRECERÁ</b></div>
         <div style="align-items: center;">
-            <div style="border: 1px solid black;width: 700px;margin-top: 10px;margin-left: 15px;padding-bottom: 10px;padding-left: 10px;padding-right: 10px;">
                 <p>
                   <?php isset($datosFormulario->descProdServicios) ? print $datosFormulario->descProdServicios : print "-" ; ?>
                 </p>
-            </div>
-        
         <div class="cabecera_azul"><b>EXPERIENCIA O FORMACIÓN DE EL/LOS EMPRENDEDORES PARA EL DESARROLLO DEL EMPRENDIMIENTO</b></div>
                 <p><?php isset($datosFormulario->experienciaEmprendedores) ? print $datosFormulario->experienciaEmprendedores : print "-" ; ?>
                 </p>
@@ -238,8 +240,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th style="width: 147px;">Clientes</th>
-                <th style="width: 107px;">Ubicación</th>
+                <th style="width: 147px;">CLIENTES</th>
+                <th style="width: 107px;">UBICACIÓN</th>
               </tr>
                 <?php
                 if (!isset($datosFormulario->descripcionClientes)) {
@@ -254,8 +256,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 242px;">NOMBRE O RAZÓN SOCIAL</th>
-              <th style="width: 242px;">UBICACIÓN</th>
+              <th style="width: 147px;">NOMBRE O RAZÓN SOCIAL</th>
+              <th style="width: 107px;">UBICACIÓN</th>
             </tr>
              <?php
                 if (!isset($datosFormulario->descripcionProveedores)) {
@@ -270,8 +272,8 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 242px;">NOMBRE O RAZÓN SOCIAL</th>
-              <th style="width: 242px;">UBICACIÓN</th>
+              <th style="width: 147px;">NOMBRE O RAZÓN SOCIAL</th>
+              <th style="width: 107px;">UBICACIÓN</th>
             </tr>
             <?php
                 if (!isset($datosFormulario->descripcionCompetencia)) {
@@ -288,7 +290,10 @@
         <div class="cabecera"><b>ESTRATEGIAS DE PROMOCIÓN QUE UTILIZARÁ¿Cómo vas a hacer conocer tu producto o servicio?</b></div>
         <p><?php isset($datosFormulario->estrategiasPromocion) ? print $datosFormulario->estrategiasPromocion : ""; ?></p>
         <div class="cabecera"><b>PUNTOS DE VENTA ¿Dónde vas a vender? </b></div>
-        <p><?php isset($datosFormulario->puntosVenta) ? print $datosFormulario->puntosVenta : ""; ?></p>
+        <p><?php isset($datosFormulario->puntoVentaLocal) ? print "-Local<br>": ""; ?>
+          <?php isset($datosFormulario->puntoVentaProvincial) ? print "-Provincial<br>": ""; ?>
+          <?php isset($datosFormulario->puntoVentaNacional) ? print "-Nacional<br>": ""; ?>
+        </p>
         <div style="page-break-after: always;clear:both;"></div>
 
 
@@ -302,33 +307,57 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 242px;">PRODUCTO O SERVICIO</th>
-              <th style="width: 142px;">Ud. Medida</th>
-              <th style="width: 142px;">CANTIDAD AL AÑO</th>
+              <th>PRODUCTO O SERVICIO</th>
+              <th>Ud. Medida</th>
+              <th style="width: 81px;">CANTIDAD</th>
               <th style="width: 81px;">PRECIO</th>
               <th style="width: 91px;">TOTAL</th>
             </tr>
-              <?php
-              $totalVentas = 0;
-              $totalVentasUnico = 0;
-              if (!isset($ventas)) {
-                echo "<tr><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td></tr>";
-              } else {
-                for ($i=0; $i < count($ventas) ; $i++) {
-                $totalVentasUnico = $ventas[$i]->cantAnio * $ventas[$i]->precio;
-                $totalVentas += $totalVentasUnico; 
-                  echo "<tr><td>".$ventas[$i]->producto."</td><td>".$ventas[$i]->udMedida."</td><td>".$ventas[$i]->cantAnio."</td><td>".$ventas[$i]->precio."</td><td>".$totalVentasUnico."</td></tr>";
-                }
-              }
-              ?> 
+            <tr>
+              <td><?= $datosFormulario->producto1 ?></td>
+              <td><?= $datosFormulario->udMedida1 ?></td>
+              <td><?= $datosFormulario->cantidad1 ?></td>
+              <td><?= $datosFormulario->valor1 ?></td>
+              <td><?= $datosFormulario->cantidad1 * $datosFormulario->valor1  ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->producto2 ?></td>
+              <td><?= $datosFormulario->udMedida2 ?></td>
+              <td><?= $datosFormulario->cantidad2 ?></td>
+              <td><?= $datosFormulario->valor2 ?></td>
+              <td><?= $datosFormulario->cantidad2 * $datosFormulario->valor2  ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->producto3 ?></td>
+              <td><?= $datosFormulario->udMedida3 ?></td>
+              <td><?= $datosFormulario->cantidad3 ?></td>
+              <td><?= $datosFormulario->valor3 ?></td>
+              <td><?= $datosFormulario->cantidad3 * $datosFormulario->valor3  ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->producto4 ?></td>
+              <td><?= $datosFormulario->udMedida4 ?></td>
+              <td><?= $datosFormulario->cantidad4 ?></td>
+              <td><?= $datosFormulario->valor4 ?></td>
+              <td><?= $datosFormulario->cantidad4 * $datosFormulario->valor4  ?></td>
+            </tr>
+            <tr>
+              <td colspan="4">Otros productos</td>
+              <td><?= $datosFormulario->otrosProductosVenta?></td>
+            </tr>
+            <tr>
+              <TH colspan="4">TOTAL</TH>
+              <td><?php $totalVentas =  ($datosFormulario->cantidad1 * $datosFormulario->valor1) + ($datosFormulario->cantidad2 * $datosFormulario->valor2) + ($datosFormulario->cantidad3 * $datosFormulario->valor3) + ($datosFormulario->cantidad4 * $datosFormulario->valor4); echo $totalVentas;   ?></td>
+            </tr>
           </tbody>
         </table>
-          <p align="center"> TOTAL : <?php isset($totalVentas) ? print $totalVentas : ""; ?></p>
+
+          <div style="page-break-after: always;clear:both;"></div>
         <div class="cabecera_azul"> <b> OTROS COSTOS DEL EMPRENDIMIENTO </b></div>
         <table style="width:100%" align="center" border="1"  cellpadding="24">
             <tbody>
               <tr>
-                <th style="width: 616px;text-align: center;">TIPO</th>
+                <th style="text-align: center;">TIPO</th>
                 <th style="width: 120px;text-align: center;">COSTO AL AÑO</th>
               </tr>
               <tr>
@@ -379,17 +408,24 @@
                   <?php isset($datosFormulario->cuotaMensualCostos) ? print $datosFormulario->cuotaMensualCostos : ""; ?>
                 </td>
               </tr>
+              <tr>
+                <th>TOTAL</th>
+                <td>
+                  <?php $totalCostos = 
+                    $datosFormulario->insumosCostos +$datosFormulario->alquileresCostos + $datosFormulario->serviciosCostos + $datosFormulario->monotributoCostos + $datosFormulario->ingresosBrutosCostos +$datosFormulario->segurosCostos + $datosFormulario->combustibleCostos + $datosFormulario->sueldosCostos + $datosFormulario->comercializacionCostos + $datosFormulario->otrosCostos + $datosFormulario->cuotaMensualCostos;
+                    echo $totalCostos;
+                    ?>
+                </td>
+              </tr>
             </tbody>
         </table>
-        <?php $totalCostos = $datosFormulario->insumosCostos +$datosFormulario->alquileresCostos + $datosFormulario->serviciosCostos + $datosFormulario->monotributoCostos + $datosFormulario->ingresosBrutosCostos +$datosFormulario->segurosCostos + $datosFormulario->combustibleCostos + $datosFormulario->sueldosCostos + $datosFormulario->comercializacionCostos + $datosFormulario->otrosCostos + $datosFormulario->cuotaMensualCostos; ?>
-        <p align="center"> TOTAL: <?php isset($totalCostos) ? print $totalCostos : print "-" ?></p>
         <div class="cabecera_azul"><b>GANANCIA DEL EMPRENDIMIENTO</b></div>
         <table style="width:100%" align="center" border="1"  cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 242px;text-align: center;">INGRESOS POR VENTAS AL AÑO</th>
-              <th style="width: 242px;text-align: center;">COSTOS AL AÑO</th>
-              <th style="width: 242px;text-align: center;">RESULTADO</th>
+              <th style="text-align: center;">INGRESOS POR VENTAS AL AÑO</th>
+              <th style="text-align: center;">COSTOS AL AÑO</th>
+              <th style="text-align: center;">GANANCIA</th>
             </tr>
             <tr>
               <td style="text-align: center;"><?php isset($totalVentas) ? print $totalVentas : print "-"; ?></td>
@@ -403,70 +439,86 @@
         <table style="width:100%" align="center" border="1"  cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 142px;text-align: center;">ÍTEM (Bien de Capital - Capital de Trabajo - Obra Civil)</th>
               <th style="width: 242px;text-align: center;">Descripción</th>
               <th style="width: 81px;text-align: center;">CANTIDAD</th>
               <th style="width: 142px;text-align: center;">PRECIO UNITARIO</th>
               <th style="width: 91px;text-align: center;">TOTAL</th>
             </tr>
-            <?php
-              $total_bienes = 0;
-              $total_capital = 0;
-              $total_obra = 0;
-              $total_instalaciones = 0;
-              if (!isset($items)) {
-                echo "<tr><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td><td align='center'>-</td></tr><br>";
-              }
-              if (isset($items)) {
-                for ($i=0; $i < count($items) ; $i++) {
-                  if ($items[$i]->nombreItem == 'BIENES DE CAPITAL') {
-                  $totalItemsUnico = $items[$i]->cantidad * $items[$i]->precioUnitario;
-                  echo "<tr><td>".$items[$i]->nombreItem."</td><td>".$items[$i]->descripcion."</td><td>".$items[$i]->cantidad."</td><td>".$items[$i]->precioUnitario."</td><td>".$totalItemsUnico."</td></tr>";
-                  $total_bienes += $totalItemsUnico;
-                  }
-                  if ($items[$i]->nombreItem == 'CAPITAL DE TRABAJO') {
-                    $totalItemsUnico = $items[$i]->cantidad * $items[$i]->precioUnitario;
-                    echo "<tr><td>".$items[$i]->nombreItem."</td><td>".$items[$i]->descripcion."</td><td>".$items[$i]->cantidad."</td><td>".$items[$i]->precioUnitario."</td><td>".$totalItemsUnico."</td></tr>";
-                    $total_capital += $totalItemsUnico;
-                  }
-                  if ($items [$i]->nombreItem == 'INSTALACIONES') {
-                    $totalItemsUnico = $items[$i]->cantidad * $items[$i]->precioUnitario;
-                    echo "<tr><td>".$items[$i]->nombreItem."</td><td>".$items[$i]->descripcion."</td><td>".$items[$i]->cantidad."</td><td>".$items[$i]->precioUnitario."</td><td>".$totalItemsUnico."</td></tr>";
-                    $total_instalaciones += $totalItemsUnico;
-                  }
-                  if ($items [$i]->nombreItem == 'OBRA CIVIL') {
-                    $totalItemsUnico = $items[$i]->cantidad * $items[$i]->precioUnitario;
-                    echo "<tr><td>".$items[$i]->nombreItem."</td><td>".$items[$i]->descripcion."</td><td>".$items[$i]->cantidad."</td><td>".$items[$i]->precioUnitario."</td><td>".$totalItemsUnico."</td></tr>";
-                    $total_obra += $totalItemsUnico;
-                  }
-                }
-              }
-              ?> 
-          </tbody>
-        </table>
-        <div class="cabecera_azul"><b>TOTALES</b></div>
-        <table style="width:100%" align="center" border="1"  cellpadding="24">
-          <tbody>
             <tr>
-              <th style="width: 368px;">BIENES DE CAPITAL</th>
-              <td style="width: 368px;text-align: center">$<?= $total_bienes; ?></td>
+              <td><?= $datosFormulario->item1_descripcion ?></td>
+              <td><?= $datosFormulario->item1_cantidad ?></td>
+              <td><?= $datosFormulario->item1_precio ?></td>
+              <td><?= $datosFormulario->item1_cantidad * $datosFormulario->item1_precio ?></td>
             </tr>
             <tr>
-              <th>CAPITAL DE TRABAJO</th>
-              <td style="width: 368px;text-align: center">$<?= $total_capital; ?></td>
+              <td><?= $datosFormulario->item2_descripcion ?></td>
+              <td><?= $datosFormulario->item2_cantidad ?></td>
+              <td><?= $datosFormulario->item2_precio ?></td>
+              <td><?= $datosFormulario->item2_cantidad * $datosFormulario->item2_precio ?></td>
             </tr>
             <tr>
-              <th>INSTALACIONES</th>
-              <td style="width: 368px;text-align: center">$<?= $total_instalaciones; ?></td>
+              <td><?= $datosFormulario->item3_descripcion ?></td>
+              <td><?= $datosFormulario->item3_cantidad ?></td>
+              <td><?= $datosFormulario->item3_precio ?></td>
+              <td><?= $datosFormulario->item3_cantidad * $datosFormulario->item3_precio ?></td>
             </tr>
             <tr>
-              <th>OBRA CIVIL</th>
-              <td style="width: 368px;text-align: center">$<?= $total_obra; ?></td>
+              <td><?= $datosFormulario->item4_descripcion ?></td>
+              <td><?= $datosFormulario->item4_cantidad ?></td>
+              <td><?= $datosFormulario->item4_precio ?></td>
+              <td><?= $datosFormulario->item4_cantidad * $datosFormulario->item4_precio ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->item5_descripcion ?></td>
+              <td><?= $datosFormulario->item5_cantidad ?></td>
+              <td><?= $datosFormulario->item5_precio ?></td>
+              <td><?= $datosFormulario->item5_cantidad * $datosFormulario->item5_precio ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->item6_descripcion ?></td>
+              <td><?= $datosFormulario->item6_cantidad ?></td>
+              <td><?= $datosFormulario->item6_precio ?></td>
+              <td><?= $datosFormulario->item6_cantidad * $datosFormulario->item6_precio ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->item7_descripcion ?></td>
+              <td><?= $datosFormulario->item7_cantidad ?></td>
+              <td><?= $datosFormulario->item7_precio ?></td>
+              <td><?= $datosFormulario->item7_cantidad * $datosFormulario->item7_precio ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->item8_descripcion ?></td>
+              <td><?= $datosFormulario->item8_cantidad ?></td>
+              <td><?= $datosFormulario->item8_precio ?></td>
+              <td><?= $datosFormulario->item8_cantidad * $datosFormulario->item8_precio ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->item9_descripcion ?></td>
+              <td><?= $datosFormulario->item9_cantidad ?></td>
+              <td><?= $datosFormulario->item9_precio ?></td>
+              <td><?= $datosFormulario->item9_cantidad * $datosFormulario->item9_precio ?></td>
+            </tr>
+            <tr>
+              <td><?= $datosFormulario->item10_descripcion ?></td>
+              <td><?= $datosFormulario->item10_cantidad ?></td>
+              <td><?= $datosFormulario->item10_precio ?></td>
+              <td><?= $datosFormulario->item10_cantidad * $datosFormulario->item10_precio ?></td>
             </tr>
           </tbody>
         </table>
         <div class="cabecera_azul"><b>TOTAL SOLICITADO AL CREAR</b></div>
-        <p align="center"><b>$<?= $total_bienes+$total_capital+$total_instalaciones+$total_obra; ?></b></p>
+        <p align="center"><b>$<?= 
+        ($datosFormulario->item1_cantidad * $datosFormulario->item1_precio) + 
+        ($datosFormulario->item2_cantidad * $datosFormulario->item2_precio) + 
+        ($datosFormulario->item3_cantidad * $datosFormulario->item3_precio) + 
+        ($datosFormulario->item4_cantidad * $datosFormulario->item4_precio) + 
+        ($datosFormulario->item5_cantidad * $datosFormulario->item5_precio) + 
+        ($datosFormulario->item6_cantidad * $datosFormulario->item6_precio) + 
+        ($datosFormulario->item7_cantidad * $datosFormulario->item7_precio) + 
+        ($datosFormulario->item8_cantidad * $datosFormulario->item8_precio) + 
+        ($datosFormulario->item9_cantidad * $datosFormulario->item9_precio) + 
+        ($datosFormulario->item10_cantidad * $datosFormulario->item10_precio)
+        ?></b></p>
 
         <div style="page-break-after: always;clear:both;"></div>
 
@@ -475,147 +527,207 @@
         <table style="width: 100%;" align="center" border="1" cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 368px;">NOMBRE Y APELLIDO</th>
-              <td style="width: 368px;"><?php isset($datosFormulario->nombreMBE) ? print $datosFormulario->nombreMBE : ""; ?></td>
+              <th>NOMBRE Y APELLIDO</th>
+              <td><?php isset($datosFormulario->nombreEmprendedor) ? print $datosFormulario->nombreEmprendedor : ""; ?></td>
             </tr>
             <tr>
               <th>DNI</th>
-              <td><?php isset($datosFormulario->dniMBE) ? print $datosFormulario->dniMBE : ""; ?></td>
+              <td><?php isset($datosFormulario->dniEmprendedor) ? print $datosFormulario->dniEmprendedor : ""; ?></td>
             </tr>
             <tr>
               <th>CUIT</th>
-              <td><?php isset($datosFormulario->cuitMBE) ? print $datosFormulario->cuitMBE : ""; ?></td>
+              <td><?php isset($datosFormulario->cuitEmprendimiento) ? print $datosFormulario->cuitEmprendimiento : ""; ?></td>
             </tr>
             <tr>
               <th>LOCALIDAD</th>
-              <td><?php isset($datosFormulario->localidadMBE) ? print $datosFormulario->localidadMBE : ""; ?></td>
+              <td><?php isset($datosFormulario->usuario->get_localidad->nombre ) ? print $datosFormulario->usuario->get_localidad->nombre  : ""; ?></td>
             </tr>
             <tr>
               <th>DOMICILIO</th>
-              <td><?php isset($datosFormulario->domicilioMBE) ? print $datosFormulario->domicilioMBE : ""; ?></td>
+              <td><?php isset($datosFormulario->domicilioEmprendedor) ? print $datosFormulario->domicilioEmprendedor : ""; ?></td>
             </tr>
           </tbody>
         </table>
         <br>
-        <!--<p class="cabecera"> <b>DISPONIBILIDADES Y BIENES</b> </p>-->
         <table style="width: 100%;" align="center" border="1" cellpadding="24">
+          <thead>
+            <tr>
+              <th>TIPO</th>
+              <th>MONTO</th>
+            </tr>
+          </thead>
           <tbody>
-            <?php 
-            $total_disponibilidad = 0;
-            $total_bienescambio = 0;
-            $total_bienesuso = 0;
-             if (!isset($disponibilidades)) {
-              echo '<tr>
-              <th style="width: 368px;">TIPO</th>
-              <th style="width: 368px; text-align: center;">MONTO</th>
-            </tr><tr><td>-</td><td>-</td></tr>';
-            } else {
-              echo '<tr><th colspan=2 style="text-align:center;">DISPONIBILIDADES</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($disponibilidades) ; $i++) {
-                if ($disponibilidades[$i]->encargado == 'EMPRENDEDOR') {
-                  echo "<tr><td>".$disponibilidades[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$disponibilidades[$i]->monto."</td></tr>";
-                  $total_disponibilidad += $disponibilidades[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">BIENES DE CAMBIO</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($bienes_cambio) ; $i++) {
-                if ($bienes_cambio[$i]->encargado == 'EMPRENDEDOR') {
-                  echo "<tr><td>".$bienes_cambio[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$bienes_cambio[$i]->monto."</td></tr>";
-                  $total_bienescambio += $bienes_cambio[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">BIENES DE USO</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($bienes_uso) ; $i++) {
-                if ($bienes_uso[$i]->encargado == 'EMPRENDEDOR') {
-                  echo "<tr><td>".$bienes_uso[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$bienes_uso[$i]->monto."</td></tr>";
-                  $total_bienesuso += $bienes_uso[$i]->monto;
-                 }
-                }
-              } 
-            ?>
+            <tr>
+            <th>DISPONIBILIDADES</th>
+            <td></td>
+            </tr>
+            <tr>
+              <td>
+                Efectivo
+              </td>
+              <td>
+                <?=$datosFormulario->efectivoMBE;?>
+              </td>
+            </tr>
+            <tr>
+              <td>Cuentas Bancarias</td>
+              <td>
+                <?= $datosFormulario->cuentasBancariasMBE;?>
+              </td>
+            </tr>
+            <tr>
+              <td>Créditos por ventas</td>
+              <td><?= $datosFormulario->creditosVentasMBE;?></td>
+            </tr>
+            <tr>
+              <td>Otros créditos</td>
+              <td><?= $datosFormulario->otrosCreditosMBE;?></td>
+            </tr>
+            <tr>
+              <th>BIENES DE CAMBIO</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Mercaderías</td>
+              <td><?= $datosFormulario->mercaderiasMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Materías Primas</td>
+              <td><?= $datosFormulario->materiasPrimasMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Insumos</td>
+              <td><?= $datosFormulario->insumosMBE; ?></td>
+            </tr>
+            <tr>
+              <th>BIENES DE USO</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Inmuebles</td>
+              <td><?= $datosFormulario->inmueblesMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Rodados</td>
+              <td><?= $datosFormulario->rodadosMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Maquinarias y equipos</td>
+              <td><?= $datosFormulario->maquinariasEquiposMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Instalaciones</td>
+              <td><?= $datosFormulario->instalacionesMBE; ?></td>
+            </tr>
+            <tr>
+              <th>TOTAL ACTIVO</th>
+              <th> <?php $totalActivoMBE = 
+                $datosFormulario->efectivoMBE +
+$datosFormulario->cuentasBancariasMBE + $datosFormulario->creditosVentasMBE +
+$datosFormulario->otrosCreditosMBE +
+$datosFormulario->mercaderiasMBE +
+$datosFormulario->materiasPrimasMBE +
+$datosFormulario->insumosMBE +
+$datosFormulario->inmueblesMBE +
+$datosFormulario->rodadosMBE +
+$datosFormulario->maquinariasEquiposMBE +
+$datosFormulario->instalacionesMBE;echo $totalActivoMBE;
+               ?></th>
+            </tr>
           </tbody>
         </table>
-        <br>
+        <div style="page-break-after: always;clear:both;"></div>
         <table style="width: 100%;" align="center" border="1" cellpadding="24">
+          <thead>
+            <tr>
+              <th>TIPO</th>
+              <th>MONTO</th>
+            </tr>
+          </thead>
           <tbody>
-            <?php 
-            $total_dcomercial = 0;
-            $total_dbancaria = 0;
-            $total_dfiscal = 0;
-            $patrimonio_neto = 0;
+            <tr>
+              <th>Deudas comerciales</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>En cuentas corrientes</td>
+              <td><?= $datosFormulario->deudaCuentasCorrientesMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Cheques de pago diferido</td>
+              <td><?= $datosFormulario->deudaChequesPagoDiferidoMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Documentadas</td>
+              <td><?= $datosFormulario->documentadasMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Otras</td>
+              <td><?= $datosFormulario->otrasDeudasComercialesMBE; ?></td>
+            </tr>
+            <tr>
+              <th>Deudas bancarias</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Tarjetas de crédito</td>
+              <td><?= $datosFormulario->deudaTarjetasCreditoMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Con garantía hipotecaria(inmuebles)</td>
+              <td><?= $datosFormulario->deudaGarantiaHipotecariaMBE; ?></td>
+            </tr>
+            <tr>
+              <td>Con garantía prendaria(rodados)</td>
+              <td><?= $datosFormulario->deudaGarantiaPrendariaMBE; ?></td>
+            </tr>
 
-            if (!isset($deudas_comerciales)) {
-              echo "<tr><td>-</td><td>-</td></tr>";
-            } else {
-
-            echo '<tr><th colspan=2 style="text-align:center;">DEUDAS COMERCIALES</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($deudas_comerciales) ; $i++) {
-                if ($deudas_comerciales[$i]->encargado == 'EMPRENDEDOR') {
-                  echo "<tr><td>".$deudas_comerciales[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$deudas_comerciales[$i]->monto."</td></tr>";
-                  $total_dcomercial += $deudas_comerciales[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">DEUDAS BANCARIAS</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($deudas_bancarias) ; $i++) {
-                if ($deudas_bancarias[$i]->encargado == 'EMPRENDEDOR') {
-                  echo "<tr><td>".$deudas_bancarias[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$deudas_bancarias[$i]->monto."</td></tr>";
-                  $total_dbancaria += $deudas_bancarias[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">DEUDAS FISCALES</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($deudas_fiscales) ; $i++) {
-                if ($deudas_fiscales[$i]->encargado == 'EMPRENDEDOR') {
-                  echo "<tr><td>".$deudas_fiscales[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$deudas_fiscales[$i]->monto."</td></tr>";
-                  $total_dfiscal += $deudas_fiscales[$i]->monto;
-                 }
-                }
-              }
-            ?>
+            <tr>
+              <th>Deudas fiscales</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>AFIP</td>
+              <td><?= $datosFormulario->deudaAfipMBE;?></td>
+            </tr>
+            <tr>
+              <td>Rentas</td>
+              <td><?= $datosFormulario->deudaRentasRnMBE;?></td>
+            </tr>
+            <tr>
+              <td>Tributos municipales</td>
+              <td><?= $datosFormulario->deudaTributosMunicipalesMBE;?></td>
+            </tr>
+            <tr>
+              <td>DEUDAS SOCIALES (Aportes, contribuciones, salarios, etc)</td>
+              <td><?= $datosFormulario->deudasSocialesMBE;?></td>
+            </tr>
+            <tr>
+              <td>Otras deudas</td>
+              <td><?= $datosFormulario->otrasDeudasMBE;?></td>
+            </tr>
+            <tr>
+              <th>Total pasivo</th>
+              <td><?php $totalPasivoMBE = $datosFormulario->deudaCuentasCorrientesMBE +
+$datosFormulario->deudaChequesPagoDiferidoMBE +
+$datosFormulario->documentadasMBE +
+$datosFormulario->otrasDeudasComercialesMBE +
+$datosFormulario->deudaTarjetasCreditoMBE +
+$datosFormulario->deudaGarantiaHipotecariaMBE +
+$datosFormulario->deudaGarantiaPrendariaMBE +
+$datosFormulario->deudaAfipMBE +
+$datosFormulario->deudaRentasRnMBE +
+$datosFormulario->deudaTributosMunicipalesMBE +
+$datosFormulario->deudasSocialesMBE +
+$datosFormulario->otrasDeudasMBE; echo $totalPasivoMBE;?></td>
+            </tr>
           </tbody>
         </table>
         <div align="center">
-          <p><b>OTRAS DEUDAS: </b>$<?php if (!isset($datosFormulario->otrasDeudasMBE)) {
-            echo "0";
-          } else { is_numeric($datosFormulario->otrasDeudasMBE) ? print $datosFormulario->otrasDeudasMBE : print "0"; }?></p>
-          <p> <b>TOTAL ACTIVO:</b>$<?= $total_disponibilidad+$total_bienescambio+$total_bienesuso; ?></p>
-          <p><b>TOTAL PASIVO: </b>$<?= $total_dcomercial + $total_dbancaria + $total_dfiscal?></p>
-          <p><b>PATRIMONIO NETO:</b>
-            $<?php echo $patrimonio_neto + ($total_disponibilidad+$total_bienescambio+$total_bienesuso) - ($total_dcomercial + $total_dbancaria + $total_dfiscal);
-           ?></p>
+          <p> <b>TOTAL ACTIVO: <?= $totalActivoMBE; ?></b>$</p>
+          <p><b>TOTAL PASIVO: <?= $totalPasivoMBE; ?></b>$</p>
+          <p><b>PATRIMONIO NETO: <?= $totalActivoMBE - $totalPasivoMBE; ?></b>
+            $</p>
         </div>
 
         <div style="page-break-after: always;clear:both;"></div>
@@ -625,8 +737,8 @@
         <table style="width: 100%;" align="center" border="1" cellpadding="24">
           <tbody>
             <tr>
-              <th style="width: 368px;">NOMBRE Y APELLIDO</th>
-              <td style="width: 368px;"><?php isset($datosFormulario->nombreMBG) ? print $datosFormulario->nombreMBG : ""; ?></td>
+              <th>NOMBRE Y APELLIDO</th>
+              <td><?php isset($datosFormulario->nombreMBG) ? print $datosFormulario->nombreMBG : ""; ?></td>
             </tr>
             <tr>
               <th>DNI</th>
@@ -638,7 +750,7 @@
             </tr>
             <tr>
               <th>LOCALIDAD</th>
-              <td><?php isset($datosFormulario->localidadMBG) ? print $datosFormulario->localidadMBG : ""; ?></td>
+              <td><?php isset($datosFormulario->localidadMBG ) ? print $datosFormulario->localidadMBG  : ""; ?></td>
             </tr>
             <tr>
               <th>DOMICILIO</th>
@@ -647,127 +759,185 @@
           </tbody>
         </table>
         <br>
-        <p class="cabecera"> <b>DISPONIBILIDADES Y BIENES</b> </p>
         <table style="width: 100%;" align="center" border="1" cellpadding="24">
+          <thead>
+            <tr>
+              <th>TIPO</th>
+              <th>MONTO</th>
+            </tr>
+          </thead>
           <tbody>
-            <?php 
-            $total_disponibilidad_g = 0;
-            $total_bienescambio_g = 0;
-            $total_bienesuso_g = 0;
-
-             if (!isset($disponibilidades)) {
-              echo '<tr>
-              <th style="width: 368px;">TIPO</th>
-              <th style="width: 368px; text-align: center;">MONTO</th>
-            </tr><tr><td>-</td><td>-</td></tr>';
-            } else {
-              echo '<tr><th colspan=2 style="text-align:center;">DISPONIBILIDADES</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($disponibilidades) ; $i++) {
-                if ($disponibilidades[$i]->encargado == 'GARANTE') {
-                  echo "<tr><td>".$disponibilidades[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$disponibilidades[$i]->monto."</td></tr>";
-                  $total_disponibilidad_g += $disponibilidades[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">BIENES DE CAMBIO</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($bienes_cambio) ; $i++) {
-                if ($bienes_cambio[$i]->encargado == 'GARANTE') {
-                  echo "<tr><td>".$bienes_cambio[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$bienes_cambio[$i]->monto."</td></tr>";
-                  $total_bienescambio_g += $bienes_cambio[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">BIENES DE USO</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($bienes_uso) ; $i++) {
-                if ($bienes_uso[$i]->encargado == 'GARANTE') {
-                  echo "<tr><td>".$bienes_uso[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$bienes_uso[$i]->monto."</td></tr>";
-                  $total_bienesuso_g += $bienes_uso[$i]->monto;
-                 }
-                }
-              } 
-            ?>
+            <tr>
+            <th>DISPONIBILIDADES</th>
+            <td></td>
+            </tr>
+            <tr>
+              <td>
+                Efectivo
+              </td>
+              <td>
+                <?=$datosFormulario->efectivoMBG;?>
+              </td>
+            </tr>
+            <tr>
+              <td>Cuentas Bancarias</td>
+              <td>
+                <?= $datosFormulario->cuentasBancariasMBG;?>
+              </td>
+            </tr>
+            <tr>
+              <td>Créditos por ventas</td>
+              <td><?= $datosFormulario->creditosVentasMBG;?></td>
+            </tr>
+            <tr>
+              <td>Otros créditos</td>
+              <td><?= $datosFormulario->otrosCreditosMBG;?></td>
+            </tr>
+            <tr>
+              <th>BIENES DE CAMBIO</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Mercaderías</td>
+              <td><?= $datosFormulario->mercaderiasMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Materías Primas</td>
+              <td><?= $datosFormulario->materiasPrimasMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Insumos</td>
+              <td><?= $datosFormulario->insumosMBG; ?></td>
+            </tr>
+            <tr>
+              <th>BIENES DE USO</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Inmuebles</td>
+              <td><?= $datosFormulario->inmueblesMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Rodados</td>
+              <td><?= $datosFormulario->rodadosMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Maquinarias y equipos</td>
+              <td><?= $datosFormulario->maquinariasEquiposMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Instalaciones</td>
+              <td><?= $datosFormulario->instalacionesMBG; ?></td>
+            </tr>
+            <tr>
+              <th>TOTAL ACTIVO</th>
+              <th> <?php $totalActivoMBG = 
+                $datosFormulario->efectivoMBG +
+$datosFormulario->cuentasBancariasMBG + $datosFormulario->creditosVentasMBG +
+$datosFormulario->otrosCreditosMBG +
+$datosFormulario->mercaderiasMBG +
+$datosFormulario->materiasPrimasMBG +
+$datosFormulario->insumosMBG +
+$datosFormulario->inmueblesMBG +
+$datosFormulario->rodadosMBG +
+$datosFormulario->maquinariasEquiposMBG +
+$datosFormulario->instalacionesMBG;echo $totalActivoMBG;
+               ?></th>
+            </tr>
           </tbody>
         </table>
-        <br>
-        <p class="cabecera"> <b>DEUDAS</b></p>
+        <div style="page-break-after: always;clear:both;"></div>
         <table style="width: 100%;" align="center" border="1" cellpadding="24">
+          <thead>
+            <tr>
+              <th>TIPO</th>
+              <th>MONTO</th>
+            </tr>
+          </thead>
           <tbody>
-            <?php 
-            $total_dcomercial_g = 0;
-            $total_dbancaria_g = 0;
-            $total_dfiscal_g = 0;
-            $patrimonio_neto_g = 0;
+            <tr>
+              <th>Deudas comerciales</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>En cuentas corrientes</td>
+              <td><?= $datosFormulario->deudaCuentasCorrientesMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Cheques de pago diferido</td>
+              <td><?= $datosFormulario->deudaChequesPagoDiferidoMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Documentadas</td>
+              <td><?= $datosFormulario->documentadasMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Otras</td>
+              <td><?= $datosFormulario->otrasDeudasComercialesMBG; ?></td>
+            </tr>
+            <tr>
+              <th>Deudas bancarias</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Tarjetas de crédito</td>
+              <td><?= $datosFormulario->deudaTarjetasCreditoMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Con garantía hipotecaria(inmuebles)</td>
+              <td><?= $datosFormulario->deudaGarantiaHipotecariaMBG; ?></td>
+            </tr>
+            <tr>
+              <td>Con garantía prendaria(rodados)</td>
+              <td><?= $datosFormulario->deudaGarantiaPrendariaMBG; ?></td>
+            </tr>
 
-            if (!isset($deudas_comerciales)) {
-              echo "<tr><td>-</td><td>-</td></tr>";
-            } else {
-
-            echo '<tr><th colspan=2 style="text-align:center;">DEUDAS COMERCIALES</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($deudas_comerciales) ; $i++) {
-                if ($deudas_comerciales[$i]->encargado == 'GARANTE') {
-                  echo "<tr><td>".$deudas_comerciales[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$deudas_comerciales[$i]->monto."</td></tr>";
-                  $total_dcomercial_g += $deudas_comerciales[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">DEUDAS BANCARIAS</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($deudas_bancarias) ; $i++) {
-                if ($deudas_bancarias[$i]->encargado == 'GARANTE') {
-                  echo "<tr><td>".$deudas_bancarias[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$deudas_bancarias[$i]->monto."</td></tr>";
-                  $total_dbancaria_g += $deudas_bancarias[$i]->monto;
-                 }
-                }
-              echo "<br>";
-              echo '<tr><th colspan=2 style="text-align:center;">DEUDAS FISCALES</th></tr>';
-              echo '
-                  <tr>
-                          <th style="width: 368px;">TIPO</th>
-                          <th style="width: 368px; text-align: center;">MONTO</th>
-                        </tr>';
-              for ($i=0; $i < count($deudas_fiscales) ; $i++) {
-                if ($deudas_fiscales[$i]->encargado == 'GARANTE') {
-                  echo "<tr><td>".$deudas_fiscales[$i]->tipo."</td><td style='width: 368px;text-align: center'>".$deudas_fiscales[$i]->monto."</td></tr>";
-                  $total_dfiscal_g += $deudas_fiscales[$i]->monto;
-                 }
-                }
-              }
-            ?>
+            <tr>
+              <th>Deudas fiscales</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td>AFIP</td>
+              <td><?= $datosFormulario->deudaAfipMBG;?></td>
+            </tr>
+            <tr>
+              <td>Rentas</td>
+              <td><?= $datosFormulario->deudaRentasRnMBG;?></td>
+            </tr>
+            <tr>
+              <td>Tributos municipales</td>
+              <td><?= $datosFormulario->deudaTributosMunicipalesMBG;?></td>
+            </tr>
+            <tr>
+              <td>DEUDAS SOCIALES (Aportes, contribuciones, salarios, etc)</td>
+              <td><?= $datosFormulario->deudasSocialesMBG;?></td>
+            </tr>
+            <tr>
+              <td>Otras deudas</td>
+              <td><?= $datosFormulario->otrasDeudasMBG;?></td>
+            </tr>
+            <tr>
+              <th>Total pasivo</th>
+              <td><?php $totalPasivoMBG = $datosFormulario->deudaCuentasCorrientesMBG +
+$datosFormulario->deudaChequesPagoDiferidoMBG +
+$datosFormulario->documentadasMBG +
+$datosFormulario->otrasDeudasComercialesMBG +
+$datosFormulario->deudaTarjetasCreditoMBG +
+$datosFormulario->deudaGarantiaHipotecariaMBG +
+$datosFormulario->deudaGarantiaPrendariaMBG +
+$datosFormulario->deudaAfipMBG +
+$datosFormulario->deudaRentasRnMBG +
+$datosFormulario->deudaTributosMunicipalesMBG +
+$datosFormulario->deudasSocialesMBG +
+$datosFormulario->otrasDeudasMBG; echo $totalPasivoMBG;?></td>
+            </tr>
           </tbody>
         </table>
         <div align="center">
-          <p><b>OTRAS DEUDAS: </b>$<?php if (!isset($datosFormulario->otrasDeudasMBG)) {
-            echo "0";
-          } else { is_numeric($datosFormulario->otrasDeudasMBG) ? print $datosFormulario->otrasDeudasMBG : print "0"; }?></p>
-          <p> <b>TOTAL ACTIVO:</b>$<?= $total_disponibilidad_g+$total_bienescambio_g+$total_bienesuso_g; ?></p>
-          <p><b>TOTAL PASIVO: </b>$<?= $total_dcomercial_g + $total_dbancaria_g + $total_dfiscal_g?></p>
-          <p><b>PATRIMONIO NETO:</b>
-            $<?php echo $patrimonio_neto_g + ($total_disponibilidad_g+$total_bienescambio_g+$total_bienesuso_g) - ($total_dcomercial_g + $total_dbancaria_g + $total_dfiscal_g);
-           ?></p>
+          <p> <b>TOTAL ACTIVO: <?= $totalActivoMBG; ?></b>$</p>
+          <p><b>TOTAL PASIVO: <?= $totalPasivoMBG; ?></b>$</p>
+          <p><b>PATRIMONIO NETO: <?= $totalActivoMBG - $totalPasivoMBG; ?></b>
+            $</p>
         </div>
 
         <div style="page-break-after: always;clear:both;"></div>
@@ -783,16 +953,9 @@
           - La veracidad de los datos consignados en las planillas de formulación del proyecto.<br>
           </p>
         </div>
-          <div style="border-top: 1px solid black;width: 300px;margin-top: 100px;margin-left:400px;text-align: center;font-size: 18px;">
-               <b> Firma - Aclaración - DNI
-                del Solicitante / Apoderado Legal</b>
-          </div>
         <div class="cabecera_azul" style="margin-top: 50px;"><b>Opinión de la Agencia Local acerca de pertinencia 
 y relevancia de la actividad  del proyecto (Principales virtudes de financiar proyecto)</b></div>
         <div style="height: 200px;width: 100%;"></div>
-        <div style="margin-left:52px;border-top: 1px solid black;text-align:center;font-size:18;width: 300px;display: inline-block;">
-          <b>Firma tutor del Proyecto</b>
-        </div>
         <div style="border-top: 1px solid black;margin-left:400px;width: 300px;text-align: center;font-size: 18px;display: inline-block;margin-top: -21px;">
           <b>Agencia de Desarrollo</b>
         </div>

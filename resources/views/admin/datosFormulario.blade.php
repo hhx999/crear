@@ -11,19 +11,11 @@ use App\Helpers;
 <body>
 
 
-<h2 align="center">FORMULARIO Nº <?= $numeroProyecto; ?></h2>
+<h2 align="center">FORMULARIO Nº <?= $formularioEnviado->numeroProyecto; ?></h2>
 <div id="content">
 <div class="w3-row">
   <div class="w3-col m1 w3-center"><p></p></div>
   <div class="w3-col m10 w3-white">
-    <a href="{{ url('/') }}"><button type="button">Volver a Inicio</button></a>
-														<!-- PORTADA -->
-    <div class="w3-panel w3-green w3-display-container" align="center">
-        <span onclick="this.parentElement.style.display='none'"
-        class="w3-button w3-large w3-display-topright">&times;</span>
-        <h3>Formulario del proyecto ingresado con éxito!</h3>
-        <p>El número de su proyecto es <span style="font-weight: bold;font-size: 18px;"><?= $numeroProyecto; ?></span>.<br>Guárdelo para consultas con la agencia.</p>
-    </div>
   <table class="w3-table-all">
     <thead>
       <tr class="w3-green">
@@ -48,7 +40,7 @@ use App\Helpers;
     </tr>
     <tr>
       <th>Número de proyecto</th>
-      <td><?= $numeroProyecto; ?></td>
+      <td><?= $formularioEnviado->numeroProyecto; ?></td>
     </tr>
     <tr>
       <th>Monto solicitado</th>

@@ -94,7 +94,7 @@ use App\Helpers;
 
       <div class="float-container">
         <label>Localidad <span style="color:red;">&#10033;</span></label>
-        <input data-placeholder="Ingrese localidad..." name="localidadSolicitante" maxlength="43" value="<?= $formularioEnviado->localidadSolicitante ?>" id="localidadPortada">
+        <input data-placeholder="Ingrese localidad..." name="localidadSolicitante" value="<?= $formularioEnviado->get_localidad->nombre ?>" id="localidadPortada">
       </div>
 
       <div class="float-container">
@@ -1210,7 +1210,7 @@ th {
   <tbody>
       @foreach($formularioEnviado->documentacion as $documentacion)
       <tr>
-        <td><a href="{{url('/images/'.$documentacion->multimedia_id)}}">Ver archivo</a></td>
+        <td><a href="{{url('/images/'.$documentacion->id)}}">Ver archivo</a></td>
         <td>{{$documentacion->descripcion}}</td>
       </tr>
       @endforeach

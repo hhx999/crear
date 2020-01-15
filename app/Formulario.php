@@ -177,6 +177,10 @@ class Formulario extends Model {
     {
         return $this->belongsTo(Usuario::class,'idUsuario');
     }
+    public function get_localidad()
+    {
+        return $this->belongsTo(Localidad::class,'localidadEmprendedor');
+    }
     public function emprendimiento()
     {
         return $this->belongsTo(Emprendimiento::class,'emprendimiento_id');
