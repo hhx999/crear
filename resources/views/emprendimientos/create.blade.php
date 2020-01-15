@@ -3,7 +3,35 @@
 	@section('title') Registro - Emprendimientos @endsection
 
 	@section('content')
-	
+	<style type="text/css">
+		.nav{
+		    list-style:none;
+		    margin:0;
+		    padding:0;
+		    text-align:center;
+		    -webkit-border-radius: 100px;
+			-moz-border-radius: 100px;
+			border-radius: 100px;
+			background-color: #8080801a;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		.nav li{
+		    display:inline;
+		}
+		.nav a{
+		    display:inline-block;
+		    padding:10px;
+		}
+	</style>
+<div class="w3-third"><p></p></div>
+	  	<div class="w3-third">
+	  			<ul class="nav">
+	  				<li><a href="{{url('perfil')}}">Mi perfil</a>/</li>
+	  				<li><a href="{{url('perfil/emprendimientos')}}">Emprendimientos</a>/</li>
+	  				<li>Registro</li>
+	  			</ul>
+	  	</div>
 	<header class="w3-container" style="padding-top:22px">
 	    <h3><b><i class="fa fa-dashboard"></i> Registrar emprendimiento</b></h3>
 	</header>

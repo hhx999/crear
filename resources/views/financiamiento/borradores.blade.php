@@ -33,7 +33,7 @@
 		.nav a{
 		    display:inline-block;
 		    padding:10px;
-		}
+		} 
 	</style>
 	<div class="w3-row">
 	  	<div class="w3-col m12">
