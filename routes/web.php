@@ -102,6 +102,8 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos'); //panel de control emprendimientos
 	Route::get('perfil/emprendimientos/create','EmprendimientoController@create')->name('crearEmprendimiento'); //formulario de creación de emprendimientos
 	Route::post('perfil/emprendimientos/create','EmprendimientoController@create'); //crear emprendimiento
+	Route::get('perfil/emprendimientos/edit/{id}','EmprendimientoController@edit')->name('crearEmprendimiento'); //formulario de edición de emprendimientos
+	Route::post('perfil/emprendimientos/edit/{id}','EmprendimientoController@edit'); //editar emprendimiento
 	Route::post('perfil/actualizarDatosUsuario','PerfilController@actualizarDatosUsuario'); //actualización de datos personales de USUARIO
 
 	//------Rutas para capacitaciones

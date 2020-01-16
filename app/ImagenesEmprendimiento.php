@@ -9,6 +9,6 @@ class ImagenesEmprendimiento extends Model
     //
     public function datos_imagen()
     {
-        return $this->belongsTo('App\Multimedia','multimedia_id');
+        return $this->belongsTo('App\Multimedia','multimedia_id')->where('activo', 1);
     }
 }

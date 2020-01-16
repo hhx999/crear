@@ -29,11 +29,11 @@
 	  			<ul class="nav">
 	  				<li><a href="{{url('perfil')}}">Mi perfil</a>/</li>
 	  				<li><a href="{{url('perfil/emprendimientos')}}">Emprendimientos</a>/</li>
-	  				<li>Registro</li>
+	  				<li>Editar</li>
 	  			</ul>
 	  	</div>
 	<header class="w3-container" style="padding-top:22px">
-	    <h3><b><i class="fa fa-dashboard"></i> Registrar emprendimiento</b></h3>
+	    <h3><b><i class="fa fa-dashboard"></i> Editar emprendimiento</b></h3>
 	</header>
 		<script>
                 $(function ()
@@ -89,62 +89,18 @@
             <div id="wizard">
                 <h2>Datos principales</h2>
                 <section>
-                	<select class="w3-select" id="emprendimiento_id" name="emprendimiento_id">
-							<option selected disabled value="">Seleccioná tú emprendimiento vinculado</option>
-							@if($emprendimientos)
-							@foreach($emprendimientos as $emprendimiento)
-							<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
-							@endforeach
-							@endif
-					</select>
-					<div style="padding: 20px;">
-	                    <div class="w3-third">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Denominación de la Sociedad</label>
-							    <input class="w3-input" type="text" name="denominacion" placeholder="Ingrese el nombre de fantasía del emprendimiento...">
-							</div>
-						</div>
-						<div class="w3-third">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Localidad</label>
-							    <select class="w3-select" id="localidad_id" name="localidad_id">
-										<option selected disabled value="">Seleccioná la localidad de tu emprendimiento</option>
-										@foreach($localidades as $localidad)
-										<option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
-										@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="w3-third">
-	                    	<div style="margin-right: 10px;margin-left: 10px;">
-							    <label>Direccion</label>
-							    <input class="w3-input" type="text" name="domicilio" placeholder="Ingrese la direccion del emprendimiento...">
-							</div>
-						</div>
-					</div>
 					<div style="padding: 21px;">
-						<div class="w3-third">
+						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Teléfono</label>
-							    <input class="w3-input" type="text" name="telefono" placeholder="Ingrese un teléfono para contactar con el emprendimiento...">
+							    <input class="w3-input" type="text" name="telefono" placeholder="Ingrese un teléfono para contactar con el emprendimiento..." value="{{$datosEmprendimiento->telefono}}">
 							</div>
 						</div>
-						<div class="w3-third">
+						<div class="w3-half">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Email</label>
-							    <input class="w3-input" type="text" name="mail" placeholder="Ingrese el correo electrónico...">
+							    <input class="w3-input" type="text" name="mail" placeholder="Ingrese el correo electrónico..." value="{{$datosEmprendimiento->mail}}">
 							</div>
-						</div>
-					</div>
-					<div class="w3-col m12">
-						<div style="margin-right: 10px;margin-left: 10px;">
-						    <label>Categoría</label>
-						    <select class="w3-select" name="categoria_id">
-									<option selected disabled value="">Seleccioná la categoría a la que pertenece tu emprendimiento</option>
-									@foreach($categorias as $categoria)
-									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-									@endforeach
-							</select>
 						</div>
 					</div>
                 </section>
@@ -153,36 +109,36 @@
                     <div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Facebook</label>
-						    <input class="w3-input" type="text" name="facebook_nombre" placeholder="Ingrese el nombre con el que se visualiza su facebook..."><br>
-						    <input class="w3-input" type="text" name="facebook_enlace" placeholder="Ingrese el enlace a su facebook...">
+						    <input class="w3-input" type="text" name="facebook_nombre" placeholder="Ingrese el nombre con el que se visualiza su facebook..." value="{{$datosEmprendimiento->facebook_nombre}}"><br>
+						    <input class="w3-input" type="text" name="facebook_enlace" placeholder="Ingrese el enlace a su facebook..." value="{{$datosEmprendimiento->facebook_enlace}}">
 						</div>
 					</div>
 					<div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Instagram</label>
-						    <input class="w3-input" type="text" name="instagram_nombre" placeholder="Ingrese el nombre con el que se visualiza su instagram..."><br>
-						    <input class="w3-input" type="text" name="instagram_enlace" placeholder="Ingrese el enlace a su instagram...">
+						    <input class="w3-input" type="text" name="instagram_nombre" placeholder="Ingrese el nombre con el que se visualiza su instagram..." value="{{$datosEmprendimiento->instagram_nombre}}"><br>
+						    <input class="w3-input" type="text" name="instagram_enlace" placeholder="Ingrese el enlace a su instagram..." value="{{$datosEmprendimiento->instagram_enlace}}">
 						</div>
 					</div>
 					<div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Twitter</label>
-						    <input class="w3-input" type="text" name="twitter_nombre" placeholder="Ingrese el nombre con el que se visualiza su twitter..."><br>
-						    <input class="w3-input" type="text" name="twitter_enlace" placeholder="Ingrese el enlace a su twitter...">
+						    <input class="w3-input" type="text" name="twitter_nombre" placeholder="Ingrese el nombre con el que se visualiza su twitter..." value="{{$datosEmprendimiento->twitter_nombre}}"><br>
+						    <input class="w3-input" type="text" name="twitter_enlace" placeholder="Ingrese el enlace a su twitter..." value="{{$datosEmprendimiento->twitter_enlace}}">
 						</div>
 					</div>
 					<div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Youtube</label>
-						    <input class="w3-input" type="text" name="youtube_nombre" placeholder="Ingrese el nombre con el que se visualiza su canal de youtube..."><br>
-						    <input class="w3-input" type="text" name="youtube_enlace" placeholder="Ingrese el enlace a su youtube...">
+						    <input class="w3-input" type="text" name="youtube_nombre" placeholder="Ingrese el nombre con el que se visualiza su canal de youtube..." value="{{$datosEmprendimiento->youtube_nombre}}"><br>
+						    <input class="w3-input" type="text" name="youtube_enlace" placeholder="Ingrese el enlace a su youtube..." value="{{$datosEmprendimiento->youtube_enlace}}">
 						</div>
 					</div>
 					<div class="w3-half">
                     	<div style="margin-right: 10px;margin-left: 10px;">
 						    <label>Sitio WEB</label>
-						    <input class="w3-input" type="text" name="web_nombre" placeholder="Ingrese el nombre con el que se visualiza su web..."><br>
-						    <input class="w3-input" type="text" name="web_enlace" placeholder="Ingrese el enlace a su web...">
+						    <input class="w3-input" type="text" name="web_nombre" placeholder="Ingrese el nombre con el que se visualiza su web..." value="{{$datosEmprendimiento->web_nombre}}"><br>
+						    <input class="w3-input" type="text" name="web_enlace" placeholder="Ingrese el enlace a su web..." value="{{$datosEmprendimiento->web_enlace}}">
 						</div>
 					</div>
                 </section>
@@ -200,7 +156,7 @@
                 <h2>Imagen del emprendimiento</h2>
                 <section>
                 		<div class="w3-col m12">
-                			<label>Ingrese una imagen representativa del emprendimiento</label><br>
+                			<label>Reemplazar imagen<i style="color: lightgrey;">(Si desea conservar la imagen omita este paso)</i></label><br>
                 			<input type="file" name="imagen_emprendimiento" style="color: white;width: 100%;">
                 		</div>
                 		<div class="barraCol1"></div>
@@ -209,7 +165,7 @@
 						<div class="w3-col m12">
 	                    	<div style="margin-right: 10px;margin-left: 10px;">
 							    <label>Descripción:</label><br>
-							    <textarea style="width: 100%;" name="descripcion" placeholder="Ingrese una breve descripción de su emprendimiento..."></textarea>
+							    <textarea style="width: 100%;" name="descripcion" placeholder="Ingrese una breve descripción de su emprendimiento..." value="{{$datosEmprendimiento->descripcion}}"></textarea>
 							</div>
 						</div>
                 </section>

@@ -121,6 +121,13 @@ class Helpers
                       $ext = pathinfo($path, PATHINFO_EXTENSION);
                     //Comprobamos que la extensión del archivo esté en las reglas
                     if (in_array($ext, $rules)) {
+                        if (ImagenesEmprendimiento::where('emprendimiento_comercial_id',$lastID)) {
+                            //cambiar estado de la imagen anterior a activo = 0
+                            $imagenAnterior = ImagenesEmprendimiento::where('emprendimiento_comercial_id',$lastID)->first();
+                            $multimediaAnterior = Multimedia::where("id",$imagenAnterior->multimedia_id)->first();
+                            $multimediaAnterior->activo = 0;
+                            $multimediaAnterior->save();
+                        }
                         //Agregamos un registro en la tabla multimedia con su nombre y extensión original
                             $multimedia = new Multimedia;
                             $multimedia->nombre = $nombre;
@@ -131,6 +138,8 @@ class Helpers
                         //Subimos el archivo al path de destino y le asignamos un nombre nuevo mediante el id que nos provee el registro de multimedia
                             $archivoMultimedia->move($destinationPath, $multimedia->id);
                         //asignamos el archivo a la tabla de documentación para finalizar la operación
+                        //subir nueva imagen con estado activo = 1
+                        //al mostrar la imagen buscarlas por emprendimiento_id y si esta en estado activo = 1
                             $imgEmprendimiento = new ImagenesEmprendimiento;
                             $imgEmprendimiento->descripcion = $descripcion;
                             $imgEmprendimiento->emprendimiento_comercial_id = $lastID;
