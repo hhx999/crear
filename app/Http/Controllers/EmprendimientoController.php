@@ -97,12 +97,8 @@ class EmprendimientoController extends Controller
         }
     	return view('emprendimientos.edit', ["datosEmprendimiento" => $datosEmprendimiento, "success" => $success]);
     }
-    public function delete()
-    {
-    }
     public function verEmprendimientos() {
         $emprendimientos = EmprendimientoComercial::all();
-        
         return view('emprendimientos.emprendimientos', ['emprendimientos' => $emprendimientos]);
     }
 }

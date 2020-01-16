@@ -250,7 +250,7 @@ class TecnicoController extends Controller
               $formulario = Formulario::where('id',$formulario_id)->first();
               $formulario->estado = 5;
               $formulario->save();
-              if (!PendienteCredito::where('formulario_id',$formulario_id)->get())
+              if (PendienteCredito::where('formulario_id',$formulario_id)->get()->isEmpty())
                 {
                 $pendienteCredito = new PendienteCredito();
                 $pendienteCredito->fecha = date('m/d/Y h:i:s a', time());

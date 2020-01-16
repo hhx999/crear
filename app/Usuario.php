@@ -36,4 +36,8 @@ class Usuario extends Model {
 	{
 		return $this->hasMany('App\Credito');
 	}
+	public function emprendimientos_comerciales()
+	{
+		return $this->hasMany('App\EmprendimientoComercial',"usuario_id");
+	}
 }

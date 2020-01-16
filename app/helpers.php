@@ -121,9 +121,10 @@ class Helpers
                       $ext = pathinfo($path, PATHINFO_EXTENSION);
                     //Comprobamos que la extensión del archivo esté en las reglas
                     if (in_array($ext, $rules)) {
-                        if (ImagenesEmprendimiento::where('emprendimiento_comercial_id',$lastID)) {
+                        if (ImagenesEmprendimiento::where('emprendimiento_comercial_id',$lastID)->get()->isNotEmpty()) {
                             //cambiar estado de la imagen anterior a activo = 0
                             $imagenAnterior = ImagenesEmprendimiento::where('emprendimiento_comercial_id',$lastID)->first();
+                            $imagenAnterior->delete();
                             $multimediaAnterior = Multimedia::where("id",$imagenAnterior->multimedia_id)->first();
                             $multimediaAnterior->activo = 0;
                             $multimediaAnterior->save();

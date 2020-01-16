@@ -15,7 +15,6 @@ class CreateImagenesEmprendimientosTable extends Migration
     {
         Schema::create('imagenes_emprendimientos', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->boolean('activo')->default(1);
             $table->string('descripcion');
             $table->integer('emprendimiento_comercial_id')->index('emprendimiento_comercial_id');
             $table->integer('multimedia_id')->index('multimedia_id');

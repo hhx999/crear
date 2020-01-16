@@ -66,6 +66,11 @@ use App\Helpers;
 </div>
 <!-- FIN DE Modal de REVISIÓN -->
   <div class="tab">
+    @if (\Session::has('success'))
+      <div style="padding: 10px;background-color: #8bc34a;color: white;" align="center">
+          <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('success') !!}</p>
+      </div>
+      @endif
       <input type="submit" name="agregarPortada" value="Agregar portada">
       <!-- hidden inputs -->
       <p><input type="hidden" name="idFormulario" id="idFormulario" value="<?=$id ?>"></p>
@@ -665,7 +670,7 @@ use App\Helpers;
         @endfor
       @endisset
 
-      <?php Helpers::crearCheckValido('inversion',$pasosValidos->infoEmprendedor) ?>
+      <?php Helpers::crearCheckValido('inversion',$pasosValidos->inversion) ?>
       <button type="button" style="background-color: #ff9800;" id="agregarObservacion" value="inversion">OBSERVACIÓN</button>
       <script type="text/javascript">
         $('#eliminarObservacioninversion').on('click',function() {
@@ -688,11 +693,6 @@ use App\Helpers;
         <p class="hoja" style="display: none;">inversion</p>
         <p class="nombreHoja" style="font-weight: bold;font-size: 26px;">inversion</p>
       <!-- ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª-->
-      @if (\Session::has('success'))
-      <div style="padding: 10px;background-color: #8bc34a;color: white;" align="center">
-          <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('success') !!}</p>
-      </div>
-      @endif
 
       <table class="w3-table-all">
             <thead>

@@ -46,18 +46,18 @@
 		      <div class="w3-twothird">
 			  <table class="w3-table">
 			    <tr>
-			      <th>CUIT</th>
+			      <th>id</th>
 			      <th>Emprendimiento</th>
-			      <th>Cargo</th>
+			      <th>Categoría</th>
 			      <th>Acciones</th>
 			    </tr>
 			    @if(!empty($emprendimientos))
 			    @foreach($emprendimientos as $emprendimiento)
 
 			    <tr>
-			    	<td>{{$emprendimiento->cuit}}</td>
+			    	<td>{{$emprendimiento->id}}</td>
 			    	<td>{{$emprendimiento->denominacion}}</td>
-			    	<td>{{$emprendimiento->trabajaEn->cargo}}</td>
+			    	<td>{{$emprendimiento->categoria->nombre}}</td>
 			    	<td>
 			    		<a href="{{url('/perfil/emprendimientos_crear')}}">Ver en sitio</a><br>
 				    		<a href="{{url('/perfil/emprendimientos/edit/'.$emprendimiento->id)}}">Editar</a><br>

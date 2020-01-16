@@ -33,15 +33,9 @@ class PerfilController extends Controller
     {
     	$usuario_id = $request->session()->get('id_usuario');
     	$nombreApellido = $request->session()->get('nombreApellido');
-    	$usuario = Usuario::find($usuario_id);
-        $trabaja = Trabaja::where('usuario_id',$usuario_id)->get();
-        $emprendimientos = NULL;
-        $cargos = NULL;
-        for ($i=0; $i < count($trabaja); $i++) { 
-            $emprendimientos[] = Emprendimiento::find($trabaja[$i]->emprendimiento_id);
-            $cargos[] = $trabaja[$i]->cargo;
-        }
-    	return view('perfil.emprendimientos', ["emprendimientos" => $emprendimientos, 'cargo' => $cargos]);
+        $usuario = Usuario::find($usuario_id);
+    	$emprendimientos = $usuario->emprendimientos_comerciales;
+    	return view('perfil.emprendimientos', ["emprendimientos" => $emprendimientos]);
     }
     public function actualizarDatosUsuario(Request $request)
     {
