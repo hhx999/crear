@@ -26,6 +26,9 @@
         th,td {
           padding: 6px;
         }
+        .documentacion input {
+          padding 5px;
+        }
         </style>
     <title>FORMULARIO Nº <?=$datosFormulario->numeroProyecto?> - $datosFormulario->tituloProyecto</title>
     </head>
@@ -77,25 +80,23 @@
         margin: 10px;
     }
     .documentacion input {
-        margin:10px;
+        margin:5px;
     }
 </style>
-<!--
     <div style="margin-top: 40px; font-size: 22px;">CHECKLIST DOCUMENTACIÓN</div>
     <div class="documentacion">
-        <input type="checkbox" name="vehicle1" value="Bike"> Fotocopia DNI Solicitante<br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Certificado de domicilio<br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Recibo de sueldo del solicitante(de haber) <br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Constancia de inscripcion en AFIP<br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Constancia de inscripcion en IIBB - ART Río Negro<br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Constancia único libre de deuda - ART Río Negro<br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Fotocopia DNI Garante<br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Recibo de sueldo - DDJJ IIBB S/Corresponda - Garante <br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Certificado de domicilio del garante <br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Presupuestos <br>
-        <input type="checkbox" name="vehicle1" value="Bike"> Fotos <br>
+      <ul>
+      <?php foreach($documentacionUsuario as $documento)
+      {
+          print_r('<li><input type="checkbox" name="'.$documento.'" checked >'.$documento.'</li>');
+      }
+      foreach($documentacionFaltante as $faltante)
+      {
+          print_r('<li><input type="checkbox" name="'.$faltante.'" >'.$faltante.'</li>');
+      }
+      ?>
+    </ul>
     </div>
--->
     <div style="page-break-after: always;clear:both;"></div>
     <div class="cabecera"> <b style="font-size:24px;">DATOS PERSONALES</b> </div>
     <div class="cabecera_azul">

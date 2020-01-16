@@ -405,7 +405,31 @@ class TecnicoController extends Controller
     {
         $datosFormulario = Formulario::find($id);
 
-        $pdf = \PDF::loadView('vistaImprimir', ['id'=> $id, 'datosFormulario' => $datosFormulario]);
+        $checklistDocumentacion = ["documentacion_presupuestos",
+          "documentacion_cdomicilio_garante",
+          "documentacion_recibosueldo_garante",
+          "documentacion_dni_garante",
+          "documentacion_iibb_solicitante",
+          "documentacion_afip_solicitante",
+          "documentacion_libredeuda_solicitante",
+          "documentacion_recibosueldo_solicitante",
+          "documentacion_cdomicilio_solicitante",
+          "documentacion_dni_solicitante"
+        ];
+        //documentacion agregada por el usuario
+        $documentacionUsuario = [];
+        for($i=0;$i<count($checklistDocumentacion);$i++) {
+          foreach($datosFormulario->documentacion as $documento) {
+            if($documento->descripcion == $checklistDocumentacion[$i]) {
+              //agregamos la documentacion que subio el usuario al array
+              $documentacionUsuario[] = $documento->descripcion;
+            }
+          }
+        }
+        //hacemos la diferencia para saber los que faltan
+        $documentacionFaltante = array_diff($checklistDocumentacion, $documentacionUsuario);
+
+        $pdf = \PDF::loadView('vistaImprimir', ['id'=> $id, 'datosFormulario' => $datosFormulario, "documentacionUsuario" => $documentacionUsuario, "documentacionFaltante" => $documentacionFaltante]);
      
         return $pdf->download('formularioLineaEmprendedor_'.$datosFormulario->numeroSeguimiento.'.pdf');
     }
