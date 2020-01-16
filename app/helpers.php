@@ -85,6 +85,14 @@ class Helpers
                       $ext = pathinfo($path, PATHINFO_EXTENSION);
                     //Comprobamos que la extensión del archivo esté en las reglas
                     if (in_array($ext, $rules)) {
+                        if (Documentacion::where('formulario_id',$lastID)->where('descripcion',$descripcion)->get()->isNotEmpty()) {
+                            //cambiar estado de la imagen anterior a activo = 0
+                            $documentacionAnterior = Documentacion::where('formulario_id',$lastID)->where('descripcion',$descripcion)->first();
+                            $documentacionAnterior->delete();
+                            $multimediaAnterior = Multimedia::where("id",$documentacionAnterior->multimedia_id)->first();
+                            $multimediaAnterior->activo = 0;
+                            $multimediaAnterior->save();
+                        }
                         //Agregamos un registro en la tabla multimedia con su nombre y extensión original
                             $multimedia = new Multimedia;
                             $multimedia->nombre = $nombre;

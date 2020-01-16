@@ -1647,13 +1647,12 @@
 		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_recibosueldo_solicitante">
 		                    </div>
 						</div>
-						<!--
 						<div class="w3-half">
 							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
 		                    	<label for="documentacion_libredeuda_solicitante">Certificado de libre de deuda</label>
 		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_libredeuda_solicitante">
 							</div>
-						</div>-->
+						</div>
 						<div class="w3-half">
 							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
 		                    	<label for="documentacion_afip_solicitante">Constancia de Inscripción en AFIP</label><br>
@@ -1661,7 +1660,6 @@
 		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_afip_solicitante">
 		                    </div>
 						</div>
-						<!--
 						<div class="w3-half">
 							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
 		                    	<label for="documentacion_iibb_solicitante">Constancia de Inscripción en IIBB - ART Río Negro</label><br>
@@ -1692,9 +1690,11 @@
 							</div>
 						</div>
 						<div class="w3-col m12">
-							<div style="width: 100%;border-top: 2px white solid;margin-top: 10px;margin-bottom: 10px;"></div>
-	                		<h3>Presupuestos</h3>
-						</div>-->
+							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+		                    	<label for="documentacion_presupuestos">Presupuestos</label><br>
+		                    	<input class="w3-input" style="color: white;" type="file" name="documentacion_presupuestos">
+							</div>
+						</div>
 	                </section>
 	   </div>
 	</form>

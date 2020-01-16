@@ -193,7 +193,25 @@ class FinanciamientoController extends Controller
 						if($request->hasFile('documentacion_afip_solicitante')) {
 							Helpers::subirMultimedia('documentacion_afip_solicitante',$request->file('documentacion_afip_solicitante'),$lastID);
 						}
-
+						if($request->hasFile('documentacion_iibb_solicitante')) {
+							Helpers::subirMultimedia('documentacion_iibb_solicitante',$request->file('documentacion_iibb_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_libredeuda_solicitante')) {
+							Helpers::subirMultimedia('documentacion_libredeuda_solicitante',$request->file('documentacion_libredeuda_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_dni_garante')) {
+							Helpers::subirMultimedia('documentacion_dni_garante',$request->file('documentacion_dni_garante'),$lastID);
+						}
+						if($request->hasFile('documentacion_recibosueldo_garante')) {
+							Helpers::subirMultimedia('documentacion_recibosueldo_garante',$request->file('documentacion_recibosueldo_garante'),$lastID);
+						}
+						if($request->hasFile('documentacion_cdomicilio_garante')) {
+							Helpers::subirMultimedia('documentacion_cdomicilio_garante',$request->file('documentacion_cdomicilio_garante'),$lastID);
+						}
+						if($request->hasFile('documentacion_presupuestos')) {
+							Helpers::subirMultimedia('documentacion_presupuestos',$request->file('documentacion_presupuestos'),$lastID);
+						}
+						
 						//Generamos el formulario para enviarlo a los técnicos
 						if ($request->estado == 'enviado') {
 							$numeroSeguimiento = $dataUsuario->id . $lastID;
@@ -240,6 +258,45 @@ class FinanciamientoController extends Controller
 		$idUsuario = $request->session()->get('id_usuario');
 		$datosFormulario = Formulario::where("id", $formulario_id)->where("idUsuario", $idUsuario)->first() ?? null;
 		$dataUsuario = Usuario::find($idUsuario);
+		//documentacion completa
+		$checklistDocumentacion = ["documentacion_presupuestos",
+					"documentacion_cdomicilio_garante",
+					"documentacion_recibosueldo_garante",
+					"documentacion_dni_garante",
+					"documentacion_iibb_solicitante",
+					"documentacion_afip_solicitante",
+					"documentacion_libredeuda_solicitante",
+					"documentacion_recibosueldo_solicitante",
+					"documentacion_cdomicilio_solicitante",
+					"documentacion_dni_solicitante"
+				];
+		//documentacion agregada por el usuario
+		$documentacionUsuario = [];
+		for($i=0;$i<count($checklistDocumentacion);$i++) {
+			foreach($datosFormulario->documentacion as $documento) {
+				if($documento->descripcion == $checklistDocumentacion[$i]) {
+					//agregamos la documentacion que subio el usuario al array
+					$documentacionUsuario[] = $documento->descripcion;
+				}
+			}
+		}
+		//hacemos la diferencia para saber los que faltan
+		$documentacionFaltante = array_diff($checklistDocumentacion, $documentacionUsuario);
+
+		/*Verificación de créditos*/
+    	$creditoActivo = 0;
+    	foreach ($dataUsuario->creditos as $credito) {
+    		if ($credito->activo == 1) {
+    			# comprobamos si hay algun credito activo...
+    			$creditoActivo = $credito->activo;
+    		}
+    	}
+    	#si existe credito activo no existe la posibilidad de sacar credito
+    	if ($creditoActivo != 0) {
+    		return redirect('financiamiento')->with(['error' => 'Usted ya tiene un crédito activo.']);
+    	}
+    	/*fin verificación*/
+
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$grados = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
 		
@@ -251,13 +308,28 @@ class FinanciamientoController extends Controller
 		}
     	$localidades = Localidad::all();
 
-		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades,'grados' => $grados, 'emprendimientosUsuario' => $emprendimientos]);
+		return view('financiamiento.editarLineaEmprendedor', ['dataUsuario' => $dataUsuario, 'datosFormulario' => $datosFormulario, 'actPrincipales' => $actPrincipales,'localidades' => $localidades,'grados' => $grados, 'emprendimientosUsuario' => $emprendimientos, "documentacionUsuario" => $documentacionUsuario, "documentacionFaltante" => $documentacionFaltante]);
     }
     function editarLineaEmprendedor(Request $request)
     {
     		# Actualización...
 			  // Grab all the input passed in
     		$idUsuario = $request->session()->get('id_usuario');
+    		$dataUsuario = Usuario::find($idUsuario);
+    		/*Verificación de créditos*/
+	    	$creditoActivo = 0;
+	    	foreach ($dataUsuario->creditos as $credito) {
+	    		if ($credito->activo == 1) {
+	    			# comprobamos si hay algun credito activo...
+	    			$creditoActivo = $credito->activo;
+	    		}
+	    	}
+	    	#si existe credito activo no existe la posibilidad de sacar credito
+	    	if ($creditoActivo != 0) {
+	    		return redirect('financiamiento')->with(['error' => 'Usted ya tiene un crédito activo.']);
+	    	}
+	    	/*fin verificación*/
+
     		$idTipoForm = FormTipo::where('nombre','Línea Emprendedor')->first()->id;
 
 			  $data = $request->all();
@@ -282,13 +354,44 @@ class FinanciamientoController extends Controller
 				$formulario->localidadMBG = $request->localidadMBG;
 				$formulario->domicilioMBG = $request->domicilioMBG;
 
+
 				$estadosFormulario = config('constantes.estados');
         		$formulario->estado = $estadosFormulario['actualizado'];
 			$formulario->save();
-			if ($request->file('documentacion_dni')) {
-					#documentacion editar
-					Helpers::subirMultimedia($request->file('documentacion_dni'),$formulario->id);
-				}
+			$lastID = $formulario->id;
+			if ($request->hasFile('documentacion_dni_solicitante')) {
+							# Agregando DNI
+							Helpers::subirMultimedia('documentacion_dni_solicitante',$request->file('documentacion_dni_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_cdomicilio_solicitante')) {
+							Helpers::subirMultimedia('documentacion_cdomicilio_solicitante',$request->file('documentacion_cdomicilio_solicitante'),$lastID);
+						}
+
+						if($request->hasFile('documentacion_recibosueldo_solicitante')) {
+							Helpers::subirMultimedia('documentacion_recibosueldo_solicitante',$request->file('documentacion_recibosueldo_solicitante'),$lastID);
+						}
+
+						if($request->hasFile('documentacion_afip_solicitante')) {
+							Helpers::subirMultimedia('documentacion_afip_solicitante',$request->file('documentacion_afip_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_iibb_solicitante')) {
+							Helpers::subirMultimedia('documentacion_iibb_solicitante',$request->file('documentacion_iibb_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_libredeuda_solicitante')) {
+							Helpers::subirMultimedia('documentacion_libredeuda_solicitante',$request->file('documentacion_libredeuda_solicitante'),$lastID);
+						}
+						if($request->hasFile('documentacion_dni_garante')) {
+							Helpers::subirMultimedia('documentacion_dni_garante',$request->file('documentacion_dni_garante'),$lastID);
+						}
+						if($request->hasFile('documentacion_recibosueldo_garante')) {
+							Helpers::subirMultimedia('documentacion_recibosueldo_garante',$request->file('documentacion_recibosueldo_garante'),$lastID);
+						}
+						if($request->hasFile('documentacion_cdomicilio_garante')) {
+							Helpers::subirMultimedia('documentacion_cdomicilio_garante',$request->file('documentacion_cdomicilio_garante'),$lastID);
+						}
+						if($request->hasFile('documentacion_presupuestos')) {
+							Helpers::subirMultimedia('documentacion_presupuestos',$request->file('documentacion_presupuestos'),$lastID);
+						}
 			//return $request->all();
 			return view('financiamiento.formEnviado', ['numeroSeguimiento' => $formulario->numeroSeguimiento]);
     }
@@ -299,6 +402,21 @@ class FinanciamientoController extends Controller
 		$datosBorrador = Borrador::where('id',$borrador_id)->where('idUsuario',$idUsuario)->first() ?? null;
 
 		$dataUsuario = Usuario::find($idUsuario);
+
+		/*Verificación de créditos*/
+    	$creditoActivo = 0;
+    	foreach ($dataUsuario->creditos as $credito) {
+    		if ($credito->activo == 1) {
+    			# comprobamos si hay algun credito activo...
+    			$creditoActivo = $credito->activo;
+    		}
+    	}
+    	#si existe credito activo no existe la posibilidad de sacar credito
+    	if ($creditoActivo != 0) {
+    		return redirect('financiamiento')->with(['error' => 'Usted ya tiene un crédito activo.']);
+    	}
+    	/*fin verificación*/
+
     	$actPrincipales = ActividadesPrincipales::orderBy('nombre','asc')->get();
     	$gradosInstruccion = ['Ninguno','Primario','Secundario','Terciario','Universitario'];
     	if ($datosBorrador->cargo) {
@@ -400,7 +518,6 @@ class FinanciamientoController extends Controller
     function eliminarBorrador(Request $request)
     {
     	$idUsuario = $request->session()->get('id_usuario');
-    	var_dump($request->borrador_id);
     	$borrador = Borrador::where('id',$request->borrador_id)->where('idUsuario',$idUsuario);
     	$borrador->delete();
     	return "Borrador eliminado.";

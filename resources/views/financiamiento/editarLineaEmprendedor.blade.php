@@ -1644,14 +1644,23 @@ input, textarea, select {
 	                		<div class="w3-col m12">
 	                		<h3>Documentación del Solicitante</h3>
 	                	</div>
-						@foreach($datosFormulario->documentacion as $documento)
-						<div class="w3-half">
-							<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
-		                    	<label for="{{$documento->descripcion}}">{{$documento->descripcion}}</label><br>
-		                    	<p>DOCUMENTO CARGADO</p>
-		                    </div>
-						</div>
-						@endforeach
+								@foreach($documentacionUsuario as $documento)
+									<div class="w3-half">
+										<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+					                    	<label for="{{$documento}}">{{$documento}}</label><br>
+					                    	<p>DOCUMENTO CARGADO</p>
+					                    	<input class="w3-input" style="color: white;" type="file" name="{{$documento}}">
+					                    </div>
+									</div>
+								@endforeach
+								@foreach($documentacionFaltante as $faltante)
+									<div class="w3-half">
+										<div style="padding: 20px;background-color: #00ffff1a;border-radius: 20px;">
+					                    	<label for="{{$faltante}}">{{$faltante}}</label><br>
+					                    	<input class="w3-input" style="color: white;" type="file" name="{{$faltante}}">
+					                    </div>
+									</div>
+								@endforeach
 	                </section>
 	   </div>
 	</form>
