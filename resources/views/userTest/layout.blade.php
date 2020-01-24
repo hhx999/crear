@@ -101,7 +101,7 @@ margin-left: 225px;"></span>
           @endif
           @yield('content')
       <div class="w3-col m12">
-          <p><small>Versión <b>TEST</b> de la plataforma para la <a target="_blank" href="//crear.rionegro.gov.ar">Agencia de Desarrollo Rionegrino CREAR</a>.</small></p>
+          <p><small><b>CREAR © 2018</b> - <a target="_blank" href="//crear.rionegro.gov.ar">Agencia Provincial de Desarrollo Económico Rionegrino</a>.</small></p>
       </div>
       <div class="w3-col m1 w3-center"><p></p></div>
       <script>
