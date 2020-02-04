@@ -24,6 +24,12 @@ Route::get('/laravel', function () {
 //LOGOUT Usuario
 $router->get('/logout','FormularioController@logoutUser');
 
+$router->get('/email', function () {
+    return view('userTest.testmail');
+}); //Esta ruta la ponemos en la raiz para que nada mas ejecutar nuestra aplicación aparezca nuestro formulario
+
+$router->post('/contactar', 'EmailController@contact')->name('contact');
+//Ruta que esta señalando nuestro formulario
 
 //
 $router->get('/','UsuarioController@login');

@@ -38,7 +38,9 @@ class UsuarioController extends BaseController
                 $session->put('id_usuario', $usuario->id);
                 $session->put('nombreApellido',$usuario->nombreApellido);
                 $session->put('usuario', $usuario->rol);
-                return redirect(url('/usuarioIndex'));
+                return redirect(url('/financiamiento')); // redirige a la página principal
+                // financiamiento para la primer versión
+                // usuarioIndex -- para su versión con capacitaciones integrado
                   exit();
               } else {
                 $msgError = "Password incorrecto";
