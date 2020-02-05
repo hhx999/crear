@@ -75,9 +75,14 @@ class FinanciamientoController extends Controller
     	$idUsuario = $request->session()->get('id_usuario');
     	$usuario = Usuario::find($idUsuario);
 
-    	$situacionImpositiva = config('constantes.situacionImpositiva');
+    	$validatedData = $request->validate([
+                'estado' => 'required',
+		        'antiguedad' => 'required',
+		        'destino' => 'required'
+		    ]);
 
     	$situacionImpositiva = config('constantes.situacionImpositiva');
+
     	$opcionesCuestionario = DB::table('f__cuestionario_lineas')
 				->where('estado','=', intval($request->estado))
 			    ->where('antiguedad', '<=', intval($request->antiguedad))

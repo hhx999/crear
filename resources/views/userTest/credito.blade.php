@@ -52,20 +52,6 @@
                     $("#wizard").steps("setStep",3);
                 });
         </script>
-        @if ($errors->any())
-			<div class="w3-panel w3-amber w3-display-container">
-			  <span onclick="this.parentElement.style.display='none'"
-			  class="w3-button w3-large w3-display-topright">&times;</span>
-			  <h4><b style="color: black;">No se completaron los campos necesarios</b></h4>
-			  <div align="center">
-			   	<ul class="errores">
-			        @foreach ($errors->all() as $error)
-			            <li>{{ $error }}</li>
-			        @endforeach
-			  	</ul>
-			  </div>
-			</div>
-		@endif
 		<div class="w3-row">
         	<div class="w3-third"><p></p></div>
 	  		<div class="w3-third">
@@ -77,6 +63,20 @@
 	  		<div class="w3-third"><p></p></div>
         </div>
         <div class="w3-col m12">
+        	@if ($errors->any())
+				<div class="w3-panel w3-amber w3-display-container">
+				  <span onclick="this.parentElement.style.display='none'"
+				  class="w3-button w3-large w3-display-topright">&times;</span>
+				  <div align="center">
+				  	<h4><b style="color: black;">Los siguientes campos son obligatorios:</b></h4>
+				   	<ul class="errores">
+				        @foreach ($errors->all() as $error)
+				            <li>{{ $error }}</li>
+				        @endforeach
+				  	</ul>
+				  </div>
+				</div>
+			@endif
         	<h3><a href="{{url('financiamiento/informacion_creditos/lineas_creditos')}}">Ver todas las líneas de créditos</a></h3>
         </div>
 		<div class="contenedorCuestionario">
