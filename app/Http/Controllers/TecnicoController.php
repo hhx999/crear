@@ -452,8 +452,16 @@ class TecnicoController extends Controller
         $historialEstado->credito_id = $datosCredito->id;
         $historialEstado->save();
 
-        $credito->estado = $request->estado_id;
-        $credito->save();
+        $estadosFinales = ['9','10','11']; //estados con los que el crédito queda inactivo
+
+        if (in_array($datosCredito->estado, $estadosFinales)) {
+          $credito->estado = $request->estado_id;
+          $credito->activo = 0;
+          $credito->save();
+        } else {
+          $credito->estado = $request->estado_id;
+          $credito->save();
+        }
 
         $hEstado = HistorialEstado::find($historialEstado->id);
         $hEstado->estado_actual = $request->estado_id;
