@@ -23,4 +23,8 @@ class Credito extends Model
     {
     	return $this->belongsTo('App\Emprendimiento','emprendimiento_id');
     }
+    public function ultimoEstado()
+    {
+        return $this->hasMany('App\HistorialEstado')->orderBy('id', 'DESC')->first();
+    }
 }
