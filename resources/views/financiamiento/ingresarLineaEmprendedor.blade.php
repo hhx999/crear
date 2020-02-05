@@ -530,7 +530,6 @@
 										<option value="{{$emprendimiento->id}}">{{$emprendimiento->denominacion}}</option>
 									@endforeach
 								</select>
-								<a href="{{route('crearEmprendimiento')}}" style="text-decoration: none;cursor: pointer;">Registrá tu emprendimiento!</a>
 							</div>
 						@endif
 							<div class="w3-half">

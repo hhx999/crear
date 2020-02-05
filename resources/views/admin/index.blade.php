@@ -205,7 +205,10 @@ box-shadow: 0px 0px 5px 5px #4caf50;
     div.prepend('<div id="contenidoeliminar" class="w3-container w3-green" align="center" style="padding:20px;">\
                       <span class="close">&times;</span>\
                       <h2>Desea eliminar el formulario con ID '+id+' ?</h2>\
-                      <input type="text" id="motivoEliminar" name="motivoEliminar">\
+                      <select id="motivoEliminar" name="motivoEliminar">\
+                        <option value="Errores de formulación">Errores de formulación</option>\
+                        <option value="Inactividad del usuario(15 días hábiles sin contestar)">Inactividad del usuario(15 días hábiles sin contestar)</option>\
+                      </select>\
                       <p id="idEliminar" style="display:none;">'+id+'</p>\
                         <button id="siModal" class="w3-button w3-teal" type="button">SI</button>\
                         <button id="noModal" class="w3-button w3-red" type="button">NO</button>\

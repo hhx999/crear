@@ -10,7 +10,6 @@ class Formulario extends Model {
     protected $fillable = [
 "idUsuario",
 "form_tipo_id",
-"emprendimiento_id",
 "tecnico_id",
 "estado",
 "nombreEmprendedor",

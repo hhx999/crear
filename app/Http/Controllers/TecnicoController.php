@@ -279,29 +279,43 @@ class TecnicoController extends Controller
            #si están confirmados creamos los creditos
               try {
                 $session = $request->session();
-                $usuario_id = $session->get('id_usuario');
+
+                $datosUsuario = Usuario::find()
 
                 $formulario = Formulario::where('id', $request->formulario_id[$i])->first();
-                $emprendimiento = new Emprendimiento;
 
-                $emprendimiento->estadoEmprendimiento = $formulario->estadoEmprendimiento;
-                $emprendimiento->denominacion = $formulario->denominacion;
-                $emprendimiento->tipoSociedad = $formulario->tipoSociedad;
-                $emprendimiento->cuit = $formulario->cuitEmprendimiento;
-                $emprendimiento->domicilio = $formulario->domicilioEmprendimiento ?? '';
-                $emprendimiento->localidad = $formulario->localidadEmprendimiento ?? '';
+                $usuario = $formulario->usuario;
 
-                $emprendimiento->save();
+                $usuario_id = $usuario->id;
 
-                $trabajaEn = new Trabaja();
-                $trabajaEn->usuario_id = $formulario->idUsuario;
-                $trabajaEn->emprendimiento_id = $emprendimiento->id;
-                $trabajaEn->cargo = $formulario->cargo;
-                $trabajaEn->save();
+                if (isNotEmpty($usuario->emprendimientos)) {
+                    $emprendimiento = new Emprendimiento;
+
+                    $emprendimiento->estadoEmprendimiento = $formulario->estadoEmprendimiento;
+                    $emprendimiento->denominacion = $formulario->denominacion;
+                    $emprendimiento->tipoSociedad = $formulario->tipoSociedad;
+                    $emprendimiento->cuit = $formulario->cuitEmprendimiento;
+                    $emprendimiento->domicilio = $formulario->domicilioEmprendimiento ?? '';
+                    $emprendimiento->localidad = $formulario->localidadEmprendimiento ?? '';
+
+                    $emprendimiento->save();
+
+                    $trabajaEn = new Trabaja();
+                    $trabajaEn->usuario_id = $formulario->idUsuario;
+                    $trabajaEn->emprendimiento_id = $emprendimiento->id;
+                    $trabajaEn->cargo = $formulario->cargo;
+                    $trabajaEn->save();
+
+                    $id_emprendimiento = $emprendimiento->id;
+                } else {
+                  // acá va el emprendimiento_id
+                  //proximo commit se agrega a la base de datos en formularios
+
+                }
 
                 $credito = new Credito();
                 $credito->usuario_id = $formulario->idUsuario;
-                $credito->emprendimiento_id = $emprendimiento->id;
+                $credito->emprendimiento_id = $id_emprendimiento;
                 $credito->formulario_id = $request->formulario_id[$i];
                 $credito->fechaOtorgado = date('m/d/Y h:i:s a', time());
                 $credito->activo = 1;
