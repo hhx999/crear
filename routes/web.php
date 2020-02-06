@@ -22,7 +22,7 @@ Route::get('/laravel', function () {
 |||||||||||||||||||||||||||||||||||||||
 */
 //LOGOUT Usuario
-$router->get('/logout','FormularioController@logoutUser');
+$router->get('/logout','TecnicoController@logoutUser');
 
 $router->get('/email', function () {
     return view('userTest.testmail');

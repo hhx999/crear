@@ -120,7 +120,9 @@ class UsuarioController extends BaseController
 	/* MODO TEST: NUEVA INTERFAZ USUARIO */
     public function indexUser(Request $request)
     {
-      return view('userTest.index', ['estado' => '1']);
+      //return view('userTest.index', ['estado' => '1']);
+      return redirect(url('/financiamiento'));
+      exit();
     }
     public function financiamiento(Request $request)
     {

@@ -196,6 +196,8 @@ class TecnicoController extends Controller
      }
     public function agregarRevision(Request $request) {
       $session = $request->session();
+      $idTecnico = $request->session()->get('id_usuario');
+
       $estados = config('constantes.estados');
       $result = 1;
       if ($request->isJson()) {
@@ -245,10 +247,12 @@ class TecnicoController extends Controller
             if ($formV == 0) {
               $formulario = Formulario::where('id',$formulario_id)->first();
               $formulario->estado = 3;
+              $formulario->tecnico_id = $idTecnico;
               $formulario->save();
             } else {
               $formulario = Formulario::where('id',$formulario_id)->first();
               $formulario->estado = 5;
+              $formulario->tecnico_id = $idTecnico;
               $formulario->save();
               if (PendienteCredito::where('formulario_id',$formulario_id)->get()->isEmpty())
                 {
@@ -336,6 +340,7 @@ class TecnicoController extends Controller
      public function eliminarFormulario(Request $request)
      {
       $session = $request->session();
+      $idTecnico = $request->session()->get('id_usuario');
       $estados = config('constantes.estados');
 
         $result = 0;
@@ -350,6 +355,7 @@ class TecnicoController extends Controller
               $id = $data['id'];
               $formulario = Formulario::find($id);
               $formulario->estado = $estados['eliminado'];
+              $formulario->tecnico_id = $idTecnico;
               $formulario->save();
               $result = 1;
 
@@ -465,7 +471,7 @@ class TecnicoController extends Controller
 
         $estadosFinales = ['9','10','11']; //estados con los que el crédito queda inactivo
 
-        if (in_array($datosCredito->estado, $estadosFinales)) {
+        if (in_array($request->estado_id, $estadosFinales)) {
           $credito->estado = $request->estado_id;
           $credito->activo = 0;
           $credito->save();

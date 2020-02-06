@@ -161,7 +161,7 @@ class Helpers
                     }
         DB::commit();
     }
-    //Subir multimedia lineaCreditos
+    //Subir multimedia lineacredito
     public static function subirInfoLineaCreditos($descripcion,$archivoMultimedia, $lastID)
     {
         $form_tipo = FormTipo::where('id',$lastID)->first();
@@ -260,7 +260,7 @@ class Helpers
             <table class="w3-table-all w3-hoverable">
                 <thead>
                   <tr class="w3-green">
-                    <th colspan="8" style="text-align: center;">FORMULARIOS CREAR</th>
+                    <th colspan="8" style="text-align: center;">LÍNEA EMPRENDEDOR CREAR</th>
                   </tr>
                   <tr>
                     <th style="display:none;">ID</th>
@@ -270,7 +270,7 @@ class Helpers
                     <th>LOCALIDAD</th>
                     <th>MONTO</th>
                     <th>LÍNEA DE CRÉDITO</th>
-                    <th>ACCIONES</th>
+                    <th style="width:100px;"></th>
                   </tr>
                 </thead>
                 ');
@@ -393,7 +393,7 @@ class Helpers
                      }
                 }
                 else if ($rol == 'admin' && $filtro == 'completos') {
-                    if ($formularios[$i]->estado == $estados['completo']) {
+                    if ($formularios[$i]->estado == $estados['completo'] && $formularios[$i]->credito == NULL) {
                         $idForm = $formularios[$i]->id;
                         echo "<tr class='w3-light-green'>";
                         echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
@@ -406,12 +406,50 @@ class Helpers
                         echo "<td><a href='adminFormulario/".$idForm."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>
                             <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
                             <a href='generarPdf/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>GENERAR PDF</a></div>
-                            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
-                            <a href='cambiarEstado/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Cambiar estado</a></div>
                             </td>";
                         //echo Helpers::acciones($rol,$formularios[$i]->id);
                         echo "</tr>";
                      }
+                }
+                else if ($filtro == 'creditos') {
+                    if ($formularios[$i]->credito) {
+                        $estadosFinales = ['9','10','11'];
+                        $idForm = $formularios[$i]->id;
+
+                        if (in_array($formularios[$i]->credito->estado, $estadosFinales))
+                        {
+                            $idForm = $formularios[$i]->id;
+                            echo "<tr class='w3-grey'>";
+                            echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
+                            echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                            echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                            echo "<td colspan='4' style='text-align:center;'>ARCHIVADO (".$formularios[$i]->credito->verEstado->nombre." - ".$formularios[$i]->credito->ultimoEstado()->fecha_cambio.")</td>";
+                            echo "<td>
+                                <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                                <a href='adminFormulario/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Ver datos</a></div>
+
+                                <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                                <a href='cambiarEstado/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Cambiar estado</a></div>
+                                </td>";
+                            //echo Helpers::acciones($rol,$formularios[$i]->id);
+                            echo "</tr>";
+                        } else {
+                            echo "<tr class='w3-green'>";
+                            echo "<td style='display:none;'>".$formularios[$i]->id."</td>";
+                            echo "<td>".$formularios[$i]->numeroSeguimiento."</td>";
+                            echo "<td>".$formularios[$i]->nombreEmprendedor."</td>";
+                            echo "<td>".$formularios[$i]->updated_at."</td>";
+                            echo "<td>".$formularios[$i]->get_localidad->nombre."</td>";
+                            echo "<td>".$formularios[$i]->montoSolicitado."</td>";
+                            echo "<td>".$formTipo->nombre."</td>";
+                            echo "<td>
+                                <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
+                                <a href='cambiarEstado/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>Cambiar estado</a></div>
+                                </td>";
+                            //echo Helpers::acciones($rol,$formularios[$i]->id);
+                            echo "</tr>";
+                        }
+                    }
                 }
             }
         }
@@ -421,8 +459,6 @@ class Helpers
     {
         if ($rol == 'admin') {
             $acciones = "<td><a href='adminFormulario/".$idForm."'><img class='acciones' src='".asset('img/icons/edit.svg')."' style='width:30px;margin-left:5px;margin-right:15px;'></a><a id='eliminar'><img class='acciones' src=".asset('img/icons/trash-2.svg')." width='30px'></a>
-            <div style='margin-top:4px;background-color:#f0e68c;border-radius:15px;' align='center'>
-            <a href='generarPdf/".$idForm."' target='_blank' style='text-decoration:none;font-size:10px;color:black;'>GENERAR PDF</a></div>
             </td>";
         }
         return $acciones;

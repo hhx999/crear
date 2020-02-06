@@ -177,6 +177,10 @@ class Formulario extends Model {
     {
         return $this->belongsTo(Usuario::class,'idUsuario');
     }
+    public function credito()
+    {
+        return $this->hasOne(Credito::class);
+    }
     public function get_localidad()
     {
         return $this->belongsTo(Localidad::class,'localidadEmprendedor');

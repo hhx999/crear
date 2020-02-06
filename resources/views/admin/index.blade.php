@@ -119,10 +119,13 @@ box-shadow: 0px 0px 5px 5px #4caf50;
           <div class="w3-container">
             <div class="w3-row">
               <a href="javascript:void(0)" id="tramite" class="tabLinks">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-khaki">En trámite</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-lime">En trámite</div>
               </a>
               <a href="javascript:void(0)" id="completos" class="tabLinks">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Aprobados</div>
+              </a>
+              <a href="javascript:void(0)" id="creditos" class="tabLinks">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Créditos</div>
               </a>
               <a href="javascript:void(0)" id="eliminados" class="tabLinks">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Rechazados</div>
@@ -143,6 +146,13 @@ box-shadow: 0px 0px 5px 5px #4caf50;
               <br>
               <div class="w3-responsive">  
                 <?php Helpers::crearRegistrosForm('admin',$formularios,'completos');?>
+              </div>
+            </div>
+
+            <div id="creditos" class="w3-container city w3-animate-opacity" style="display:none">
+              <br>
+              <div class="w3-responsive">  
+                <?php Helpers::crearRegistrosForm('admin',$formularios,'creditos');?>
               </div>
             </div>
 
@@ -170,10 +180,12 @@ box-shadow: 0px 0px 5px 5px #4caf50;
             var clase = 'w3-border-indigo';
           } else if (nombre == 'eliminados'){
             var clase = 'w3-border-red';
+          } else if (nombre == 'creditos'){
+            var clase = 'w3-border-green';
           } else if (nombre == 'archivados'){
             var clase = 'w3-border-grey';
           } else if (nombre == 'tramite'){
-            var clase = 'w3-border-khaki';
+            var clase = 'w3-border-lime';
           }
             else if (nombre == 'completos'){
             var clase = 'w3-border-light-green';
@@ -189,8 +201,9 @@ box-shadow: 0px 0px 5px 5px #4caf50;
                       $(this).children("div").removeClass('w3-border-light-green');
                       $(this).children("div").removeClass('w3-border-red');
                       $(this).children("div").removeClass('w3-border-grey');
-                      $(this).children("div").removeClass('w3-border-khaki');
+                      $(this).children("div").removeClass('w3-border-lime');
                       $(this).children("div").removeClass('w3-border-indigo');
+                      $(this).children("div").removeClass('w3-border-green');
                     }
               })
             }
