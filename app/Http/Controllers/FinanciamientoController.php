@@ -29,7 +29,7 @@ class FinanciamientoController extends Controller
 	function verCreditos(Request $request)
 	{
 		$idUsuario = $request->session()->get('id_usuario');
-		$creditos = Credito::where('usuario_id', $idUsuario)->get();
+		$creditos = Credito::where('usuario_id', $idUsuario)->orderBy('updated_at', 'DESC')->get();
 		if ($creditos->isEmpty()) {
 			return redirect('financiamiento')->with(['error' => 'Usted por ahora no tiene tiene créditos.']);
 		}
