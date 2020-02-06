@@ -71,7 +71,7 @@
 				<tr>
 					<td>{{ $credito->verEmprendimiento->denominacion }}</td>
 					<td>{{$credito->fechaOtorgado}}</td>
-					<td>{{$credito->verEstado->nombre}} <i style="color: lightgrey;">({{$credito->ultimoEstado()->fecha_cambio}})</i></td>
+					<td>{{$credito->verEstado->nombre}} <i style="color: lightgrey;">({{$credito->ultimoEstado()->fecha_cambio ?? ''}})</i></td>
 					<td>
 						@if($credito->activo == 1 )
 							Si

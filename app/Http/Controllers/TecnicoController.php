@@ -280,7 +280,6 @@ class TecnicoController extends Controller
               try {
                 $session = $request->session();
 
-                $datosUsuario = Usuario::find()
 
                 $formulario = Formulario::where('id', $request->formulario_id[$i])->first();
 
@@ -288,7 +287,7 @@ class TecnicoController extends Controller
 
                 $usuario_id = $usuario->id;
 
-                if (isNotEmpty($usuario->emprendimientos)) {
+                if ($usuario->emprendimientos->isEmpty()) {
                     $emprendimiento = new Emprendimiento;
 
                     $emprendimiento->estadoEmprendimiento = $formulario->estadoEmprendimiento;
@@ -308,9 +307,7 @@ class TecnicoController extends Controller
 
                     $id_emprendimiento = $emprendimiento->id;
                 } else {
-                  // acá va el emprendimiento_id
-                  //proximo commit se agrega a la base de datos en formularios
-
+                    $id_emprendimiento = $formulario->emprendimiento_id;
                 }
 
                 $credito = new Credito();

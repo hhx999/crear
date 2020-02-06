@@ -12,6 +12,7 @@ class Formulario extends Model {
 "form_tipo_id",
 "tecnico_id",
 "estado",
+"emprendimiento_id",
 "nombreEmprendedor",
     "dniEmprendedor",
     "localidadEmprendedor",    
