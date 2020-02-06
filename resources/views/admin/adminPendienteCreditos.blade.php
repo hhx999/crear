@@ -11,6 +11,9 @@ use App\Libraries\Helpers;
 
   <style type="text/css">
    /* The Modal (background) */
+   input {
+    border: 0px;
+   }
 .modal {
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
