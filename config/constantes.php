@@ -59,5 +59,9 @@ return [
           'Monotributo desde A hasta E' => 3, 
           'Monotributo desde F hasta K' => 4, 
           'Responsable inscripto' => 5
+        ],
+        "google_key" => [
+          'site' => '6LejSZ4UAAAAAJzZs15RzzIqacBAAtli3b3FguCn',
+          'secret' => '6LejSZ4UAAAAAIlea3rAWDU0PjynQSOikLqXIcoF'
         ]
 ];

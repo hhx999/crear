@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 	<header class="w3-container" style="padding-top:22px">
 	    <h3><b><i class="fa fa-dashboard"></i> Registráte para poder acceder a la plataforma!</b></h3>
 	</header>
@@ -92,10 +93,6 @@
 						    <label>Contraseña</label>
 						    <input id="password" class="w3-input w3-border w3-round-large" type="password" name="password" placeholder="Ingrese una contraseña...">
 						</div>
-					</div>
-					<div class="w3-col m12">
-							<p>Google captcha:</p>
-							<div align="center" class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
 					</div>
 					<script type="text/javascript">
 					$('#dniBlur').on('blur','input',function(event) {
@@ -224,6 +221,10 @@
 						    <input class="w3-input w3-border" type="text" name="telefono" placeholder="Ingrese su telefono de contacto...">
 						</div>
 					</div>
+					<div class="w3-col m12" align="center">
+							<div class="g-recaptcha" data-sitekey="<?php echo config('constantes.google_key.site'); ?>"></div>
+					</div>
+					
                 </section>
             </div>
         </form>
