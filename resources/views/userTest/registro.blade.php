@@ -224,7 +224,6 @@
 					<div class="w3-col m12" align="center">
 							<div class="g-recaptcha" data-sitekey="<?php echo config('constantes.google_key.site'); ?>"></div>
 					</div>
-					
                 </section>
             </div>
         </form>
