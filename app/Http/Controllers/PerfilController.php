@@ -9,6 +9,7 @@ use App\Emprendimiento;
 use App\Localidad;
 use App\Agencia;
 use App\ActividadesPrincipales;
+use App\Area;
 
 class PerfilController extends Controller
 {
@@ -56,6 +57,11 @@ class PerfilController extends Controller
     }
     public function enviarConsulta(Request $request) 
     {
-        echo "HOLA";
+        $areas = Area::all();
+        $mensaje = NULL;
+        if ($request->isMethod('post')) {
+            $mensaje = 'HOLA';
+        }
+        return view('perfil.enviarConsulta', ["areas" => $areas, "mensaje" => $mensaje]);
     }
 }

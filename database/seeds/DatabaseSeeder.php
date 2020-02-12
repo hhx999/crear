@@ -56,5 +56,8 @@ class DatabaseSeeder extends Seeder
         //Tipos de sociedades
         $this->call(TipoSociedadSeeder::class);
 
+        //Áreas de la agencia
+        $this->call(AreaSeeder::class);
+
     }
 }
