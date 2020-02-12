@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Usuario;
 use App\Trabaja;
 use App\Emprendimiento;
@@ -10,6 +12,8 @@ use App\Localidad;
 use App\Agencia;
 use App\ActividadesPrincipales;
 use App\Area;
+use App\Tramite;
+use App\Consulta;
 
 class PerfilController extends Controller
 {
@@ -57,10 +61,40 @@ class PerfilController extends Controller
     }
     public function enviarConsulta(Request $request) 
     {
+        $usuario_id = $request->session()->get('id_usuario');
         $areas = Area::all();
         $mensaje = NULL;
+        $tramites = Tramite::all();
+        foreach ($tramites as $tramite) {
+            print_r($tramite->obtenerTramites);
+        }
         if ($request->isMethod('post')) {
-            $mensaje = 'HOLA';
+            DB::beginTransaction();
+            try {
+                $tramite = new Tramite;
+                $tramite->usuario_id = $usuario_id;
+                $tramite->save();
+
+                $agregarCodigoTramite = Tramite::find($tramite->id);
+                $agregarCodigoTramite->codigoSeguimiento = "CREAR-".$usuario_id.$tramite->id;
+                $agregarCodigoTramite->save();
+
+
+                $consulta = new Consulta;
+                $consulta->consulta = $request->consulta;
+                $consulta->area_id = $request->area;
+                $consulta->usuario_id = $usuario_id;
+                $consulta->tramite_id = $tramite->id;
+                $consulta->save();
+
+                DB::commit();
+                $mensaje = "OK";
+            }
+            catch (\Illuminate\Database\QueryException $e) {
+                    DB::rollback();
+                    dd($e);
+            }
+
         }
         return view('perfil.enviarConsulta', ["areas" => $areas, "mensaje" => $mensaje]);
     }

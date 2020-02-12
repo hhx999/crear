@@ -20,6 +20,7 @@ use App\Documentacion;
 use App\BorradorVenta;
 use App\HistorialEstado;
 use App\Credito;
+use App\Tramite;
 
 use App\Helpers;
 
@@ -219,10 +220,20 @@ class FinanciamientoController extends Controller
 						
 						//Generamos el formulario para enviarlo a los técnicos
 						if ($request->estado == 'enviado') {
-							$numeroSeguimiento = $dataUsuario->id . $lastID;
-							$addFormNumeroSeguimiento = Formulario::find($lastID);
-							$addFormNumeroSeguimiento->numeroSeguimiento = $numeroSeguimiento;
-							$addFormNumeroSeguimiento->save();
+							//Agregar tramite
+							$tramite = new Tramite;
+			                $tramite->usuario_id = $idUsuario;
+			                $tramite->save();
+
+			                $tramiteForm = Formulario::find($lastID);
+			                $tramiteForm->tramite_id = $tramite->id;
+			                $tramiteForm->save();
+
+			                $agregarCodigoTramite = Tramite::find($tramite->id);
+			                $agregarCodigoTramite->codigoSeguimiento = "CREAR-".$idUsuario.$tramite->id;
+			                $agregarCodigoTramite->save();
+			                //fin agregar tramite
+
 							//Crear registro para posteriormente validar el formulario
 							$formValido = new FormValido;
 							$formValido->formulario_id = $lastID;
@@ -244,7 +255,7 @@ class FinanciamientoController extends Controller
 					        $historialEstado->save();
 
 							DB::commit();
-							return view('financiamiento.formEnviado', ['numeroSeguimiento' => $numeroSeguimiento]);
+							return view('financiamiento.formEnviado');
 						}
 					} else {
 						//Si se opta por otros estados fuera de enviado o borrador desde el ingreso no agregamos registro
@@ -398,7 +409,7 @@ class FinanciamientoController extends Controller
 							Helpers::subirMultimedia('documentacion_presupuestos',$request->file('documentacion_presupuestos'),$lastID);
 						}
 			//return $request->all();
-			return view('financiamiento.formEnviado', ['numeroSeguimiento' => $formulario->numeroSeguimiento]);
+			return view('financiamiento.formEnviado');
     }
     function cargarBorradorLineaEmprendedor(Request $request, $borrador_id = null)
     {
