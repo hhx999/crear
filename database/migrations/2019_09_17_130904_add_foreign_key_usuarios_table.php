@@ -16,6 +16,7 @@ class AddForeignKeyUsuariosTable extends Migration
         Schema::table('USUARIOS', function (Blueprint $table) {
             //
             $table->foreign('actividadPrincipal', 'FK_ActividadPrincipalUsuario')->references('id')->on('actividades_principales')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('areas_id', 'FK_AreaUsuario')->references('id')->on('areas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -29,6 +30,7 @@ class AddForeignKeyUsuariosTable extends Migration
         Schema::table('USUARIOS', function (Blueprint $table) {
             //
             $table->dropForeign('FK_ActividadPrincipalUsuario');
+            $table->dropForeign('FK_AreaUsuario');
         });
     }
 }

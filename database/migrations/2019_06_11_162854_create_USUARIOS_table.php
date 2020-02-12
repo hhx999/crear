@@ -29,6 +29,7 @@ class CreateUSUARIOSTable extends Migration {
 			$table->boolean('verificado')->default(0);
 			$table->string('rol', 20);
 			$table->bigInteger('actividadPrincipal')->nullable()->unsigned()->index('FK_ActividadPrincipalUsuario');
+			$table->bigInteger('areas_id')->nullable()->unsigned()->index('FK_AreaUsuario');
 			$table->date('updated_at')->nullable();
 			$table->date('created_at')->nullable();
 		});

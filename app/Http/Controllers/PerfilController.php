@@ -54,4 +54,8 @@ class PerfilController extends Controller
             return redirect(url('/perfil'));
         }
     }
+    public function enviarConsulta(Request $request) 
+    {
+        echo "HOLA";
+    }
 }

@@ -73,6 +73,7 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 Route::group(['middleware' => ['comprobarrole:user']], function () {
 	//------Rutas del inicio
 	Route::get('usuarioIndex','UsuarioController@indexUser');
+
 	Route::get('tramites','UsuarioController@tramitesUser')->name('tramites'); //consultar tramites de financiamiento
 	Route::post('datosSeguimiento','UsuarioController@devuelveDatosSeguimiento'); //envia estado de formulario de financiamiento
 	Route::get('/simuladorCreditos','UsuarioController@simuladorCreditos'); //simulador de creditos, se encuentra en financiamiento
@@ -106,6 +107,7 @@ Route::group(['middleware' => ['comprobarrole:user']], function () {
 	//------Rutas de perfil
 	Route::get('perfil','PerfilController@index');
 	Route::get('perfil/emprendimientos','PerfilController@emprendimientos'); //panel de control emprendimientos
+	Route::get('perfil/enviarConsulta','PerfilController@enviarConsulta');// enviar consultas
 	Route::get('perfil/emprendimientos/create','EmprendimientoController@create')->name('crearEmprendimiento'); //formulario de creación de emprendimientos
 	Route::post('perfil/emprendimientos/create','EmprendimientoController@create'); //crear emprendimiento
 	Route::get('perfil/emprendimientos/edit/{id}','EmprendimientoController@edit')->name('crearEmprendimiento'); //formulario de edición de emprendimientos
