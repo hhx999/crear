@@ -64,10 +64,6 @@ class PerfilController extends Controller
         $usuario_id = $request->session()->get('id_usuario');
         $areas = Area::all();
         $mensaje = NULL;
-        $tramites = Tramite::all();
-        foreach ($tramites as $tramite) {
-            print_r($tramite->obtenerTramites);
-        }
         if ($request->isMethod('post')) {
             DB::beginTransaction();
             try {
@@ -75,17 +71,17 @@ class PerfilController extends Controller
                 $tramite->usuario_id = $usuario_id;
                 $tramite->save();
 
-                $agregarCodigoTramite = Tramite::find($tramite->id);
-                $agregarCodigoTramite->codigoSeguimiento = "CREAR-".$usuario_id.$tramite->id;
-                $agregarCodigoTramite->save();
-
-
                 $consulta = new Consulta;
                 $consulta->consulta = $request->consulta;
                 $consulta->area_id = $request->area;
                 $consulta->usuario_id = $usuario_id;
                 $consulta->tramite_id = $tramite->id;
                 $consulta->save();
+
+                $agregarCodigoTramite = Tramite::find($tramite->id);
+                $agregarCodigoTramite->codigoSeguimiento = "CREAR-".$usuario_id.$tramite->id;
+                $agregarCodigoTramite->consulta_id = $consulta->id;
+                $agregarCodigoTramite->save();
 
                 DB::commit();
                 $mensaje = "OK";

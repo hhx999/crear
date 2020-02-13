@@ -323,10 +323,7 @@ class Helpers
                             echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                             echo "<td>".$formTipo->nombre."</td>";
                             echo "<td>";
-                            foreach ($formularios[$i]->motivos as $motivo) {
-                                # Motivos de rechazo
-                                echo "-".$motivo->descripcion."<br>";
-                            }
+                            echo "-".$formularios[$i]->motivos->descripcion."<br>";
                             echo "</td>";
                             echo "</tr>";
                          }
@@ -384,10 +381,7 @@ class Helpers
                         echo "<td>".$formularios[$i]->montoSolicitado."</td>";
                         echo "<td>".$formTipo->nombre."</td>";
                         echo "<td>";
-                            foreach ($formularios[$i]->motivos as $motivo) {
-                                # Motivos de rechazo
-                                echo "-".$motivo->descripcion."<br>";
-                            }
+                        echo "-".$formularios[$i]->motivos->descripcion."<br>";
                         echo "</td>";
                         echo "</tr>";
                      }

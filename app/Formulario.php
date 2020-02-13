@@ -255,6 +255,10 @@ class Formulario extends Model {
     }
     public function motivos()
     {
-        return $this->hasMany('App\EliminarMotivo');
+        return $this->hasOne('App\EliminarMotivo');
+    }
+    public function obtenerEstado()
+    {
+        return $this->belongsTo('App\EstadoFormulario','estado');   
     }
 }

@@ -17,6 +17,7 @@ use App\Usuario;
 use App\Localidad;
 use App\Agencia;
 use App\ActividadesPrincipales;
+use App\Tramite;
 
 class UsuarioController extends BaseController
 {
@@ -135,7 +136,9 @@ class UsuarioController extends BaseController
     /* Tramites (seguimiento en proyecto Lumen) */
     public function tramitesUser(Request $request)
     {
-      return view('userTest.tramites');
+      $idUsuario = $request->session()->get('id_usuario');
+      $tramites = Tramite::find($idUsuario)->get();
+      return view('userTest.tramites', ['tramites' => $tramites]);
     }
     public function simuladorCreditos(Request $request)
     {

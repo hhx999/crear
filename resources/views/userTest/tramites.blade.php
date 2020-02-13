@@ -36,18 +36,85 @@
 	<div class="w3-row">
 	  	<div class="w3-col" style="width:20%"><p></p></div>
 	  	<div class="w3-col" style="width:60%;"><h3>
-				Ingresá el número del proyecto:
-			</h3>
 
-				<input class="w3-input w3-border" name="numeroSeguimiento" type="text" placeholder="Por favor ingrese el número de proyecto habilitado por el sistema" style="color:black !important;text-align: center;">
-				<br>
-				<a class="w3-button w3-blue" id="buscarSeguimientoProyecto" style="text-decoration: none;">Buscar proyecto</a>
-			<hr>
-			<div id="proyectos"></div>
+	  		<!--Container-->
+			<table class="w3-table">
+				<thead>
+					<tr style="background-color: #cdc05c;">
+						<th>
+							Tramite
+						</th>
+						<th>
+							Fecha
+						</th>
+						<th>
+							Estado
+						</th>
+						<th>
+							Descripción
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				@foreach($tramites as $tramite)
+						<tr>
+							<td>
+								@if($tramite->formulario_id != NULL)
+									Obtención de línea de crédito
+								@else
+									Consulta:<br>
+									<i style="color:lightgray;">({{$tramite->obtenerConsulta->consulta}})</i>
+								@endif
+							</td>
+							<td>{{$tramite->created_at}}</td>
+							<td>
+								@if($tramite->formulario_id != NULL)
+									{{$tramite->obtenerFormulario->obtenerEstado->nombre}}
+								@else
+									{{$tramite->obtenerConsulta->estado}}
+								@endif
+							</td>
+							<td>
+								@if($tramite->formulario_id != NULL)
+									@if($tramite->obtenerFormulario->estado == 3)
+										Observaciones:<br>
+										<a href="{{url('financiamiento/editarLineaEmprendedor/'.$tramite->formulario_id)}}" style="color: #cdc05c;">EDITAR</a>
+										<ul>
+											@foreach($tramite->obtenerFormulario->pasosValidos->observaciones as $observacion)
+												<li>{{$observacion->observacion}} | <i style="color: lightgray;">({{$observacion->created_at}})</i></li>
+											@endforeach
+										</ul>
+									@elseif($tramite->obtenerFormulario->estado == 4)
+									<span style="color:orange;">Actualizado<i style="color: lightgray;">({{$tramite->obtenerFormulario->updated_at}})</i> </span>
+									@elseif($tramite->obtenerFormulario->estado == 5)
+									<span style="color:lightgreen;">CRÉDITO ACEPTADO<br><a href="{{url('financiamiento/creditos')}}">(ver estado)</a></span>
+									@elseif($tramite->obtenerFormulario->estado == 6 || $tramite->obtenerFormulario->estado == 7)
+									<span style="color:red;">CRÉDITO RECHAZADO</span>
+									<p>Motivo:<br>
+									{{$tramite->obtenerFormulario->motivos->descripcion}}
+									<br>
+									Fecha: {{$tramite->obtenerFormulario->motivos->fecha}}
+									</p>
+									@else
+									-
+									@endif
+								@elseif($tramite->obtenerConsulta->estado == 1)
+									Respuesta:<br>
+									<p>
+										{{$tramite->obtenerConsulta->respuesta}}
+									</p>
+								@else
+								-
+								@endif
+							</td>
+						</tr>
+				@endforeach
+				</tbody>
+			</table>
+
+			<!-- FIN Container-->
 		</div>
-		<input type="text" id="rutaGenerada" name="rutaGenerada" value="{{ url('/datosSeguimiento') }}" hidden>
 	  	<div class="w3-col" style="width:20%"><p></p></div>
 	</div>
-<!-- -->
-<script type="text/javascript" src="{{ asset('js/tramites/seguimientoProyecto.js') }}"></script>
-	@endsection 
+<!-- -->	@endsection 

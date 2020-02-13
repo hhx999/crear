@@ -16,9 +16,11 @@ class CreateConsultasTable extends Migration
         Schema::create('consultas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('consulta');
+            $table->string('respuesta');
             $table->bigInteger('tramite_id')->unsigned()->index('FK_TramiteConsulta');
             $table->bigInteger('area_id')->unsigned()->index('FK_AreaConsulta');
             $table->integer('usuario_id')->index('Fk_UsuarioConsulta');
+            $table->integer('tecnico_id')->index('Fk_TecnicoConsulta');
             $table->timestamps();
         });
     }

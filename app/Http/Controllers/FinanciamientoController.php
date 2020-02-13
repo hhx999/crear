@@ -32,7 +32,7 @@ class FinanciamientoController extends Controller
 		$idUsuario = $request->session()->get('id_usuario');
 		$creditos = Credito::where('usuario_id', $idUsuario)->orderBy('updated_at', 'DESC')->get();
 		if ($creditos->isEmpty()) {
-			return redirect('financiamiento')->with(['error' => 'Usted por ahora no tiene tiene créditos.']);
+			return redirect('financiamiento')->with(['error' => 'Usted por ahora no tiene tiene créditos.<br><i><span style="color: lightgray;">Si su crédito todavía no se encuentra disponible, está en lista de pendientes por parte de la Agencia. Por favor espere que en breve se activará.</span></i>']);
 		}
 		return view('financiamiento.creditos', ['creditos' => $creditos]);
 	}
@@ -158,7 +158,7 @@ class FinanciamientoController extends Controller
     	for ($i=0; $i < count($dataUsuario->emprendimientos); $i++) { 
     		$emprendimientos[$i] = Emprendimiento::find($dataUsuario->emprendimientos[$i]->emprendimiento_id);
     	}
-
+    	$lastID = '';
     	//Obtenemos los datos mediante POST
 	    if ($request->isMethod('post'))
 		{
@@ -229,15 +229,17 @@ class FinanciamientoController extends Controller
 			                $tramiteForm->tramite_id = $tramite->id;
 			                $tramiteForm->save();
 
-			                $agregarCodigoTramite = Tramite::find($tramite->id);
-			                $agregarCodigoTramite->codigoSeguimiento = "CREAR-".$idUsuario.$tramite->id;
-			                $agregarCodigoTramite->save();
 			                //fin agregar tramite
 
 							//Crear registro para posteriormente validar el formulario
 							$formValido = new FormValido;
 							$formValido->formulario_id = $lastID;
 							$formValido->save();
+
+							$agregarCodigoTramite = Tramite::find($tramite->id);
+			                $agregarCodigoTramite->codigoSeguimiento = "CREAR-".$idUsuario.$tramite->id;
+			                $agregarCodigoTramite->formulario_id = $lastID;
+			                $agregarCodigoTramite->save();
 							//Actualizamos el usuario
 							$usuario = Usuario::find($idUsuario);
 							$usuario->localidad = $request->localidadEmprendedor;

@@ -17,6 +17,8 @@ class CreateTramitesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('usuario_id');
             $table->string('codigoSeguimiento')->nullable();
+            $table->integer('formulario_id')->nullable()->index('FK_FormularioTramite');
+            $table->bigInteger('consulta_id')->nullable()->unsigned()->index('FK_ConsultaTramite');
             $table->timestamps();
         });
     }
