@@ -21,6 +21,7 @@ use App\Credito;
 use App\EliminarMotivo;
 use App\Emprendimiento;
 use App\Trabaja;
+use App\Consulta;
 
 use App\Helpers;
 
@@ -487,5 +488,11 @@ class TecnicoController extends Controller
         echo "<div class='w3-col m12'><p>Estado cambiado</p></div>";
       }
       return view('admin.cambiarEstado',['nombreUsuario' => $session->get('nombreApellido'), 'datosFormulario' => $datosFormulario, 'datosCredito' => $datosCredito, 'estadosCreditos' => $estadosCreditos, 'estadosFormularios' => $estadosFormularios]);
+    }
+    public function consultas(Request $request)
+    {
+      $session = $request->session();
+      $consultas = Consulta::all();
+      return view('admin.adminConsultas', ['consultas' => $consultas ,'nombreUsuario' => $session->get('nombreUsuario')]);
     }
  }

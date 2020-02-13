@@ -56,7 +56,7 @@
 					</tr>
 				</thead>
 				<tbody>
-
+				@if($tramites != NULL)
 				@foreach($tramites as $tramite)
 						<tr>
 							<td>
@@ -110,6 +110,11 @@
 							</td>
 						</tr>
 				@endforeach
+				@else
+				<tr>
+					<td>No existen registros.</td>
+				</tr>
+				@endif
 				</tbody>
 			</table>
 

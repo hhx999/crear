@@ -54,6 +54,7 @@ Route::group(['middleware' => ['comprobarrole:admin']], function () {
 	Route::get('/verUsuario/{id}','TecnicoController@verUsuario');
 	Route::post('/verificarUsuarios','TecnicoController@verificarUsuarios');
 	Route::post('/registroAjax','TecnicoController@comprobarUsuario');
+	Route::get('/consultas','TecnicoController@consultas');
  /********/
 
 	Route::get('/generarPdf/{id}','TecnicoController@crearPDF');
