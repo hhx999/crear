@@ -9,10 +9,10 @@ class Consulta extends Model
     //
     public function verUsuario()
     {
-        return $this->hasOne('App\Usuario');
+        return $this->belongsTo('App\Usuario','usuario_id');
     }
     public function verArea()
     {
-        return $this->hasOne('App\Area');
+        return $this->belongsTo('App\Area','area_id');
     }
 }

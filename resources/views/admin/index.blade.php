@@ -78,6 +78,7 @@ box-shadow: 0px 0px 5px 5px #4caf50;
           <a class="w3-btn w3-green" href="{{ url('/crearLineaCredito') }}">Crear linea de crédito</a>
           <a class="w3-btn w3-light-green" href="{{ url('/verPendientesCreditos') }}" style="color: #fff !important;">Ver pendientes</a>
           <a class="w3-btn w3-blue-gray" href="{{ url('/adminUsuarios') }}" style="color: #fff !important;">Ver usuarios</a>
+          <a class="w3-btn w3-pink" href="{{ url('/consultas') }}" style="color: #fff !important;">Ver consultas</a>
         </div>
       </fieldset>
         <!-- FORMULARIO DE BUSQUEDA -->

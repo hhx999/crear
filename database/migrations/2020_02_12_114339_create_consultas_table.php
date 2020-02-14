@@ -20,7 +20,7 @@ class CreateConsultasTable extends Migration
             $table->bigInteger('tramite_id')->unsigned()->index('FK_TramiteConsulta');
             $table->bigInteger('area_id')->unsigned()->index('FK_AreaConsulta');
             $table->integer('usuario_id')->index('Fk_UsuarioConsulta');
-            $table->integer('tecnico_id')->index('Fk_TecnicoConsulta');
+            $table->integer('tecnico_id')->nullable()->index('Fk_TecnicoConsulta');
             $table->timestamps();
         });
     }

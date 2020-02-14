@@ -493,6 +493,23 @@ class TecnicoController extends Controller
     {
       $session = $request->session();
       $consultas = Consulta::all();
+      if ($request->isMethod('post')) {
+          DB::beginTransaction();
+            try {
+                for ($i=0; $i < count($request->consulta_id); $i++) { 
+                  $consulta = Consulta::find($request->consulta_id[$i]);
+                  $consulta->estado = 1;
+                  $consulta->respuesta = $request->respuesta[$i];
+                  $consulta->save();
+                }
+                DB::commit();
+                return redirect('/consultas')->withInput(['consultas' => $consultas ,'nombreUsuario' => $session->get('nombreUsuario')]);
+            } catch (\Illuminate\Database\QueryException $e) {
+              DB::rollback();
+              echo "Error";
+            }
+
+      }
       return view('admin.adminConsultas', ['consultas' => $consultas ,'nombreUsuario' => $session->get('nombreUsuario')]);
     }
  }
