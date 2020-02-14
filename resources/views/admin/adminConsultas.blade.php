@@ -65,7 +65,7 @@
                     @endforeach
                   @else
 	                <tr>
-	                    <td colspan="4" style="text-align: center;">No existen registros.</td>
+	                    <td colspan="6" style="text-align: center;">No existen registros.</td>
 	                </tr>
                   @endif
 				</tbody>
