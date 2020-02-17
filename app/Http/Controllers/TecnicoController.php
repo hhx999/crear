@@ -492,6 +492,7 @@ class TecnicoController extends Controller
     public function consultas(Request $request)
     {
       $session = $request->session();
+      $idTecnico = $request->session()->get('id_usuario');
       $consultas = Consulta::all();
       if ($request->isMethod('post')) {
           DB::beginTransaction();
@@ -499,6 +500,7 @@ class TecnicoController extends Controller
                 for ($i=0; $i < count($request->consulta_id); $i++) { 
                   $consulta = Consulta::find($request->consulta_id[$i]);
                   $consulta->estado = 1;
+                  $consulta->tecnico_id = $idTecnico;
                   $consulta->respuesta = $request->respuesta[$i];
                   $consulta->save();
                 }

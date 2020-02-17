@@ -105,9 +105,10 @@
 										-
 										@endif
 									@elseif($tramite->obtenerConsulta->estado == 1)
-										Respuesta:<br>
-										<p>
-											{{$tramite->obtenerConsulta->respuesta}}
+										<p>Respuesta:<br>
+											<span style="color: lightgray;">{{$tramite->obtenerConsulta->respuesta}}</span>
+											<br>
+											<small>{{$tramite->obtenerConsulta->updated_at}} - {{$tramite->obtenerConsulta->verTecnico->nombreApellido}}</small>
 										</p>
 									@else
 									-

@@ -9,10 +9,17 @@
 
 	@section('content')
 	<!-- Primera fila de cuadros de opciones -->
-	<div class="w3-col m12">
-		<p><b>Financiamiento</b></p>
+	<div class="w3-container w3-quarter">
+		  </div>
+	<div class="w3-container w3-half">
+		<p align="center"><b>Financiamiento</b></p>
 		@if (\Session::has('error'))
-	        <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('error') !!}</p>
+	        <p style="color: white;font-family: 'Roboto';font-weight: bold;">{!! \Session::get('error') !!}
+	        <span style="cursor: pointer;text-decoration: none;color:orange;" id="verErrorCreditos">Ver error</span>
+	        </p>
+	        <div style="display: none;width: 400px;text-align: left;" class="mensajeErrorCreditos">
+	        	<i><span style="color: lightgray;">Si su trámite ya está completo y  su crédito todavía no se encuentra disponible, se encuentra en lista de pendientes por parte de la Agencia. <br>Por favor espere que en breve se activará.</span></i>
+	        </div>
 	    @endif
 	</div>
 	 	<div class="w3-row itemsMenuUsuario">
@@ -62,5 +69,17 @@
 		  </div>
 		  <div class="w3-container w3-quarter">
 		  </div>
-
+<script type="text/javascript">
+	$('#verErrorCreditos').click(function()  {
+		if($('.mensajeErrorCreditos').css('display') == 'none') {
+			$('.mensajeErrorCreditos').show();
+			$(this).text('Ocultar error');
+			$(this).css('color','red');
+		} else {
+			$('.mensajeErrorCreditos').hide();
+			$(this).text('Ver error');
+			$(this).css('color','orange');
+		}
+	});
+</script>
 	@endsection

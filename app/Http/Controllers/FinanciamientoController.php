@@ -32,7 +32,7 @@ class FinanciamientoController extends Controller
 		$idUsuario = $request->session()->get('id_usuario');
 		$creditos = Credito::where('usuario_id', $idUsuario)->orderBy('updated_at', 'DESC')->get();
 		if ($creditos->isEmpty()) {
-			return redirect('financiamiento')->with(['error' => 'Usted por ahora no tiene tiene créditos.<br><i><span style="color: lightgray;">Si su crédito todavía no se encuentra disponible, está en lista de pendientes por parte de la Agencia. Por favor espere que en breve se activará.</span></i>']);
+			return redirect('financiamiento')->with(['error' => 'Usted por ahora no tiene tiene créditos.<br>']);
 		}
 		return view('financiamiento.creditos', ['creditos' => $creditos]);
 	}

@@ -137,7 +137,7 @@ class UsuarioController extends BaseController
     public function tramitesUser(Request $request)
     {
       $idUsuario = $request->session()->get('id_usuario');
-      $tramites = Tramite::where('usuario_id',$idUsuario)->get();
+      $tramites = Tramite::where('usuario_id',$idUsuario)->orderBy('updated_at', 'DESC')->get();
       return view('userTest.tramites', ['tramites' => $tramites]);
     }
     public function simuladorCreditos(Request $request)
